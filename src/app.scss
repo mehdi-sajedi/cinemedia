@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  // grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+  gap: 2rem;
+  margin: 3rem;
+
+  img {
+    border-radius: 10px;
+  }
+
+  h1 {
+    text-align: center;
+    text-overflow: clip;
+  }
+}
+
+img {
+  width: 100%;
+}
