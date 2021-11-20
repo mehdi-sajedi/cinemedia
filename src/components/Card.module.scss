@@ -1,0 +1,32 @@
+.card {
+  background-color: #ddd;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+
+  img {
+    border-radius: 5px 5px 2px 2px;
+  }
+
+  .details {
+    padding: 20px;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .topRow {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    h3 {
+      width: 85%;
+    }
+
+    .genre {
+      margin-top: 10px;
+    }
+  }
+}

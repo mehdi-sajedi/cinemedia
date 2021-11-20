@@ -1,27 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-.movies-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
-  // grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
-  gap: 2rem;
-  margin: 3rem;
-
-  img {
-    border-radius: 10px;
-  }
-
-  h1 {
-    text-align: center;
-    text-overflow: clip;
-  }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fbfbfd;
 }
 
 img {
   width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  max-width: clamp(1px, 1440px, 92vw);
+  margin: 0 auto;
 }
