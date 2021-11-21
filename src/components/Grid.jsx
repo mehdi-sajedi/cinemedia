@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
+import { AppContext } from '../context/app-context';
 import Card from './Card';
 import _ from 'lodash';
 import GridStyles from './Grid.module.scss';
 
 const Grid = ({ url }) => {
-  const [results, setResults] = useState([]);
+  const { appState, dispatch } = useContext(AppContext);
 
   useEffect(() => {
-    const getData = () => {
+    const getResults = () => {
       fetch(url)
         .then((data) => data.json())
         .then((data) => {
-          setResults(data.results);
+          dispatch({ type: 'SET-RESULTS', payload: data.results });
           console.log(data.results);
-        });
+        })
+        .catch((err) => console.error(err));
     };
 
-    getData();
-  }, [url]);
+    getResults();
+  }, [dispatch, url]);
 
   return (
     <section className={GridStyles.grid}>
-      {results.map((entry) => {
+      {appState.results.map((entry) => {
         return <Card {...entry} key={_.uniqueId()} />;
       })}
     </section>

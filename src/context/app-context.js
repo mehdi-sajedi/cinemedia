@@ -5,11 +5,18 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const initialAppState = {
-    prop: '',
+    results: [],
+    search: '',
   };
 
   const reducer = (draft, action) => {
     // Actions
+    if (action.type === 'SET-RESULTS') {
+      draft.results = action.payload;
+    } else if (action.type === 'SET-SEARCH-TEXT') {
+      draft.search = action.payload;
+    } else if (action.type === 'GET-SEARCH-RESULTS') {
+    }
   };
 
   const [appState, dispatch] = useImmerReducer(reducer, initialAppState);
