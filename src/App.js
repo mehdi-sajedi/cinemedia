@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { AppContext } from './context/app-context';
 import './app.scss';
 import Nav from './components/Nav';
 import Grid from './components/Grid';
@@ -10,10 +9,6 @@ const movies = `https://api.themoviedb.org/3/discover/movie?vote_count.gte=1000&
 const tvShows = `https://api.themoviedb.org/3/tv/popular?vote_count.gte=2500&api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`;
 
 function App() {
-  const { appState } = useContext(AppContext);
-
-  const person = `https://api.themoviedb.org/3/search/person?api_key=${process.env.REACT_APP_API_KEY}&query=${appState.search}`;
-
   return (
     <BrowserRouter>
       <Nav />

@@ -3,12 +3,9 @@ import { AppContext } from '../context/app-context';
 import Card from './Card';
 import _ from 'lodash';
 import GridStyles from './Grid.module.scss';
-import { useLocation } from 'react-router';
 
 const Grid = ({ url, fromSearch }) => {
   const { appState, dispatch } = useContext(AppContext);
-  const location = useLocation();
-  console.log(location);
 
   useEffect(() => {
     const getResults = () => {
@@ -27,7 +24,7 @@ const Grid = ({ url, fromSearch }) => {
   return (
     <section className={GridStyles.grid}>
       {appState.results.map((entry) => {
-        return <Card {...entry} key={_.uniqueId()} />;
+        return entry.poster_path && <Card {...entry} key={_.uniqueId()} />;
       })}
     </section>
   );

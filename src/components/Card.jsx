@@ -14,18 +14,22 @@ const Card = ({
   media_type,
 }) => {
   return (
-    // <h1>Success</h1>
-    // <div className={CardStyles.card}>
-    //   <img src={`${basePath}${posterID}`} alt="" />
-    //   <div className={CardStyles.details}>
-    //     <div className={CardStyles.topRow}>
-    //       <h3>{movieName ? movieName : tvName}</h3>
-    //       <h4>{movieYear ? movieYear.slice(0, 4) : tvYear.slice(0, 4)}</h4>
-    //     </div>
-    //     <h4 className={CardStyles.genre}>{genres.get(genre_ids[0])}</h4>
-    //   </div>
-    // </div>
-    <>{posterID && <img src={`${basePath}${posterID}`} alt="" />}</>
+    <div className={CardStyles.card}>
+      <img src={`${basePath}${posterID}`} alt="" />
+      <div className={CardStyles.details}>
+        <div className={CardStyles.topRow}>
+          {/* <h3>{movieName ? movieName : tvName}</h3> */}
+          {movieName && <h3>{movieName}</h3>}
+          {tvName && <h3>{tvName}</h3>}
+          {movieYear && <h4>{movieYear.slice(0, 4)}</h4>}
+          {tvYear && <h4>{tvYear.slice(0, 4)}</h4>}
+
+          {/* <h4>{movieYear ? movieYear.slice(0, 4) : tvYear.slice(0, 4)}</h4> */}
+        </div>
+        <h4 className={CardStyles.genre}>{genres.get(genre_ids[0])}</h4>
+      </div>
+    </div>
+    // <>{posterID && <img src={`${basePath}${posterID}`} alt="" />}</>
   );
 };
 

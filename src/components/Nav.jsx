@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { HiOutlineSearch } from 'react-icons/hi';
 
 const Nav = () => {
-  const { appState, dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
   const navigate = useNavigate();
 
   const handleFormSubmit = (e) => {
@@ -24,12 +24,13 @@ const Nav = () => {
           console.log(results);
           if (results.length === 0) return;
           const personID = results[0].id;
-          const next = fetch(
+          fetch(
             `https://api.themoviedb.org/3/person/${personID}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`
           )
             .then((data) => data.json())
             .then((stuff) => {
               personResults = stuff.cast;
+              console.log(personResults);
               dispatch({ type: 'SET-RESULTS', payload: personResults });
               stuff.cast.forEach((entry) => {
                 console.log(entry.media_type);
@@ -41,10 +42,6 @@ const Nav = () => {
     getResults();
 
     navigate('/search');
-  };
-
-  const handleSearchChange = (e) => {
-    dispatch({ type: 'SET-SEARCH-TEXT', payload: e.target.value });
   };
 
   return (
