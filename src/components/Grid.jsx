@@ -3,23 +3,26 @@ import { AppContext } from '../context/app-context';
 import Card from './Card';
 import _ from 'lodash';
 import GridStyles from './Grid.module.scss';
+import { useLocation } from 'react-router';
 
-const Grid = ({ url }) => {
+const Grid = ({ url, fromSearch }) => {
   const { appState, dispatch } = useContext(AppContext);
+  const location = useLocation();
+  console.log(location);
 
   useEffect(() => {
     const getResults = () => {
       fetch(url)
         .then((data) => data.json())
-        .then((data) => {
-          dispatch({ type: 'SET-RESULTS', payload: data.results });
-          console.log(data.results);
+        .then(({ results }) => {
+          dispatch({ type: 'SET-RESULTS', payload: results });
+          console.log(results);
         })
         .catch((err) => console.error(err));
     };
 
     getResults();
-  }, [dispatch, url]);
+  }, [dispatch, url, fromSearch]);
 
   return (
     <section className={GridStyles.grid}>

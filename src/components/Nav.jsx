@@ -1,43 +1,49 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/app-context';
 import NavStyles from './Nav.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { HiOutlineSearch } from 'react-icons/hi';
 
 const Nav = () => {
   const { appState, dispatch } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    if (e.target[0].value.trim() === '') return;
+    dispatch({ type: 'SET-SEARCH-TEXT', payload: e.target[0].value });
 
-    const req = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&page=1&query=${appState.search}`;
+    const person = `https://api.themoviedb.org/3/search/person?api_key=${process.env.REACT_APP_API_KEY}&query=${e.target[0].value}`;
 
-    let person = 0;
-    let movie = 0;
-    let tv = 0;
+    const getResults = () => {
+      let personResults = [];
 
-    fetch(req)
-      .then((data) => data.json())
-      .then(({ results }) => {
-        dispatch({ type: 'GET-SEARCH-RESULTS', payload: results });
-
-        results.forEach((entry) => {
-          if (entry.media_type === 'person') {
-            person++;
-            console.log(entry.known_for);
-          } else if (entry.media_type === 'movie') {
-            movie++;
-          } else if (entry.media_type === 'tv') {
-            tv++;
-          }
+      fetch(person)
+        .then((data) => data.json())
+        .then(({ results }) => {
+          console.log(results);
+          if (results.length === 0) return;
+          const personID = results[0].id;
+          const next = fetch(
+            `https://api.themoviedb.org/3/person/${personID}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`
+          )
+            .then((data) => data.json())
+            .then((stuff) => {
+              personResults = stuff.cast;
+              dispatch({ type: 'SET-RESULTS', payload: personResults });
+              stuff.cast.forEach((entry) => {
+                console.log(entry.media_type);
+              });
+            });
         });
+    };
 
-        console.log(`Person: ${person} || Movie: ${movie} || TV: ${tv}`);
-      })
-      .catch((err) => console.error(err));
+    getResults();
+
+    navigate('/search');
   };
 
-  const handleSearchType = (e) => {
+  const handleSearchChange = (e) => {
     dispatch({ type: 'SET-SEARCH-TEXT', payload: e.target.value });
   };
 
@@ -53,7 +59,7 @@ const Nav = () => {
             <i>
               <HiOutlineSearch />
             </i>
-            <input onChange={handleSearchType} type="text" />
+            <input type="text" />
           </div>
           <button typeof="submit" className={NavStyles.submit}>
             Search
