@@ -4,7 +4,7 @@ import Card from './Card';
 import _ from 'lodash';
 import GridStyles from './Grid.module.scss';
 
-const Grid = ({ url, fromSearch }) => {
+const Grid = ({ url }) => {
   const { appState, dispatch } = useContext(AppContext);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Grid = ({ url, fromSearch }) => {
     };
 
     getResults();
-  }, [dispatch, url, fromSearch]);
+  }, [dispatch, url]);
 
   return (
     <section className={GridStyles.grid}>

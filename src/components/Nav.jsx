@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { AppContext } from '../context/app-context';
 import NavStyles from './Nav.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
@@ -11,15 +11,15 @@ import { HiOutlineSearch } from 'react-icons/hi';
 const Nav = () => {
   const { dispatch } = useContext(AppContext);
   const navigate = useNavigate();
+  const searchRef = useRef();
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (e.target[0].value.trim() === '') return;
-    dispatch({ type: 'SET-SEARCH-TEXT', payload: e.target[0].value });
+    const searchText = searchRef.current.value;
+    if (searchText.trim() === '') return;
+    dispatch({ type: 'SET-SEARCH-TEXT', payload: searchText });
 
-    const person = `https://api.themoviedb.org/3/search/person?api_key=${process.env.REACT_APP_API_KEY}&query=${e.target[0].value}`;
-
-    const multi = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${e.target[0].value}`;
+    const multi = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${searchText}`;
 
     const getResults = () => {
       let personResults = [];
@@ -32,7 +32,8 @@ const Nav = () => {
 
           const finder = results.find((entry) => {
             return (
-              entry.name?.toLowerCase() === `${e.target[0].value.toLowerCase()}`
+              entry.name?.toLowerCase() === searchText.toLowerCase() &&
+              entry.media_type === 'person'
             );
           });
 
@@ -89,7 +90,7 @@ const Nav = () => {
             <i>
               <HiOutlineSearch />
             </i>
-            <input type="text" />
+            <input ref={searchRef} type="text" />
           </div>
           <button typeof="submit" className={NavStyles.submit}>
             Search

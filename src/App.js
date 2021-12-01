@@ -16,11 +16,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Grid url={movies} />}></Route>
           <Route exact path="tv" element={<Grid url={tvShows} />}></Route>
-          <Route
-            exact
-            path="search"
-            element={<Grid fromSearch={true} />}
-          ></Route>
+          <Route exact path="search" element={<Grid />}></Route>
         </Routes>
       </main>
     </BrowserRouter>
