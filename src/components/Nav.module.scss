@@ -1,13 +1,15 @@
+@import '../app.scss';
+
 .nav {
   padding: 15px;
   height: 80px;
-  background-color: #333;
+  background-color: var(--dark-grey);
 
   .navContent {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: clamp(1px, 1440px, 92vw);
+    max-width: var(--max-width);
     margin: 0 auto;
 
     .links {
@@ -64,7 +66,7 @@
 
   a {
     font-size: 18px;
-    color: white;
+    color: var(--white);
     border-radius: 2px;
     padding: 10px;
     margin: 0 5px;

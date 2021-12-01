@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+:root {
+  --max-width: clamp(1px, 1440px, 92vw);
+  --dark-grey: #333;
+  --white: #fff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +15,8 @@
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #fbfbfd;
+  overflow-x: hidden;
+  letter-spacing: 0.25px;
 }
 
 img {

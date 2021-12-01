@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './app.scss';
 import Nav from './components/Nav';
 import Grid from './components/Grid';
+import Footer from './components/Footer';
 
 const movies = `https://api.themoviedb.org/3/discover/movie?vote_count.gte=1000&vote_average.gte=7&sort_by=popularity.desc&api_key=${process.env.REACT_APP_API_KEY}`;
 
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="search" element={<Grid />}></Route>
         </Routes>
       </main>
+      <Footer />
     </BrowserRouter>
   );
 }
