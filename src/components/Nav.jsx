@@ -33,9 +33,9 @@ const Nav = () => {
     if (personExactMatch || results[0].media_type === 'person') {
       const personID = (personExactMatch ? personExactMatch : results[0]).id;
 
-      const URL_ID = `https://api.themoviedb.org/3/person/${personID}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`;
+      const URL_PERSON_ID = `https://api.themoviedb.org/3/person/${personID}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`;
 
-      const res = await fetch(URL_ID);
+      const res = await fetch(URL_PERSON_ID);
       const { cast: personResults } = await res.json();
       console.log(personResults);
       dispatch({ type: 'SET-RESULTS', payload: personResults });
@@ -55,8 +55,8 @@ const Nav = () => {
     <nav className={NavStyles.nav}>
       <div className={NavStyles.navContent}>
         <div className={NavStyles.links}>
-          <Link to="/">Movies</Link>
-          <Link to="/tv">TV</Link>
+          <Link to="/movies">Movies</Link>
+          <Link to="/shows">Shows</Link>
         </div>
         <form onSubmit={handleFormSubmit} className={NavStyles.form}>
           <div className={NavStyles.search}>
