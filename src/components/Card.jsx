@@ -19,12 +19,15 @@ const Card = ({
   const { appState, dispatch } = useContext(AppContext);
   const { pathname } = useLocation();
 
+  const pathnameCopy =
+    pathname === '/search' ? (tvYear ? '/shows' : '/movies') : pathname;
+
   const URL_SHOW = `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}`;
 
   const URL_MOVIE = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`;
 
   const doStuff = async () => {
-    const media = pathname === '/movies' ? URL_MOVIE : URL_SHOW;
+    const media = pathnameCopy === '/movies' ? URL_MOVIE : URL_SHOW;
 
     const res = await fetch(media);
     const data = await res.json();
@@ -34,7 +37,7 @@ const Card = ({
   };
 
   return (
-    <Link to={`${pathname}/${id}`} onClick={doStuff}>
+    <Link to={`${pathnameCopy}/${id}`} onClick={doStuff}>
       <div className={CardStyles.card}>
         <img src={`${basePath}${posterID}`} alt="" />
         <div className={CardStyles.details}>

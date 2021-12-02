@@ -53,6 +53,7 @@ const CardDetails = () => {
           <div className={CardDetailsStyles.textContent}>
             {media.title && <h1>{media.title}</h1>}
             {media.name && <h1>{media.name}</h1>}
+            <p className={CardDetailsStyles.tagline}>{media.tagline}</p>
             <p>{media.overview}</p>
           </div>
         </div>

@@ -1,14 +1,16 @@
+@import '../app.scss';
+
 .main {
   padding: 3rem 0;
 
   .showcase {
     // width: 100vw;
-    height: 500px;
+    height: 600px;
     position: relative;
     // background-color: rgba(0, 0, 0, 0.75);
     background: linear-gradient(
       to right,
-      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.98) 0%,
       rgba(0, 0, 0, 0.75) 50%,
       rgba(0, 0, 0, 0.5) 100%
     );
@@ -22,12 +24,26 @@
 
     .content {
       // position: absolute;
+      padding-top: 4.6rem;
       display: grid;
-      grid-template-columns: 2fr 5fr;
+      grid-template-columns: 1fr 3fr;
       z-index: 1;
-      max-width: 1440px;
+      max-width: var(--max-width);
       margin: 0 auto;
       color: var(--white);
+
+      .textContent {
+        margin-top: 3rem;
+
+        h1 {
+          margin-bottom: 5px;
+        }
+
+        .tagline {
+          font-style: italic;
+          margin-bottom: 25px;
+        }
+      }
     }
 
     img {
