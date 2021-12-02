@@ -19,7 +19,7 @@ html {
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #fbfbfd;
-  overflow-x: hidden;
+  // overflow-x: hidden;
   letter-spacing: 0.25px;
 }
 
@@ -37,6 +37,6 @@ a {
 }
 
 .container {
-  max-width: clamp(1px, 1440px, 92vw);
+  // max-width: var(--max-width);
   margin: 0 auto;
 }

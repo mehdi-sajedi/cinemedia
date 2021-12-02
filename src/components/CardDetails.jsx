@@ -3,9 +3,16 @@ import { AppContext } from '../context/app-context';
 import { useParams } from 'react-router';
 import CardDetailsStyles from './CardDetails.module.scss';
 
+const backdropBase = 'https://image.tmdb.org/t/p/w1280/';
+const posterBase = 'https://image.tmdb.org/t/p/w780/';
+// const backdropBase = 'https://image.tmdb.org/t/p/original/';
+// const posterBase = 'https://image.tmdb.org/t/p/original/';
+
 const CardDetails = () => {
   const { id } = useParams();
   const { appState, dispatch } = useContext(AppContext);
+
+  const media = appState.singleResult;
 
   // const URL_TV = `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}`;
 
@@ -32,7 +39,26 @@ const CardDetails = () => {
   //   }
   // }, [appState.singleResult, getSingle, URL_MOVIE, URL_TV]);
 
-  return <div>{appState.singleResult.overview}</div>;
+  return (
+    <main className={CardDetailsStyles.main}>
+      <div className={CardDetailsStyles.showcase}>
+        <div
+          className={CardDetailsStyles.backdrop}
+          style={{
+            background: `url('${backdropBase}${media.backdrop_path}') no-repeat center center/cover`,
+          }}
+        ></div>
+        <div className={CardDetailsStyles.content}>
+          <img src={`${posterBase}${media.poster_path}`} alt="" />
+          <div className={CardDetailsStyles.textContent}>
+            {media.title && <h1>{media.title}</h1>}
+            {media.name && <h1>{media.name}</h1>}
+            <p>{media.overview}</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
 };
 
 export default CardDetails;
