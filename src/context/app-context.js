@@ -7,6 +7,7 @@ export const AppProvider = ({ children }) => {
   const initialAppState = {
     results: [],
     search: '',
+    singleResult: {},
   };
 
   const reducer = (draft, action) => {
@@ -15,6 +16,8 @@ export const AppProvider = ({ children }) => {
       draft.results = action.payload;
     } else if (action.type === 'SET-SEARCH-TEXT') {
       draft.search = action.payload;
+    } else if (action.type === 'SET-SINGLE-RESULT') {
+      draft.singleResult = action.payload;
     }
   };
 

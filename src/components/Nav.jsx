@@ -1,13 +1,15 @@
 import React, { useContext, useRef } from 'react';
 import { AppContext } from '../context/app-context';
-import NavStyles from './Nav.module.scss';
+import { useLocation } from 'react-router';
 import { Link, useNavigate } from 'react-router-dom';
+import NavStyles from './Nav.module.scss';
 import { HiOutlineSearch } from 'react-icons/hi';
 
 const Nav = () => {
   const { dispatch } = useContext(AppContext);
   const navigate = useNavigate();
   const searchRef = useRef();
+  const { pathname } = useLocation();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -55,8 +57,18 @@ const Nav = () => {
     <nav className={NavStyles.nav}>
       <div className={NavStyles.navContent}>
         <div className={NavStyles.links}>
-          <Link to="/movies">Movies</Link>
-          <Link to="/shows">Shows</Link>
+          <Link
+            to="/movies"
+            className={`${pathname === '/movies' ? NavStyles.active : ''}`}
+          >
+            Movies
+          </Link>
+          <Link
+            to="/shows"
+            className={`${pathname === '/shows' ? NavStyles.active : ''}`}
+          >
+            Shows
+          </Link>
         </div>
         <form onSubmit={handleFormSubmit} className={NavStyles.form}>
           <div className={NavStyles.search}>
