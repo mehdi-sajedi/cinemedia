@@ -16,28 +16,49 @@ const Card = ({
   genre_ids,
   id,
 }) => {
-  const { appState, dispatch } = useContext(AppContext);
+  const { dispatch } = useContext(AppContext);
   const { pathname } = useLocation();
 
   const pathnameCopy =
     pathname === '/search' ? (tvYear ? '/shows' : '/movies') : pathname;
 
-  const URL_SHOW = `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}`;
+  const URL_SHOW_SINGLE = `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}`;
 
-  const URL_MOVIE = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`;
+  const URL_MOVIE_SINGLE = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`;
 
-  const doStuff = async () => {
-    const media = pathnameCopy === '/movies' ? URL_MOVIE : URL_SHOW;
-
+  const getMediaDetails = async () => {
+    const media =
+      pathnameCopy === '/movies' ? URL_MOVIE_SINGLE : URL_SHOW_SINGLE;
     const res = await fetch(media);
-    const data = await res.json();
-    dispatch({ type: 'SET-SINGLE-RESULT', payload: data });
 
-    console.log(data);
+    if (media === URL_MOVIE_SINGLE) {
+      const data = await res.json();
+      dispatch({
+        type: 'SET-SINGLE-RESULT',
+        payload: data,
+      });
+    } else if (media === URL_SHOW_SINGLE) {
+      const {
+        name: title,
+        first_air_date: release_date,
+        episode_run_time: runtime,
+        ...rest
+      } = await res.json();
+
+      dispatch({
+        type: 'SET-SINGLE-RESULT',
+        payload: {
+          title,
+          release_date,
+          runtime: runtime[0],
+          ...rest,
+        },
+      });
+    }
   };
 
   return (
-    <Link to={`${pathnameCopy}/${id}`} onClick={doStuff}>
+    <Link to={`${pathnameCopy}/${id}`} onClick={getMediaDetails}>
       <div className={CardStyles.card}>
         <img src={`${basePath}${posterID}`} alt="" />
         <div className={CardStyles.details}>

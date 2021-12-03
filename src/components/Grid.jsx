@@ -8,14 +8,11 @@ const Grid = ({ url }) => {
   const { appState, dispatch } = useContext(AppContext);
 
   useEffect(() => {
-    const getResults = () => {
-      fetch(url)
-        .then((data) => data.json())
-        .then(({ results }) => {
-          dispatch({ type: 'SET-RESULTS', payload: results });
-          console.log(results);
-        })
-        .catch((err) => console.error(err));
+    const getResults = async () => {
+      const res = await fetch(url);
+      const { results } = await res.json();
+      dispatch({ type: 'SET-RESULTS', payload: results });
+      console.log(results);
     };
 
     getResults();
