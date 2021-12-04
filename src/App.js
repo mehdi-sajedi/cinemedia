@@ -5,8 +5,10 @@ import Nav from './components/Global/Nav';
 import Grid from './components/Home/Grid';
 import Footer from './components/Global/Footer';
 import NoRoute from './components/Utilities/NoRoute';
-import CardDetails from './components/MediaDetails/CardDetails';
+import Showcase from './components/MediaDetails/Showcase';
 import Cast from './components/MediaDetails/Cast';
+import PersonPage from './components/PersonDetails/PersonPage';
+import SearchResultsText from './components/Global/SearchResultsText';
 
 // const movies = `https://api.themoviedb.org/3/discover/movie?vote_count.gte=1000&vote_average.gte=7&sort_by=popularity.desc&api_key=${process.env.REACT_APP_API_KEY}`;
 
@@ -24,13 +26,22 @@ function App() {
         <Routes>
           <Route exact path="/movies" element={<Grid url={movies} />}></Route>
           <Route exact path="shows" element={<Grid url={shows} />}></Route>
-          <Route exact path="search" element={<Grid />}></Route>
+          <Route
+            exact
+            path="search"
+            element={
+              <>
+                <SearchResultsText />
+                <Grid />
+              </>
+            }
+          ></Route>
           <Route
             exact
             path="/movies/:id"
             element={
               <>
-                <CardDetails /> <Cast />
+                <Showcase /> <Cast />
               </>
             }
           />
@@ -39,10 +50,11 @@ function App() {
             path="/shows/:id"
             element={
               <>
-                <CardDetails /> <Cast />
+                <Showcase /> <Cast />
               </>
             }
           />
+          <Route exact path="/person/:id" element={<PersonPage />} />
           <Route path="/" element={<Navigate replace to="movies" />} />
           <Route path="*" element={<NoRoute />} />
         </Routes>
