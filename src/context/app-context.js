@@ -5,7 +5,7 @@ export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const initialAppState = {
-    results: [],
+    results: {},
     currentMedia: {},
     person: {},
     search: {
@@ -26,14 +26,17 @@ export const AppProvider = ({ children }) => {
       draft.person = action.payload;
     } else if (action.type === 'SET-SEARCH') {
       draft.search = action.payload;
+    } else if (action.type === 'SET-RESULTS-FROM-SEARCH') {
+      draft.results = { ...draft.results, results: action.payload };
     }
   };
 
   const getActorDetails = async (url) => {
     const res = await fetch(url);
-    const personInfo = await res.json();
-    console.log(personInfo);
-    dispatch({ type: 'SET-PERSON', payload: personInfo });
+    let { birthday, ...rest } = await res.json();
+    birthday = birthday.replace(/-/g, '/');
+    console.log({ birthday, ...rest });
+    dispatch({ type: 'SET-PERSON', payload: { birthday, ...rest } });
   };
 
   const [appState, dispatch] = useImmerReducer(reducer, initialAppState);
