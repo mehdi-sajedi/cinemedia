@@ -1,0 +1,26 @@
+.card {
+  width: 138px;
+  background-color: #eee;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+  img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .text {
+    padding: 10px;
+
+    h5,
+    p {
+      font-size: 14px;
+      // margin-left: 10px;
+      // white-space: pre-line;
+    }
+
+    p {
+      margin-top: 5px;
+    }
+  }
+}

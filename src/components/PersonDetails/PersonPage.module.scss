@@ -1,0 +1,54 @@
+@import '../../app.scss';
+
+.person {
+  display: flex;
+  justify-content: space-between;
+  column-gap: 3rem;
+  max-width: var(--max-width);
+  margin: 3rem auto;
+
+  .column1 {
+    width: 25%;
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      margin-top: 2rem;
+
+      h3 {
+        margin-bottom: 1rem;
+        font-size: 22px;
+      }
+
+      .birthday {
+        margin-bottom: 2rem;
+      }
+
+      h4 {
+        margin-bottom: 3px;
+      }
+    }
+  }
+
+  .column2 {
+    width: 75%;
+
+    .mainText {
+      .name {
+        margin-bottom: 1rem;
+        font-size: 32px;
+      }
+
+      .bio {
+        line-height: 1.6;
+        letter-spacing: 0;
+        white-space: pre-wrap;
+      }
+    }
+  }
+}

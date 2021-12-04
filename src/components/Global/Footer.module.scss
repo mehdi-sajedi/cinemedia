@@ -1,0 +1,28 @@
+@import '../../app.scss';
+
+.footer {
+  height: 75px;
+  // width: 100vw;
+  background-color: var(--dark-grey);
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: var(--max-width);
+    height: 100%;
+    margin: 0 auto;
+    color: var(--white);
+    line-height: 1.5;
+
+    p {
+      font-size: 15px;
+      letter-spacing: 0.5px;
+    }
+
+    img {
+      width: 90px;
+      margin-left: 6px;
+    }
+  }
+}
