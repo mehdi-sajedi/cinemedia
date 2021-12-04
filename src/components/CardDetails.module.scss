@@ -4,10 +4,8 @@
   padding: 3rem 0;
 
   .showcase {
-    // width: 100vw;
     height: 600px;
     position: relative;
-    // background-color: rgba(0, 0, 0, 0.75);
     background: linear-gradient(
       to right,
       rgba(0, 0, 0, 0.98) 0%,
@@ -60,19 +58,10 @@
           align-items: center;
           justify-content: space-between;
           white-space: nowrap;
-          // background-color: orange;
 
           .dot {
             font-size: 28px;
           }
-
-          // .runtime {
-          //   margin-left: 15px;
-          // }
-
-          // .genres {
-          //   margin-left: 15px;
-          // }
         }
 
         .voteCircle {

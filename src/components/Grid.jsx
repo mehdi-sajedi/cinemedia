@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react';
 import { AppContext } from '../context/app-context';
-import Card from './Card';
+import MediaCard from './MediaCard';
 import _ from 'lodash';
 import GridStyles from './Grid.module.scss';
 
@@ -21,7 +21,7 @@ const Grid = ({ url }) => {
   return (
     <section className={GridStyles.grid}>
       {appState.results.map((entry) => {
-        return entry.poster_path && <Card {...entry} key={_.uniqueId()} />;
+        return entry.poster_path && <MediaCard {...entry} key={_.uniqueId()} />;
       })}
     </section>
   );

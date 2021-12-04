@@ -41,7 +41,7 @@ const CardDetails = () => {
                   )}`,
                 }}
               >
-                <p>{media.vote_average.toFixed(1)}</p>
+                <p>{media.vote_average?.toFixed(1)}</p>
               </div>
               <BsDot className={styles.dot} />
               <ul className={styles.genres}>
