@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import './app.scss';
-import Nav from './components/Nav';
-import Grid from './components/Grid';
-import Footer from './components/Footer';
-import NoRoute from './components/utilities/NoRoute';
-import CardDetails from './components/CardDetails';
-import Cast from './components/Cast';
+import Nav from './components/Global/Nav';
+import Grid from './components/Home/Grid';
+import Footer from './components/Global/Footer';
+import NoRoute from './components/Utilities/NoRoute';
+import CardDetails from './components/MediaDetails/CardDetails';
+import Cast from './components/MediaDetails/Cast';
 
 // const movies = `https://api.themoviedb.org/3/discover/movie?vote_count.gte=1000&vote_average.gte=7&sort_by=popularity.desc&api_key=${process.env.REACT_APP_API_KEY}`;
 
