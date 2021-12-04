@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react';
 import { AppContext } from '../../context/app-context';
 import { useLocation } from 'react-router';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, createSearchParams } from 'react-router-dom';
 import NavStyles from './Nav.module.scss';
 import { HiOutlineSearch } from 'react-icons/hi';
 
@@ -13,7 +13,7 @@ const Nav = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const searchText = searchRef.current.value;
+    const searchText = searchRef.current.value.trim();
     if (searchText.trim() === '') return;
 
     const URL_MULTI = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${searchText}`;
@@ -80,7 +80,12 @@ const Nav = () => {
       });
     }
 
-    navigate('/search');
+    navigate({
+      pathname: '/search',
+      search: `?${createSearchParams({
+        query: searchText,
+      })}`,
+    });
   };
 
   return (

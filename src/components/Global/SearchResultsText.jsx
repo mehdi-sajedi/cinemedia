@@ -4,18 +4,13 @@ import { Link } from 'react-router-dom';
 import styles from './SearchResultsText.module.scss';
 
 const SearchResultsText = () => {
-  const { appState, getActorDetails } = useContext(AppContext);
-
-  const URL_PERSON = `https://api.themoviedb.org/3/person/${appState.search.id}?api_key=${process.env.REACT_APP_API_KEY}`;
+  const { appState } = useContext(AppContext);
 
   return (
     <p className={styles.text}>
       Showing results for{' '}
       {appState.search.person ? (
-        <Link
-          onClick={() => getActorDetails(URL_PERSON)}
-          to={`/person/${appState.search.id}`}
-        >
+        <Link to={`/person/${appState.search.id}`}>
           {appState.search.personFullName}
         </Link>
       ) : (

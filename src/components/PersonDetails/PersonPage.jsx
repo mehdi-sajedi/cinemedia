@@ -1,12 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/app-context';
+import { useLocation } from 'react-router';
 import styles from './PersonPage.module.scss';
 
 const posterBase = 'https://image.tmdb.org/t/p/original';
 
 const PersonPage = () => {
-  const { appState } = useContext(AppContext);
+  const { appState, dispatch } = useContext(AppContext);
   const { person } = appState;
+  const { pathname } = useLocation();
+  const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
+
+  //
+
+  const URL_PERSON = `https://api.themoviedb.org/3/person/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}`;
+
+  useEffect(() => {
+    const getActorDetails = async () => {
+      const res = await fetch(URL_PERSON);
+      let { birthday, ...rest } = await res.json();
+      birthday = birthday.replace(/-/g, '/');
+      console.log({ birthday, ...rest });
+      dispatch({ type: 'SET-PERSON', payload: { birthday, ...rest } });
+    };
+    getActorDetails();
+  }, [URL_PERSON, dispatch]);
 
   const formattedBirthday = new Date(person.birthday).toLocaleString('en-US', {
     day: 'numeric',

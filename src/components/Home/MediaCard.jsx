@@ -16,7 +16,6 @@ const Card = ({
   id,
 }) => {
   const { pathname } = useLocation();
-
   const pathnameCopy =
     pathname === '/search' ? (tvYear ? '/shows' : '/movies') : pathname;
 

@@ -31,27 +31,10 @@ export const AppProvider = ({ children }) => {
     }
   };
 
-  const getActorDetails = async (url) => {
-    const res = await fetch(url);
-    let { birthday, ...rest } = await res.json();
-    birthday = birthday.replace(/-/g, '/');
-    console.log({ birthday, ...rest });
-    dispatch({ type: 'SET-PERSON', payload: { birthday, ...rest } });
-  };
-
-  const actorWork = async (id) => {
-    const URL_PERSON_ID = `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`;
-    const res = await fetch(URL_PERSON_ID);
-    const data = await res.json();
-    console.log(data);
-  };
-
   const [appState, dispatch] = useImmerReducer(reducer, initialAppState);
 
   return (
-    <AppContext.Provider
-      value={{ appState, dispatch, getActorDetails, actorWork }}
-    >
+    <AppContext.Provider value={{ appState, dispatch }}>
       {children}
     </AppContext.Provider>
   );
