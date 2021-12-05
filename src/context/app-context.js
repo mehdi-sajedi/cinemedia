@@ -21,6 +21,7 @@ export const AppProvider = ({ children }) => {
       totalMovies: 200,
       totalShows: 200,
     },
+    currentSearchText: '',
   };
 
   const reducer = (draft, action) => {
@@ -46,6 +47,8 @@ export const AppProvider = ({ children }) => {
       } else {
         draft.pagination.currentShowsPage = action.payload.pageNum;
       }
+    } else if (action.type === 'SET-CURRENT-SEARCH-TEXT') {
+      draft.currentSearchText = action.payload;
     }
   };
 

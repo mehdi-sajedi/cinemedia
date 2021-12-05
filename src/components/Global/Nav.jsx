@@ -1,10 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
+import { AppContext } from '../../context/app-context';
 import { useLocation } from 'react-router';
 import { Link, useNavigate, createSearchParams } from 'react-router-dom';
 import NavStyles from './Nav.module.scss';
 import { HiOutlineSearch } from 'react-icons/hi';
+import { IoCloseOutline } from 'react-icons/io5';
 
 const Nav = () => {
+  const { appState, dispatch } = useContext(AppContext);
   const navigate = useNavigate();
   const searchRef = useRef();
   const { pathname } = useLocation();
@@ -20,6 +23,15 @@ const Nav = () => {
         query: searchText,
       })}`,
     });
+  };
+
+  const handleKeydown = (e) => {
+    dispatch({ type: 'SET-CURRENT-SEARCH-TEXT', payload: e.target.value });
+  };
+
+  const handleClearSearch = () => {
+    dispatch({ type: 'SET-CURRENT-SEARCH-TEXT', payload: '' });
+    searchRef.current.focus();
   };
 
   return (
@@ -41,10 +53,19 @@ const Nav = () => {
         </div>
         <form onSubmit={handleFormSubmit} className={NavStyles.form}>
           <div className={NavStyles.search}>
-            <i>
-              <HiOutlineSearch />
-            </i>
-            <input ref={searchRef} type="text" />
+            <HiOutlineSearch className={NavStyles.magnify} />
+            <input
+              value={appState.currentSearchText}
+              onChange={handleKeydown}
+              ref={searchRef}
+              type="text"
+            />
+            {appState.currentSearchText !== '' && (
+              <IoCloseOutline
+                onClick={handleClearSearch}
+                className={NavStyles.clear}
+              />
+            )}
           </div>
           <button typeof="submit" className={NavStyles.submit}>
             Search

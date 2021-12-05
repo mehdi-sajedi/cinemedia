@@ -32,34 +32,51 @@
       align-items: center;
 
       .search {
-        --size: 40px;
         background-color: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        // display: flex;
+        // align-items: center;
+        // justify-content: space-between;
         border-radius: 50px;
-        height: var(--size);
-
-        i {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          // background-color: orange;
-          margin-left: 3px;
-          border-radius: 50px;
-          border: none;
-          height: calc(var(--size) - 5px);
-          width: calc(var(--size) - 5px);
-        }
+        height: 40px;
+        width: 300px;
+        position: relative;
 
         input {
+          position: absolute;
+          left: 0;
+          top: 0;
           font-size: 17px;
           outline: none;
           border: none;
           border-radius: 50px;
           height: 100%;
-          // padding: 0 15px;
-          // background-color: skyblue;
+          padding-left: 40px;
+        }
+
+        .magnify,
+        .clear {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 50px;
+          border: none;
+          z-index: 1;
+        }
+
+        .magnify {
+          left: 12px;
+          height: 18px;
+          width: 18px;
+        }
+        .clear {
+          right: 12px;
+          height: 20px;
+          width: 20px;
+          cursor: pointer;
+          color: #333;
         }
       }
 
