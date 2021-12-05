@@ -19,7 +19,7 @@ const Nav = () => {
     dispatch({
       type: 'SET-SEARCH',
       payload: {
-        input: searchText,
+        query: searchText,
         person: null,
         personFullName: '',
         id: null,

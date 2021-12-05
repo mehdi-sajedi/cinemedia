@@ -30,34 +30,27 @@ const Grid = ({ url, route }) => {
 
   useEffect(() => {
     const myFunc = async () => {
-      dispatch({
-        type: 'SET-SEARCH',
-        payload: {
-          input: searchParams.get('query'),
-          person: null,
-          personFullName: '',
-          id: null,
-        },
-      });
+      const searchQuery = searchParams.get('query');
 
-      const URL_MULTI = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${appState.search.input}`;
+      const URL_MULTI = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${searchQuery}`;
 
-      if (!appState.search.input) return;
+      if (!searchQuery) return;
 
       const res = await fetch(URL_MULTI);
       const data = await res.json();
       console.log(data);
       if (data.results.length === 0) return;
 
+      // There is an exact match of the users search input and a person in the results
       const personExactMatch = data.results.find((entry) => {
         if (
           entry.media_type === 'person' &&
-          entry.name.toLowerCase() === appState.search.input.toLowerCase()
+          entry.name.toLowerCase() === searchQuery.toLowerCase()
         ) {
           dispatch({
             type: 'SET-SEARCH',
             payload: {
-              input: appState.search.input,
+              query: searchQuery,
               person: true,
               personFullName: entry.name,
               id: entry.id,
@@ -74,11 +67,12 @@ const Grid = ({ url, route }) => {
         const personID = (personExactMatch ? personExactMatch : data.results[0])
           .id;
 
+        // The first result is the person
         if (!personExactMatch) {
           dispatch({
             type: 'SET-SEARCH',
             payload: {
-              input: appState.search.input,
+              query: searchQuery,
               person: true,
               personFullName: data.results[0].name,
               id: data.results[0].id,
@@ -106,7 +100,7 @@ const Grid = ({ url, route }) => {
         dispatch({
           type: 'SET-SEARCH',
           payload: {
-            input: appState.search.input,
+            query: searchQuery,
             person: false,
             personFullName: '',
           },
@@ -116,7 +110,7 @@ const Grid = ({ url, route }) => {
     if (pathname.includes('search')) {
       myFunc();
     }
-  }, [dispatch, appState.search.input, pathname, searchParams]);
+  }, [dispatch, pathname, searchParams]);
 
   return (
     <section className={GridStyles.grid}>

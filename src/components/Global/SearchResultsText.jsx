@@ -14,7 +14,7 @@ const SearchResultsText = () => {
           {appState.search.personFullName}
         </Link>
       ) : (
-        <span>"{appState.search.input}"</span>
+        <span>"{appState.search.query}"</span>
       )}
     </p>
   );

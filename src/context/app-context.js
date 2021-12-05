@@ -9,7 +9,7 @@ export const AppProvider = ({ children }) => {
     currentMedia: {},
     person: {},
     search: {
-      input: '',
+      query: '',
       person: null,
       personFullName: '',
       id: null,
@@ -18,8 +18,8 @@ export const AppProvider = ({ children }) => {
       currentMoviesPage: 1,
       currentShowsPage: 1,
       mediaPerPage: 20,
-      totalMovies: 240,
-      totalShows: 240,
+      totalMovies: 200,
+      totalShows: 200,
     },
   };
 
