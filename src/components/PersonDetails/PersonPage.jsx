@@ -11,15 +11,16 @@ const PersonPage = () => {
   const { pathname } = useLocation();
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
 
-  //
-
   const URL_PERSON = `https://api.themoviedb.org/3/person/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}`;
 
   useEffect(() => {
     const getActorDetails = async () => {
       const res = await fetch(URL_PERSON);
       let { birthday, ...rest } = await res.json();
-      birthday = birthday.replace(/-/g, '/');
+      if (!birthday) birthday = new Date('101, 1, 0');
+      else {
+        birthday = birthday.replace(/-/g, '/');
+      }
       console.log({ birthday, ...rest });
       dispatch({ type: 'SET-PERSON', payload: { birthday, ...rest } });
     };

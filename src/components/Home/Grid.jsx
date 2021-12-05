@@ -5,10 +5,28 @@ import MediaCard from './MediaCard';
 import _ from 'lodash';
 import GridStyles from './Grid.module.scss';
 
-const Grid = ({ url }) => {
+const Grid = ({ url, route }) => {
   const { appState, dispatch } = useContext(AppContext);
   const { pathname } = useLocation();
   const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const getResults = async () => {
+      const res = await fetch(url);
+      const data = await res.json();
+      dispatch({
+        type: 'SET-RESULTS',
+        payload: {
+          results: data.results,
+          totalResults: data.total_results,
+          route: route,
+        },
+      });
+      console.log(data);
+    };
+
+    getResults();
+  }, [dispatch, url, route]);
 
   useEffect(() => {
     const myFunc = async () => {
@@ -100,22 +118,14 @@ const Grid = ({ url }) => {
     }
   }, [dispatch, appState.search.input, pathname, searchParams]);
 
-  useEffect(() => {
-    const getResults = async () => {
-      const res = await fetch(url);
-      const data = await res.json();
-      dispatch({ type: 'SET-RESULTS', payload: data });
-      console.log(data);
-    };
-
-    getResults();
-  }, [dispatch, url]);
-
   return (
     <section className={GridStyles.grid}>
-      {appState.results.results?.map((entry) => {
-        return entry.poster_path && <MediaCard {...entry} key={_.uniqueId()} />;
-      })}
+      {appState.results.length > 0 &&
+        appState.results.map((entry) => {
+          return (
+            entry.poster_path && <MediaCard {...entry} key={_.uniqueId()} />
+          );
+        })}
     </section>
   );
 };
