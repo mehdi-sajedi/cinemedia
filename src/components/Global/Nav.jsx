@@ -1,12 +1,10 @@
-import React, { useContext, useRef } from 'react';
-import { AppContext } from '../../context/app-context';
+import React, { useRef } from 'react';
 import { useLocation } from 'react-router';
 import { Link, useNavigate, createSearchParams } from 'react-router-dom';
 import NavStyles from './Nav.module.scss';
 import { HiOutlineSearch } from 'react-icons/hi';
 
 const Nav = () => {
-  const { dispatch } = useContext(AppContext);
   const navigate = useNavigate();
   const searchRef = useRef();
   const { pathname } = useLocation();
@@ -15,16 +13,6 @@ const Nav = () => {
     e.preventDefault();
     const searchText = searchRef.current.value.trim();
     if (searchText.trim() === '') return;
-
-    dispatch({
-      type: 'SET-SEARCH',
-      payload: {
-        query: searchText,
-        person: null,
-        personFullName: '',
-        id: null,
-      },
-    });
 
     navigate({
       pathname: '/search',
