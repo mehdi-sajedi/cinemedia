@@ -16,31 +16,48 @@ const PersonPage = () => {
   useEffect(() => {
     const getActorDetails = async () => {
       const res = await fetch(URL_PERSON);
-      let { birthday, ...rest } = await res.json();
+      let { birthday, deathday, ...rest } = await res.json();
+
       if (!birthday) birthday = new Date('101, 1, 0');
       else {
         birthday = birthday.replace(/-/g, '/');
       }
+      if (deathday) deathday = deathday.replace(/-/g, '/');
+
       console.log({ birthday, ...rest });
-      dispatch({ type: 'SET-PERSON', payload: { birthday, ...rest } });
+      dispatch({
+        type: 'SET-PERSON',
+        payload: { birthday, deathday, ...rest },
+      });
     };
     getActorDetails();
   }, [URL_PERSON, dispatch]);
 
-  const formattedBirthday = new Date(person.birthday).toLocaleString('en-US', {
-    day: 'numeric',
-    year: 'numeric',
-    month: 'long',
-  });
+  const formatDate = (date) => {
+    return new Date(date).toLocaleString('en-US', {
+      day: 'numeric',
+      year: 'numeric',
+      month: 'long',
+    });
+  };
 
-  function getAge(dateString) {
-    const today = new Date();
-    const birthDate = new Date(dateString);
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const m = today.getMonth() - birthDate.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+  function getAge(birthString, deathString) {
+    const birthDate = new Date(birthString);
+
+    let todayOrDeathDate = new Date();
+    if (appState.person.deathday) {
+      todayOrDeathDate = new Date(deathString);
+    }
+
+    let age = todayOrDeathDate.getFullYear() - birthDate.getFullYear();
+    const m = todayOrDeathDate.getMonth() - birthDate.getMonth();
+    if (
+      m < 0 ||
+      (m === 0 && todayOrDeathDate.getDate() < birthDate.getDate())
+    ) {
       age--;
     }
+
     return age;
   }
 
@@ -53,9 +70,24 @@ const PersonPage = () => {
           <div className={styles.birthday}>
             <h4>Birthday</h4>
             <p>
-              {formattedBirthday} ({getAge(person.birthday)} years old)
+              {formatDate(person.birthday)}
+              {!appState.person.deathday && (
+                <span>
+                  {' '}
+                  ({getAge(person.birthday, person.deathday)} years old)
+                </span>
+              )}
             </p>
           </div>
+          {appState.person.deathday && (
+            <div className={styles.deathday}>
+              <h4>Day of Death</h4>
+              <p>
+                {formatDate(person.deathday)} (
+                {getAge(person.birthday, person.deathday)} years old)
+              </p>
+            </div>
+          )}
           <div className={styles.birthplace}>
             <h4>Place of Birth</h4>
             <p>{person.place_of_birth}</p>
