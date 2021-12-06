@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/app-context';
 import styles from './Showcase.module.scss';
+import Trailer from './Trailer';
 import { useLocation } from 'react-router';
-import { BsDot } from 'react-icons/bs';
+import { BsDot, BsFillPlayFill } from 'react-icons/bs';
 import { colorPercentage } from '../Utilities/colorPercentage';
 import _ from 'lodash';
 
@@ -15,6 +16,7 @@ const Showcase = () => {
   const { appState, dispatch } = useContext(AppContext);
   const media = appState.currentMedia;
   const { pathname } = useLocation();
+  const [showTrailer, setShowTrailer] = useState(false);
 
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
 
@@ -33,8 +35,8 @@ const Showcase = () => {
 
   useEffect(() => {
     const getMediaDetails = async () => {
-      const URL_SHOW = `https://api.themoviedb.org/3/tv/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits`;
-      const URL_MOVIE = `https://api.themoviedb.org/3/movie/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits`;
+      const URL_SHOW = `https://api.themoviedb.org/3/tv/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits,external_ids,images,videos,reviews`;
+      const URL_MOVIE = `https://api.themoviedb.org/3/movie/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits,external_ids,images,videos,reviews`;
 
       const media = pathname.includes('movies') ? URL_MOVIE : URL_SHOW;
 
@@ -114,9 +116,17 @@ const Showcase = () => {
               <h3>Overview</h3>
               <p>{media.overview}</p>
             </div>
+            <button
+              onClick={() => setShowTrailer(true)}
+              className={styles.trailerBtn}
+            >
+              <BsFillPlayFill />
+              <span>Play Trailer</span>
+            </button>
           </div>
         </div>
       </div>
+      {showTrailer && <Trailer setShowTrailer={setShowTrailer} />}
     </main>
   );
 };

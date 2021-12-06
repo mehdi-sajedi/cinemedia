@@ -92,6 +92,29 @@
             margin-left: 5px;
           }
         }
+
+        .trailerBtn {
+          cursor: pointer;
+          font-size: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: transparent;
+          border: none;
+          color: var(--white);
+          transition: opacity 0.3s ease;
+          margin-top: 3rem;
+          letter-spacing: 0.5px;
+
+          svg {
+            margin-right: 10px;
+            font-size: 30px;
+          }
+
+          &:hover {
+            opacity: 0.6;
+          }
+        }
       }
     }
 
