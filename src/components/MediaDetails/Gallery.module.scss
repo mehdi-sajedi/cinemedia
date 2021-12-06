@@ -7,7 +7,7 @@
   background-color: rgba(0, 0, 0, 0.8);
 }
 
-.trailer {
+.gallery {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -18,4 +18,6 @@
   border: none;
   outline: 5px solid #ccc;
   box-shadow: 0 0 10px 10px black;
+  pointer-events: none;
+  z-index: 1000;
 }

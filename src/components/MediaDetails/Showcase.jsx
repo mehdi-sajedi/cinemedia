@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../../context/app-context';
 import styles from './Showcase.module.scss';
 import Trailer from './Trailer';
+import Gallery from './Gallery';
 import { useLocation } from 'react-router';
 import { BsDot, BsFillPlayFill } from 'react-icons/bs';
+import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { colorPercentage } from '../Utilities/colorPercentage';
 import _ from 'lodash';
 
@@ -17,10 +19,18 @@ const Showcase = () => {
   const media = appState.currentMedia;
   const { pathname } = useLocation();
   const [showTrailer, setShowTrailer] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
 
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
 
-  const toHours = () => {
+  const trailer = appState.currentMedia.videos?.results?.find((entry) => {
+    return (
+      entry.type.toLowerCase() === 'trailer' &&
+      entry.site.toLowerCase() === 'youtube'
+    );
+  });
+
+  const formatRuntime = () => {
     const hours = Math.floor(media.runtime / 60);
     const remainder = media.runtime - hours * 60;
 
@@ -80,7 +90,18 @@ const Showcase = () => {
           }}
         ></div>
         <div className={styles.content}>
-          <img src={`${posterBase}${media.poster_path}`} alt="" />
+          <div className={styles.posterWrap}>
+            <img
+              className={styles.poster}
+              onClick={() => setShowGallery(true)}
+              src={`${posterBase}${media.poster_path}`}
+              alt=""
+            />
+            <div className={styles.posterText}>
+              <HiOutlineArrowsExpand />
+              <span>View Gallery</span>
+            </div>
+          </div>
           <div className={styles.textContent}>
             <div className={styles.heading}>
               <h1>{media.title}</h1>
@@ -110,23 +131,28 @@ const Showcase = () => {
                 })}
               </ul>
               <BsDot className={styles.dot} />
-              <p className={styles.runtime}>{toHours()}</p>
+              <p className={styles.runtime}>{formatRuntime()}</p>
             </div>
             <div className={styles.overview}>
               <h3>Overview</h3>
               <p>{media.overview}</p>
             </div>
-            <button
-              onClick={() => setShowTrailer(true)}
-              className={styles.trailerBtn}
-            >
-              <BsFillPlayFill />
-              <span>Play Trailer</span>
-            </button>
+            {trailer && (
+              <button
+                onClick={() => setShowTrailer(true)}
+                className={styles.trailerBtn}
+              >
+                <BsFillPlayFill />
+                <span>Play Trailer</span>
+              </button>
+            )}
           </div>
         </div>
       </div>
-      {showTrailer && <Trailer setShowTrailer={setShowTrailer} />}
+      {showTrailer && (
+        <Trailer trailer={trailer} setShowTrailer={setShowTrailer} />
+      )}
+      {showGallery && <Gallery setShowGallery={setShowGallery} />}
     </main>
   );
 };
