@@ -11,7 +11,7 @@ const Cast = () => {
     <section className={styles.cast}>
       <h2 className={styles.heading}>Cast</h2>
       <div className={styles.castGrid}>
-        {appState.currentMedia?.cast?.map((member, idx) => {
+        {appState.currentMedia?.credits?.cast?.map((member, idx) => {
           return (
             member.profile_path &&
             idx < 20 && <CastCard {...member} key={_.uniqueId()} />

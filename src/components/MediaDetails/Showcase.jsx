@@ -33,36 +33,26 @@ const Showcase = () => {
 
   useEffect(() => {
     const getMediaDetails = async () => {
-      const URL_SHOW_SINGLE = `https://api.themoviedb.org/3/tv/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}`;
-      const URL_MOVIE_SINGLE = `https://api.themoviedb.org/3/movie/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}`;
+      const URL_SHOW = `https://api.themoviedb.org/3/tv/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits`;
+      const URL_MOVIE = `https://api.themoviedb.org/3/movie/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits`;
 
-      const URL_SHOW_CREDITS = `https://api.themoviedb.org/3/tv/${mediaID}/credits?api_key=${process.env.REACT_APP_API_KEY}`;
-      const URL_MOVIE_CREDITS = `https://api.themoviedb.org/3/movie/${mediaID}/credits?api_key=${process.env.REACT_APP_API_KEY}`;
+      const media = pathname.includes('movies') ? URL_MOVIE : URL_SHOW;
 
-      const media = pathname.includes('movies')
-        ? URL_MOVIE_SINGLE
-        : URL_SHOW_SINGLE;
-      const media2 = pathname.includes('movies')
-        ? URL_MOVIE_CREDITS
-        : URL_SHOW_CREDITS;
       const res = await fetch(media);
-      const res2 = await fetch(media2);
 
-      if (media === URL_MOVIE_SINGLE) {
+      if (media === URL_MOVIE) {
         const data = await res.json();
-        const { cast, crew } = await res2.json();
         dispatch({
           type: 'SET-SINGLE-RESULT',
-          payload: { ...data, cast, crew },
+          payload: data,
         });
-      } else if (media === URL_SHOW_SINGLE) {
+      } else if (media === URL_SHOW) {
         const {
           name: title,
           first_air_date: release_date,
           episode_run_time: runtime,
           ...rest
         } = await res.json();
-        const { cast, crew } = await res2.json();
 
         dispatch({
           type: 'SET-SINGLE-RESULT',
@@ -71,8 +61,6 @@ const Showcase = () => {
             release_date,
             runtime: runtime[0],
             ...rest,
-            cast,
-            crew,
           },
         });
       }

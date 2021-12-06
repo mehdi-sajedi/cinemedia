@@ -9,11 +9,12 @@
   }
 
   .castGrid {
+    position: relative;
     display: grid;
     grid-auto-flow: column;
     justify-content: flex-start;
     gap: 1rem;
     overflow-x: scroll;
-    padding-bottom: 1rem;
+    padding: 0 1px 1rem;
   }
 }
