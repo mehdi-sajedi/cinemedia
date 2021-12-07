@@ -1,7 +1,7 @@
 @import '../../app.scss';
 
 .main {
-  padding: 3rem 0;
+  padding-bottom: 3rem;
 
   .showcase {
     height: 600px;
@@ -120,10 +120,12 @@
 
     .posterWrap {
       width: 300px;
+      display: flex;
       border-radius: 5px;
       cursor: pointer;
       position: relative;
       transition: background-color 0.3s ease;
+      font-size: 20px;
 
       .poster {
         transition: opacity 0.3s ease;
@@ -141,6 +143,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        .icon {
+          font-size: 25px;
+        }
 
         span {
           margin-left: 6px;

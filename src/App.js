@@ -15,9 +15,9 @@ import Pagination from './components/Home/Pagination';
 function App() {
   const { appState } = useContext(AppContext);
 
-  const movies = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}`;
+  const movies = `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}`;
 
-  const shows = `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}`;
+  const shows = `https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}`;
 
   return (
     <BrowserRouter>

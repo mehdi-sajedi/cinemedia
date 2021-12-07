@@ -90,15 +90,17 @@ const Showcase = () => {
           }}
         ></div>
         <div className={styles.content}>
-          <div className={styles.posterWrap}>
+          <div
+            className={styles.posterWrap}
+            onClick={() => setShowGallery(true)}
+          >
             <img
               className={styles.poster}
-              onClick={() => setShowGallery(true)}
               src={`${posterBase}${media.poster_path}`}
               alt=""
             />
             <div className={styles.posterText}>
-              <HiOutlineArrowsExpand />
+              <HiOutlineArrowsExpand className={styles.icon} />
               <span>View Gallery</span>
             </div>
           </div>
@@ -152,6 +154,7 @@ const Showcase = () => {
       {showTrailer && (
         <Trailer trailer={trailer} setShowTrailer={setShowTrailer} />
       )}
+
       {showGallery && <Gallery setShowGallery={setShowGallery} />}
     </main>
   );
