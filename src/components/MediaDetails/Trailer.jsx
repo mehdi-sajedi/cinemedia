@@ -6,10 +6,6 @@ import styles from './Trailer.module.scss';
 const Trailer = ({ setShowTrailer, trailer }) => {
   const { appState } = useContext(AppContext);
 
-  document.addEventListener('click', (e) => {
-    console.log(e.target);
-  });
-
   return createPortal(
     <div className={styles.wrapper} onClick={() => setShowTrailer(false)}>
       <iframe

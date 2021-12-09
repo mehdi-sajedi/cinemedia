@@ -19,10 +19,10 @@ const Gallery = ({ setShowGallery }) => {
   });
 
   const handleClick = (e) => {
-    console.log(e.target);
     if (
       e.target.classList.contains('image-gallery-swipe') ||
-      e.target.classList.contains('wrapper')
+      e.target.classList.contains('wrapper') ||
+      e.target.classList.contains('image-gallery-slide-wrapper')
     ) {
       setShowGallery(false);
     }
@@ -30,7 +30,7 @@ const Gallery = ({ setShowGallery }) => {
 
   return createPortal(
     <div className={`${styles.wrapper} wrapper`} onClick={handleClick}>
-      <ImageGallery showBullets items={images} className={styles.gallery} />
+      <ImageGallery items={images} className={styles.gallery} />
     </div>,
     document.getElementById('imageGallery')
   );

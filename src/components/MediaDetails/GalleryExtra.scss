@@ -1,4 +1,5 @@
 // To style react-image-gallery package
+
 .image-gallery-slides {
   margin: 0 auto;
   width: 75vw;
@@ -27,4 +28,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100vw;
+}
+
+.image-gallery-thumbnail-image {
+  cursor: pointer;
 }

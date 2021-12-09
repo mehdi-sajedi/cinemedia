@@ -6,7 +6,6 @@ import _ from 'lodash';
 
 const Cast = () => {
   const { appState } = useContext(AppContext);
-  console.log(appState.currentMedia.cast);
   return (
     <section className={styles.cast}>
       <h2 className={styles.heading}>Cast</h2>

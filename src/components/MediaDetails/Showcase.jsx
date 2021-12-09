@@ -43,6 +43,12 @@ const Showcase = () => {
     }
   };
 
+  const hasImages = appState.currentMedia?.images?.backdrops.length > 0;
+
+  const handleShowGallery = () => {
+    hasImages && setShowGallery(true);
+  };
+
   useEffect(() => {
     const getMediaDetails = async () => {
       const URL_SHOW = `https://api.themoviedb.org/3/tv/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits,external_ids,images,videos,reviews`;
@@ -54,6 +60,7 @@ const Showcase = () => {
 
       if (media === URL_MOVIE) {
         const data = await res.json();
+        console.log(data);
         dispatch({
           type: 'SET-SINGLE-RESULT',
           payload: data,
@@ -65,6 +72,7 @@ const Showcase = () => {
           episode_run_time: runtime,
           ...rest
         } = await res.json();
+        console.log({ title, release_date, runtime, ...rest });
 
         dispatch({
           type: 'SET-SINGLE-RESULT',
@@ -91,8 +99,10 @@ const Showcase = () => {
         ></div>
         <div className={styles.content}>
           <div
-            className={styles.posterWrap}
-            onClick={() => setShowGallery(true)}
+            className={`${styles.posterWrap} ${
+              hasImages ? styles.posterHover : ''
+            }`}
+            onClick={handleShowGallery}
           >
             <img
               className={styles.poster}

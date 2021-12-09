@@ -107,7 +107,7 @@
           letter-spacing: 0.5px;
 
           svg {
-            margin-right: 10px;
+            margin-right: 5px;
             font-size: 30px;
           }
 
@@ -122,10 +122,10 @@
       width: 300px;
       display: flex;
       border-radius: 5px;
-      cursor: pointer;
       position: relative;
       transition: background-color 0.3s ease;
       font-size: 20px;
+      cursor: default;
 
       .poster {
         transition: opacity 0.3s ease;
@@ -153,15 +153,19 @@
         }
       }
 
-      &:hover {
-        background-color: black;
+      &.posterHover {
+        cursor: pointer;
 
-        .poster {
-          opacity: 0.3;
-        }
+        &:hover {
+          background-color: black;
 
-        .posterText {
-          opacity: 1;
+          .poster {
+            opacity: 0.3;
+          }
+
+          .posterText {
+            opacity: 1;
+          }
         }
       }
     }

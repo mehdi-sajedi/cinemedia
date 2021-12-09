@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "i18n-iso-countries": "^7.1.0",
     "immer": "^9.0.6",
     "lodash": "^4.17.21",
     "node-sass": "^6.0.1",
