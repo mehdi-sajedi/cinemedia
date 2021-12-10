@@ -124,12 +124,16 @@ const Showcase = () => {
               <div
                 className={styles.voteCircle}
                 style={{
-                  border: `3px solid ${colorPercentage(
-                    media.vote_average / 10
-                  )}`,
+                  border: `3px solid ${
+                    media.vote_average
+                      ? colorPercentage(media.vote_average / 10)
+                      : '#777'
+                  }`,
                 }}
               >
-                <p>{media.vote_average?.toFixed(1)}</p>
+                <p>
+                  {media.vote_average ? media.vote_average.toFixed(1) : 'NR'}
+                </p>
               </div>
               <BsDot className={styles.dot} />
               <ul className={styles.genres}>

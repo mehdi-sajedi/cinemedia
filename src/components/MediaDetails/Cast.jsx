@@ -7,7 +7,7 @@ import _ from 'lodash';
 const Cast = () => {
   const { appState } = useContext(AppContext);
   return (
-    <section className={styles.cast}>
+    <div className={styles.cast}>
       <h2 className={styles.heading}>Cast</h2>
       <div className={styles.castGrid}>
         {appState.currentMedia?.credits?.cast?.map((member, idx) => {
@@ -17,7 +17,7 @@ const Cast = () => {
           );
         })}
       </div>
-    </section>
+    </div>
   );
 };
 

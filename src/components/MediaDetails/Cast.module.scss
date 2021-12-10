@@ -1,8 +1,7 @@
 @import '../../app.scss';
 
 .cast {
-  max-width: var(--max-width);
-  margin: 0 auto 3rem;
+  width: calc(100% - 260px);
 
   .heading {
     margin-bottom: 1rem;
