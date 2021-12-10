@@ -14,16 +14,35 @@ const Grid = ({ url, route }) => {
   useEffect(() => {
     const getResults = async () => {
       const res = await fetch(url);
-      const data = await res.json();
+      let { results, total_results, ...rest } = await res.json();
+
+      if (route === 'movies') {
+        results = results.map((entry) => {
+          return {
+            name: entry.title,
+            media: route,
+            ...entry,
+          };
+        });
+      } else if (route === 'shows') {
+        results = results.map((entry) => {
+          return {
+            release_date: entry.first_air_date,
+            media: route,
+            ...entry,
+          };
+        });
+      }
+
       dispatch({
         type: 'SET-RESULTS',
         payload: {
-          results: data.results,
-          totalResults: data.total_results,
+          results: results,
+          totalResults: total_results,
           route: route,
         },
       });
-      console.log(data);
+      console.log({ results, total_results, ...rest });
     };
 
     getResults();
@@ -44,11 +63,30 @@ const Grid = ({ url, route }) => {
       const getPersonMedia = async (obj) => {
         const URL_PERSON_ID = `https://api.themoviedb.org/3/person/${obj.id}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`;
         const res = await fetch(URL_PERSON_ID);
-        const personWork = await res.json();
+        let { cast: personWork } = await res.json();
+        console.log(personWork);
+
+        personWork = personWork.map((entry) => {
+          if (entry.media_type === 'movie') {
+            return {
+              name: entry.title,
+              media: 'movies',
+              ...entry,
+            };
+          } else if (entry.media_type === 'tv') {
+            return {
+              release_date: entry.first_air_date,
+              media: 'shows',
+              ...entry,
+            };
+          }
+          return null;
+        });
+
         dispatch({
           type: 'SET-RESULTS',
           payload: {
-            results: personWork.cast,
+            results: personWork,
           },
         });
         dispatch({

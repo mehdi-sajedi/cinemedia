@@ -72,6 +72,7 @@ function App() {
           ></Route>
           <Route
             exact
+            // path="/movies/:id-:title"
             path="/movies/:id"
             element={
               <>
@@ -85,6 +86,7 @@ function App() {
           />
           <Route
             exact
+            // path="/shows/:id-:title"
             path="/shows/:id"
             element={
               <>

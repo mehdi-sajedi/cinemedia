@@ -13,7 +13,7 @@ const PersonPage = () => {
   const { pathname } = useLocation();
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
 
-  const URL_PERSON = `https://api.themoviedb.org/3/person/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=combined_credits,external_ids`;
+  const URL_PERSON = `https://api.themoviedb.org/3/person/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=combined_credits,external_ids,movie_credits,tv_credits`;
 
   useEffect(() => {
     const getActorDetails = async () => {
@@ -104,7 +104,7 @@ const PersonPage = () => {
           </div>
           {/* <div className={styles.line}></div> */}
           <h3>Personal Info</h3>
-          {/* <div className={styles.line}></div> */}
+          <div className={styles.line}></div>
           <div className={styles.birthday}>
             <h4>Birthday</h4>
             <p>
