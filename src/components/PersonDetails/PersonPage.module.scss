@@ -25,6 +25,25 @@
         font-size: 22px;
       }
 
+      .socials {
+        display: flex;
+        justify-content: flex-start;
+        font-size: 24px;
+        width: 150px;
+
+        > *:not(:first-child) {
+          margin-left: 1.5rem;
+        }
+      }
+
+      .line {
+        width: 100%;
+        background-color: #ccc;
+        height: 2px;
+        margin-bottom: 1rem;
+        border-radius: 50px;
+      }
+
       .birthday {
         margin-bottom: 2rem;
       }

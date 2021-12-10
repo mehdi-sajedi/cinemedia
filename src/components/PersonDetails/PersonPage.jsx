@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/app-context';
 import { useLocation } from 'react-router';
+import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import styles from './PersonPage.module.scss';
+import _ from 'lodash';
 
 const posterBase = 'https://image.tmdb.org/t/p/original';
 
@@ -11,7 +13,7 @@ const PersonPage = () => {
   const { pathname } = useLocation();
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
 
-  const URL_PERSON = `https://api.themoviedb.org/3/person/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}`;
+  const URL_PERSON = `https://api.themoviedb.org/3/person/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=combined_credits,external_ids`;
 
   useEffect(() => {
     const getActorDetails = async () => {
@@ -41,7 +43,7 @@ const PersonPage = () => {
     });
   };
 
-  function getAge(birthString, deathString) {
+  const getAge = (birthString, deathString) => {
     const birthDate = new Date(birthString);
 
     let todayOrDeathDate = new Date();
@@ -59,14 +61,50 @@ const PersonPage = () => {
     }
 
     return age;
-  }
+  };
+
+  const socials = [
+    {
+      base: 'https://instagram.com/',
+      id: appState.person.external_ids?.instagram_id,
+      icon: BsInstagram,
+    },
+    {
+      base: 'https://facebook.com/',
+      id: appState.person.external_ids?.facebook_id,
+      icon: BsFacebook,
+    },
+    {
+      base: 'https://twitter.com/',
+      id: appState.person.external_ids?.twitter_id,
+      icon: BsTwitter,
+    },
+  ];
 
   return (
     <section className={styles.person}>
       <div className={styles.column1}>
         <img src={`${posterBase}${person.profile_path}`} alt="" />
         <aside className={styles.details}>
+          <div className={styles.socials}>
+            {socials.map(
+              (social) =>
+                social.id && (
+                  <a
+                    href={`${social.base}${social.id}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    key={_.uniqueId()}
+                    style={{ marginBottom: '2rem' }}
+                  >
+                    {<social.icon />}
+                  </a>
+                )
+            )}
+          </div>
+          {/* <div className={styles.line}></div> */}
           <h3>Personal Info</h3>
+          {/* <div className={styles.line}></div> */}
           <div className={styles.birthday}>
             <h4>Birthday</h4>
             <p>
