@@ -27,7 +27,6 @@ function App() {
     columnGap: '3rem',
     maxWidth: 'clamp(1px, 1440px, 92vw)',
     margin: '0 auto 3rem',
-    overflow: 'auto',
   };
 
   return (

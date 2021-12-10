@@ -16,10 +16,11 @@ const posterBase = 'https://image.tmdb.org/t/p/w780/';
 
 const Showcase = () => {
   const { appState, dispatch } = useContext(AppContext);
-  const media = appState.currentMedia;
   const { pathname } = useLocation();
   const [showTrailer, setShowTrailer] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
+
+  const media = appState.currentMedia;
 
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
 
@@ -51,8 +52,8 @@ const Showcase = () => {
 
   useEffect(() => {
     const getMediaDetails = async () => {
-      const URL_SHOW = `https://api.themoviedb.org/3/tv/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits,external_ids,images,videos,reviews`;
-      const URL_MOVIE = `https://api.themoviedb.org/3/movie/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits,external_ids,images,videos,reviews`;
+      const URL_SHOW = `https://api.themoviedb.org/3/tv/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits,external_ids,images,videos,reviews,recommendations`;
+      const URL_MOVIE = `https://api.themoviedb.org/3/movie/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits,external_ids,images,videos,reviews,recommendations`;
 
       const media = pathname.includes('movies') ? URL_MOVIE : URL_SHOW;
 
@@ -94,7 +95,7 @@ const Showcase = () => {
         <div
           className={styles.backdrop}
           style={{
-            background: `url('${backdropBase}${media.backdrop_path}') no-repeat center center/cover`,
+            background: `url('${backdropBase}${media.backdrop_path}') no-repeat top center/cover`,
           }}
         ></div>
         <div className={styles.content}>

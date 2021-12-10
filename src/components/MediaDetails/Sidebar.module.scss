@@ -3,10 +3,44 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-}
 
-.socials {
-  display: flex;
-  justify-content: space-between;
-  font-size: 24px;
+  // prettier-ignore
+  .socials, .status, .seasons, .episodes, .budget, .revenue, .lastAir, .network {
+    margin-bottom: 1rem;
+  }
+
+  .budget p,
+  .revenue p {
+    letter-spacing: 0.5px;
+  }
+
+  .socials {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 24px;
+    width: 150px;
+
+    > *:not(:first-child) {
+      margin-left: 1rem;
+    }
+  }
+
+  p {
+    font-size: 14px;
+    margin-top: 2px;
+  }
+
+  .line {
+    width: 100%;
+    background-color: #ccc;
+    height: 2px;
+    margin-bottom: 1rem;
+    border-radius: 50px;
+  }
+
+  .network {
+    img {
+      width: 45px;
+    }
+  }
 }
