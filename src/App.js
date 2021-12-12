@@ -12,6 +12,7 @@ import PersonPage from './components/PersonDetails/PersonPage';
 import SearchResultsText from './components/Global/SearchResultsText';
 import Pagination from './components/Home/Pagination';
 import Sidebar from './components/MediaDetails/Sidebar';
+import Recommendations from './components/MediaDetails/Recommendations';
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -35,7 +36,6 @@ function App() {
       <main className="container">
         <Routes>
           <Route
-            exact
             path="/movies"
             element={
               <>
@@ -48,7 +48,6 @@ function App() {
             }
           ></Route>
           <Route
-            exact
             path="shows"
             element={
               <>
@@ -61,7 +60,6 @@ function App() {
             }
           ></Route>
           <Route
-            exact
             path="search"
             element={
               <>
@@ -71,8 +69,6 @@ function App() {
             }
           ></Route>
           <Route
-            exact
-            // path="/movies/:id-:title"
             path="/movies/:id"
             element={
               <>
@@ -81,12 +77,11 @@ function App() {
                   <Cast />
                   <Sidebar />
                 </section>
+                <Recommendations />
               </>
             }
           />
           <Route
-            exact
-            // path="/shows/:id-:title"
             path="/shows/:id"
             element={
               <>
@@ -95,10 +90,11 @@ function App() {
                   <Cast />
                   <Sidebar />
                 </section>
+                <Recommendations />
               </>
             }
           />
-          <Route exact path="/person/:id" element={<PersonPage />} />
+          <Route path="/person/:id" element={<PersonPage />} />
           <Route path="/" element={<Navigate replace to="movies" />} />
           <Route path="*" element={<NoRoute />} />
         </Routes>

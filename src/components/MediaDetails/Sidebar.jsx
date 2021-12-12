@@ -47,22 +47,26 @@ const Sidebar = () => {
 
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.socials}>
+      <ul className={styles.socials}>
         {socials.map(
           (social) =>
             social.id && (
-              <a
-                href={`${social.base}${social.id}`}
-                target="_blank"
-                rel="noreferrer"
-                key={_.uniqueId()}
-              >
-                {<social.icon />}
-              </a>
+              <li key={_.uniqueId()}>
+                <a
+                  href={`${social.base}${social.id}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {<social.icon />}
+                </a>
+              </li>
             )
         )}
-      </div>
-      <div className={styles.line}></div>
+      </ul>
+
+      {(media.external_ids?.length > 0 || media.homepage) && (
+        <div className={styles.line}></div>
+      )}
       <div className={styles.status}>
         <h4>Status</h4>
         <p>

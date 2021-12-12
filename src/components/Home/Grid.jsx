@@ -70,12 +70,13 @@ const Grid = ({ url, route }) => {
           if (entry.media_type === 'movie') {
             return {
               name: entry.title,
+              release_date: entry.release_date || '5555-01-01',
               media: 'movies',
               ...entry,
             };
           } else if (entry.media_type === 'tv') {
             return {
-              release_date: entry.first_air_date,
+              release_date: entry.first_air_date || '5555-01-01',
               media: 'shows',
               ...entry,
             };
@@ -112,9 +113,26 @@ const Grid = ({ url, route }) => {
       } else if (data.results[0].media_type === 'person') {
         getPersonMedia(data.results[0]);
       } else {
-        const tvAndMovieResults = data.results.filter(
-          (entry) => entry.media_type !== 'person'
-        );
+        const tvAndMovieResults = data.results
+          .filter((entry) => entry.media_type !== 'person')
+          .map((entry) => {
+            if (entry.media_type === 'movie') {
+              return {
+                name: entry.title,
+                release_date: entry.release_date || '5555-01-01',
+                media: 'movies',
+                ...entry,
+              };
+            } else if (entry.media_type === 'tv') {
+              return {
+                release_date: entry.first_air_date || '5555-01-01',
+                media: 'shows',
+                ...entry,
+              };
+            }
+            return null;
+          });
+
         dispatch({
           type: 'SET-RESULTS',
           payload: { results: tvAndMovieResults },

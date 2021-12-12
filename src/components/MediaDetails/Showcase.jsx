@@ -60,20 +60,42 @@ const Showcase = () => {
       const res = await fetch(media);
 
       if (media === URL_MOVIE) {
-        const data = await res.json();
-        console.log(data);
+        let { poster_path: image, recommendations, ...rest } = await res.json();
+
+        recommendations = recommendations.results.map((entry) => {
+          return {
+            name: entry.title,
+            image: entry.poster_path,
+            ...entry,
+          };
+        });
+
+        console.log({ image, recommendations, ...rest });
+
         dispatch({
           type: 'SET-SINGLE-RESULT',
-          payload: data,
+          payload: { image, recommendations, ...rest },
         });
       } else if (media === URL_SHOW) {
-        const {
+        let {
           name: title,
           first_air_date: release_date,
           episode_run_time: runtime,
+          poster_path: image,
+          recommendations,
           ...rest
         } = await res.json();
-        console.log({ title, release_date, runtime, ...rest });
+
+        recommendations = recommendations.results.map((entry) => {
+          return {
+            name: entry.title,
+            image: entry.poster_path,
+            ...entry,
+          };
+        });
+
+        // prettier-ignore
+        console.log({ title, release_date, runtime, image, recommendations, ...rest });
 
         dispatch({
           type: 'SET-SINGLE-RESULT',
@@ -81,6 +103,8 @@ const Showcase = () => {
             title,
             release_date,
             runtime: runtime[0],
+            image,
+            recommendations,
             ...rest,
           },
         });
@@ -107,7 +131,7 @@ const Showcase = () => {
           >
             <img
               className={styles.poster}
-              src={`${posterBase}${media.poster_path}`}
+              src={`${posterBase}${media.image}`}
               alt=""
             />
             <div className={styles.posterText}>
@@ -148,7 +172,9 @@ const Showcase = () => {
                 })}
               </ul>
               <BsDot className={styles.dot} />
-              <p className={styles.runtime}>{formatRuntime()}</p>
+              {media.runtime && (
+                <p className={styles.runtime}>{formatRuntime()}</p>
+              )}
             </div>
             <div className={styles.overview}>
               <h3>Overview</h3>

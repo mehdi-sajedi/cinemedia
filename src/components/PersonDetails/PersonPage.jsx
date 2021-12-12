@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { AppContext } from '../../context/app-context';
 import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import styles from './PersonPage.module.scss';
 import _ from 'lodash';
@@ -86,22 +87,22 @@ const PersonPage = () => {
       <div className={styles.column1}>
         <img src={`${posterBase}${person.profile_path}`} alt="" />
         <aside className={styles.details}>
-          <div className={styles.socials}>
+          <ul className={styles.socials}>
             {socials.map(
               (social) =>
                 social.id && (
-                  <a
-                    href={`${social.base}${social.id}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    key={_.uniqueId()}
-                    style={{ marginBottom: '2rem' }}
-                  >
-                    {<social.icon />}
-                  </a>
+                  <li key={_.uniqueId()} style={{ marginBottom: '2rem' }}>
+                    <a
+                      href={`${social.base}${social.id}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {<social.icon />}
+                    </a>
+                  </li>
                 )
             )}
-          </div>
+          </ul>
           {/* <div className={styles.line}></div> */}
           <h3>Personal Info</h3>
           <div className={styles.line}></div>
@@ -135,7 +136,12 @@ const PersonPage = () => {
 
       <div className={styles.column2}>
         <div className={styles.mainText}>
-          <h1 className={styles.name}>{person.name}</h1>
+          <Link
+            to={`/search?query=${person.name?.split(' ').join('+')}`}
+            className={styles.name}
+          >
+            <h1>{person.name}</h1>
+          </Link>
           <p className={styles.bio}>{person.biography}</p>
         </div>
       </div>

@@ -23,7 +23,7 @@ const Card = ({
       <div className={CardStyles.details}>
         <div className={CardStyles.topRow}>
           <h3>{name}</h3>
-          <h4>{release_date.slice(0, 4)}</h4>
+          <h4>{release_date?.slice(0, 4)}</h4>
         </div>
         <h4 className={CardStyles.genre}>{genres.get(genre_ids[0])}</h4>
       </div>

@@ -28,11 +28,25 @@
       .socials {
         display: flex;
         justify-content: flex-start;
+        align-items: center;
         font-size: 24px;
         width: 150px;
+        transform: translateX(-10px);
 
-        > *:not(:first-child) {
-          margin-left: 1.5rem;
+        li {
+          transition: opacity 0.3s ease;
+
+          &:hover {
+            opacity: 0.6;
+          }
+
+          &:not(:first-child) {
+            margin-left: 1rem;
+          }
+
+          a {
+            padding: 5px 10px;
+          }
         }
       }
 
@@ -64,8 +78,14 @@
 
     .mainText {
       .name {
+        display: inline-block;
         margin-bottom: 1rem;
-        font-size: 32px;
+        font-size: 18px;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 0.6;
+        }
       }
 
       .bio {
