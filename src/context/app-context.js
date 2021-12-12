@@ -29,9 +29,9 @@ export const AppProvider = ({ children }) => {
     if (action.type === 'SET-RESULTS') {
       draft.results = action.payload.results;
       if (action.payload.route === 'movies') {
-        draft.pagination.totalMovies = action.payload.totalResults;
+        draft.pagination.totalMovies = action.payload.total_results;
       } else if (action.payload.route === 'shows') {
-        draft.pagination.totalShows = action.payload.totalResults;
+        draft.pagination.totalShows = action.payload.total_results;
       } else {
         // from search
       }

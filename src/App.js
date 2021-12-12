@@ -27,7 +27,7 @@ function App() {
     alignItems: 'flex-start',
     columnGap: '3rem',
     maxWidth: 'clamp(1px, 1440px, 92vw)',
-    margin: '0 auto 3rem',
+    margin: '0 auto 4rem',
   };
 
   return (
@@ -74,10 +74,12 @@ function App() {
               <>
                 <Showcase />
                 <section style={detailsStyles}>
-                  <Cast />
+                  {appState.currentMedia.credits?.cast.length > 0 && <Cast />}
                   <Sidebar />
                 </section>
-                <Recommendations />
+                {appState.currentMedia.recommendations?.length > 0 && (
+                  <Recommendations />
+                )}
               </>
             }
           />
@@ -87,10 +89,12 @@ function App() {
               <>
                 <Showcase />
                 <section style={detailsStyles}>
-                  <Cast />
+                  {appState.currentMedia.credits?.cast.length > 0 && <Cast />}
                   <Sidebar />
                 </section>
-                <Recommendations />
+                {appState.currentMedia.recommendations?.length > 0 && (
+                  <Recommendations />
+                )}
               </>
             }
           />

@@ -4,6 +4,11 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import MediaCard from './MediaCard';
 import _ from 'lodash';
 import GridStyles from './Grid.module.scss';
+import {
+  destructMovieProps,
+  destructShowProps,
+  setSearchPayload,
+} from '../Utilities/helpers';
 
 const Grid = ({ url, route }) => {
   const { appState, dispatch } = useContext(AppContext);
@@ -14,32 +19,25 @@ const Grid = ({ url, route }) => {
   useEffect(() => {
     const getResults = async () => {
       const res = await fetch(url);
+      // Not using anything from ...rest, but destructuring it for now for completeness/logging
       let { results, total_results, ...rest } = await res.json();
 
-      if (route === 'movies') {
-        results = results.map((entry) => {
-          return {
-            name: entry.title,
-            media: route,
-            ...entry,
-          };
-        });
-      } else if (route === 'shows') {
-        results = results.map((entry) => {
-          return {
-            release_date: entry.first_air_date,
-            media: route,
-            ...entry,
-          };
-        });
-      }
+      results = results.map((entry) => {
+        return route === 'movies'
+          ? { name: entry.title, media: route, ...entry }
+          : {
+              release_date: entry.first_air_date,
+              media: route,
+              ...entry,
+            };
+      });
 
       dispatch({
         type: 'SET-RESULTS',
         payload: {
-          results: results,
-          totalResults: total_results,
-          route: route,
+          results,
+          total_results,
+          route,
         },
       });
       console.log({ results, total_results, ...rest });
@@ -66,23 +64,11 @@ const Grid = ({ url, route }) => {
         let { cast: personWork } = await res.json();
         console.log(personWork);
 
-        personWork = personWork.map((entry) => {
-          if (entry.media_type === 'movie') {
-            return {
-              name: entry.title,
-              release_date: entry.release_date || '5555-01-01',
-              media: 'movies',
-              ...entry,
-            };
-          } else if (entry.media_type === 'tv') {
-            return {
-              release_date: entry.first_air_date || '5555-01-01',
-              media: 'shows',
-              ...entry,
-            };
-          }
-          return null;
-        });
+        personWork = personWork.map((entry) =>
+          entry.media_type === 'movie'
+            ? destructMovieProps(entry)
+            : destructShowProps(entry)
+        );
 
         dispatch({
           type: 'SET-RESULTS',
@@ -92,46 +78,30 @@ const Grid = ({ url, route }) => {
         });
         dispatch({
           type: 'SET-SEARCH',
-          payload: {
-            query: searchQuery,
-            person: true,
-            personFullName: obj.name,
-            id: obj.id,
-          },
+          payload: setSearchPayload(searchQuery, true, obj.name, obj.id),
         });
       };
 
-      const personExactMatch = data.results.find((entry) => {
-        return (
+      const personExactMatch = data.results.find(
+        (entry) =>
           entry.media_type === 'person' &&
           entry.name.toLowerCase() === searchQuery.toLowerCase()
-        );
-      });
+      );
 
-      if (personExactMatch) {
-        getPersonMedia(personExactMatch);
-      } else if (data.results[0].media_type === 'person') {
+      // Input has exact name match ("Kevin Hart")
+      if (personExactMatch) getPersonMedia(personExactMatch);
+      // Input has partial name ("Denzel") where top result is a person
+      else if (data.results[0].media_type === 'person')
         getPersonMedia(data.results[0]);
-      } else {
+      // No exact name match AND top result is not a person
+      else {
         const tvAndMovieResults = data.results
           .filter((entry) => entry.media_type !== 'person')
-          .map((entry) => {
-            if (entry.media_type === 'movie') {
-              return {
-                name: entry.title,
-                release_date: entry.release_date || '5555-01-01',
-                media: 'movies',
-                ...entry,
-              };
-            } else if (entry.media_type === 'tv') {
-              return {
-                release_date: entry.first_air_date || '5555-01-01',
-                media: 'shows',
-                ...entry,
-              };
-            }
-            return null;
-          });
+          .map((entry) =>
+            entry.media_type === 'movie'
+              ? destructMovieProps(entry)
+              : destructShowProps(entry)
+          );
 
         dispatch({
           type: 'SET-RESULTS',
@@ -139,15 +109,11 @@ const Grid = ({ url, route }) => {
         });
         dispatch({
           type: 'SET-SEARCH',
-          payload: {
-            query: searchQuery,
-            person: false,
-            personFullName: '',
-            id: null,
-          },
+          payload: setSearchPayload(searchQuery, false),
         });
       }
     };
+
     if (pathname.includes('search')) {
       getSearchResults();
     }

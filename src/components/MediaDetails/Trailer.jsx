@@ -10,7 +10,6 @@ const Trailer = ({ setShowTrailer, trailer }) => {
     <div className={styles.wrapper} onClick={() => setShowTrailer(false)}>
       <iframe
         type="text/html"
-        // src={`//www.youtube.com/embed/${trailer.key}?autoplay=0&origin=http%3A%2F%2Fwww.themoviedb.org&hl=en&modestbranding=1&fs=1&autohide=1`}
         src={`https://www.youtube.com/embed/${trailer.key}?autoplay=0&origin=localhost:3000`}
         className={styles.trailer}
         allowFullScreen={true}

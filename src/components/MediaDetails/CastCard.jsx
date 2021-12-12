@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './CastCard.module.scss';
 
-const basePath = 'https://image.tmdb.org/t/p/w780';
+const basePath = 'https://image.tmdb.org/t/p/original';
 
 const CastCard = ({ name, profile_path: image, character, id }) => {
   return (

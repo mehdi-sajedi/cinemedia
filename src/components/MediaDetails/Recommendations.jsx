@@ -9,12 +9,12 @@ const Recommendations = () => {
 
   return (
     <div className={styles.recommendations}>
-      <h2 className={styles.heading}>You may also like</h2>
+      <h2 className={styles.heading}>Recommendations</h2>
       <div className={styles.recommendationsGrid}>
         {appState.currentMedia?.recommendations?.map((entry, idx) => {
           return (
             entry.image &&
-            idx < 10 && <RecommendationsCard {...entry} key={_.uniqueId()} />
+            idx < 6 && <RecommendationsCard {...entry} key={_.uniqueId()} />
           );
         })}
       </div>

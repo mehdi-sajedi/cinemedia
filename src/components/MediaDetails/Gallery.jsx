@@ -5,8 +5,7 @@ import { createPortal } from 'react-dom';
 import styles from './Gallery.module.scss';
 import './GalleryExtra.scss';
 
-const backdropBase = 'https://image.tmdb.org/t/p/w1280';
-// const posterBase = 'https://image.tmdb.org/t/p/w780';
+const backdropBase = 'https://image.tmdb.org/t/p/original';
 
 const Gallery = ({ setShowGallery }) => {
   const { appState } = useContext(AppContext);

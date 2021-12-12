@@ -9,10 +9,10 @@ import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { colorPercentage } from '../Utilities/colorPercentage';
 import _ from 'lodash';
 
-const backdropBase = 'https://image.tmdb.org/t/p/w1280/';
-const posterBase = 'https://image.tmdb.org/t/p/w780/';
-// const backdropBase = 'https://image.tmdb.org/t/p/original/';
-// const posterBase = 'https://image.tmdb.org/t/p/original/';
+// const backdropBase = 'https://image.tmdb.org/t/p/w1280/';
+// const posterBase = 'https://image.tmdb.org/t/p/w780/';
+const backdropBase = 'https://image.tmdb.org/t/p/original/';
+const posterBase = 'https://image.tmdb.org/t/p/original/';
 
 const Showcase = () => {
   const { appState, dispatch } = useContext(AppContext);
