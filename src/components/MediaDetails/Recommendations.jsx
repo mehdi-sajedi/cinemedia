@@ -6,6 +6,7 @@ import _ from 'lodash';
 
 const Recommendations = () => {
   const { appState } = useContext(AppContext);
+  let backdropCount = 1;
 
   return (
     <div className={styles.recommendations}>
@@ -13,8 +14,11 @@ const Recommendations = () => {
       <div className={styles.recommendationsGrid}>
         {appState.currentMedia?.recommendations?.map((entry, idx) => {
           return (
-            entry.image &&
-            idx < 6 && <RecommendationsCard {...entry} key={_.uniqueId()} />
+            entry.backdrop_path &&
+            backdropCount++ &&
+            backdropCount <= 7 && (
+              <RecommendationsCard {...entry} key={_.uniqueId()} />
+            )
           );
         })}
       </div>

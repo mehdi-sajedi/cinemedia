@@ -18,29 +18,29 @@ const Grid = ({ url, route }) => {
   // For /movies and /shows routes
   useEffect(() => {
     const getResults = async () => {
-      const res = await fetch(url);
-      // Not using anything from ...rest, but destructuring it for now for completeness/logging
-      let { results, total_results, ...rest } = await res.json();
+      try {
+        const res = await fetch(url);
+        // Not using anything from ...rest, but destructuring it for now for completeness/logging
+        let { results, total_results, ...rest } = await res.json();
+        console.log({ results, total_results, ...rest });
 
-      results = results.map((entry) => {
-        return route === 'movies'
-          ? { name: entry.title, media: route, ...entry }
-          : {
-              release_date: entry.first_air_date,
-              media: route,
-              ...entry,
-            };
-      });
+        results = results.map((entry) =>
+          route === 'movies'
+            ? destructMovieProps(entry)
+            : destructShowProps(entry)
+        );
 
-      dispatch({
-        type: 'SET-RESULTS',
-        payload: {
-          results,
-          total_results,
-          route,
-        },
-      });
-      console.log({ results, total_results, ...rest });
+        dispatch({
+          type: 'SET-RESULTS',
+          payload: {
+            results,
+            total_results,
+            route,
+          },
+        });
+      } catch (err) {
+        console.log(err);
+      }
     };
 
     getResults();
@@ -61,10 +61,10 @@ const Grid = ({ url, route }) => {
       const getPersonMedia = async (obj) => {
         const URL_PERSON_ID = `https://api.themoviedb.org/3/person/${obj.id}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`;
         const res = await fetch(URL_PERSON_ID);
-        let { cast: personWork } = await res.json();
-        console.log(personWork);
+        let { cast: personMedia } = await res.json();
+        console.log(personMedia);
 
-        personWork = personWork.map((entry) =>
+        personMedia = personMedia.map((entry) =>
           entry.media_type === 'movie'
             ? destructMovieProps(entry)
             : destructShowProps(entry)
@@ -73,12 +73,9 @@ const Grid = ({ url, route }) => {
         dispatch({
           type: 'SET-RESULTS',
           payload: {
-            results: personWork,
+            results: personMedia,
+            searchData: setSearchPayload(searchQuery, true, obj.name, obj.id),
           },
-        });
-        dispatch({
-          type: 'SET-SEARCH',
-          payload: setSearchPayload(searchQuery, true, obj.name, obj.id),
         });
       };
 
@@ -105,11 +102,10 @@ const Grid = ({ url, route }) => {
 
         dispatch({
           type: 'SET-RESULTS',
-          payload: { results: tvAndMovieResults },
-        });
-        dispatch({
-          type: 'SET-SEARCH',
-          payload: setSearchPayload(searchQuery, false),
+          payload: {
+            results: tvAndMovieResults,
+            searchData: setSearchPayload(searchQuery, false),
+          },
         });
       }
     };

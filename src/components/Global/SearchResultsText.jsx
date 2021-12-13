@@ -9,12 +9,12 @@ const SearchResultsText = () => {
   return (
     <p className={styles.text}>
       Showing results for{' '}
-      {appState.search.person ? (
+      {appState.search?.person ? (
         <Link to={`/person/${appState.search.id}`}>
-          {appState.search.personFullName}
+          {appState.search?.personFullName}
         </Link>
       ) : (
-        <span>"{appState.search.query}"</span>
+        <span>"{appState.search?.query}"</span>
       )}
     </p>
   );

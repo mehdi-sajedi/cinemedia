@@ -67,55 +67,60 @@ const Sidebar = () => {
       {(media.external_ids?.length > 0 || media.homepage) && (
         <div className={styles.line}></div>
       )}
-      <div className={styles.status}>
-        <h4>Status</h4>
-        <p>
-          {media.status}
-          {media.status === 'Released' &&
-            ` (${formatDate(media.release_date)})`}
-        </p>
+      <div className={styles.info}>
+        <div className={styles.status}>
+          <h4>Status</h4>
+          <p>
+            {media.status}
+            {media.status === 'Released' &&
+              ` (${formatDate(media.release_date)})`}
+          </p>
+        </div>
+        {pathname.includes('shows') ? (
+          <>
+            <div className={styles.seasons}>
+              <h4>Seasons</h4>
+              <p>{media.number_of_seasons}</p>
+            </div>
+            <div className={styles.episodes}>
+              <h4>Episodes</h4>
+              <p>{media.number_of_episodes}</p>
+            </div>
+            <div className={styles.lastAir}>
+              <h4>Last Air Date</h4>
+              <p>{formatDate(media.last_air_date)}</p>
+            </div>
+            <div className={styles.network}>
+              <h4>Network</h4>
+              {media.networks && (
+                <img
+                  src={`${posterBase}${media.networks[0].logo_path}`}
+                  alt=""
+                />
+              )}
+            </div>
+          </>
+        ) : (
+          <>
+            <div className={styles.budget}>
+              <h4>Budget</h4>
+              <p>
+                {media.budget > 0
+                  ? '$' + Number(media.budget).toLocaleString()
+                  : '-'}
+              </p>
+            </div>
+            <div className={styles.revenue}>
+              <h4>Revenue</h4>
+              <p>
+                {media.revenue > 0
+                  ? '$' + Number(media.revenue).toLocaleString()
+                  : '-'}
+              </p>
+            </div>
+          </>
+        )}
       </div>
-      {pathname.includes('shows') ? (
-        <>
-          <div className={styles.seasons}>
-            <h4>Seasons</h4>
-            <p>{media.number_of_seasons}</p>
-          </div>
-          <div className={styles.episodes}>
-            <h4>Episodes</h4>
-            <p>{media.number_of_episodes}</p>
-          </div>
-          <div className={styles.lastAir}>
-            <h4>Last Air Date</h4>
-            <p>{formatDate(media.last_air_date)}</p>
-          </div>
-          <div className={styles.network}>
-            <h4>Network</h4>
-            {media.networks && (
-              <img src={`${posterBase}${media.networks[0].logo_path}`} alt="" />
-            )}
-          </div>
-        </>
-      ) : (
-        <>
-          <div className={styles.budget}>
-            <h4>Budget</h4>
-            <p>
-              {media.budget > 0
-                ? '$' + Number(media.budget).toLocaleString()
-                : '-'}
-            </p>
-          </div>
-          <div className={styles.revenue}>
-            <h4>Revenue</h4>
-            <p>
-              {media.revenue > 0
-                ? '$' + Number(media.revenue).toLocaleString()
-                : '-'}
-            </p>
-          </div>
-        </>
-      )}
     </aside>
   );
 };

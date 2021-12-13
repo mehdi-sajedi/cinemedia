@@ -1,8 +1,25 @@
+@import '../../include-media.scss';
+
 .sidebar {
   width: 260px;
   display: flex;
   flex-direction: column;
   flex: 1;
+  // background-color: skyblue;
+
+  @include media('<tablet') {
+    width: 100%;
+    // flex-direction: row;
+    // justify-content: space-between;
+    // flex-wrap: wrap;
+  }
+
+  .info {
+    @include media('<tablet') {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 
   // prettier-ignore
   .socials, .status, .seasons, .episodes, .budget, .revenue, .lastAir, .network {
@@ -20,6 +37,10 @@
     font-size: 24px;
     width: 150px;
     transform: translateX(-10px);
+
+    @include media('<tablet') {
+      width: 100%;
+    }
 
     li:not(:first-child) {
       margin-left: 1.2rem;
@@ -46,6 +67,11 @@
     height: 2px;
     margin-bottom: 1rem;
     border-radius: 50px;
+
+    @include media('<tablet') {
+      // display: none;
+      height: 1px;
+    }
   }
 
   .network {

@@ -4,7 +4,13 @@ import styles from './RecommendationsCard.module.scss';
 
 const basePath = 'https://image.tmdb.org/t/p/original';
 
-const RecommendationsCard = ({ name, backdrop_path, id, media_type }) => {
+const RecommendationsCard = ({
+  title,
+  name,
+  backdrop_path,
+  id,
+  media_type,
+}) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -15,7 +21,8 @@ const RecommendationsCard = ({ name, backdrop_path, id, media_type }) => {
     <Link className={styles.card} to={`/${mediaType}/${id}`}>
       <img src={`${basePath}${backdrop_path}`} alt="" />
       <div className={styles.text}>
-        <h5 className={styles.actor}>{name}</h5>
+        {media_type === 'movie' && <h5 className={styles.actor}>{title}</h5>}
+        {media_type === 'tv' && <h5 className={styles.actor}>{name}</h5>}
       </div>
     </Link>
   );

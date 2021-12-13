@@ -23,3 +23,16 @@ export function setSearchPayload(query, person, fullName = '', id = null) {
     id: id,
   };
 }
+
+export function formatRuntime(runtime) {
+  const hours = Math.floor(runtime / 60);
+  const remainder = runtime - hours * 60;
+
+  if (hours === 0) {
+    return `${remainder}m`;
+  } else if (remainder === 0) {
+    return `${runtime}m`;
+  } else {
+    return `${hours}h ${remainder}m`;
+  }
+}

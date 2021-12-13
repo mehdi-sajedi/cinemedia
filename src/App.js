@@ -7,12 +7,11 @@ import Grid from './components/Home/Grid';
 import Footer from './components/Global/Footer';
 import NoRoute from './components/Utilities/NoRoute';
 import Showcase from './components/MediaDetails/Showcase';
-import Cast from './components/MediaDetails/Cast';
 import PersonPage from './components/PersonDetails/PersonPage';
 import SearchResultsText from './components/Global/SearchResultsText';
 import Pagination from './components/Home/Pagination';
-import Sidebar from './components/MediaDetails/Sidebar';
 import Recommendations from './components/MediaDetails/Recommendations';
+import Details from './components/MediaDetails/Details';
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -20,15 +19,6 @@ function App() {
   const movies = `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}`;
 
   const shows = `https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}`;
-
-  const detailsStyles = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    columnGap: '3rem',
-    maxWidth: 'clamp(1px, 1440px, 92vw)',
-    margin: '0 auto 4rem',
-  };
 
   return (
     <BrowserRouter>
@@ -73,10 +63,7 @@ function App() {
             element={
               <>
                 <Showcase />
-                <section style={detailsStyles}>
-                  {appState.currentMedia.credits?.cast.length > 0 && <Cast />}
-                  <Sidebar />
-                </section>
+                <Details />
                 {appState.currentMedia.recommendations?.length > 0 && (
                   <Recommendations />
                 )}
@@ -88,10 +75,7 @@ function App() {
             element={
               <>
                 <Showcase />
-                <section style={detailsStyles}>
-                  {appState.currentMedia.credits?.cast.length > 0 && <Cast />}
-                  <Sidebar />
-                </section>
+                <Details />
                 {appState.currentMedia.recommendations?.length > 0 && (
                   <Recommendations />
                 )}

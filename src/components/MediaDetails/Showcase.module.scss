@@ -13,11 +13,25 @@
       rgba(0, 0, 0, 0.5) 100%
     );
 
+    @include media('<=tablet') {
+      // background: none;
+      // background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    @include media('<=phone') {
+      height: fit-content;
+      // background-color: #ccc;
+    }
+
     .backdrop {
       position: absolute;
       width: 100%;
       height: 100%;
       z-index: -1;
+
+      // @include media('<=phone') {
+      //   display: none;
+      // }
     }
 
     .content {
@@ -32,26 +46,57 @@
       margin: 0 auto;
       color: var(--white);
 
+      @include media('<tablet') {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
       .textContent {
         margin-top: 3rem;
+        // background-color: purple;
+
+        @include media('<=phone') {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 10px;
+        }
 
         .heading {
           display: flex;
+          // background-color: skyblue;
+
+          @include media('<=tablet') {
+            flex-direction: column;
+            margin-bottom: 1rem;
+            align-items: center;
+          }
 
           h1 {
             margin-bottom: 5px;
+
+            @include media('<=tablet') {
+              margin-bottom: 0;
+            }
           }
 
           span {
             font-size: 28px;
             margin-left: 10px;
             letter-spacing: 2px;
+
+            @include media('<=tablet') {
+              margin-left: 0;
+            }
           }
         }
 
         .tagline {
           font-style: italic;
           margin-bottom: 25px;
+          // background-color: seagreen;
         }
 
         .row {
@@ -59,6 +104,11 @@
           align-items: center;
           justify-content: space-between;
           white-space: nowrap;
+          // background-color: firebrick;
+
+          @include media('<=tablet') {
+            flex-direction: column;
+          }
 
           .dot {
             font-size: 28px;
@@ -83,6 +133,12 @@
           max-height: 150px;
           overflow-y: auto;
           padding-right: 3rem;
+          background-color: skyblue;
+
+          @include media('<=tablet') {
+            // max-height: fit-content;
+            max-height: 100%;
+          }
 
           h3 {
             margin-bottom: 8px;
@@ -109,6 +165,7 @@
           transition: opacity 0.3s ease;
           margin-top: 3rem;
           letter-spacing: 0.5px;
+          // background-color: dodgerblue;
 
           svg {
             margin-right: 5px;
@@ -125,6 +182,7 @@
     .posterWrap {
       width: 300px;
       display: flex;
+      align-items: flex-start;
       border-radius: 5px;
       position: relative;
       transition: background-color 0.3s ease;

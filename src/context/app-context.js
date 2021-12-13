@@ -28,6 +28,7 @@ export const AppProvider = ({ children }) => {
     // Actions
     if (action.type === 'SET-RESULTS') {
       draft.results = action.payload.results;
+      draft.search = action.payload.searchData;
       if (action.payload.route === 'movies') {
         draft.pagination.totalMovies = action.payload.total_results;
       } else if (action.payload.route === 'shows') {
@@ -39,8 +40,6 @@ export const AppProvider = ({ children }) => {
       draft.currentMedia = action.payload;
     } else if (action.type === 'SET-PERSON') {
       draft.person = action.payload;
-    } else if (action.type === 'SET-SEARCH') {
-      draft.search = action.payload;
     } else if (action.type === 'SET-CURRENT-PAGE') {
       if (action.payload.route.includes('movies')) {
         draft.pagination.currentMoviesPage = action.payload.pageNum;

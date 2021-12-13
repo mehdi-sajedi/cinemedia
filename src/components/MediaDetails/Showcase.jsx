@@ -7,6 +7,7 @@ import { useLocation } from 'react-router';
 import { BsDot, BsFillPlayFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { colorPercentage } from '../Utilities/colorPercentage';
+import { formatRuntime } from '../Utilities/helpers';
 import _ from 'lodash';
 
 // const backdropBase = 'https://image.tmdb.org/t/p/w1280/';
@@ -24,27 +25,14 @@ const Showcase = () => {
 
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
 
-  const trailer = appState.currentMedia.videos?.results?.find((entry) => {
+  const trailer = media.videos?.results?.find((entry) => {
     return (
       entry.type.toLowerCase() === 'trailer' &&
       entry.site.toLowerCase() === 'youtube'
     );
   });
 
-  const formatRuntime = () => {
-    const hours = Math.floor(media.runtime / 60);
-    const remainder = media.runtime - hours * 60;
-
-    if (hours === 0) {
-      return `${remainder}m`;
-    } else if (remainder === 0) {
-      return `${media.runtime}m`;
-    } else {
-      return `${hours}h ${remainder}m`;
-    }
-  };
-
-  const hasImages = appState.currentMedia?.images?.backdrops.length > 0;
+  const hasImages = media?.images?.backdrops.length > 0;
 
   const handleShowGallery = () => {
     hasImages && setShowGallery(true);
@@ -55,47 +43,29 @@ const Showcase = () => {
       const URL_SHOW = `https://api.themoviedb.org/3/tv/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits,external_ids,images,videos,reviews,recommendations`;
       const URL_MOVIE = `https://api.themoviedb.org/3/movie/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits,external_ids,images,videos,reviews,recommendations`;
 
-      const media = pathname.includes('movies') ? URL_MOVIE : URL_SHOW;
+      const mediaType = pathname.includes('movies') ? URL_MOVIE : URL_SHOW;
+      const res = await fetch(mediaType);
 
-      const res = await fetch(media);
-
-      if (media === URL_MOVIE) {
-        let { poster_path: image, recommendations, ...rest } = await res.json();
-
-        recommendations = recommendations.results.map((entry) => {
-          return {
-            name: entry.title,
-            image: entry.poster_path,
-            ...entry,
-          };
-        });
-
-        console.log({ image, recommendations, ...rest });
+      if (mediaType === URL_MOVIE) {
+        let { recommendations, ...rest } = await res.json();
+        console.log({ recommendations, ...rest });
 
         dispatch({
           type: 'SET-SINGLE-RESULT',
-          payload: { image, recommendations, ...rest },
+          payload: { recommendations: recommendations.results, ...rest },
         });
-      } else if (media === URL_SHOW) {
+      }
+      //
+      else if (mediaType === URL_SHOW) {
         let {
           name: title,
           first_air_date: release_date,
           episode_run_time: runtime,
-          poster_path: image,
           recommendations,
           ...rest
         } = await res.json();
-
-        recommendations = recommendations.results.map((entry) => {
-          return {
-            name: entry.title,
-            image: entry.poster_path,
-            ...entry,
-          };
-        });
-
         // prettier-ignore
-        console.log({ title, release_date, runtime, image, recommendations, ...rest });
+        console.log({ title, release_date, runtime,  recommendations, ...rest });
 
         dispatch({
           type: 'SET-SINGLE-RESULT',
@@ -103,8 +73,7 @@ const Showcase = () => {
             title,
             release_date,
             runtime: runtime[0],
-            image,
-            recommendations,
+            recommendations: recommendations.results,
             ...rest,
           },
         });
@@ -131,7 +100,7 @@ const Showcase = () => {
           >
             <img
               className={styles.poster}
-              src={`${posterBase}${media.image}`}
+              src={`${posterBase}${media.poster_path}`}
               alt=""
             />
             <div className={styles.posterText}>
@@ -173,7 +142,7 @@ const Showcase = () => {
               </ul>
               <BsDot className={styles.dot} />
               {media.runtime && (
-                <p className={styles.runtime}>{formatRuntime()}</p>
+                <p className={styles.runtime}>{formatRuntime(media.runtime)}</p>
               )}
             </div>
             <div className={styles.overview}>

@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 @import '~react-image-gallery/styles/scss/image-gallery.scss';
+@import './include-media.scss';
 
 :root {
   --max-width: clamp(1px, 1440px, 92vw);
@@ -15,13 +16,19 @@
 
 html {
   overflow-y: scroll;
+  //
+  overflow-x: hidden;
+  height: 100%;
 }
 
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #fbfbfd;
-  // overflow-x: hidden;
   letter-spacing: 0.25px;
+  //
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100%;
 }
 
 img {
