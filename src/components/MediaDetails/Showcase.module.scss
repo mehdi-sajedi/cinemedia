@@ -13,14 +13,9 @@
       rgba(0, 0, 0, 0.5) 100%
     );
 
-    @include media('<=tablet') {
-      // background: none;
-      // background-color: rgba(0, 0, 0, 0.7);
-    }
-
-    @include media('<=phone') {
+    @include media('<tablet') {
       height: fit-content;
-      // background-color: #ccc;
+      background: none;
     }
 
     .backdrop {
@@ -29,9 +24,9 @@
       height: 100%;
       z-index: -1;
 
-      // @include media('<=phone') {
-      //   display: none;
-      // }
+      @include media('<tablet') {
+        height: 200px;
+      }
     }
 
     .content {
@@ -45,6 +40,7 @@
       max-width: var(--max-width);
       margin: 0 auto;
       color: var(--white);
+      position: relative;
 
       @include media('<tablet') {
         display: flex;
@@ -54,42 +50,49 @@
 
       .textContent {
         margin-top: 3rem;
-        // background-color: purple;
 
-        @include media('<=phone') {
+        @include media('<=tablet') {
+          margin-top: 0;
+        }
+
+        @include media('<tablet') {
           display: flex;
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 10px;
+          // align-items: center;
+          padding: 1.5rem 0;
+          background-color: #222;
+
+          margin-top: 126px;
+          width: 100vw;
         }
 
         .heading {
           display: flex;
-          // background-color: skyblue;
+          flex-wrap: wrap;
 
-          @include media('<=tablet') {
-            flex-direction: column;
-            margin-bottom: 1rem;
-            align-items: center;
+          @include media('<tablet') {
+            justify-content: center;
+            text-align: center;
           }
 
           h1 {
             margin-bottom: 5px;
+            // margin-right: 10px;
 
-            @include media('<=tablet') {
-              margin-bottom: 0;
-            }
+            // @include media('<=tablet') {
+            //   margin-bottom: 0;
+            // }
           }
 
           span {
             font-size: 28px;
             margin-left: 10px;
+            font-weight: 400;
             letter-spacing: 2px;
 
-            @include media('<=tablet') {
-              margin-left: 0;
-            }
+            // @include media('<desktop') {
+            //   margin-left: 0;
+            // }
           }
         }
 
@@ -97,6 +100,11 @@
           font-style: italic;
           margin-bottom: 25px;
           // background-color: seagreen;
+
+          @include media('<tablet') {
+            text-align: center;
+            margin-bottom: 0px;
+          }
         }
 
         .row {
@@ -104,14 +112,33 @@
           align-items: center;
           justify-content: space-between;
           white-space: nowrap;
-          // background-color: firebrick;
+          // background-color: orange;
 
           @include media('<=tablet') {
             flex-direction: column;
+            align-items: flex-start;
+            display: flex;
+          }
+
+          @include media('<tablet') {
+            // background-color: rgb(42, 42, 42);
+            align-items: center;
+            margin-top: 1rem;
           }
 
           .dot {
             font-size: 28px;
+
+            @include media('<=tablet') {
+              display: none;
+            }
+          }
+
+          .runtime {
+            @include media('<=tablet') {
+              // margin: 10px 0;
+              margin-top: 10px;
+            }
           }
         }
 
@@ -133,23 +160,46 @@
           max-height: 150px;
           overflow-y: auto;
           padding-right: 3rem;
-          background-color: skyblue;
+          // background-color: skyblue;
 
           @include media('<=tablet') {
             // max-height: fit-content;
-            max-height: 100%;
+            padding-right: 0;
+          }
+
+          @include media('<tablet') {
+            max-height: fit-content;
+            text-align: center;
+            max-width: 95vw;
+            margin: 1rem auto 0 auto;
+            // background-color: orange;
           }
 
           h3 {
             margin-bottom: 8px;
+
+            @include media('<tablet') {
+              margin-bottom: 5px;
+            }
           }
         }
 
         .genres {
           display: flex;
 
-          :not(:first-of-type) {
-            margin-left: 5px;
+          @include media('<tablet') {
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            max-width: 95vw;
+          }
+
+          :not(:last-of-type) {
+            margin-right: 5px;
+          }
+
+          @include media('<tablet') {
+            flex-wrap: wrap;
           }
         }
 
@@ -166,6 +216,10 @@
           margin-top: 3rem;
           letter-spacing: 0.5px;
           // background-color: dodgerblue;
+
+          @include media('<tablet') {
+            margin-top: 1rem;
+          }
 
           svg {
             margin-right: 5px;
@@ -188,6 +242,13 @@
       transition: background-color 0.3s ease;
       font-size: 20px;
       cursor: default;
+
+      @include media('<tablet') {
+        width: 115px;
+        position: absolute;
+        left: 0;
+        top: 10px;
+      }
 
       .poster {
         transition: opacity 0.3s ease;

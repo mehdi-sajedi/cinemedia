@@ -109,9 +109,15 @@ const Showcase = () => {
             </div>
           </div>
           <div className={styles.textContent}>
-            <div className={styles.heading}>
+            {/* <div className={styles.heading}>
               <h1>{media.title}</h1>
               <span>({media.release_date?.slice(0, 4)})</span>
+            </div> */}
+            <div className={styles.heading}>
+              <h1>
+                {media.title}
+                <span>({media.release_date?.slice(0, 4)})</span>
+              </h1>
             </div>
             <p className={styles.tagline}>{media.tagline}</p>
             <div className={styles.row}>
