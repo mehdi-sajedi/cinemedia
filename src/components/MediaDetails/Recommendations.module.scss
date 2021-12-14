@@ -12,9 +12,9 @@
   .recommendationsGrid {
     position: relative;
     display: grid;
-    // grid-auto-flow: column;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     justify-content: flex-start;
+    align-items: flex-start;
     gap: 0.5rem;
     overflow-x: auto;
     padding: 1px 1px 1rem;
