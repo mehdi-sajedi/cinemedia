@@ -53,7 +53,7 @@
 
       @include media('<tablet') {
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: center;
       }
 
@@ -68,7 +68,7 @@
           display: flex;
           flex-direction: column;
           // align-items: center;
-          padding: 1.5rem 0;
+          padding: 1.5rem 0 1rem;
           // background-color: #222;
 
           // margin-top: 126px;
@@ -248,10 +248,11 @@
           transition: opacity 0.3s ease;
           margin-top: 3rem;
           letter-spacing: 0.5px;
-          // background-color: dodgerblue;
 
           @include media('<tablet') {
             margin-top: 1rem;
+            width: 170px;
+            margin: 1rem auto 0 auto;
           }
 
           svg {
@@ -277,15 +278,17 @@
       cursor: default;
 
       @include media('<tablet') {
-        width: 115px;
-        // position: absolute;
-        // left: 0;
-        // top: 10px;
+        width: 200px;
+        margin-bottom: 1rem;
       }
 
       .poster {
         transition: opacity 0.3s ease;
         border-radius: 5px;
+
+        @include media('<tablet') {
+          display: none;
+        }
       }
 
       .posterText {
@@ -300,27 +303,42 @@
         justify-content: center;
         align-items: center;
 
+        @include media('<tablet') {
+          font-size: 16px;
+          opacity: 1;
+          position: relative;
+          padding: 5px;
+          text-align: center;
+          margin-bottom: 1rem;
+        }
+
         .icon {
           font-size: 25px;
         }
 
         span {
           margin-left: 6px;
+
+          @include media('<tablet') {
+            margin-left: 10px;
+          }
         }
       }
 
       &.posterHover {
-        cursor: pointer;
+        @include media('>=tablet') {
+          cursor: pointer;
 
-        &:hover {
-          background-color: black;
+          &:hover {
+            background-color: black;
 
-          .poster {
-            opacity: 0.3;
-          }
+            .poster {
+              opacity: 0.3;
+            }
 
-          .posterText {
-            opacity: 1;
+            .posterText {
+              opacity: 1;
+            }
           }
         }
       }

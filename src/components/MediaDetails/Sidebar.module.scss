@@ -15,14 +15,23 @@
   }
 
   .info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
     @include media('<=tablet') {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      column-gap: 0.5rem;
     }
   }
 
   // prettier-ignore
-  .socials, .status, .seasons, .episodes, .budget, .revenue, .lastAir, .network {
+  // .socials, .status, .seasons, .episodes, .budget, .revenue, .lastAir, .network {
+  //   margin-bottom: 1rem;
+  // }
+
+  .socials {
     margin-bottom: 1rem;
   }
 
