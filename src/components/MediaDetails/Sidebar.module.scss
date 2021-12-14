@@ -7,15 +7,15 @@
   flex: 1;
   // background-color: skyblue;
 
-  @include media('<tablet') {
+  @include media('<=tablet') {
     width: 100%;
-    // flex-direction: row;
-    // justify-content: space-between;
-    // flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   .info {
-    @include media('<tablet') {
+    @include media('<=tablet') {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
     }

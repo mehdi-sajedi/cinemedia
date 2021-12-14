@@ -109,10 +109,6 @@ const Showcase = () => {
             </div>
           </div>
           <div className={styles.textContent}>
-            {/* <div className={styles.heading}>
-              <h1>{media.title}</h1>
-              <span>({media.release_date?.slice(0, 4)})</span>
-            </div> */}
             <div className={styles.heading}>
               <h1>
                 {media.title}
@@ -121,21 +117,31 @@ const Showcase = () => {
             </div>
             <p className={styles.tagline}>{media.tagline}</p>
             <div className={styles.row}>
-              <div
-                className={styles.voteCircle}
-                style={{
-                  border: `3px solid ${
-                    media.vote_average
-                      ? colorPercentage(media.vote_average / 10)
-                      : '#777'
-                  }`,
-                }}
-              >
-                <p>
-                  {media.vote_average ? media.vote_average.toFixed(1) : 'NR'}
-                </p>
+              <div className={styles.ratingAndRuntime}>
+                <div
+                  className={styles.voteCircle}
+                  style={{
+                    border: `3px solid ${
+                      media.vote_average
+                        ? colorPercentage(media.vote_average / 10)
+                        : '#777'
+                    }`,
+                  }}
+                >
+                  <p>
+                    {media.vote_average ? media.vote_average.toFixed(1) : 'NR'}
+                  </p>
+                </div>
+                {/* <BsDot className={`${styles.dot} ${styles.dot1}`} /> */}
+                <span className={`${styles.dot} ${styles.dot1}`}></span>
+                {media.runtime && (
+                  <p className={styles.runtime}>
+                    {formatRuntime(media.runtime)}
+                  </p>
+                )}
               </div>
-              <BsDot className={styles.dot} />
+              {/* <BsDot className={`${styles.dot} ${styles.dot2}`} /> */}
+              <span className={`${styles.dot} ${styles.dot2}`}></span>
               <ul className={styles.genres}>
                 {media.genres?.map((genre, idx) => {
                   return (
@@ -146,10 +152,6 @@ const Showcase = () => {
                   );
                 })}
               </ul>
-              <BsDot className={styles.dot} />
-              {media.runtime && (
-                <p className={styles.runtime}>{formatRuntime(media.runtime)}</p>
-              )}
             </div>
             <div className={styles.overview}>
               <h3>Overview</h3>

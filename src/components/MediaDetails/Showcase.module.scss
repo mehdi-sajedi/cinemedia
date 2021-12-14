@@ -15,7 +15,13 @@
 
     @include media('<tablet') {
       height: fit-content;
-      background: none;
+      // background: none;
+      background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.75) 0%,
+        rgba(0, 0, 0, 0.75) 50%,
+        rgba(0, 0, 0, 0.75) 100%
+      );
     }
 
     .backdrop {
@@ -25,22 +31,25 @@
       z-index: -1;
 
       @include media('<tablet') {
-        height: 200px;
+        // height: 200px;
       }
     }
 
     .content {
       // position: absolute;
-      padding-top: 4.6rem;
+      // padding-top: 4.6rem;
       display: grid;
       grid-template-columns: 1fr 4fr;
       align-items: flex-start;
+      align-items: center;
       column-gap: 4rem;
       z-index: 1;
       max-width: var(--max-width);
       margin: 0 auto;
       color: var(--white);
       position: relative;
+      height: 100%;
+      // background-color: orange;
 
       @include media('<tablet') {
         display: flex;
@@ -49,7 +58,7 @@
       }
 
       .textContent {
-        margin-top: 3rem;
+        // margin-top: 3rem;
 
         @include media('<=tablet') {
           margin-top: 0;
@@ -60,9 +69,10 @@
           flex-direction: column;
           // align-items: center;
           padding: 1.5rem 0;
-          background-color: #222;
+          // background-color: #222;
 
-          margin-top: 126px;
+          // margin-top: 126px;
+          // margin-top: 190px;
           width: 100vw;
         }
 
@@ -73,6 +83,8 @@
           @include media('<tablet') {
             justify-content: center;
             text-align: center;
+            max-width: 95vw;
+            margin: 0 auto;
           }
 
           h1 {
@@ -104,6 +116,8 @@
           @include media('<tablet') {
             text-align: center;
             margin-bottom: 0px;
+            max-width: 95vw;
+            margin: 0 auto;
           }
         }
 
@@ -126,33 +140,50 @@
             margin-top: 1rem;
           }
 
+          .ratingAndRuntime {
+            // background-color: skyblue;
+            display: flex;
+            align-items: center;
+
+            .voteCircle {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background-color: #081c22;
+              // padding: 12px;
+              width: 52px;
+              height: 52px;
+              border-radius: 50px;
+              font-size: 18px;
+              margin-bottom: 1rem;
+
+              @include media('<=tablet') {
+                margin-bottom: 0;
+              }
+            }
+
+            .runtime {
+              @include media('<=tablet') {
+                // margin-left: 10px;
+              }
+            }
+          }
+
           .dot {
-            font-size: 28px;
+            // font-size: 28px;
+            // font-size: 20px;
+            height: 22px;
+            margin: 0 1rem;
+            width: 2px;
+            border-radius: 10px;
+            background-color: var(--white);
 
-            @include media('<=tablet') {
-              display: none;
+            &.dot2 {
+              @include media('<=tablet') {
+                display: none;
+              }
             }
           }
-
-          .runtime {
-            @include media('<=tablet') {
-              // margin: 10px 0;
-              margin-top: 10px;
-            }
-          }
-        }
-
-        .voteCircle {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: #081c22;
-          // padding: 12px;
-          width: 52px;
-          height: 52px;
-          border-radius: 50px;
-          font-size: 18px;
-          margin-bottom: 1rem;
         }
 
         .overview {
@@ -173,6 +204,7 @@
             max-width: 95vw;
             margin: 1rem auto 0 auto;
             // background-color: orange;
+            // text-align: justify;
           }
 
           h3 {
@@ -200,6 +232,7 @@
 
           @include media('<tablet') {
             flex-wrap: wrap;
+            margin-top: 10px;
           }
         }
 
@@ -245,9 +278,9 @@
 
       @include media('<tablet') {
         width: 115px;
-        position: absolute;
-        left: 0;
-        top: 10px;
+        // position: absolute;
+        // left: 0;
+        // top: 10px;
       }
 
       .poster {

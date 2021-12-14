@@ -3,9 +3,9 @@
 .cast {
   width: calc(100% - 260px);
 
-  @include media('<tablet') {
+  @include media('<=tablet') {
     width: 100%;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   .heading {
