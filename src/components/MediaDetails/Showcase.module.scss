@@ -18,9 +18,9 @@
       // background: none;
       background: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.75) 0%,
-        rgba(0, 0, 0, 0.75) 50%,
-        rgba(0, 0, 0, 0.75) 100%
+        rgba(0, 0, 0, 0.65) 0%,
+        rgba(0, 0, 0, 0.65) 50%,
+        rgba(0, 0, 0, 0.65) 100%
       );
     }
 
@@ -67,18 +67,16 @@
         @include media('<tablet') {
           display: flex;
           flex-direction: column;
-          // align-items: center;
           padding: 1.5rem 0 1rem;
-          // background-color: #222;
-
-          // margin-top: 126px;
-          // margin-top: 190px;
+          padding: 2rem 0 3rem;
           width: 100vw;
         }
 
         .heading {
           display: flex;
+          align-items: center;
           flex-wrap: wrap;
+          // background-color: skyblue;
 
           @include media('<tablet') {
             justify-content: center;
@@ -91,26 +89,26 @@
             margin-bottom: 5px;
             // margin-right: 10px;
 
-            // @include media('<=tablet') {
-            //   margin-bottom: 0;
-            // }
-          }
+            @include media('<tablet') {
+              font-size: 26px;
+            }
 
-          span {
-            font-size: 28px;
-            margin-left: 10px;
-            font-weight: 400;
-            letter-spacing: 2px;
+            span {
+              font-size: 28px;
+              margin-left: 10px;
+              font-weight: 400;
+              letter-spacing: 2px;
 
-            // @include media('<desktop') {
-            //   margin-left: 0;
-            // }
+              @include media('<tablet') {
+                font-size: 22px;
+              }
+            }
           }
         }
 
         .tagline {
           font-style: italic;
-          margin-bottom: 25px;
+          margin-bottom: 12px;
           // background-color: seagreen;
 
           @include media('<tablet') {
@@ -127,35 +125,41 @@
           justify-content: space-between;
           white-space: nowrap;
           // background-color: orange;
+          margin-top: 12px;
+          margin-bottom: 1rem;
 
-          @include media('<=tablet') {
+          @include media('<desktop') {
             flex-direction: column;
             align-items: flex-start;
             display: flex;
+            // flex-wrap: wrap;
+            // background-color: skyblue;
           }
 
           @include media('<tablet') {
             // background-color: rgb(42, 42, 42);
             align-items: center;
-            margin-top: 1rem;
+            margin-top: 5px;
           }
 
           .ratingAndRuntime {
-            // background-color: skyblue;
             display: flex;
             align-items: center;
+            // background-color: firebrick;
+
+            @include media('<tablet') {
+              margin: 1rem 0;
+            }
 
             .voteCircle {
               display: flex;
               justify-content: center;
               align-items: center;
               background-color: #081c22;
-              // padding: 12px;
               width: 52px;
               height: 52px;
               border-radius: 50px;
               font-size: 18px;
-              margin-bottom: 1rem;
 
               @include media('<=tablet') {
                 margin-bottom: 0;
@@ -164,22 +168,23 @@
 
             .runtime {
               @include media('<=tablet') {
-                // margin-left: 10px;
               }
             }
           }
 
           .dot {
-            // font-size: 28px;
-            // font-size: 20px;
             height: 22px;
             margin: 0 1rem;
             width: 2px;
             border-radius: 10px;
             background-color: var(--white);
+            // background-color: rgba(255, 255, 255, 0.5);
+            opacity: 0.6;
+            //
+            height: 30px;
 
             &.dot2 {
-              @include media('<=tablet') {
+              @include media('<desktop') {
                 display: none;
               }
             }
@@ -188,23 +193,26 @@
 
         .overview {
           margin-bottom: 1rem;
-          max-height: 150px;
+          // max-height: 150px;
           overflow-y: auto;
           padding-right: 3rem;
-          // background-color: skyblue;
+          font-size: 15px;
+          letter-spacing: 0;
 
-          @include media('<=tablet') {
-            // max-height: fit-content;
-            padding-right: 0;
+          @include media('<desktop') {
+            max-height: 150px;
+            padding-right: 1rem;
           }
 
           @include media('<tablet') {
             max-height: fit-content;
             text-align: center;
-            max-width: 95vw;
-            margin: 1rem auto 0 auto;
-            // background-color: orange;
-            // text-align: justify;
+            max-width: 92vw;
+            margin: 0 auto;
+            padding-right: 0;
+            line-height: 1.5;
+            //
+            margin: 10px auto 3rem auto;
           }
 
           h3 {
@@ -219,24 +227,26 @@
         .genres {
           display: flex;
 
+          @include media('<desktop') {
+            flex-wrap: wrap;
+            margin-top: 1rem;
+          }
+
           @include media('<tablet') {
             text-align: center;
-            align-items: center;
             justify-content: center;
             max-width: 95vw;
+            flex-wrap: wrap;
+            margin-top: 5px;
           }
 
           :not(:last-of-type) {
             margin-right: 5px;
           }
-
-          @include media('<tablet') {
-            flex-wrap: wrap;
-            margin-top: 10px;
-          }
         }
 
         .trailerBtn {
+          font-family: 'Montserrat', sans-serif;
           cursor: pointer;
           font-size: 16px;
           display: flex;
@@ -246,13 +256,19 @@
           border: none;
           color: var(--white);
           transition: opacity 0.3s ease;
-          margin-top: 3rem;
+          // margin-top: 3rem;
+          margin-top: 2rem;
           letter-spacing: 0.5px;
 
           @include media('<tablet') {
             margin-top: 1rem;
-            width: 170px;
+            // width: 130px;
+            // background-color: skyblue;
             margin: 1rem auto 0 auto;
+            //
+            position: absolute;
+            bottom: 28px;
+            right: clamp(1px, 50px, 2.5vw);
           }
 
           svg {
@@ -276,10 +292,19 @@
       transition: background-color 0.3s ease;
       font-size: 20px;
       cursor: default;
+      // background-color: orange;
 
       @include media('<tablet') {
         width: 200px;
-        margin-bottom: 1rem;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        //
+        position: absolute;
+        bottom: 0;
+        left: clamp(1px, 50px, 2.5vw);
+        width: 150px;
+        width: default;
       }
 
       .poster {
@@ -309,7 +334,6 @@
           position: relative;
           padding: 5px;
           text-align: center;
-          margin-bottom: 1rem;
         }
 
         .icon {
@@ -326,18 +350,24 @@
       }
 
       &.posterHover {
-        @include media('>=tablet') {
-          cursor: pointer;
+        cursor: pointer;
 
-          &:hover {
-            background-color: black;
+        &:hover {
+          background-color: black;
 
-            .poster {
-              opacity: 0.3;
-            }
+          @include media('<tablet') {
+            background-color: transparent;
+          }
 
-            .posterText {
-              opacity: 1;
+          .poster {
+            opacity: 0.3;
+          }
+
+          .posterText {
+            opacity: 1;
+
+            @include media('<tablet') {
+              opacity: 0.6;
             }
           }
         }

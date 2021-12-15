@@ -91,12 +91,14 @@ const Sidebar = () => {
               <p>{formatDate(media.last_air_date)}</p>
             </div>
             <div className={styles.network}>
-              <h4>Network</h4>
-              {media.networks && (
-                <img
-                  src={`${posterBase}${media.networks[0].logo_path}`}
-                  alt=""
-                />
+              {media.networks?.length > 0 && (
+                <>
+                  <h4>Network</h4>
+                  <img
+                    src={`${posterBase}${media.networks[0].logo_path}`}
+                    alt=""
+                  />
+                </>
               )}
             </div>
           </>

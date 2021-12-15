@@ -4,7 +4,7 @@ import styles from './Showcase.module.scss';
 import Trailer from './Trailer';
 import Gallery from './Gallery';
 import { useLocation } from 'react-router';
-import { BsDot, BsFillPlayFill } from 'react-icons/bs';
+import { BsFillPlayFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { colorPercentage } from '../Utilities/colorPercentage';
 import { formatRuntime } from '../Utilities/helpers';
@@ -112,10 +112,12 @@ const Showcase = () => {
             <div className={styles.heading}>
               <h1>
                 {media.title}
-                <span>({media.release_date?.slice(0, 4)})</span>
+                {media.release_date && (
+                  <span>({media.release_date.slice(0, 4)})</span>
+                )}
               </h1>
             </div>
-            <p className={styles.tagline}>{media.tagline}</p>
+            {media.tagline && <p className={styles.tagline}>{media.tagline}</p>}
             <div className={styles.row}>
               <div className={styles.ratingAndRuntime}>
                 <div
@@ -132,25 +134,30 @@ const Showcase = () => {
                     {media.vote_average ? media.vote_average.toFixed(1) : 'NR'}
                   </p>
                 </div>
-                {/* <BsDot className={`${styles.dot} ${styles.dot1}`} /> */}
-                <span className={`${styles.dot} ${styles.dot1}`}></span>
+                {media.runtime && (
+                  <span className={`${styles.dot} ${styles.dot1}`}></span>
+                )}
                 {media.runtime && (
                   <p className={styles.runtime}>
                     {formatRuntime(media.runtime)}
                   </p>
                 )}
               </div>
-              {/* <BsDot className={`${styles.dot} ${styles.dot2}`} /> */}
-              <span className={`${styles.dot} ${styles.dot2}`}></span>
+              {media.genres?.length > 0 && (
+                <span className={`${styles.dot} ${styles.dot2}`}></span>
+              )}
               <ul className={styles.genres}>
-                {media.genres?.map((genre, idx) => {
-                  return (
-                    <li key={_.uniqueId()}>
-                      {genre.name}
-                      {idx === media.genres.length - 1 ? null : ','}
-                    </li>
-                  );
-                })}
+                {media.genres?.map(
+                  (genre, idx) =>
+                    idx < 3 && (
+                      <li key={_.uniqueId()}>
+                        {genre.name}
+                        {idx === media.genres.length - 1 || idx === 2
+                          ? null
+                          : ','}
+                      </li>
+                    )
+                )}
               </ul>
             </div>
             <div className={styles.overview}>
