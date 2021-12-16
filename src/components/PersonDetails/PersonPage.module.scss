@@ -7,8 +7,21 @@
   max-width: var(--max-width);
   margin: 3rem auto;
 
+  @include media('<tablet') {
+    flex-direction: column;
+  }
+
   .column1 {
     width: 25%;
+    // background-color: orange;
+
+    @include media('<tablet') {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
 
     img {
       width: 100%;
@@ -75,24 +88,49 @@
 
   .column2 {
     width: 75%;
+    // background-color: dodgerblue;
 
-    .mainText {
-      .name {
+    @include media('<tablet') {
+      width: 100%;
+    }
+
+    .bioHeading {
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .bio {
+      line-height: 1.6;
+      letter-spacing: 0;
+      white-space: pre-wrap;
+    }
+  }
+
+  .name {
+    display: inline-block;
+    margin-bottom: 1rem;
+    font-size: 18px;
+    transition: opacity 0.3s ease;
+
+    &.nameMobile {
+      display: none;
+
+      @include media('<tablet') {
         display: inline-block;
-        margin-bottom: 1rem;
-        font-size: 18px;
-        transition: opacity 0.3s ease;
-
-        &:hover {
-          opacity: 0.6;
-        }
+        margin-top: 1.5rem;
       }
+    }
 
-      .bio {
-        line-height: 1.6;
-        letter-spacing: 0;
-        white-space: pre-wrap;
+    &.nameDesktop {
+      margin-bottom: 2rem;
+
+      @include media('<tablet') {
+        display: none;
       }
+    }
+
+    &:hover {
+      opacity: 0.6;
     }
   }
 }

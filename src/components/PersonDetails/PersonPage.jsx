@@ -86,6 +86,13 @@ const PersonPage = () => {
     <section className={styles.person}>
       <div className={styles.column1}>
         <img src={`${posterBase}${person.profile_path}`} alt="" />
+        <Link
+          to={`/search?query=${person.name?.split(' ').join('+')}`}
+          className={`${styles.name} ${styles.nameMobile}`}
+        >
+          <h1>{person.name}</h1>
+        </Link>
+
         <aside className={styles.details}>
           <ul className={styles.socials}>
             {socials.map(
@@ -138,10 +145,11 @@ const PersonPage = () => {
         <div className={styles.mainText}>
           <Link
             to={`/search?query=${person.name?.split(' ').join('+')}`}
-            className={styles.name}
+            className={`${styles.name} ${styles.nameDesktop}`}
           >
             <h1>{person.name}</h1>
           </Link>
+          <h3 className={styles.bioHeading}>Biography</h3>
           <p className={styles.bio}>{person.biography}</p>
         </div>
       </div>
