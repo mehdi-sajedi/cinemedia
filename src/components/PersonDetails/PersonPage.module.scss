@@ -9,6 +9,7 @@
 
   @include media('<tablet') {
     flex-direction: column;
+    margin: 2rem auto;
   }
 
   .column1 {
@@ -20,23 +21,35 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-bottom: 4rem;
+      margin-bottom: 1rem;
     }
 
-    img {
+    .image {
       width: 100%;
       border-radius: 10px;
+
+      @include media('<tablet') {
+        width: 75%;
+        width: clamp(1px, 75%, 400px);
+        margin: 0 auto;
+      }
     }
 
     .details {
       display: flex;
       flex-direction: column;
       margin-top: 2rem;
+      // background-color: seagreen;
 
-      h3 {
-        margin-bottom: 1rem;
-        font-size: 22px;
+      @include media('<tablet') {
+        width: 100%;
+        margin-top: 1.5rem;
       }
+
+      // h3 {
+      //   margin-bottom: 1rem;
+      //   font-size: 22px;
+      // }
 
       .socials {
         display: flex;
@@ -45,9 +58,21 @@
         font-size: 24px;
         width: 150px;
         transform: translateX(-10px);
+        // background-color: orange;
+
+        @include media('<tablet') {
+          justify-content: center;
+          width: 100%;
+          transform: translateX(0);
+        }
 
         li {
           transition: opacity 0.3s ease;
+          margin-bottom: 2rem;
+
+          @include media('<tablet') {
+            margin-bottom: 1rem;
+          }
 
           &:hover {
             opacity: 0.6;
@@ -63,25 +88,51 @@
         }
       }
 
-      .line {
-        width: 100%;
-        background-color: #ccc;
-        height: 2px;
+      .personalInfoHeading {
         margin-bottom: 1rem;
-        border-radius: 50px;
-      }
-
-      .birthday {
-        margin-bottom: 2rem;
-      }
-
-      .deathday {
-        margin-bottom: 2rem;
-      }
-
-      h4 {
+        font-size: 22px;
         font-weight: 600;
-        margin-bottom: 3px;
+
+        @include media('<tablet') {
+          // margin: 0 auto 1rem auto;
+          font-size: 20px;
+          margin-top: 1rem;
+        }
+      }
+
+      .personalInfo {
+        // background-color: orange;
+        display: flex;
+        flex-direction: column;
+
+        @include media('<tablet') {
+          // align-items: center;
+        }
+
+        > * {
+          &:not(:last-of-type) {
+            margin-bottom: 2rem;
+
+            @include media('<tablet') {
+              margin-bottom: 1rem;
+            }
+          }
+
+          @include media('<tablet') {
+            // display: flex;
+            // flex-direction: column;
+            // align-items: center;
+          }
+
+          h4 {
+            font-weight: 600;
+            margin-bottom: 3px;
+
+            @include media('<tablet') {
+              margin-bottom: 1.5px;
+            }
+          }
+        }
       }
     }
   }
@@ -108,16 +159,24 @@
 
   .name {
     display: inline-block;
+    display: inline-flex;
+    align-items: center;
     margin-bottom: 1rem;
     font-size: 18px;
     transition: opacity 0.3s ease;
+    // background-color: blue;
+    // text-decoration: underline;
+    // padding-bottom: 3px;
+    // border-bottom: 1px solid black;
 
     &.nameMobile {
       display: none;
 
       @include media('<tablet') {
-        display: inline-block;
+        display: inline-flex;
         margin-top: 1.5rem;
+        // background-color: cadetblue;
+        margin-bottom: 0;
       }
     }
 
@@ -131,6 +190,31 @@
 
     &:hover {
       opacity: 0.6;
+    }
+  }
+
+  .line {
+    width: 100%;
+    background-color: #ccc;
+    background-color: rgba(150, 150, 150, 0.5);
+    height: 1px;
+    margin-bottom: 1rem;
+    border-radius: 50px;
+
+    &.linePersonal {
+      @include media('<tablet') {
+        display: none;
+      }
+    }
+
+    &.lineBio {
+      display: none;
+
+      @include media('<tablet') {
+        display: block;
+        // display: none;
+        margin: 0.5rem 0 1.5rem;
+      }
     }
   }
 }

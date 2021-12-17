@@ -85,7 +85,11 @@ const PersonPage = () => {
   return (
     <section className={styles.person}>
       <div className={styles.column1}>
-        <img src={`${posterBase}${person.profile_path}`} alt="" />
+        <img
+          className={styles.image}
+          src={`${posterBase}${person.profile_path}`}
+          alt=""
+        />
         <Link
           to={`/search?query=${person.name?.split(' ').join('+')}`}
           className={`${styles.name} ${styles.nameMobile}`}
@@ -98,7 +102,7 @@ const PersonPage = () => {
             {socials.map(
               (social) =>
                 social.id && (
-                  <li key={_.uniqueId()} style={{ marginBottom: '2rem' }}>
+                  <li key={_.uniqueId()}>
                     <a
                       href={`${social.base}${social.id}`}
                       target="_blank"
@@ -110,33 +114,36 @@ const PersonPage = () => {
                 )
             )}
           </ul>
-          {/* <div className={styles.line}></div> */}
-          <h3>Personal Info</h3>
-          <div className={styles.line}></div>
-          <div className={styles.birthday}>
-            <h4>Birthday</h4>
-            <p>
-              {formatDate(person.birthday)}
-              {!appState.person.deathday && (
-                <span>
-                  {' '}
-                  ({getAge(person.birthday, person.deathday)} years old)
-                </span>
-              )}
-            </p>
-          </div>
-          {appState.person.deathday && (
-            <div className={styles.deathday}>
-              <h4>Day of Death</h4>
+          <h3 className={styles.personalInfoHeading}>Personal Info</h3>
+          <div className={`${styles.line} ${styles.linePersonal}`}></div>
+          <div className={styles.personalInfo}>
+            <div className={styles.birthday}>
+              <h4>Birthday</h4>
               <p>
-                {formatDate(person.deathday)} (
-                {getAge(person.birthday, person.deathday)} years old)
+                {formatDate(person.birthday)}
+                {!appState.person.deathday && (
+                  <span>
+                    {' '}
+                    ({getAge(person.birthday, person.deathday)} years old)
+                  </span>
+                )}
               </p>
             </div>
-          )}
-          <div className={styles.birthplace}>
-            <h4>Place of Birth</h4>
-            <p>{person.place_of_birth}</p>
+            {appState.person.deathday && (
+              <div className={styles.deathday}>
+                <h4>Day of Death</h4>
+                <p>
+                  {formatDate(person.deathday)} (
+                  {getAge(person.birthday, person.deathday)} years old)
+                </p>
+              </div>
+            )}
+            {person.place_of_birth && (
+              <div className={styles.birthplace}>
+                <h4>Place of Birth</h4>
+                <p>{person.place_of_birth}</p>
+              </div>
+            )}
           </div>
         </aside>
       </div>
@@ -149,8 +156,13 @@ const PersonPage = () => {
           >
             <h1>{person.name}</h1>
           </Link>
-          <h3 className={styles.bioHeading}>Biography</h3>
-          <p className={styles.bio}>{person.biography}</p>
+          <div className={`${styles.line} ${styles.lineBio}`}></div>
+          {person.biography && (
+            <>
+              <h3 className={styles.bioHeading}>Biography</h3>
+              <p className={styles.bio}>{person.biography}</p>
+            </>
+          )}
         </div>
       </div>
     </section>
