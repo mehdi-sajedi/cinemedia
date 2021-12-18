@@ -12,7 +12,7 @@ import {
 
 const Grid = ({ url, route }) => {
   const { appState, dispatch } = useContext(AppContext);
-  const { pathname } = useLocation();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
 
   // For /movies and /shows routes
@@ -110,10 +110,10 @@ const Grid = ({ url, route }) => {
       }
     };
 
-    if (pathname.includes('search')) {
+    if (location.pathname.includes('search')) {
       getSearchResults();
     }
-  }, [dispatch, pathname, searchParams]);
+  }, [dispatch, location.pathname, searchParams]);
 
   return (
     <section className={GridStyles.grid}>

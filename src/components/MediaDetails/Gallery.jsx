@@ -29,7 +29,11 @@ const Gallery = ({ setShowGallery }) => {
 
   return createPortal(
     <div className={`${styles.wrapper} wrapper`} onClick={handleClick}>
-      <ImageGallery items={images} className={styles.gallery} />
+      <ImageGallery
+        slideInterval={2200}
+        items={images}
+        className={styles.gallery}
+      />
     </div>,
     document.getElementById('imageGallery')
   );

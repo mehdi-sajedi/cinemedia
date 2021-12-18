@@ -12,6 +12,7 @@ import SearchResultsText from './components/Global/SearchResultsText';
 import Pagination from './components/Home/Pagination';
 import Recommendations from './components/MediaDetails/Recommendations';
 import Details from './components/MediaDetails/Details';
+import MobileMenu from './components/Global/MobileMenu';
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -23,6 +24,7 @@ function App() {
   return (
     <BrowserRouter>
       <Nav />
+      <MobileMenu />
       <main className="container">
         <Routes>
           <Route

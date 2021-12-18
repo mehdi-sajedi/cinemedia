@@ -133,8 +133,11 @@ const PersonPage = () => {
               <div className={styles.deathday}>
                 <h4>Day of Death</h4>
                 <p>
-                  {formatDate(person.deathday)} (
-                  {getAge(person.birthday, person.deathday)} years old)
+                  {formatDate(person.deathday)}
+                  <span>
+                    {' '}
+                    ({getAge(person.birthday, person.deathday)} years old)
+                  </span>
                 </p>
               </div>
             )}

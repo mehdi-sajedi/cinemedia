@@ -1,8 +1,14 @@
 // To style react-image-gallery package
+@import '../../include-media.scss';
 
 .image-gallery-slides {
   margin: 0 auto;
   width: 75vw;
+  width: 85vw;
+
+  @include media('<desktop') {
+    width: 100vw;
+  }
 }
 
 .image-gallery-slide {

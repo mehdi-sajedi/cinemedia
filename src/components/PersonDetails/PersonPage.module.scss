@@ -132,6 +132,14 @@
               margin-bottom: 1.5px;
             }
           }
+
+          p {
+            span {
+              @include media('<desktop') {
+                display: block;
+              }
+            }
+          }
         }
       }
     }

@@ -54,8 +54,10 @@ export const AppProvider = ({ children }) => {
   const [appState, dispatch] = useImmerReducer(reducer, initialAppState);
 
   return (
-    <AppContext.Provider value={{ appState, dispatch }}>
-      {children}
-    </AppContext.Provider>
+    <React.StrictMode>
+      <AppContext.Provider value={{ appState, dispatch }}>
+        {children}
+      </AppContext.Provider>
+    </React.StrictMode>
   );
 };
