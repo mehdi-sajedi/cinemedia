@@ -2,9 +2,10 @@
 
 .nav {
   padding: 15px;
-  height: 80px;
+  // height: 80px;
   background-color: var(--dark-grey);
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+  position: sticky;
 
   .navContent {
     display: flex;
@@ -40,8 +41,6 @@
       @include media('<tablet') {
         justify-content: flex-end;
         width: 100%;
-
-        // margin-right: 0px;
       }
 
       .search {
@@ -111,6 +110,10 @@
         border-radius: 3px;
         border: none;
         outline: none;
+
+        @include media('<tablet') {
+          display: none;
+        }
       }
     }
   }

@@ -61,6 +61,7 @@ const Nav = () => {
               onChange={handleKeydown}
               ref={searchRef}
               type="text"
+              placeholder="Search..."
             />
             {appState.currentSearchText !== '' && (
               <IoCloseOutline
