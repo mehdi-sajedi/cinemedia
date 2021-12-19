@@ -1,29 +1,35 @@
-import React from 'react';
-import styles from './MobileMenu.module.scss';
+import React, { useContext } from 'react';
+import { AppContext } from '../../context/app-context';
 import { createPortal } from 'react-dom';
+import { Link } from 'react-router-dom';
+import styles from './MobileMenu.module.scss';
 
 const MobileMenu = () => {
+  const { appState, dispatch } = useContext(AppContext);
+
+  const closeOverlay = (e) => {
+    if (e.target.tagName === 'A') {
+      dispatch({ type: 'TOGGLE-MENU' });
+    }
+  };
+
   return createPortal(
     <div className={styles.menuWrap}>
-      <input type="checkbox" class="toggler" />
+      {/* <input type="checkbox" />
       <div className={styles.hamburger}>
         <div></div>
-      </div>
-      <div className={styles.menu}>
+      </div> */}
+      <div
+        className={`${styles.menu} ${appState.menuOpen ? styles.active : ''}`}
+      >
         <div>
           <div>
-            <ul>
+            <ul onClick={closeOverlay} className={styles.links}>
               <li>
-                <a href="#">Home</a>
+                <Link to="/movies">Movies</Link>
               </li>
               <li>
-                <a href="#">About</a>
-              </li>
-              <li>
-                <a href="#">Services</a>
-              </li>
-              <li>
-                <a href="#">Contact</a>
+                <Link to="/shows">Shows</Link>
               </li>
             </ul>
           </div>

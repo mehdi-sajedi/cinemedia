@@ -12,6 +12,7 @@
     justify-content: space-between;
     max-width: var(--max-width);
     margin: 0 auto;
+    position: relative;
 
     .links {
       display: flex;
@@ -25,11 +26,23 @@
       .active {
         border-bottom: 2px solid orange;
       }
+
+      @include media('<tablet') {
+        display: none;
+      }
     }
 
     .form {
       display: flex;
       align-items: center;
+      // background-color: orange;
+
+      @include media('<tablet') {
+        justify-content: flex-end;
+        width: 100%;
+
+        // margin-right: 0px;
+      }
 
       .search {
         background-color: white;
@@ -41,6 +54,13 @@
         width: 300px;
         position: relative;
 
+        @include media('<tablet') {
+          width: 200px;
+          background-color: seagreen;
+          display: flex;
+          justify-content: flex-end;
+        }
+
         input {
           position: absolute;
           left: 0;
@@ -51,6 +71,10 @@
           border-radius: 50px;
           height: 100%;
           padding-left: 40px;
+
+          @include media('<tablet') {
+            width: 100%;
+          }
         }
 
         .magnify,

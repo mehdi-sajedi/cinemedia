@@ -5,6 +5,7 @@ import { Link, useNavigate, createSearchParams } from 'react-router-dom';
 import NavStyles from './Nav.module.scss';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { IoCloseOutline } from 'react-icons/io5';
+import MobileMenuBtn from './MobileMenuBtn';
 
 const Nav = () => {
   const { appState, dispatch } = useContext(AppContext);
@@ -51,6 +52,7 @@ const Nav = () => {
             Shows
           </Link>
         </div>
+        <MobileMenuBtn />
         <form onSubmit={handleFormSubmit} className={NavStyles.form}>
           <div className={NavStyles.search}>
             <HiOutlineSearch className={NavStyles.magnify} />

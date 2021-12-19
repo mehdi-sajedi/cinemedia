@@ -22,6 +22,7 @@ export const AppProvider = ({ children }) => {
       totalShows: 200,
     },
     currentSearchText: '',
+    menuOpen: false,
   };
 
   const reducer = (draft, action) => {
@@ -48,6 +49,8 @@ export const AppProvider = ({ children }) => {
       }
     } else if (action.type === 'SET-CURRENT-SEARCH-TEXT') {
       draft.currentSearchText = action.payload;
+    } else if (action.type === 'TOGGLE-MENU') {
+      draft.menuOpen = !draft.menuOpen;
     }
   };
 
