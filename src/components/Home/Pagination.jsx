@@ -28,7 +28,7 @@ const Pagination = ({ currentPage, totalMedia }) => {
 
   const pageNumbers = [];
   let maxPages = Math.ceil(totalMedia / appState.pagination.mediaPerPage);
-  maxPages = Math.min(maxPages, 100);
+  maxPages = Math.min(maxPages, 20);
 
   for (let i = 1; i <= maxPages; i++) {
     pageNumbers.push(i);

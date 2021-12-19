@@ -22,12 +22,6 @@
   box-shadow: 0 0 10px 10px black;
   animation: popIn 0.6s;
 
-  // @media (max-height: 450px) and (min-aspect-ratio: 4/3) {
-  //   width: 80vw;
-  //   height: calc(80vw * 0.5626);
-  //   animation: popInMobileLandscape 0.6s;
-  // }
-
   @include media('<tablet') {
     width: clamp(1px, 1760px, 82vw);
     height: clamp(1px, 990px, calc(82vw * 0.5625));
@@ -39,19 +33,4 @@
     width: 0;
     height: 0;
   }
-  // to {
-  //   width: clamp(1px, 1760px, 90vw);
-  //   height: clamp(1px, 990px, calc(90vw * 0.5625));
-  // }
 }
-
-// @keyframes popInMobileLandscape {
-//   from {
-//     width: 0;
-//     height: 0;
-//   }
-//   to {
-//     width: 80vw;
-//     height: calc(80vw * 0.5626);
-//   }
-// }
