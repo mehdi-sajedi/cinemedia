@@ -47,7 +47,7 @@
     width: 150px;
     transform: translateX(-10px);
 
-    @include media('<tablet') {
+    @include media('<=tablet') {
       width: 100%;
     }
 
@@ -77,8 +77,7 @@
     margin-bottom: 1rem;
     border-radius: 50px;
 
-    @include media('<tablet') {
-      // display: none;
+    @include media('<=tablet') {
       height: 1px;
     }
   }

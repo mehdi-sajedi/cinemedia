@@ -6,25 +6,23 @@ import styles from './MobileMenu.module.scss';
 
 const MobileMenu = () => {
   const { appState, dispatch } = useContext(AppContext);
+  // const { ref, showComponent, setShowComponent } = useShowComponent();
 
   const closeOverlay = (e) => {
-    if (e.target.tagName === 'A') {
+    // console.log(e.target.classList.contains('overlay'));
+    if (e.target.tagName === 'A' || e.target.classList.contains('overlay')) {
       dispatch({ type: 'TOGGLE-MENU' });
     }
   };
 
   return createPortal(
-    <div className={styles.menuWrap}>
-      {/* <input type="checkbox" />
-      <div className={styles.hamburger}>
-        <div></div>
-      </div> */}
+    <div onClick={closeOverlay} className={styles.menuWrap}>
       <div
         className={`${styles.menu} ${appState.menuOpen ? styles.active : ''}`}
       >
-        <div>
+        <div className="overlay">
           <div>
-            <ul onClick={closeOverlay} className={styles.links}>
+            <ul className={styles.links}>
               <li>
                 <Link to="/movies">Movies</Link>
               </li>

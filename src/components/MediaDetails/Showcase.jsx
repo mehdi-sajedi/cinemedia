@@ -6,8 +6,7 @@ import Gallery from './Gallery';
 import { useLocation } from 'react-router';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
-import { colorPercentage } from '../Utilities/colorPercentage';
-import { formatRuntime } from '../Utilities/helpers';
+import { formatRuntime, colorPercentage } from '../Utilities/helpers';
 import _ from 'lodash';
 
 // const backdropBase = 'https://image.tmdb.org/t/p/w1280/';
