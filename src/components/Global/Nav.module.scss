@@ -38,8 +38,8 @@
       // background-color: orange;
 
       @include media('<tablet') {
-        justify-content: flex-end;
         width: 100%;
+        // justify-content: flex-end;
       }
 
       .search {
@@ -50,7 +50,7 @@
         position: relative;
 
         @include media('<tablet') {
-          width: 200px;
+          width: 240px;
           background-color: seagreen;
           display: flex;
           justify-content: flex-end;
