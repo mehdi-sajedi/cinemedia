@@ -6,6 +6,7 @@ import Gallery from './Gallery';
 import { useLocation } from 'react-router';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
+import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../Utilities/helpers';
 import _ from 'lodash';
 
@@ -130,8 +131,11 @@ const Showcase = () => {
                   }}
                 >
                   <p>
-                    {media.vote_average ? media.vote_average.toFixed(1) : 'NR'}
+                    {media.vote_average
+                      ? media.vote_average.toFixed(1) * 10
+                      : 'NR'}
                   </p>
+                  <FiPercent className={styles.percentSymbol} />
                 </div>
                 {media.runtime && (
                   <span className={`${styles.dot} ${styles.dot1}`}></span>
