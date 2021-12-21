@@ -6,7 +6,7 @@ const MobileMenuBtn = () => {
   const { appState, dispatch } = useContext(AppContext);
 
   const toggleMenu = () => {
-    dispatch({ type: 'TOGGLE-MENU' });
+    dispatch({ type: 'TOGGLE-NAV-MENU' });
   };
 
   return (

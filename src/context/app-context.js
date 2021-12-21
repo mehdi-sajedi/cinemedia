@@ -22,7 +22,8 @@ export const AppProvider = ({ children }) => {
       totalShows: 200,
     },
     currentSearchText: '',
-    menuOpen: false,
+    navMenuOpen: false,
+    filterMenuOpen: false,
   };
 
   const reducer = (draft, action) => {
@@ -49,8 +50,12 @@ export const AppProvider = ({ children }) => {
       }
     } else if (action.type === 'SET-CURRENT-SEARCH-TEXT') {
       draft.currentSearchText = action.payload;
-    } else if (action.type === 'TOGGLE-MENU') {
-      draft.menuOpen = !draft.menuOpen;
+    } else if (action.type === 'TOGGLE-NAV-MENU') {
+      draft.navMenuOpen = !draft.navMenuOpen;
+    } else if (action.type === 'TOGGLE-FILTER-MENU') {
+      draft.filterMenuOpen = !draft.filterMenuOpen;
+    } else if (action.type === 'CLOSE-FILTER-MENU') {
+      draft.filterMenuOpen = false;
     }
   };
 

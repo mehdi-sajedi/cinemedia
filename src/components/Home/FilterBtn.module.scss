@@ -1,0 +1,28 @@
+@import '../../app.scss';
+
+.container {
+  // background-color: #bbb;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  // justify-content: flex-end;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: -1.5rem;
+
+  .btnWrap {
+    padding: 8px;
+    // background-color: dodgerblue;
+    cursor: pointer;
+    transform: translateX(5px);
+
+    &.removePointer {
+      cursor: default;
+    }
+
+    .btn {
+      font-size: 40px;
+      transform: rotate(90deg);
+    }
+  }
+}

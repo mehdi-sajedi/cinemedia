@@ -11,7 +11,7 @@ const MobileMenu = () => {
   const closeOverlay = (e) => {
     // console.log(e.target.classList.contains('overlay'));
     if (e.target.tagName === 'A' || e.target.classList.contains('overlay')) {
-      dispatch({ type: 'TOGGLE-MENU' });
+      dispatch({ type: 'TOGGLE-NAV-MENU' });
     }
   };
 

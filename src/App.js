@@ -13,29 +13,36 @@ import Pagination from './components/Home/Pagination';
 import Recommendations from './components/MediaDetails/Recommendations';
 import Details from './components/MediaDetails/Details';
 import MobileMenu from './components/Global/MobileMenu';
+import FilterBtn from './components/Home/FilterBtn';
+import FilterMenu from './components/Home/FilterMenu';
 
 function App() {
   const { appState } = useContext(AppContext);
 
-  const movies = `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}`;
+  // const movies = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}`;
+  // const shows = `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}`;
 
-  const shows = `https://api.themoviedb.org/3/trending/tv/day?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}`;
+  const movies = `https://api.themoviedb.org/3/discover/movie/?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=${appState.pagination.currentMoviesPage}`;
+
+  const shows = `https://api.themoviedb.org/3/discover/tv/?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&with_original_language=en&first_air_date_year=1998&sort_by=popularity.desc&page=${appState.pagination.currentShowsPage}`;
 
   return (
     <BrowserRouter>
       <Nav />
       <MobileMenu />
-      <main className="container">
+      <main>
         <Routes>
           <Route
             path="/movies"
             element={
               <>
+                <FilterBtn />
                 <Grid url={movies} route="movies" />
                 <Pagination
                   currentPage={appState.pagination.currentMoviesPage}
                   totalMedia={appState.pagination.totalMovies}
                 />
+                <FilterMenu />
               </>
             }
           ></Route>
@@ -43,11 +50,13 @@ function App() {
             path="shows"
             element={
               <>
+                <FilterBtn />
                 <Grid url={shows} route="shows" />
                 <Pagination
                   currentPage={appState.pagination.currentShowsPage}
                   totalMedia={appState.pagination.totalShows}
                 />
+                <FilterMenu />
               </>
             }
           ></Route>
