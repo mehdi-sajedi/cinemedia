@@ -6,7 +6,8 @@ import { createPortal } from 'react-dom';
 import CustomRange from './CustomRange';
 
 const FilterMenu = () => {
-  const { appState, dispatch, filterState } = useContext(AppContext);
+  const { appState, dispatch, filterState, dispatchFilter } =
+    useContext(AppContext);
 
   const closeMenu = (e) => {
     if (
@@ -15,6 +16,10 @@ const FilterMenu = () => {
     ) {
       dispatch({ type: 'CLOSE-FILTER-MENU' });
     }
+  };
+
+  const resetForm = () => {
+    dispatchFilter({ type: 'RESET' });
   };
 
   const applyFilters = (e) => {
@@ -39,7 +44,7 @@ const FilterMenu = () => {
         <form onSubmit={applyFilters} className={styles.form}>
           <CustomRange
             name="Runtime"
-            defaults={[60, 120]}
+            defaults={[0, 240]}
             state={filterState.runtime.value}
             action="SET-RUNTIME"
             min={0}
@@ -53,7 +58,7 @@ const FilterMenu = () => {
           />
           <CustomRange
             name="Year"
-            defaults={[2000, 2022]}
+            defaults={[1980, 2022]}
             state={filterState.year.value}
             action="SET-YEAR"
             min={1980}
@@ -65,9 +70,21 @@ const FilterMenu = () => {
               2022: `2022`,
             }}
           />
-          <button className={styles.submit} typeof="submit">
-            Apply
-          </button>
+          <div className={styles.formButtons}>
+            <button
+              className={`${styles.reset} ${styles.btn}`}
+              typeof="reset"
+              onClick={resetForm}
+            >
+              Reset
+            </button>
+            <button
+              className={`${styles.submit} ${styles.btn}`}
+              typeof="submit"
+            >
+              Apply
+            </button>
+          </div>
         </form>
       </div>
     </div>,

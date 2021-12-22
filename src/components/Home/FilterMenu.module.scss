@@ -55,31 +55,40 @@
     }
 
     .form {
-      .submit {
-        display: block;
-        padding: 10px 20px;
-        cursor: pointer;
-        margin-left: 12px;
-        border-radius: 2px;
-        border: none;
-        outline: none;
-        background-color: skyblue;
-        color: black;
-        font-size: 13px;
-        position: absolute;
-        bottom: 2rem;
-        border-radius: 4px;
+      //
+      .formButtons {
+        margin-top: 6rem;
+        display: flex;
+        justify-content: space-between;
 
-        &:hover {
-          background-color: dodgerblue;
-        }
+        .btn {
+          padding: 10px 20px;
+          cursor: pointer;
+          border-radius: 4px;
+          border: none;
+          outline: none;
+          color: black;
+          font-size: 13px;
 
-        // &:focus {
-        //   outline: 2px solid black;
-        // }
+          // &:focus {
+          //   outline: 2px solid black;
+          // }
 
-        &:active {
-          transform: scale(0.97);
+          &:hover {
+            opacity: 0.85;
+          }
+
+          &:active {
+            transform: scale(0.97);
+          }
+
+          &.reset {
+            background-color: #ccc;
+          }
+
+          &.submit {
+            background-color: rgb(83, 182, 126);
+          }
         }
       }
     }

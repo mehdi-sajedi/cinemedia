@@ -33,8 +33,10 @@ function App() {
   }&with_runtime.lte=${
     appState.filters.runtime?.value[1] || 999
   }&primary_release_date.gte=${
-    appState.filters.year?.value[0] || 0
-  }&primary_release_date.lte=${appState.filters.year?.value[1] || 9999}`;
+    appState.filters.year?.valueFormatted[0] || 0
+  }&primary_release_date.lte=${
+    appState.filters.year?.valueFormatted[1] || 9999
+  }`;
 
   console.log('APP.js');
 

@@ -82,18 +82,19 @@ export const AppProvider = ({ children }) => {
 
   const initialFilterState = {
     runtime: {
-      value: [60, 120],
+      value: [0, 240],
       params: {
         gte: 'with_runtime_gte',
         lte: 'with_runtime_lte',
       },
     },
     year: {
-      value: [2000, 2022],
+      value: [1980, 2022],
       params: {
         gte: 'primary_release_date.gte',
         lte: 'primary_release_date.lte',
       },
+      valueFormatted: ['2000-01-01', '2022-12-31'],
     },
   };
 
@@ -102,6 +103,11 @@ export const AppProvider = ({ children }) => {
       draft.runtime.value = action.payload;
     } else if (action.type === 'SET-YEAR') {
       draft.year.value = action.payload;
+      const lowerBound = `${action.payload[0]}-01-01`;
+      const upperBound = `${action.payload[1]}-12-31`;
+      draft.year.valueFormatted = [lowerBound, upperBound];
+    } else if (action.type === 'RESET') {
+      return initialFilterState;
     }
   };
 

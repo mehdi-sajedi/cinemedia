@@ -19,7 +19,7 @@ const CustomRange = ({
   tipFormatter,
   marks,
 }) => {
-  const { filterState, dispatchFilter } = useContext(AppContext);
+  const { dispatchFilter } = useContext(AppContext);
 
   const railStyle = {
     // backgroundColor: 'black',
