@@ -96,6 +96,14 @@ export const AppProvider = ({ children }) => {
       },
       valueFormatted: ['2000-01-01', '2022-12-31'],
     },
+    rating: {
+      value: [0, 100],
+      params: {
+        gte: 'vote_average.gte',
+        lte: 'vote_average.lte',
+      },
+      valueFormatted: [0, 10],
+    },
   };
 
   const filterReducer = (draft, action) => {
@@ -106,6 +114,9 @@ export const AppProvider = ({ children }) => {
       const lowerBound = `${action.payload[0]}-01-01`;
       const upperBound = `${action.payload[1]}-12-31`;
       draft.year.valueFormatted = [lowerBound, upperBound];
+    } else if (action.type === 'SET-RATING') {
+      draft.rating.value = action.payload;
+      draft.rating.valueFormatted = action.payload.map((v) => v / 10);
     } else if (action.type === 'RESET') {
       return initialFilterState;
     }

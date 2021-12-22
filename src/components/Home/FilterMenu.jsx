@@ -43,6 +43,20 @@ const FilterMenu = () => {
         <header className={styles.header}>Filter & Sort</header>
         <form onSubmit={applyFilters} className={styles.form}>
           <CustomRange
+            name="Year"
+            defaults={[1980, 2022]}
+            state={filterState.year.value}
+            action="SET-YEAR"
+            min={1980}
+            max={2022}
+            step={1}
+            tipFormatter={(v) => v}
+            marks={{
+              1980: `1980`,
+              2022: `2022`,
+            }}
+          />
+          <CustomRange
             name="Runtime"
             defaults={[0, 240]}
             state={filterState.runtime.value}
@@ -57,17 +71,17 @@ const FilterMenu = () => {
             }}
           />
           <CustomRange
-            name="Year"
-            defaults={[1980, 2022]}
-            state={filterState.year.value}
-            action="SET-YEAR"
-            min={1980}
-            max={2022}
+            name="Rating"
+            defaults={[0, 100]}
+            state={filterState.rating.value}
+            action="SET-RATING"
+            min={0}
+            max={100}
             step={1}
-            tipFormatter={(v) => v}
+            tipFormatter={(v) => `${v}`}
             marks={{
-              1980: `1980`,
-              2022: `2022`,
+              0: `0`,
+              100: `100`,
             }}
           />
           <div className={styles.formButtons}>
