@@ -22,9 +22,23 @@ function App() {
   // const movies = `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}`;
   // const shows = `https://api.themoviedb.org/3/trending/tv/week?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}`;
 
-  const movies = `https://api.themoviedb.org/3/discover/movie/?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=${appState.pagination.currentMoviesPage}`;
+  let movies = `https://api.themoviedb.org/3/discover/movie/?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}&language=en-US&sort_by=popularity.desc`;
 
-  const shows = `https://api.themoviedb.org/3/discover/tv/?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&with_original_language=en&first_air_date_year=1998&sort_by=popularity.desc&page=${appState.pagination.currentShowsPage}`;
+  movies = `https://api.themoviedb.org/3/discover/movie/?api_key=${
+    process.env.REACT_APP_API_KEY
+  }&page=${
+    appState.pagination.currentMoviesPage
+  }&language=en-US&sort_by=popularity.desc&with_runtime.gte=${
+    appState.filters.runtime?.value[0] || 0
+  }&with_runtime.lte=${
+    appState.filters.runtime?.value[1] || 999
+  }&primary_release_date.gte=${
+    appState.filters.year?.value[0] || 0
+  }&primary_release_date.lte=${appState.filters.year?.value[1] || 9999}`;
+
+  console.log('APP.js');
+
+  let shows = `https://api.themoviedb.org/3/discover/tv/?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}&language=en-US&with_original_language=en&sort_by=popularity.desc`;
 
   return (
     <BrowserRouter>
@@ -50,13 +64,13 @@ function App() {
             path="shows"
             element={
               <>
-                <FilterBtn />
+                {/* <FilterBtn /> */}
                 <Grid url={shows} route="shows" />
                 <Pagination
                   currentPage={appState.pagination.currentShowsPage}
                   totalMedia={appState.pagination.totalShows}
                 />
-                <FilterMenu />
+                {/* <FilterMenu /> */}
               </>
             }
           ></Route>

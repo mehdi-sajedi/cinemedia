@@ -1,23 +1,14 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../../context/app-context';
 import styles from './FilterMenu.module.scss';
 import { IoCloseOutline } from 'react-icons/io5';
 import { createPortal } from 'react-dom';
-import Slider, {
-  createSliderWithTooltip,
-  Range,
-  SliderTooltip,
-} from 'rc-slider';
-import 'rc-slider/assets/index.css';
+import CustomRange from './CustomRange';
 
 const FilterMenu = () => {
-  const { appState, dispatch } = useContext(AppContext);
-  const handle = useRef();
-
-  const Range = createSliderWithTooltip(Slider.Range);
+  const { appState, dispatch, filterState } = useContext(AppContext);
 
   const closeMenu = (e) => {
-    console.log(e.target);
     if (
       e.target.classList.contains('overlay') ||
       e.target.classList.contains('closeBtn')
@@ -26,24 +17,9 @@ const FilterMenu = () => {
     }
   };
 
-  const handleFormSubmit = (e) => {
+  const applyFilters = (e) => {
     e.preventDefault();
-  };
-
-  const testing = (e) => {
-    console.log(handle.current.sliderRef);
-    // const first = handle.current.sliderRef.children.find((child) =>
-    //   child.classList.contains('rc-slider-handle-1')
-    // );
-    // const second = handle.current.sliderRef.children.find((child) =>
-    //   child.classList.contains('rc-slider-handle-2')
-    // );
-
-    // console.log(first.value);
-  };
-
-  const railStyle = {
-    backgroundColor: '#333',
+    dispatch({ type: 'APPLY-FILTERS', payload: filterState });
   };
 
   return createPortal(
@@ -60,13 +36,34 @@ const FilterMenu = () => {
           } closeBtn`}
         />
         <header className={styles.header}>Filter & Sort</header>
-        <form onSubmit={handleFormSubmit} className={styles.form}>
-          <Range
-            railStyle={railStyle}
-            onAfterChange={testing}
-            min={60}
+        <form onSubmit={applyFilters} className={styles.form}>
+          <CustomRange
+            name="Runtime"
+            defaults={[60, 120]}
+            state={filterState.runtime.value}
+            action="SET-RUNTIME"
+            min={0}
             max={240}
-            ref={handle}
+            step={10}
+            tipFormatter={(v) => `${v}m`}
+            marks={{
+              0: `0m`,
+              240: `240m`,
+            }}
+          />
+          <CustomRange
+            name="Year"
+            defaults={[2000, 2022]}
+            state={filterState.year.value}
+            action="SET-YEAR"
+            min={1980}
+            max={2022}
+            step={1}
+            tipFormatter={(v) => v}
+            marks={{
+              1980: `1980`,
+              2022: `2022`,
+            }}
           />
           <button className={styles.submit} typeof="submit">
             Apply
@@ -78,4 +75,4 @@ const FilterMenu = () => {
   );
 };
 
-export default FilterMenu;
+export default React.memo(FilterMenu);

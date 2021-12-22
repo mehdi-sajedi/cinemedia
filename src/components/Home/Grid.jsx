@@ -127,4 +127,4 @@ const Grid = ({ url, route }) => {
   );
 };
 
-export default Grid;
+export default React.memo(Grid);

@@ -31,7 +31,7 @@ export function formatRuntime(runtime) {
   if (hours === 0) {
     return `${remainder}m`;
   } else if (remainder === 0) {
-    return `${runtime}m`;
+    return `${runtime / 60}h`;
   } else {
     return `${hours}h ${remainder}m`;
   }

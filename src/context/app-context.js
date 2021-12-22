@@ -24,6 +24,15 @@ export const AppProvider = ({ children }) => {
     currentSearchText: '',
     navMenuOpen: false,
     filterMenuOpen: false,
+    filters: {
+      runtime: {
+        value: [0, 99999],
+        params: {
+          gte: 'with_runtime_gte',
+          lte: 'with_runtime_lte',
+        },
+      },
+    },
   };
 
   const reducer = (draft, action) => {
@@ -56,14 +65,56 @@ export const AppProvider = ({ children }) => {
       draft.filterMenuOpen = !draft.filterMenuOpen;
     } else if (action.type === 'CLOSE-FILTER-MENU') {
       draft.filterMenuOpen = false;
+    } else if (action.type === 'APPLY-FILTERS') {
+      draft.filters = action.payload;
     }
+    // else if (action.type === 'SET-RUNTIME') {
+    //   draft.filters.runtime = action.payload;
+    // }
   };
 
   const [appState, dispatch] = useImmerReducer(reducer, initialAppState);
 
+  // -------------------------------------------------------- //
+  // -------------------------------------------------------- //
+  // -------------------------------------------------------- //
+  // -------------------------------------------------------- //
+
+  const initialFilterState = {
+    runtime: {
+      value: [60, 120],
+      params: {
+        gte: 'with_runtime_gte',
+        lte: 'with_runtime_lte',
+      },
+    },
+    year: {
+      value: [2000, 2022],
+      params: {
+        gte: 'primary_release_date.gte',
+        lte: 'primary_release_date.lte',
+      },
+    },
+  };
+
+  const filterReducer = (draft, action) => {
+    if (action.type === 'SET-RUNTIME') {
+      draft.runtime.value = action.payload;
+    } else if (action.type === 'SET-YEAR') {
+      draft.year.value = action.payload;
+    }
+  };
+
+  const [filterState, dispatchFilter] = useImmerReducer(
+    filterReducer,
+    initialFilterState
+  );
+
   return (
     <React.StrictMode>
-      <AppContext.Provider value={{ appState, dispatch }}>
+      <AppContext.Provider
+        value={{ appState, dispatch, filterState, dispatchFilter }}
+      >
         {children}
       </AppContext.Provider>
     </React.StrictMode>

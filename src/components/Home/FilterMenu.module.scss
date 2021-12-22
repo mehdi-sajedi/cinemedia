@@ -23,9 +23,15 @@
     transform: translateX(-400px);
     background-color: var(--white);
     background-color: #eee;
-    transition: transform 0.5s ease;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
     border-radius: 2px 0 0 2px;
     padding: 5rem 2rem 2rem 2rem;
+
+    @include media('<tablet') {
+      transform: translateX(-110vw);
+      width: 100vw;
+    }
 
     .closeBtn {
       position: absolute;
@@ -45,7 +51,7 @@
       font-weight: 700;
       font-size: 25px;
       letter-spacing: 1px;
-      margin-bottom: 2rem;
+      margin-bottom: 5rem;
     }
 
     .form {
@@ -86,6 +92,7 @@
 
     .menu {
       transform: translateX(0);
+      opacity: 1;
     }
   }
 }
