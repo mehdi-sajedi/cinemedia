@@ -4,6 +4,9 @@ import styles from './FilterMenu.module.scss';
 import { IoCloseOutline } from 'react-icons/io5';
 import { createPortal } from 'react-dom';
 import CustomRange from './CustomRange';
+import { movieGenres } from '../Utilities/helpers';
+import _ from 'lodash';
+import CustomCheckbox from './CustomCheckbox';
 
 const FilterMenu = () => {
   const { appState, dispatch, filterState, dispatchFilter } =
@@ -84,6 +87,19 @@ const FilterMenu = () => {
               100: `100`,
             }}
           />
+          <div className={styles.movieGenres}>
+            <h3 className={styles.movieGenresTitle}>Genres</h3>
+            <ul className={styles.movieGenresList}>
+              {movieGenres.map((obj) => (
+                <CustomCheckbox
+                  key={_.uniqueId()}
+                  name={obj.name}
+                  id={obj.id}
+                />
+              ))}
+            </ul>
+          </div>
+
           <div className={styles.formButtons}>
             <button
               className={`${styles.reset} ${styles.btn}`}

@@ -1,5 +1,7 @@
 import React, { createContext } from 'react';
 import { useImmerReducer } from 'use-immer';
+import { enableMapSet } from 'immer';
+enableMapSet();
 
 export const AppContext = createContext();
 
@@ -104,6 +106,7 @@ export const AppProvider = ({ children }) => {
       },
       valueFormatted: [0, 10],
     },
+    genres: new Set(),
   };
 
   const filterReducer = (draft, action) => {
@@ -119,6 +122,8 @@ export const AppProvider = ({ children }) => {
       draft.rating.valueFormatted = action.payload.map((v) => v / 10);
     } else if (action.type === 'RESET') {
       return initialFilterState;
+    } else if (action.type === 'TOGGLE-GENRE') {
+      draft.genres.add(action.payload);
     }
   };
 

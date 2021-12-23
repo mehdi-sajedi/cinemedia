@@ -55,7 +55,22 @@
     }
 
     .form {
-      //
+      .movieGenres {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .movieGenresTitle {
+          margin-bottom: 1.5rem;
+        }
+
+        .movieGenresList {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px 8px;
+        }
+      }
+
       .formButtons {
         margin-top: 6rem;
         display: flex;

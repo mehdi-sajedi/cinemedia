@@ -1,0 +1,29 @@
+.listItem {
+  display: flex;
+
+  input {
+    background-color: seagreen;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+  }
+
+  label {
+    background-color: rgb(146, 195, 214);
+    padding: 8px 12px;
+    border-radius: 50px;
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+
+    &:hover {
+      background-color: rgb(92, 175, 207);
+    }
+  }
+
+  input:checked + label {
+    background-color: orange;
+  }
+}
