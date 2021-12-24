@@ -17,6 +17,7 @@ const CustomCheckbox = ({ id, name }) => {
         id={name}
         checked={filterState.genres.includes(id)}
         onChange={toggleGenre}
+        className={filterState.genres.includes(id) ? styles.active : ''}
       />
       <label htmlFor={name}>{name}</label>
     </li>

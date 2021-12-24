@@ -6,24 +6,30 @@
     visibility: hidden;
     height: 0;
     width: 0;
+    transition: all 0.6s ease;
   }
 
   label {
-    background-color: rgb(146, 195, 214);
-    padding: 8px 12px;
+    background-color: #abe2fb;
+    padding: 8px 18px;
     border-radius: 50px;
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
     font-size: 14px;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.6s ease;
     user-select: none;
 
     &:hover {
-      background-color: rgb(92, 175, 207);
+      background-color: #7bc6e9;
     }
   }
 
-  input:checked + label {
-    background-color: orange;
+  input.active {
+    transition: all 0.6s ease;
+
+    + label {
+      background-color: #2f5a6e;
+      color: white;
+    }
   }
 }

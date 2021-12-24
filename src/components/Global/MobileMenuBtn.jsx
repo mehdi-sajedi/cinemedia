@@ -5,7 +5,8 @@ import styles from './MobileMenuBtn.module.scss';
 const MobileMenuBtn = () => {
   const { appState, dispatch } = useContext(AppContext);
 
-  const toggleMenu = () => {
+  const toggleMenu = (e) => {
+    console.log(e.target);
     dispatch({ type: 'TOGGLE-NAV-MENU' });
   };
 
@@ -14,7 +15,7 @@ const MobileMenuBtn = () => {
       <input
         onClick={toggleMenu}
         type="checkbox"
-        className={`${appState.menuOpen ? styles.active : ''}`}
+        className={`${appState.navMenuOpen ? styles.active : ''}`}
       />
       <div className={styles.hamburger}>
         <div></div>

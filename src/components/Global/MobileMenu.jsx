@@ -18,7 +18,9 @@ const MobileMenu = () => {
   return createPortal(
     <div onClick={closeOverlay} className={styles.menuWrap}>
       <div
-        className={`${styles.menu} ${appState.menuOpen ? styles.active : ''}`}
+        className={`${styles.menu} ${
+          appState.navMenuOpen ? styles.active : ''
+        }`}
       >
         <div className="overlay">
           <div>
