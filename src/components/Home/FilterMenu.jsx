@@ -31,13 +31,18 @@ const FilterMenu = () => {
   };
 
   return createPortal(
-    <div
-      className={`${styles.overlay} ${
-        appState.filterMenuOpen ? styles.active : ''
-      } overlay`}
-      onMouseDown={closeMenu}
-    >
-      <div className={`${styles.menu}  `}>
+    <>
+      <div
+        className={`${styles.overlay} ${
+          appState.filterMenuOpen ? styles.active : ''
+        } overlay`}
+        onMouseDown={closeMenu}
+      ></div>
+      <div
+        className={`${styles.menu} ${
+          appState.filterMenuOpen ? styles.active : ''
+        } `}
+      >
         <IoCloseOutline
           className={`${styles.closeBtn} ${
             !appState.filterMenuOpen ? styles.removePointer : ''
@@ -117,7 +122,8 @@ const FilterMenu = () => {
           </div>
         </form>
       </div>
-    </div>,
+      ,
+    </>,
     document.getElementById('filterMenu')
   );
 };

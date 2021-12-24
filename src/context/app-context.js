@@ -106,7 +106,7 @@ export const AppProvider = ({ children }) => {
       },
       valueFormatted: [0, 10],
     },
-    genres: new Set(),
+    genres: [],
   };
 
   const filterReducer = (draft, action) => {
@@ -123,7 +123,13 @@ export const AppProvider = ({ children }) => {
     } else if (action.type === 'RESET') {
       return initialFilterState;
     } else if (action.type === 'TOGGLE-GENRE') {
-      draft.genres.add(action.payload);
+      if (JSON.stringify(draft.genres).includes(action.payload.id)) {
+        draft.genres = draft.genres.filter((id) => id !== action.payload.id);
+      } else {
+        draft.genres.push(action.payload.id);
+      }
+      console.log(draft.genres);
+      // console.log(Array.from(draft.genres).split(','));
     }
   };
 

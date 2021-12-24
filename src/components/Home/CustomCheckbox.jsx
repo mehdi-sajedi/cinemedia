@@ -15,7 +15,7 @@ const CustomCheckbox = ({ id, name }) => {
         type="checkbox"
         name="movie-genres"
         id={name}
-        // checked={filterState.genres.includes(name)}
+        checked={filterState.genres.includes(id)}
         onChange={toggleGenre}
       />
       <label htmlFor={name}>{name}</label>
