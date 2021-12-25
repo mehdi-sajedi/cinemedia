@@ -68,11 +68,11 @@ export const AppProvider = ({ children }) => {
     } else if (action.type === 'CLOSE-FILTER-MENU') {
       draft.filterMenuOpen = false;
     } else if (action.type === 'APPLY-FILTERS') {
-      draft.filters = action.payload;
+      draft.filters = action.payload.filterState;
+      if (action.payload.route.includes('movie')) {
+        draft.pagination.currentMoviesPage = 1;
+      } else draft.pagination.currentShowsPage = 1;
     }
-    // else if (action.type === 'SET-RUNTIME') {
-    //   draft.filters.runtime = action.payload;
-    // }
   };
 
   const [appState, dispatch] = useImmerReducer(reducer, initialAppState);
@@ -107,6 +107,7 @@ export const AppProvider = ({ children }) => {
       valueFormatted: [0, 10],
     },
     genres: [],
+    watchProviders: [],
   };
 
   const filterReducer = (draft, action) => {
@@ -123,13 +124,31 @@ export const AppProvider = ({ children }) => {
     } else if (action.type === 'RESET') {
       return initialFilterState;
     } else if (action.type === 'TOGGLE-GENRE') {
-      if (JSON.stringify(draft.genres).includes(action.payload.id)) {
+      if (draft.genres.includes(action.payload.id)) {
         draft.genres = draft.genres.filter((id) => id !== action.payload.id);
       } else {
         draft.genres.push(action.payload.id);
       }
-      console.log(draft.genres);
-      // console.log(Array.from(draft.genres).split(','));
+      // if (JSON.stringify(draft.genres).includes(action.payload.id)) {
+      //   draft.genres = draft.genres.filter((id) => id !== action.payload.id);
+      // } else {
+      //   draft.genres.push(action.payload.id);
+      // }
+    } else if (action.type === 'TOGGLE-WATCH-PROVIDER') {
+      if (draft.watchProviders.includes(action.payload.id)) {
+        draft.watchProviders = draft.watchProviders.filter(
+          (id) => id !== action.payload.id
+        );
+      } else {
+        draft.watchProviders.push(action.payload.id);
+      }
+      // if (JSON.stringify(draft.watchProviders).includes(action.payload.id)) {
+      //   draft.watchProviders = draft.watchProviders.filter(
+      //     (id) => id !== action.payload.id
+      //   );
+      // } else {
+      //   draft.watchProviders.push(action.payload.id);
+      // }
     }
   };
 

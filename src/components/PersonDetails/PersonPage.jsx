@@ -3,6 +3,7 @@ import { AppContext } from '../../context/app-context';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
+import { formatDate } from '../Utilities/helpers';
 import styles from './PersonPage.module.scss';
 import _ from 'lodash';
 
@@ -21,10 +22,7 @@ const PersonPage = () => {
       const res = await fetch(URL_PERSON);
       let { birthday, deathday, ...rest } = await res.json();
 
-      if (!birthday) birthday = new Date('101, 1, 0');
-      else {
-        birthday = birthday.replace(/-/g, '/');
-      }
+      if (birthday) birthday = birthday.replace(/-/g, '/');
       if (deathday) deathday = deathday.replace(/-/g, '/');
 
       console.log({ birthday, ...rest });
@@ -35,14 +33,6 @@ const PersonPage = () => {
     };
     getActorDetails();
   }, [URL_PERSON, dispatch]);
-
-  const formatDate = (date) => {
-    return new Date(date).toLocaleString('en-US', {
-      day: 'numeric',
-      year: 'numeric',
-      month: 'long',
-    });
-  };
 
   const getAge = (birthString, deathString) => {
     const birthDate = new Date(birthString);
@@ -117,18 +107,20 @@ const PersonPage = () => {
           <h3 className={styles.personalInfoHeading}>Personal Info</h3>
           <div className={`${styles.line} ${styles.linePersonal}`}></div>
           <div className={styles.personalInfo}>
-            <div className={styles.birthday}>
-              <h4>Birthday</h4>
-              <p>
-                {formatDate(person.birthday)}
-                {!appState.person.deathday && (
-                  <span>
-                    {' '}
-                    ({getAge(person.birthday, person.deathday)} years old)
-                  </span>
-                )}
-              </p>
-            </div>
+            {appState.person.birthday && (
+              <div className={styles.birthday}>
+                <h4>Birthday</h4>
+                <p>
+                  {formatDate(person.birthday)}
+                  {!appState.person.deathday && (
+                    <span>
+                      {' '}
+                      ({getAge(person.birthday, person.deathday)} years old)
+                    </span>
+                  )}
+                </p>
+              </div>
+            )}
             {appState.person.deathday && (
               <div className={styles.deathday}>
                 <h4>Day of Death</h4>

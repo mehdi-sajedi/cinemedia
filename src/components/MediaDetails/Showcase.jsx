@@ -137,13 +137,17 @@ const Showcase = () => {
                   </p>
                   <FiPercent className={styles.percentSymbol} />
                 </div>
-                {media.runtime && (
+                {media.runtime ? (
                   <span className={`${styles.dot} ${styles.dot1}`}></span>
+                ) : (
+                  ''
                 )}
-                {media.runtime && (
+                {media.runtime ? (
                   <p className={styles.runtime}>
                     {formatRuntime(media.runtime)}
                   </p>
+                ) : (
+                  ''
                 )}
               </div>
               {media.genres?.length > 0 && (
@@ -163,10 +167,12 @@ const Showcase = () => {
                 )}
               </ul>
             </div>
-            <div className={styles.overview}>
-              <h3>Overview</h3>
-              <p>{media.overview}</p>
-            </div>
+            {media.overview && (
+              <div className={styles.overview}>
+                <h3>Overview</h3>
+                <p>{media.overview}</p>
+              </div>
+            )}
             {trailer && (
               <button
                 onClick={() => setShowTrailer(true)}

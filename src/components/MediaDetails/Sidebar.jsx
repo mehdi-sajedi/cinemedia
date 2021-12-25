@@ -3,6 +3,7 @@ import { AppContext } from '../../context/app-context';
 import { useLocation } from 'react-router';
 import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import { MdOutlineLink } from 'react-icons/md';
+import { formatDate } from '../Utilities/helpers';
 import styles from './Sidebar.module.scss';
 import _ from 'lodash';
 
@@ -37,14 +38,6 @@ const Sidebar = () => {
     },
   ];
 
-  const formatDate = (date) => {
-    return new Date(date).toLocaleString('en-US', {
-      day: 'numeric',
-      year: 'numeric',
-      month: 'short',
-    });
-  };
-
   return (
     <aside className={styles.sidebar}>
       <ul className={styles.socials}>
@@ -73,7 +66,7 @@ const Sidebar = () => {
           <p>
             {media.status}
             {media.status === 'Released' &&
-              ` (${formatDate(media.release_date)})`}
+              ` (${formatDate(media.release_date, 'short')})`}
           </p>
         </div>
         {pathname.includes('shows') ? (
@@ -88,7 +81,7 @@ const Sidebar = () => {
             </div>
             <div className={styles.lastAir}>
               <h4>Last Air Date</h4>
-              <p>{formatDate(media.last_air_date)}</p>
+              <p>{formatDate(media.last_air_date, 'short')}</p>
             </div>
             <div className={styles.network}>
               {media.networks?.length > 0 && (

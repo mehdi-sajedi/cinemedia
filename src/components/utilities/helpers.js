@@ -84,3 +84,11 @@ export const movieGenres = [
   { id: 10752, name: 'War' },
   { id: 37, name: 'Western' },
 ];
+
+export const formatDate = (date, monthType = 'long') => {
+  return new Date(date).toLocaleString('en-US', {
+    day: 'numeric',
+    year: 'numeric',
+    month: monthType,
+  });
+};

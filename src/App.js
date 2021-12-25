@@ -35,9 +35,13 @@ function App() {
     }&vote_average.lte=${appState.filters.rating?.valueFormatted[1] || 10}`,
 
     genre: `&with_genres=${appState.filters.genres?.join(',') || ''}`,
+
+    watchProviders: `&with_watch_providers=${
+      appState.filters.watchProviders?.join(',') || ''
+    }&watch_region=US`,
   };
 
-  let movies = `https://api.themoviedb.org/3/discover/movie/?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}&language=en-US&sort_by=popularity.desc${filters.runtime}${filters.year}${filters.rating}${filters.genre}`;
+  let movies = `https://api.themoviedb.org/3/discover/movie/?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}&language=en-US&sort_by=popularity.desc${filters.runtime}${filters.year}${filters.rating}${filters.genre}${filters.watchProviders}`;
 
   let shows = `https://api.themoviedb.org/3/discover/tv/?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}&language=en-US&with_original_language=en&sort_by=popularity.desc`;
 

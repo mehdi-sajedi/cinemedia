@@ -6,10 +6,8 @@ import styles from './MobileMenu.module.scss';
 
 const MobileMenu = () => {
   const { appState, dispatch } = useContext(AppContext);
-  // const { ref, showComponent, setShowComponent } = useShowComponent();
 
   const closeOverlay = (e) => {
-    // console.log(e.target.classList.contains('overlay'));
     if (e.target.tagName === 'A' || e.target.classList.contains('overlay')) {
       dispatch({ type: 'TOGGLE-NAV-MENU' });
     }

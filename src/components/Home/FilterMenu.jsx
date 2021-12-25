@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { AppContext } from '../../context/app-context';
 import styles from './FilterMenu.module.scss';
 import { IoCloseOutline } from 'react-icons/io5';
+import { useLocation } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import CustomRange from './CustomRange';
 import { movieGenres } from '../Utilities/helpers';
+import { watchProviders } from '../Utilities/watch-providers';
 import _ from 'lodash';
 import CustomCheckbox from './CustomCheckbox';
 
@@ -12,7 +14,10 @@ const FilterMenu = () => {
   const { appState, dispatch, filterState, dispatchFilter } =
     useContext(AppContext);
 
+  const { pathname } = useLocation();
+
   const closeMenu = (e) => {
+    console.log(e.target);
     if (
       e.target.classList.contains('overlay') ||
       e.target.classList.contains('closeBtn')
@@ -27,7 +32,10 @@ const FilterMenu = () => {
 
   const applyFilters = (e) => {
     e.preventDefault();
-    dispatch({ type: 'APPLY-FILTERS', payload: filterState });
+    dispatch({
+      type: 'APPLY-FILTERS',
+      payload: { filterState, route: pathname },
+    });
   };
 
   return createPortal(
@@ -36,7 +44,7 @@ const FilterMenu = () => {
         className={`${styles.overlay} ${
           appState.filterMenuOpen ? styles.active : ''
         } overlay`}
-        onMouseDown={closeMenu}
+        onClick={closeMenu}
       ></div>
       <div
         className={`${styles.menu} ${
@@ -44,6 +52,7 @@ const FilterMenu = () => {
         } `}
       >
         <IoCloseOutline
+          onClick={closeMenu}
           className={`${styles.closeBtn} ${
             !appState.filterMenuOpen ? styles.removePointer : ''
           } closeBtn`}
@@ -100,10 +109,27 @@ const FilterMenu = () => {
                   key={_.uniqueId()}
                   name={obj.name}
                   id={obj.id}
+                  group="movie-genres"
+                  action="TOGGLE-GENRE"
+                  state="genres"
                 />
               ))}
             </ul>
           </div>
+
+          <ul className={styles.watchProviders}>
+            {watchProviders.map((provider) => (
+              <CustomCheckbox
+                key={_.uniqueId()}
+                name={provider.provider_name}
+                id={provider.provider_id}
+                group="watch-providers"
+                action="TOGGLE-WATCH-PROVIDER"
+                state="watchProviders"
+                img={provider.logo_path}
+              />
+            ))}
+          </ul>
 
           <div className={styles.formButtons}>
             <button
@@ -122,7 +148,6 @@ const FilterMenu = () => {
           </div>
         </form>
       </div>
-      ,
     </>,
     document.getElementById('filterMenu')
   );
