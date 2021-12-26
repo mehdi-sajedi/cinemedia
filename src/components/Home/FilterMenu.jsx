@@ -20,7 +20,8 @@ const FilterMenu = () => {
     console.log(e.target);
     if (
       e.target.classList.contains('overlay') ||
-      e.target.classList.contains('closeBtn')
+      e.target.classList.contains('closeBtn') ||
+      e.target.classList.contains('submit')
     ) {
       dispatch({ type: 'CLOSE-FILTER-MENU' });
     }
@@ -140,7 +141,8 @@ const FilterMenu = () => {
               Reset
             </button>
             <button
-              className={`${styles.submit} ${styles.btn}`}
+              onClick={closeMenu}
+              className={`${styles.submit} ${styles.btn} submit`}
               typeof="submit"
             >
               Apply

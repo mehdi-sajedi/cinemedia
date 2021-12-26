@@ -26,15 +26,7 @@ export const AppProvider = ({ children }) => {
     currentSearchText: '',
     navMenuOpen: false,
     filterMenuOpen: false,
-    filters: {
-      runtime: {
-        value: [0, 99999],
-        params: {
-          gte: 'with_runtime_gte',
-          lte: 'with_runtime_lte',
-        },
-      },
-    },
+    filters: {},
   };
 
   const reducer = (draft, action) => {
@@ -83,27 +75,17 @@ export const AppProvider = ({ children }) => {
   // -------------------------------------------------------- //
 
   const initialFilterState = {
+    // movies: {},
+    // shows: {},
     runtime: {
       value: [0, 240],
-      params: {
-        gte: 'with_runtime_gte',
-        lte: 'with_runtime_lte',
-      },
     },
     year: {
       value: [1980, 2022],
-      params: {
-        gte: 'primary_release_date.gte',
-        lte: 'primary_release_date.lte',
-      },
       valueFormatted: ['2000-01-01', '2022-12-31'],
     },
     rating: {
       value: [0, 100],
-      params: {
-        gte: 'vote_average.gte',
-        lte: 'vote_average.lte',
-      },
       valueFormatted: [0, 10],
     },
     genres: [],
@@ -112,6 +94,7 @@ export const AppProvider = ({ children }) => {
 
   const filterReducer = (draft, action) => {
     if (action.type === 'SET-RUNTIME') {
+      // draft.runtime[action.payload.route].value = action.payload.value
       draft.runtime.value = action.payload;
     } else if (action.type === 'SET-YEAR') {
       draft.year.value = action.payload;
@@ -129,11 +112,6 @@ export const AppProvider = ({ children }) => {
       } else {
         draft.genres.push(action.payload.id);
       }
-      // if (JSON.stringify(draft.genres).includes(action.payload.id)) {
-      //   draft.genres = draft.genres.filter((id) => id !== action.payload.id);
-      // } else {
-      //   draft.genres.push(action.payload.id);
-      // }
     } else if (action.type === 'TOGGLE-WATCH-PROVIDER') {
       if (draft.watchProviders.includes(action.payload.id)) {
         draft.watchProviders = draft.watchProviders.filter(
@@ -142,13 +120,6 @@ export const AppProvider = ({ children }) => {
       } else {
         draft.watchProviders.push(action.payload.id);
       }
-      // if (JSON.stringify(draft.watchProviders).includes(action.payload.id)) {
-      //   draft.watchProviders = draft.watchProviders.filter(
-      //     (id) => id !== action.payload.id
-      //   );
-      // } else {
-      //   draft.watchProviders.push(action.payload.id);
-      // }
     }
   };
 

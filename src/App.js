@@ -37,7 +37,7 @@ function App() {
     genre: `&with_genres=${appState.filters.genres?.join(',') || ''}`,
 
     watchProviders: `&with_watch_providers=${
-      appState.filters.watchProviders?.join(',') || ''
+      appState.filters.watchProviders?.join('|') || ''
     }&watch_region=US`,
   };
 
