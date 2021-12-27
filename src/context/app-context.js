@@ -26,7 +26,10 @@ export const AppProvider = ({ children }) => {
     currentSearchText: '',
     navMenuOpen: false,
     filterMenuOpen: false,
-    filters: {},
+    filters: {
+      movies: {},
+      shows: {},
+    },
   };
 
   const reducer = (draft, action) => {
@@ -75,51 +78,75 @@ export const AppProvider = ({ children }) => {
   // -------------------------------------------------------- //
 
   const initialFilterState = {
-    // movies: {},
-    // shows: {},
-    runtime: {
-      value: [0, 240],
+    movies: {
+      runtime: {
+        value: [0, 240],
+      },
+      year: {
+        value: [1980, 2022],
+        valueFormatted: ['2000-01-01', '2022-12-31'],
+      },
+      rating: {
+        value: [0, 100],
+        valueFormatted: [0, 10],
+      },
+      genres: [],
+      watchProviders: [],
     },
-    year: {
-      value: [1980, 2022],
-      valueFormatted: ['2000-01-01', '2022-12-31'],
+    shows: {
+      runtime: {
+        value: [0, 240],
+      },
+      year: {
+        value: [1980, 2022],
+        valueFormatted: ['2000-01-01', '2022-12-31'],
+      },
+      rating: {
+        value: [0, 100],
+        valueFormatted: [0, 10],
+      },
+      genres: [],
+      watchProviders: [],
     },
-    rating: {
-      value: [0, 100],
-      valueFormatted: [0, 10],
-    },
-    genres: [],
-    watchProviders: [],
   };
 
   const filterReducer = (draft, action) => {
     if (action.type === 'SET-RUNTIME') {
-      // draft.runtime[action.payload.route].value = action.payload.value
-      draft.runtime.value = action.payload;
+      draft[action.payload.route].runtime.value = action.payload.value;
+      // draft.runtime.value = action.payload;
     } else if (action.type === 'SET-YEAR') {
-      draft.year.value = action.payload;
-      const lowerBound = `${action.payload[0]}-01-01`;
-      const upperBound = `${action.payload[1]}-12-31`;
-      draft.year.valueFormatted = [lowerBound, upperBound];
+      draft[action.payload.route].year.value = action.payload.value;
+      // draft.year.value = action.payload;
+      const lowerBound = `${action.payload.value[0]}-01-01`;
+      const upperBound = `${action.payload.value[1]}-12-31`;
+      draft[action.payload.route].year.valueFormatted = [
+        lowerBound,
+        upperBound,
+      ];
     } else if (action.type === 'SET-RATING') {
-      draft.rating.value = action.payload;
-      draft.rating.valueFormatted = action.payload.map((v) => v / 10);
-    } else if (action.type === 'RESET') {
-      return initialFilterState;
+      draft[action.payload.route].rating.value = action.payload.value;
+      draft[action.payload.route].rating.valueFormatted =
+        action.payload.value.map((v) => v / 10);
     } else if (action.type === 'TOGGLE-GENRE') {
-      if (draft.genres.includes(action.payload.id)) {
-        draft.genres = draft.genres.filter((id) => id !== action.payload.id);
+      if (draft[action.payload.route].genres.includes(action.payload.id)) {
+        draft[action.payload.route].genres = draft[
+          action.payload.route
+        ].genres.filter((id) => id !== action.payload.id);
       } else {
-        draft.genres.push(action.payload.id);
+        draft[action.payload.route].genres.push(action.payload.id);
       }
     } else if (action.type === 'TOGGLE-WATCH-PROVIDER') {
-      if (draft.watchProviders.includes(action.payload.id)) {
-        draft.watchProviders = draft.watchProviders.filter(
-          (id) => id !== action.payload.id
-        );
+      if (
+        draft[action.payload.route].watchProviders.includes(action.payload.id)
+      ) {
+        draft[action.payload.route].watchProviders = draft[
+          action.payload.route
+        ].watchProviders.filter((id) => id !== action.payload.id);
       } else {
-        draft.watchProviders.push(action.payload.id);
+        draft[action.payload.route].watchProviders.push(action.payload.id);
       }
+    } else if (action.type === 'RESET') {
+      return initialFilterState;
     }
   };
 

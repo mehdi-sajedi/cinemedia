@@ -5,16 +5,17 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { useLocation } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import CustomRange from './CustomRange';
-import { movieGenres } from '../Utilities/helpers';
 import { watchProviders } from '../Utilities/watch-providers';
 import _ from 'lodash';
 import CustomCheckbox from './CustomCheckbox';
 
-const FilterMenu = () => {
+const FilterMenu = ({ genres }) => {
   const { appState, dispatch, filterState, dispatchFilter } =
     useContext(AppContext);
 
   const { pathname } = useLocation();
+
+  const route = pathname.includes('movies') ? 'movies' : 'shows';
 
   const closeMenu = (e) => {
     console.log(e.target);
@@ -35,7 +36,7 @@ const FilterMenu = () => {
     e.preventDefault();
     dispatch({
       type: 'APPLY-FILTERS',
-      payload: { filterState, route: pathname },
+      payload: { filterState, route: route },
     });
   };
 
@@ -63,11 +64,12 @@ const FilterMenu = () => {
           <CustomRange
             name="Year"
             defaults={[1980, 2022]}
-            state={filterState.year.value}
+            state={filterState[route].year.value}
             action="SET-YEAR"
             min={1980}
             max={2022}
             step={1}
+            route={route}
             tipFormatter={(v) => v}
             marks={{
               1980: `1980`,
@@ -77,11 +79,12 @@ const FilterMenu = () => {
           <CustomRange
             name="Runtime"
             defaults={[0, 240]}
-            state={filterState.runtime.value}
+            state={filterState[route].runtime.value}
             action="SET-RUNTIME"
             min={0}
             max={240}
             step={10}
+            route={route}
             tipFormatter={(v) => `${v}m`}
             marks={{
               0: `0m`,
@@ -91,11 +94,12 @@ const FilterMenu = () => {
           <CustomRange
             name="Rating"
             defaults={[0, 100]}
-            state={filterState.rating.value}
+            state={filterState[route].rating.value}
             action="SET-RATING"
             min={0}
             max={100}
             step={1}
+            route={route}
             tipFormatter={(v) => `${v}`}
             marks={{
               0: `0`,
@@ -105,14 +109,15 @@ const FilterMenu = () => {
           <div className={styles.movieGenres}>
             <h3 className={styles.movieGenresTitle}>Genres</h3>
             <ul className={styles.movieGenresList}>
-              {movieGenres.map((obj) => (
+              {genres.map((obj) => (
                 <CustomCheckbox
                   key={_.uniqueId()}
                   name={obj.name}
                   id={obj.id}
                   group="movie-genres"
                   action="TOGGLE-GENRE"
-                  state="genres"
+                  route={route}
+                  state={filterState[route].genres}
                 />
               ))}
             </ul>
@@ -126,7 +131,8 @@ const FilterMenu = () => {
                 id={provider.provider_id}
                 group="watch-providers"
                 action="TOGGLE-WATCH-PROVIDER"
-                state="watchProviders"
+                route={route}
+                state={filterState[route].watchProviders}
                 img={provider.logo_path}
               />
             ))}

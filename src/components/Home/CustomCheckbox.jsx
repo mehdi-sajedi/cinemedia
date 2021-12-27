@@ -4,11 +4,11 @@ import styles from './CustomCheckbox.module.scss';
 
 const basePath = 'https://image.tmdb.org/t/p/original';
 
-const CustomCheckbox = ({ id, name, action, group, state, img }) => {
-  const { filterState, dispatchFilter } = useContext(AppContext);
+const CustomCheckbox = ({ id, name, action, group, route, state, img }) => {
+  const { dispatchFilter } = useContext(AppContext);
 
   const toggleCheckbox = () => {
-    dispatchFilter({ type: action, payload: { id, name } });
+    dispatchFilter({ type: action, payload: { id, route } });
   };
 
   return (
@@ -17,20 +17,16 @@ const CustomCheckbox = ({ id, name, action, group, state, img }) => {
         type="checkbox"
         name={group}
         id={name}
-        checked={filterState[state]?.includes(id)}
+        checked={state?.includes(id)}
         onChange={toggleCheckbox}
-        className={filterState[state]?.includes(id) ? styles.active : ''}
+        className={state?.includes(id) ? styles.active : ''}
       />
 
       <label
         htmlFor={name}
         className={`${
           group === 'watch-providers' ? styles.watch : styles.text
-        } ${
-          filterState[state]?.length > 0 && !filterState[state]?.includes(id)
-            ? styles.TERMINATE
-            : ''
-        }`}
+        } ${state?.length > 0 && !state?.includes(id) ? styles.TERMINATE : ''}`}
       >
         {group === 'watch-providers' ? (
           <img src={`${basePath}${img}`} alt="" />

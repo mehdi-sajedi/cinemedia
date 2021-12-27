@@ -15,35 +15,64 @@ import Details from './components/MediaDetails/Details';
 import MobileMenu from './components/Global/MobileMenu';
 import FilterBtn from './components/Home/FilterBtn';
 import FilterMenu from './components/Home/FilterMenu';
+import { movieGenres, showGenres } from './components/Utilities/helpers';
 
 function App() {
   const { appState } = useContext(AppContext);
 
   const filters = {
-    runtime: `&with_runtime.gte=${
-      appState.filters.runtime?.value[0] || 0
-    }&with_runtime.lte=${appState.filters.runtime?.value[1] || 999}`,
+    movies: {
+      runtime: `&with_runtime.gte=${
+        appState.filters.movies.runtime?.value[0] || 0
+      }&with_runtime.lte=${appState.filters.movies.runtime?.value[1] || 999}`,
 
-    year: `&primary_release_date.gte=${
-      appState.filters.year?.valueFormatted[0] || 0
-    }&primary_release_date.lte=${
-      appState.filters.year?.valueFormatted[1] || 9999
-    }`,
+      year: `&primary_release_date.gte=${
+        appState.filters.movies.year?.valueFormatted[0] || 0
+      }&primary_release_date.lte=${
+        appState.filters.movies.year?.valueFormatted[1] || 9999
+      }`,
 
-    rating: `&vote_average.gte=${
-      appState.filters.rating?.valueFormatted[0] || 0
-    }&vote_average.lte=${appState.filters.rating?.valueFormatted[1] || 10}`,
+      rating: `&vote_average.gte=${
+        appState.filters.movies.rating?.valueFormatted[0] || 0
+      }&vote_average.lte=${
+        appState.filters.movies.rating?.valueFormatted[1] || 10
+      }`,
 
-    genre: `&with_genres=${appState.filters.genres?.join(',') || ''}`,
+      genre: `&with_genres=${appState.filters.movies.genres?.join('|') || ''}`,
 
-    watchProviders: `&with_watch_providers=${
-      appState.filters.watchProviders?.join('|') || ''
-    }&watch_region=US`,
+      watchProviders: `&with_watch_providers=${
+        appState.filters.movies.watchProviders?.join('|') || ''
+      }&watch_region=US`,
+    },
+
+    shows: {
+      runtime: `&with_runtime.gte=${
+        appState.filters.shows.runtime?.value[0] || 0
+      }&with_runtime.lte=${appState.filters.shows.runtime?.value[1] || 999}`,
+
+      year: `&first_air_date.gte=${
+        appState.filters.shows.year?.valueFormatted[0] || 0
+      }&first_air_date.lte=${
+        appState.filters.shows.year?.valueFormatted[1] || 9999
+      }`,
+
+      rating: `&vote_average.gte=${
+        appState.filters.shows.rating?.valueFormatted[0] || 0
+      }&vote_average.lte=${
+        appState.filters.shows.rating?.valueFormatted[1] || 10
+      }`,
+
+      genre: `&with_genres=${appState.filters.shows.genres?.join('|') || ''}`,
+
+      watchProviders: `&with_watch_providers=${
+        appState.filters.shows.watchProviders?.join('|') || ''
+      }&watch_region=US`,
+    },
   };
 
-  let movies = `https://api.themoviedb.org/3/discover/movie/?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}&language=en-US&sort_by=popularity.desc${filters.runtime}${filters.year}${filters.rating}${filters.genre}${filters.watchProviders}`;
+  const movies = `https://api.themoviedb.org/3/discover/movie/?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}&language=en-US&sort_by=popularity.desc${filters.movies.runtime}${filters.movies.year}${filters.movies.rating}${filters.movies.genre}${filters.movies.watchProviders}`;
 
-  let shows = `https://api.themoviedb.org/3/discover/tv/?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}&language=en-US&with_original_language=en&sort_by=popularity.desc`;
+  const shows = `https://api.themoviedb.org/3/discover/tv/?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}&language=en-US&sort_by=popularity.desc${filters.shows.runtime}${filters.shows.year}${filters.shows.rating}${filters.shows.genre}${filters.shows.watchProviders}`;
 
   return (
     <BrowserRouter>
@@ -61,7 +90,7 @@ function App() {
                   currentPage={appState.pagination.currentMoviesPage}
                   totalMedia={appState.pagination.totalMovies}
                 />
-                <FilterMenu />
+                <FilterMenu genres={movieGenres} />
               </>
             }
           ></Route>
@@ -69,13 +98,13 @@ function App() {
             path="shows"
             element={
               <>
-                {/* <FilterBtn /> */}
+                <FilterBtn />
                 <Grid url={shows} route="shows" />
                 <Pagination
                   currentPage={appState.pagination.currentShowsPage}
                   totalMedia={appState.pagination.totalShows}
                 />
-                {/* <FilterMenu /> */}
+                <FilterMenu genres={showGenres} />
               </>
             }
           ></Route>

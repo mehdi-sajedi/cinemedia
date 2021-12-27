@@ -18,6 +18,7 @@ const CustomRange = ({
   step,
   tipFormatter,
   marks,
+  route,
 }) => {
   const { dispatchFilter } = useContext(AppContext);
 
@@ -52,9 +53,9 @@ const CustomRange = ({
     opacity: '0.75',
   };
 
-  const handleSliderChange = (values) => {
-    console.log(values);
-    dispatchFilter({ type: action, payload: values });
+  const handleSliderChange = (v) => {
+    console.log(v);
+    dispatchFilter({ type: action, payload: { value: v, route: route } });
   };
 
   return (
@@ -62,7 +63,7 @@ const CustomRange = ({
       <h3 className={styles.name}>{name}</h3>
       <Range
         className={styles.range}
-        onChange={(values) => handleSliderChange(values)}
+        onChange={(v) => handleSliderChange(v)}
         defaultValue={defaults}
         value={state}
         min={min}
