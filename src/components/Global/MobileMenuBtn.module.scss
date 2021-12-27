@@ -1,12 +1,5 @@
 @import '../../include-media.scss';
 
-:root {
-  --primary-color: rgba(13, 110, 139, 0.75);
-  --secondary-color: rgba(229, 148, 0, 0.9);
-  --overlay-color: rgba(24, 39, 51, 0.85);
-  --menu-speed: 0.75s;
-}
-
 .button {
   z-index: 2;
   position: absolute;
@@ -53,7 +46,7 @@
     &:checked ~ .menu > div {
       transform: scale(1);
       transform: scale(1.5);
-      transition-duration: var(--menu-speed);
+      transition-duration: 0.75s;
     }
 
     &:checked ~ .menu > div > div {

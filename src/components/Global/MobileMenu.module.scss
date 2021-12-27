@@ -1,13 +1,5 @@
 @import '../../include-media.scss';
 
-:root {
-  --primary-color: rgba(13, 110, 139, 0.75);
-  --secondary-color: rgba(229, 148, 0, 0.9);
-  --overlay-color: rgba(24, 39, 51, 0.85);
-  --overlay-color: rgba(0, 0, 0, 0.82);
-  --menu-speed: 0.75s;
-}
-
 .menuWrap {
   position: fixed;
   top: 0;
@@ -37,7 +29,7 @@
       > div {
         transform: scale(1);
         transform: scale(1.5);
-        transition-duration: var(--menu-speed);
+        transition-duration: 0.75s;
       }
 
       > div > div {
@@ -48,7 +40,7 @@
     }
 
     > div {
-      background: var(--overlay-color);
+      background: rgba(0, 0, 0, 0.82);
       width: 200vw;
       height: 200vw;
       display: flex;
@@ -78,7 +70,7 @@
             transition: color 0.4s ease;
 
             &:hover {
-              color: var(--secondary-color);
+              color: orange;
             }
           }
         }
