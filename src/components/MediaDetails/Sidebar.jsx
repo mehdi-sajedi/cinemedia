@@ -5,7 +5,6 @@ import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import { MdOutlineLink } from 'react-icons/md';
 import { formatDate } from '../Utilities/helpers';
 import styles from './Sidebar.module.scss';
-import _ from 'lodash';
 
 const posterBase = 'https://image.tmdb.org/t/p/original';
 
@@ -20,21 +19,25 @@ const Sidebar = () => {
       base: 'https://instagram.com/',
       id: media.external_ids?.instagram_id,
       icon: BsInstagram,
+      keyID: 9823479237498,
     },
     {
       base: 'https://facebook.com/',
       id: media.external_ids?.facebook_id,
       icon: BsFacebook,
+      keyID: 1458972394879,
     },
     {
       base: 'https://twitter.com/',
       id: media.external_ids?.twitter_id,
       icon: BsTwitter,
+      keyID: 7849236987293,
     },
     {
       base: '',
       id: media.homepage,
       icon: MdOutlineLink,
+      keyID: 8386725394781,
     },
   ];
 
@@ -44,7 +47,7 @@ const Sidebar = () => {
         {socials.map(
           (social) =>
             social.id && (
-              <li key={_.uniqueId()}>
+              <li key={`${social.id}-${social.keyID}`}>
                 <a
                   href={`${social.base}${social.id}`}
                   target="_blank"

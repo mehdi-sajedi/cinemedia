@@ -8,7 +8,6 @@ import { BsFillPlayFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../Utilities/helpers';
-import _ from 'lodash';
 
 // const backdropBase = 'https://image.tmdb.org/t/p/w1280/';
 // const posterBase = 'https://image.tmdb.org/t/p/w780/';
@@ -157,7 +156,7 @@ const Showcase = () => {
                 {media.genres?.map(
                   (genre, idx) =>
                     idx < 3 && (
-                      <li key={_.uniqueId()}>
+                      <li key={`${genre.name}-${genre.id}`}>
                         {genre.name}
                         {idx === media.genres.length - 1 || idx === 2
                           ? null

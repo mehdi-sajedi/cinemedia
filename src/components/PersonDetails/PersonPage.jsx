@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import { formatDate } from '../Utilities/helpers';
 import styles from './PersonPage.module.scss';
-import _ from 'lodash';
 
 const posterBase = 'https://image.tmdb.org/t/p/original';
 
@@ -59,16 +58,19 @@ const PersonPage = () => {
       base: 'https://instagram.com/',
       id: appState.person.external_ids?.instagram_id,
       icon: BsInstagram,
+      keyID: 5035739184843,
     },
     {
       base: 'https://facebook.com/',
       id: appState.person.external_ids?.facebook_id,
       icon: BsFacebook,
+      keyID: 4810573175591,
     },
     {
       base: 'https://twitter.com/',
       id: appState.person.external_ids?.twitter_id,
       icon: BsTwitter,
+      keyID: 1953038502946,
     },
   ];
 
@@ -92,7 +94,7 @@ const PersonPage = () => {
             {socials.map(
               (social) =>
                 social.id && (
-                  <li key={_.uniqueId()}>
+                  <li key={`${social.id}-${social.keyID}`}>
                     <a
                       href={`${social.base}${social.id}`}
                       target="_blank"

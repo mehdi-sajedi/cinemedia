@@ -26,7 +26,7 @@ const CustomCheckbox = ({ id, name, action, group, route, state, img }) => {
         htmlFor={name}
         className={`${
           group === 'watch-providers' ? styles.watch : styles.text
-        } ${state?.length > 0 && !state?.includes(id) ? styles.TERMINATE : ''}`}
+        } ${state?.length > 0 && !state?.includes(id) ? styles.fade : ''}`}
       >
         {group === 'watch-providers' ? (
           <img src={`${basePath}${img}`} alt="" />

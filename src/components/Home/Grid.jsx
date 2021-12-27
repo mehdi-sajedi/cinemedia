@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from 'react';
 import { AppContext } from '../../context/app-context';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import MediaCard from './MediaCard';
-import _ from 'lodash';
 import GridStyles from './Grid.module.scss';
 import {
   destructMovieProps,
@@ -14,6 +13,8 @@ const Grid = ({ url, route }) => {
   const { appState, dispatch } = useContext(AppContext);
   const location = useLocation();
   const [searchParams] = useSearchParams();
+
+  console.log('GRID.jsx');
 
   // For /movies and /shows routes
   useEffect(() => {
@@ -120,7 +121,9 @@ const Grid = ({ url, route }) => {
       {appState.results.length > 0 &&
         appState.results.map((entry) => {
           return (
-            entry.poster_path && <MediaCard {...entry} key={_.uniqueId()} />
+            entry.poster_path && (
+              <MediaCard {...entry} key={`${entry.id}${entry.popularity}`} />
+            )
           );
         })}
     </section>

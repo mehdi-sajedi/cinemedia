@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { AppContext } from '../../context/app-context';
 import styles from './Recommendations.module.scss';
 import RecommendationsCard from './RecommendationsCard';
-import _ from 'lodash';
 
 const Recommendations = () => {
   const { appState } = useContext(AppContext);
@@ -17,7 +16,10 @@ const Recommendations = () => {
             entry.backdrop_path &&
             backdropCount++ &&
             backdropCount <= 7 && (
-              <RecommendationsCard {...entry} key={_.uniqueId()} />
+              <RecommendationsCard
+                {...entry}
+                key={`${entry.id}-${entry.popularity}`}
+              />
             )
           );
         })}

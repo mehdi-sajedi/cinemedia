@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { AppContext } from '../../context/app-context';
 import styles from './Cast.module.scss';
 import CastCard from './CastCard';
-import _ from 'lodash';
 
 const Cast = () => {
   const { appState } = useContext(AppContext);
@@ -13,7 +12,9 @@ const Cast = () => {
         {appState.currentMedia?.credits?.cast?.map((member, idx) => {
           return (
             member.profile_path &&
-            idx < 20 && <CastCard {...member} key={_.uniqueId()} />
+            idx < 20 && (
+              <CastCard {...member} key={`${member.id}-${member.popularity}`} />
+            )
           );
         })}
       </div>

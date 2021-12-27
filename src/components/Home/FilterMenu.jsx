@@ -6,16 +6,15 @@ import { useLocation } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import CustomRange from './CustomRange';
 import { watchProviders } from '../Utilities/watch-providers';
-import _ from 'lodash';
 import CustomCheckbox from './CustomCheckbox';
 
 const FilterMenu = ({ genres }) => {
   const { appState, dispatch, filterState, dispatchFilter } =
     useContext(AppContext);
-
   const { pathname } = useLocation();
-
   const route = pathname.includes('movies') ? 'movies' : 'shows';
+
+  console.log('FILTERMENU.jsx');
 
   const closeMenu = (e) => {
     console.log(e.target);
@@ -111,7 +110,7 @@ const FilterMenu = ({ genres }) => {
             <ul className={styles.movieGenresList}>
               {genres.map((obj) => (
                 <CustomCheckbox
-                  key={_.uniqueId()}
+                  key={`${obj.id}-${obj.name}`}
                   name={obj.name}
                   id={obj.id}
                   group="movie-genres"
@@ -126,7 +125,7 @@ const FilterMenu = ({ genres }) => {
           <ul className={styles.watchProviders}>
             {watchProviders.map((provider) => (
               <CustomCheckbox
-                key={_.uniqueId()}
+                key={`${provider.provider_id}-${provider.provider_name}`}
                 name={provider.provider_name}
                 id={provider.provider_id}
                 group="watch-providers"
