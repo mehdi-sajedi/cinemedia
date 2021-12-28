@@ -70,9 +70,9 @@ function App() {
     },
   };
 
-  const movies = `https://api.themoviedb.org/3/discover/movie/?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}&language=en-US&sort_by=popularity.desc${filters.movies.runtime}${filters.movies.year}${filters.movies.rating}${filters.movies.genre}${filters.movies.watchProviders}`;
+  const movies = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}&language=en-US&sort_by=popularity.desc${filters.movies.runtime}${filters.movies.year}${filters.movies.rating}${filters.movies.genre}${filters.movies.watchProviders}`;
 
-  const shows = `https://api.themoviedb.org/3/discover/tv/?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}&language=en-US&sort_by=popularity.desc${filters.shows.runtime}${filters.shows.year}${filters.shows.rating}${filters.shows.genre}${filters.shows.watchProviders}`;
+  const shows = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentShowsPage}&language=en-US&sort_by=popularity.desc${filters.shows.runtime}${filters.shows.year}${filters.shows.rating}${filters.shows.genre}${filters.shows.watchProviders}`;
 
   return (
     <BrowserRouter>
