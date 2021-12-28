@@ -21,6 +21,11 @@
       a {
         border-bottom: 2px solid transparent;
         // background-color: black;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 0.75;
+        }
       }
 
       .active {

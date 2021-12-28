@@ -110,7 +110,7 @@ const FilterMenu = ({ genres }) => {
             <ul className={styles.movieGenresList}>
               {genres.map((obj) => (
                 <CustomCheckbox
-                  key={`${obj.id}-${obj.name}`}
+                  key={`${obj.id}-${obj.name}-${route}`}
                   name={obj.name}
                   id={obj.id}
                   group="movie-genres"

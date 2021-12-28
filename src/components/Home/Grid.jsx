@@ -122,7 +122,7 @@ const Grid = ({ url, route }) => {
         appState.results.map((entry) => {
           return (
             entry.poster_path && (
-              <MediaCard {...entry} key={`${entry.id}${entry.popularity}`} />
+              <MediaCard {...entry} key={`${entry.id}${entry.credit_id}`} />
             )
           );
         })}
