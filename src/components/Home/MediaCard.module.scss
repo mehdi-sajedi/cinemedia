@@ -28,11 +28,19 @@
     .name {
       font-weight: 700;
       font-size: 16px;
+
+      @include media('<tablet') {
+        font-size: 15px;
+      }
     }
 
     .release {
       font-size: 14px;
       margin-top: 5px;
+
+      @include media('<tablet') {
+        font-size: 13px;
+      }
     }
 
     @include media('<tablet') {

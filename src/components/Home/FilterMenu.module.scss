@@ -64,18 +64,18 @@
   }
 
   .form {
-    .movieGenres {
+    .genres {
       display: flex;
       flex-direction: column;
       align-items: center;
 
-      .movieGenresTitle {
+      .genresTitle {
         width: 100%;
         margin-bottom: 1.5rem;
         text-align: center;
       }
 
-      .movieGenresList {
+      .genresList {
         display: flex;
         flex-wrap: wrap;
         gap: 10px 8px;
