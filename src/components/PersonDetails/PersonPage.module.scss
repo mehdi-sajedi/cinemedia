@@ -97,6 +97,7 @@
           // margin: 0 auto 1rem auto;
           font-size: 20px;
           margin-top: 1rem;
+          display: none;
         }
       }
 
@@ -107,6 +108,7 @@
 
         @include media('<tablet') {
           // align-items: center;
+          margin-top: 1rem;
         }
 
         > * {
@@ -137,6 +139,9 @@
             span {
               @include media('<desktop') {
                 display: block;
+              }
+              @include media('<tablet') {
+                display: inline;
               }
             }
           }

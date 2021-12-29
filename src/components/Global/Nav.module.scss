@@ -30,6 +30,9 @@
 
       .active {
         border-bottom: 2px solid orange;
+        &:hover {
+          opacity: 1;
+        }
       }
 
       @include media('<tablet') {
@@ -125,6 +128,8 @@
         background-color: #eee;
         color: black;
         font-size: 13px;
+        //
+        display: none;
 
         &:hover {
           background-color: #ddd;
