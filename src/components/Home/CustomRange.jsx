@@ -19,6 +19,7 @@ const CustomRange = ({
   tipFormatter,
   marks,
   route,
+  icon,
 }) => {
   const { dispatchFilter } = useContext(AppContext);
 
@@ -60,7 +61,10 @@ const CustomRange = ({
 
   return (
     <>
-      <h3 className={styles.name}>{name}</h3>
+      <header className={styles.header}>
+        {icon}
+        <h3>{name}</h3>
+      </header>
       <Range
         className={styles.range}
         onChange={(v) => handleSliderChange(v)}

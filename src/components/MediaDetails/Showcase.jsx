@@ -9,8 +9,6 @@ import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../Utilities/helpers';
 
-// const backdropBase = 'https://image.tmdb.org/t/p/w1280/';
-// const posterBase = 'https://image.tmdb.org/t/p/w780/';
 const backdropBase = 'https://image.tmdb.org/t/p/original/';
 const posterBase = 'https://image.tmdb.org/t/p/original/';
 
@@ -19,9 +17,7 @@ const Showcase = () => {
   const { pathname } = useLocation();
   const [showTrailer, setShowTrailer] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
-
   const media = appState.currentMedia;
-
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
 
   const trailer = media.videos?.results?.find((entry) => {
@@ -36,6 +32,11 @@ const Showcase = () => {
   const handleShowGallery = () => {
     hasImages && setShowGallery(true);
   };
+
+  // const imagePaths = [
+  //   `https://image.tmdb.org/t/p/${sizes[0]}${image} ${sizes[0].slice(1) + 'w'}`,
+  //   `https://image.tmdb.org/t/p/${sizes[1]}${image} ${sizes[1].slice(1) + 'w'}`,
+  // ];
 
   useEffect(() => {
     const getMediaDetails = async () => {

@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/app-context';
 import styles from './FilterMenu.module.scss';
-import { IoCloseOutline } from 'react-icons/io5';
 import { useLocation } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import CustomRange from './CustomRange';
 import { watchProviders } from '../Utilities/watch-providers';
 import CustomCheckbox from './CustomCheckbox';
+import { IoCloseOutline } from 'react-icons/io5';
+import { AiOutlineCalendar } from 'react-icons/ai';
+import { FiStar } from 'react-icons/fi';
+import { IoMdTime } from 'react-icons/io';
 
 const FilterMenu = ({ genres }) => {
   const { appState, dispatch, filterState, dispatchFilter } =
@@ -74,6 +77,7 @@ const FilterMenu = ({ genres }) => {
               1980: `1980`,
               2022: `2022`,
             }}
+            icon={<AiOutlineCalendar />}
           />
           <CustomRange
             name="Runtime"
@@ -89,6 +93,7 @@ const FilterMenu = ({ genres }) => {
               0: `0m`,
               240: `240m`,
             }}
+            icon={<IoMdTime />}
           />
           <CustomRange
             name="Rating"
@@ -104,6 +109,7 @@ const FilterMenu = ({ genres }) => {
               0: `0`,
               100: `100`,
             }}
+            icon={<FiStar />}
           />
           <div className={styles.genres}>
             <h3 className={styles.genresTitle}>Genres</h3>

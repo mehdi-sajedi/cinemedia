@@ -5,15 +5,22 @@ import { createPortal } from 'react-dom';
 import styles from './Gallery.module.scss';
 import './GalleryExtra.scss';
 
-const backdropBase = 'https://image.tmdb.org/t/p/original';
+const backdropBase = 'https://image.tmdb.org/t/p';
 
 const Gallery = ({ setShowGallery }) => {
   const { appState } = useContext(AppContext);
+  const sizes = ['780', '1280', ''];
 
   const images = appState.currentMedia.images.backdrops.map((entry) => {
     return {
-      original: `${backdropBase}${entry.file_path}`,
-      thumbnail: `${backdropBase}${entry.file_path}`,
+      original: `${backdropBase}/w780${entry.file_path}`,
+      thumbnail: `${backdropBase}/w780${entry.file_path}`,
+      srcSet: sizes.map(
+        (size, idx) =>
+          `${backdropBase}/${idx < 2 ? 'w' : 'original'}${size}${
+            entry.file_path
+          } ${idx < 2 ? size : entry.width}w`
+      ),
     };
   });
 
