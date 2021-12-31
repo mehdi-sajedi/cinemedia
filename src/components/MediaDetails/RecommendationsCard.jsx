@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './RecommendationsCard.module.scss';
 
-const basePath = 'https://image.tmdb.org/t/p/original';
+const basePath = 'https://image.tmdb.org/t/p/w780';
 
 const RecommendationsCard = ({
   title,

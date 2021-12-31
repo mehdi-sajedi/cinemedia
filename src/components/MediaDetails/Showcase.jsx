@@ -10,7 +10,7 @@ import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../Utilities/helpers';
 
 const backdropBase = 'https://image.tmdb.org/t/p/original/';
-const posterBase = 'https://image.tmdb.org/t/p/original/';
+const posterBase = 'https://image.tmdb.org/t/p/w780/';
 
 const Showcase = () => {
   const { appState, dispatch } = useContext(AppContext);
@@ -32,11 +32,6 @@ const Showcase = () => {
   const handleShowGallery = () => {
     hasImages && setShowGallery(true);
   };
-
-  // const imagePaths = [
-  //   `https://image.tmdb.org/t/p/${sizes[0]}${image} ${sizes[0].slice(1) + 'w'}`,
-  //   `https://image.tmdb.org/t/p/${sizes[1]}${image} ${sizes[1].slice(1) + 'w'}`,
-  // ];
 
   useEffect(() => {
     const getMediaDetails = async () => {

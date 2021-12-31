@@ -6,7 +6,7 @@ import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import { formatDate } from '../Utilities/helpers';
 import styles from './PersonPage.module.scss';
 
-const posterBase = 'https://image.tmdb.org/t/p/original';
+const posterBase = 'https://image.tmdb.org/t/p/w500';
 
 const PersonPage = () => {
   const { appState, dispatch } = useContext(AppContext);

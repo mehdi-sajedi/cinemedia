@@ -4,6 +4,7 @@ import ImageGallery from 'react-image-gallery';
 import { createPortal } from 'react-dom';
 import styles from './Gallery.module.scss';
 import './GalleryExtra.scss';
+import { isBrowser } from 'react-device-detect';
 
 const backdropBase = 'https://image.tmdb.org/t/p';
 
@@ -21,6 +22,7 @@ const Gallery = ({ setShowGallery }) => {
             entry.file_path
           } ${idx < 2 ? size : entry.width}w`
       ),
+      loading: 'lazy',
     };
   });
 
@@ -40,6 +42,7 @@ const Gallery = ({ setShowGallery }) => {
         slideInterval={2200}
         items={images}
         className={styles.gallery}
+        showFullscreenButton={isBrowser}
       />
     </div>,
     document.getElementById('imageGallery')

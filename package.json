@@ -1,5 +1,5 @@
 {
-  "name": "tv-show",
+  "name": "movies-and-shows",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,10 +10,12 @@
     "node-sass": "^6.0.1",
     "rc-slider": "^9.7.5",
     "react": "^17.0.2",
+    "react-device-detect": "^2.1.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-id-generator": "^3.0.2",
     "react-image-gallery": "^1.2.7",
+    "react-placeholder": "^4.1.0",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "use-immer": "^0.6.0",
