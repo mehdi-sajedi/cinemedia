@@ -11,11 +11,11 @@ const RecommendationsCard = ({
   id,
   media_type,
 }) => {
+  const mediaType = media_type === 'movie' ? 'movies' : 'shows';
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const mediaType = media_type === 'movie' ? 'movies' : 'shows';
 
   return (
     <Link className={styles.card} to={`/${mediaType}/${id}`}>

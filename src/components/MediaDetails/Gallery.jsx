@@ -39,7 +39,7 @@ const Gallery = ({ setShowGallery }) => {
   return createPortal(
     <div className={`${styles.wrapper} wrapper`} onClick={handleClick}>
       <ImageGallery
-        slideInterval={2200}
+        slideInterval={2400}
         items={images}
         className={styles.gallery}
         showFullscreenButton={isBrowser}

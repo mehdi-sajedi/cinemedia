@@ -64,10 +64,12 @@
   }
 
   .form {
+    // Working on fixing gap not working on mobile
+
     .genres {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      // display: flex;
+      // flex-direction: column;
+      // align-items: center;
 
       .genresTitle {
         width: 100%;
@@ -79,6 +81,10 @@
         display: flex;
         flex-wrap: wrap;
         gap: 10px 8px;
+        // display: grid;
+        // grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        // grid-auto-rows: 50px;
+        // gap: 20px;
       }
     }
 

@@ -44,9 +44,9 @@ const Pagination = ({ currentPage, totalMedia }) => {
       type: 'SET-CURRENT-PAGE',
       payload: { pageNum: pageNum, route: pathname },
     });
-    // setTimeout(() => {
-    //   window.scrollTo(0, 0);
-    // }, 200);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 200);
   };
 
   return (
