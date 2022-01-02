@@ -20,7 +20,6 @@
 
       a {
         border-bottom: 2px solid transparent;
-        // background-color: black;
         transition: opacity 0.3s ease;
 
         &:hover {
@@ -43,11 +42,9 @@
     .form {
       display: flex;
       align-items: center;
-      // background-color: orange;
 
       @include media('<tablet') {
         width: 100%;
-        // justify-content: flex-end;
       }
 
       .search {
