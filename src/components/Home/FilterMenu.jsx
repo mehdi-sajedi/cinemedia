@@ -10,14 +10,13 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { AiOutlineCalendar } from 'react-icons/ai';
 import { FiStar } from 'react-icons/fi';
 import { IoMdTime } from 'react-icons/io';
+import { isBrowser } from 'react-device-detect';
 
 const FilterMenu = ({ genres }) => {
   const { appState, dispatch, filterState, dispatchFilter } =
     useContext(AppContext);
   const { pathname } = useLocation();
   const route = pathname.includes('movies') ? 'movies' : 'shows';
-
-  console.log('FILTERMENU.jsx');
 
   const closeMenu = (e) => {
     console.log(e.target);
@@ -40,6 +39,20 @@ const FilterMenu = ({ genres }) => {
       type: 'APPLY-FILTERS',
       payload: { filterState, route: route },
     });
+  };
+
+  const genreListStyles = {
+    desktop: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '10px 7px',
+    },
+
+    mobile: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(125px, 1fr))',
+      gap: '13px',
+    },
   };
 
   return createPortal(
@@ -113,7 +126,12 @@ const FilterMenu = ({ genres }) => {
           />
           <div className={styles.genres}>
             <h3 className={styles.genresTitle}>Genres</h3>
-            <ul className={styles.genresList}>
+            <ul
+              className={styles.genresList}
+              style={
+                isBrowser ? genreListStyles.desktop : genreListStyles.mobile
+              }
+            >
               {genres.map((obj) => (
                 <CustomCheckbox
                   key={`${obj.id}-${obj.name}-${route}`}
