@@ -2,7 +2,6 @@
 
 .nav {
   padding: 15px;
-  // height: 80px;
   background-color: var(--dark-grey);
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
 
@@ -34,7 +33,7 @@
         }
       }
 
-      @include media('<tablet') {
+      @include media('<=phone') {
         display: none;
       }
     }
@@ -43,7 +42,7 @@
       display: flex;
       align-items: center;
 
-      @include media('<tablet') {
+      @include media('<=phone') {
         width: 100%;
       }
 
@@ -54,9 +53,8 @@
         width: 300px;
         position: relative;
 
-        @include media('<tablet') {
+        @include media('<=phone') {
           width: 240px;
-          background-color: seagreen;
           display: flex;
           justify-content: flex-end;
         }
@@ -125,7 +123,6 @@
         background-color: #eee;
         color: black;
         font-size: 13px;
-        //
         display: none;
 
         &:hover {
@@ -138,10 +135,6 @@
 
         &:active {
           transform: scale(0.97);
-        }
-
-        @include media('<=tablet') {
-          display: none;
         }
       }
     }

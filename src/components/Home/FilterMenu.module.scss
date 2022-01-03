@@ -33,6 +33,9 @@
   border-radius: 2px 0 0 2px;
   padding: 5rem 2rem 2rem 2rem;
   z-index: 3;
+  //
+  width: 450px;
+  transform: translateX(-490px);
 
   @include media('<tablet') {
     transform: translateX(-110vw);
@@ -62,26 +65,51 @@
 
   .form {
     .genres {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       .genresTitle {
         width: 100%;
         margin-bottom: 1.5rem;
         text-align: center;
       }
+
+      .genresList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 8px;
+      }
     }
 
     .watchProviders {
-      margin-top: 3rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
-      gap: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+
+      .watchProvidersTitle {
+        width: 100%;
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+
+      .watchProvidersList {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+        gap: 1rem;
+      }
     }
 
     .formButtons {
       margin-top: 6rem;
       display: flex;
       justify-content: space-between;
+      margin-bottom: 2rem;
 
-      @include media('<tablet') {
+      @include media('<desktop') {
         margin-bottom: 6rem;
       }
 

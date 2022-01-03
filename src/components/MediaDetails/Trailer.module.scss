@@ -22,7 +22,7 @@
   box-shadow: 0 0 10px 10px black;
   animation: popIn 0.6s;
 
-  @include media('<tablet') {
+  @include media('<=phone') {
     width: clamp(1px, 1760px, 82vw);
     height: clamp(1px, 990px, calc(82vw * 0.5625));
   }

@@ -8,7 +8,7 @@
   max-width: var(--max-width);
   margin: 0 auto 4rem;
 
-  @include media('<=tablet') {
+  @include media('<=880px') {
     flex-direction: column;
   }
 }

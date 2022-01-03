@@ -1,7 +1,6 @@
 @import '../../app.scss';
 
 .recommendations {
-  // width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
 
@@ -20,11 +19,11 @@
     padding: 1px 1px 1rem;
     margin-bottom: 3rem;
 
-    @include media('<desktop') {
+    @include media('<=1300px') {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    @include media('<tablet') {
+    @include media('<=phone') {
       grid-template-columns: repeat(2, 1fr);
     }
   }

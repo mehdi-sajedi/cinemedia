@@ -8,8 +8,12 @@
   max-width: var(--max-width);
   margin: 3rem auto;
 
-  @include media('<=phone') {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  @include media('<desktop') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media('<tablet') {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
 }

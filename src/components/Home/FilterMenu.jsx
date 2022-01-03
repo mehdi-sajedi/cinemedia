@@ -10,7 +10,6 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { AiOutlineCalendar } from 'react-icons/ai';
 import { FiStar } from 'react-icons/fi';
 import { IoMdTime } from 'react-icons/io';
-import { isBrowser } from 'react-device-detect';
 
 const FilterMenu = ({ genres }) => {
   const { appState, dispatch, filterState, dispatchFilter } =
@@ -39,20 +38,6 @@ const FilterMenu = ({ genres }) => {
       type: 'APPLY-FILTERS',
       payload: { filterState, route: route },
     });
-  };
-
-  const genreListStyles = {
-    desktop: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      gap: '10px 7px',
-    },
-
-    mobile: {
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(125px, 1fr))',
-      gap: '13px',
-    },
   };
 
   return createPortal(
@@ -126,12 +111,7 @@ const FilterMenu = ({ genres }) => {
           />
           <div className={styles.genres}>
             <h3 className={styles.genresTitle}>Genres</h3>
-            <ul
-              className={styles.genresList}
-              style={
-                isBrowser ? genreListStyles.desktop : genreListStyles.mobile
-              }
-            >
+            <ul className={styles.genresList}>
               {genres.map((obj) => (
                 <CustomCheckbox
                   key={`${obj.id}-${obj.name}-${route}`}
@@ -146,20 +126,23 @@ const FilterMenu = ({ genres }) => {
             </ul>
           </div>
 
-          <ul className={styles.watchProviders}>
-            {watchProviders.map((provider) => (
-              <CustomCheckbox
-                key={`${provider.provider_id}-${provider.provider_name}`}
-                name={provider.provider_name}
-                id={provider.provider_id}
-                group="watch-providers"
-                action="TOGGLE-WATCH-PROVIDER"
-                route={route}
-                state={filterState[route].watchProviders}
-                img={provider.logo_path}
-              />
-            ))}
-          </ul>
+          <div className={styles.watchProviders}>
+            <h3 className={styles.watchProvidersTitle}>Services</h3>
+            <ul className={styles.watchProvidersList}>
+              {watchProviders.map((provider) => (
+                <CustomCheckbox
+                  key={`${provider.provider_id}-${provider.provider_name}`}
+                  name={provider.provider_name}
+                  id={provider.provider_id}
+                  group="watch-providers"
+                  action="TOGGLE-WATCH-PROVIDER"
+                  route={route}
+                  state={filterState[route].watchProviders}
+                  img={provider.logo_path}
+                />
+              ))}
+            </ul>
+          </div>
 
           <div className={styles.formButtons}>
             <button
