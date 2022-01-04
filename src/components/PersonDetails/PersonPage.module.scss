@@ -206,3 +206,38 @@
     }
   }
 }
+
+.knownFor {
+  .knownForHeading {
+    margin-bottom: 1.5rem;
+  }
+
+  .knownForGrid {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: flex-start;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1px 1px 1rem;
+
+    .knownForMedia {
+      display: flex;
+      flex-direction: column;
+      background-color: #fff;
+      // padding: 5px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 138px;
+      border-radius: 5px;
+
+      img {
+        border-radius: 5px 5px 0 0;
+      }
+
+      .name {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  }
+}

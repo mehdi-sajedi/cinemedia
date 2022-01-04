@@ -4,7 +4,6 @@
   // justify-content: center;
 
   input {
-    background-color: seagreen;
     visibility: hidden;
     height: 0;
     width: 0;
@@ -20,7 +19,7 @@
       background-color: #abe2fb;
       padding: 8px 18px;
       border-radius: 50px;
-      box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
+      // box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1);
 
       &:hover {
         background-color: #7bc6e9;
@@ -44,9 +43,9 @@
       background-color: #2f5a6e;
       color: white;
 
-      &:hover {
-        background-color: #2f5a6e;
-      }
+      // &:hover {
+      //   background-color: #2f5a6e;
+      // }
     }
 
     + label.watch {

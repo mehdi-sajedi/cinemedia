@@ -14,20 +14,28 @@ const PersonPage = () => {
   const { pathname } = useLocation();
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
 
-  const URL_PERSON = `https://api.themoviedb.org/3/person/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=combined_credits,external_ids,movie_credits,tv_credits`;
+  const URL_PERSON = `https://api.themoviedb.org/3/person/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=combined_credits,external_ids`;
 
   useEffect(() => {
     const getActorDetails = async () => {
       const res = await fetch(URL_PERSON);
-      let { birthday, deathday, ...rest } = await res.json();
+      let { birthday, deathday, combined_credits, ...rest } = await res.json();
 
       if (birthday) birthday = birthday.replace(/-/g, '/');
       if (deathday) deathday = deathday.replace(/-/g, '/');
 
-      console.log({ birthday, ...rest });
+      console.log({ birthday, deathday, combined_credits, ...rest });
+
+      combined_credits.cast = combined_credits.cast
+        .filter(
+          (media) =>
+            !media.genre_ids.includes(10767) || !media.genre_ids.includes(10767)
+        )
+        .sort((a, b) => b.vote_count - a.vote_count);
+
       dispatch({
         type: 'SET-PERSON',
-        payload: { birthday, deathday, ...rest },
+        payload: { birthday, deathday, combined_credits, ...rest },
       });
     };
     getActorDetails();
@@ -157,9 +165,31 @@ const PersonPage = () => {
           {person.biography && (
             <>
               <h3 className={styles.bioHeading}>Biography</h3>
-              <p className={styles.bio}>{person.biography}</p>
+              <p style={{ marginBottom: '5rem' }} className={styles.bio}>
+                {person.biography}
+              </p>
             </>
           )}
+
+          {/*  */}
+
+          <div className={styles.knownFor}>
+            <h3 className={styles.knownForHeading}>Known for</h3>
+            <div className={styles.knownForGrid}>
+              {person.combined_credits?.cast.slice(0, 10).map((media) => {
+                return (
+                  <div className={styles.knownForMedia}>
+                    <img src={`${posterBase}${media.poster_path}`} alt="" />
+                    <p className={styles.name}>
+                      {media.name ? media.name : media.title}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/*  */}
         </div>
       </div>
     </section>

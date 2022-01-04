@@ -13,8 +13,6 @@ const Nav = () => {
   const searchRef = useRef();
   const { pathname } = useLocation();
 
-  console.log('NAV.jsx');
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const searchText = searchRef.current.value.trim();
