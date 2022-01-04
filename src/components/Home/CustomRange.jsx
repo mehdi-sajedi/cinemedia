@@ -1,10 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/app-context';
 import styles from './CustomRange.module.scss';
-import Slider, {
-  createSliderWithTooltip,
-  // Range,
-} from 'rc-slider';
+import Slider, { createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 const Range = createSliderWithTooltip(Slider.Range);
 
@@ -23,35 +20,29 @@ const CustomRange = ({
 }) => {
   const { dispatchFilter } = useContext(AppContext);
 
-  const railStyle = {
-    // backgroundColor: 'black',
-    // height: '100%',
-    // position: 'absolute',
-    // top: '0',
-    // left: '0',
-  };
-
-  const trackStyle = [
-    {
-      // backgroundColor: 'skyblue',
-      // height: '50%',
+  let rangeStyles = {
+    rail: {
+      backgroundColor: '#e2e2e2',
+      height: '50%',
     },
-  ];
 
-  const handleStyle = [
-    {
-      // backgroundColor: 'dodgerblue',
-      // padding: '15px',
-      // position: 'absolute',
-      // top: '-50%',
-      // left: '50%',
+    track: [
+      {
+        height: '50%',
+      },
+    ],
+    handle: [
+      {
+        position: 'absolute',
+        height: '25px',
+        width: '25px',
+        top: '1px',
+        border: '3px solid #79c4e2',
+      },
+    ],
+    dot: {
+      opacity: '0',
     },
-  ];
-
-  const dotStyle = {
-    // backgroundColor: 'dodgerblue',
-    borderColor: 'skyblue',
-    opacity: '0.75',
   };
 
   const handleSliderChange = (v) => {
@@ -60,7 +51,7 @@ const CustomRange = ({
   };
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <header className={styles.header}>
         {icon}
         <h3>{name}</h3>
@@ -72,10 +63,10 @@ const CustomRange = ({
         value={state}
         min={min}
         max={max}
-        railStyle={railStyle}
-        trackStyle={trackStyle}
-        handleStyle={handleStyle}
-        dotStyle={dotStyle}
+        railStyle={rangeStyles.rail}
+        trackStyle={rangeStyles.track}
+        handleStyle={rangeStyles.handle}
+        dotStyle={rangeStyles.dot}
         step={step}
         tipProps={{
           placement: 'top',
@@ -84,7 +75,7 @@ const CustomRange = ({
         tipFormatter={tipFormatter}
         marks={marks}
       />
-    </>
+    </div>
   );
 };
 

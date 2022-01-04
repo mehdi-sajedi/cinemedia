@@ -72,8 +72,18 @@ const FilterMenu = ({ genres }) => {
             route={route}
             tipFormatter={(v) => v}
             marks={{
-              1980: `1980`,
-              2022: `2022`,
+              1980: {
+                style: {
+                  marginTop: '10px',
+                },
+                label: '1980',
+              },
+              2022: {
+                style: {
+                  marginTop: '10px',
+                },
+                label: '2022',
+              },
             }}
             icon={<AiOutlineCalendar />}
           />
@@ -84,12 +94,22 @@ const FilterMenu = ({ genres }) => {
             action="SET-RUNTIME"
             min={0}
             max={240}
-            step={10}
+            step={5}
             route={route}
             tipFormatter={(v) => `${v}m`}
             marks={{
-              0: `0m`,
-              240: `240m`,
+              0: {
+                style: {
+                  marginTop: '10px',
+                },
+                label: '0m',
+              },
+              240: {
+                style: {
+                  marginTop: '10px',
+                },
+                label: '240m',
+              },
             }}
             icon={<IoMdTime />}
           />
@@ -102,10 +122,20 @@ const FilterMenu = ({ genres }) => {
             max={100}
             step={1}
             route={route}
-            tipFormatter={(v) => `${v}`}
+            tipFormatter={(v) => `${v}%`}
             marks={{
-              0: `0`,
-              100: `100`,
+              0: {
+                style: {
+                  marginTop: '10px',
+                },
+                label: '0%',
+              },
+              100: {
+                style: {
+                  marginTop: '10px',
+                },
+                label: '100%',
+              },
             }}
             icon={<FiStar />}
           />

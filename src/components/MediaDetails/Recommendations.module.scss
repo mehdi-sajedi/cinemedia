@@ -19,7 +19,7 @@
     padding: 1px 1px 1rem;
     margin-bottom: 3rem;
 
-    @include media('<=1300px') {
+    @include media('<=1200px') {
       grid-template-columns: repeat(3, 1fr);
     }
 

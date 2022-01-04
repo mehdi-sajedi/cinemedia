@@ -1,17 +1,19 @@
-.header {
-  display: flex;
-  // text-align: center;
+.wrapper {
   margin-bottom: 3rem;
-  margin-bottom: 2.5rem;
-  justify-content: center;
-  align-items: center;
 
-  svg {
-    font-size: 20px;
-    margin-right: 5px;
+  .header {
+    display: flex;
+    margin-bottom: 2.4rem;
+    justify-content: center;
+    align-items: center;
+    // background-color: #79c4e2;
+
+    svg {
+      font-size: 20px;
+      margin-right: 5px;
+    }
   }
-}
 
-.range {
-  margin-bottom: 3rem;
+  // .range {
+  // }
 }
