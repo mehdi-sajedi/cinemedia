@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import { formatDate } from '../Utilities/helpers';
 import styles from './PersonPage.module.scss';
+import KnownFor from './KnownFor';
 
 const posterBase = 'https://image.tmdb.org/t/p/w500';
 
@@ -85,11 +86,13 @@ const PersonPage = () => {
   return (
     <section className={styles.person}>
       <div className={styles.column1}>
-        <img
-          className={styles.image}
-          src={`${posterBase}${person.profile_path}`}
-          alt=""
-        />
+        {person.profile_path && (
+          <img
+            className={styles.image}
+            src={`${posterBase}${person.profile_path}`}
+            alt=""
+          />
+        )}
         <Link
           to={`/search?query=${person.name?.split(' ').join('+')}`}
           className={`${styles.name} ${styles.nameMobile}`}
@@ -165,32 +168,11 @@ const PersonPage = () => {
           {person.biography && (
             <>
               <h3 className={styles.bioHeading}>Biography</h3>
-              <p style={{ marginBottom: '5rem' }} className={styles.bio}>
-                {person.biography}
-              </p>
+              <p className={styles.bio}>{person.biography}</p>
             </>
           )}
-
-          {/*  */}
-
-          <div className={styles.knownFor}>
-            <h3 className={styles.knownForHeading}>Known for</h3>
-            <div className={styles.knownForGrid}>
-              {person.combined_credits?.cast.slice(0, 10).map((media) => {
-                return (
-                  <div className={styles.knownForMedia}>
-                    <img src={`${posterBase}${media.poster_path}`} alt="" />
-                    <p className={styles.name}>
-                      {media.name ? media.name : media.title}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/*  */}
         </div>
+        <KnownFor />
       </div>
     </section>
   );
