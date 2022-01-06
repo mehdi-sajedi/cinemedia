@@ -16,6 +16,7 @@ import MobileMenu from './components/Global/MobileMenu';
 import FilterBtn from './components/Home/FilterBtn';
 import FilterMenu from './components/Home/FilterMenu';
 import { movieGenres, showGenres } from './components/Utilities/helpers';
+import ScrollToTop from './components/Utilities/ScrollToTop';
 
 function App() {
   const { appState } = useContext(AppContext);
@@ -76,77 +77,79 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Nav />
-      <MobileMenu />
-      <main>
-        <Routes>
-          <Route
-            path="/movies"
-            element={
-              <>
-                <FilterBtn />
-                <Grid url={movies} route="movies" />
-                <Pagination
-                  currentPage={appState.pagination.currentMoviesPage}
-                  totalMedia={appState.pagination.totalMovies}
-                />
-                <FilterMenu genres={movieGenres} />
-              </>
-            }
-          ></Route>
-          <Route
-            path="shows"
-            element={
-              <>
-                <FilterBtn />
-                <Grid url={shows} route="shows" />
-                <Pagination
-                  currentPage={appState.pagination.currentShowsPage}
-                  totalMedia={appState.pagination.totalShows}
-                />
-                <FilterMenu genres={showGenres} />
-              </>
-            }
-          ></Route>
-          <Route
-            path="search"
-            element={
-              <>
-                <SearchResultsText />
-                <Grid />
-              </>
-            }
-          ></Route>
-          <Route
-            path="/movies/:id"
-            element={
-              <>
-                <Showcase />
-                <Details />
-                {appState.currentMedia.recommendations?.length > 0 && (
-                  <Recommendations />
-                )}
-              </>
-            }
-          />
-          <Route
-            path="/shows/:id"
-            element={
-              <>
-                <Showcase />
-                <Details />
-                {appState.currentMedia.recommendations?.length > 0 && (
-                  <Recommendations />
-                )}
-              </>
-            }
-          />
-          <Route path="/person/:id" element={<PersonPage />} />
-          <Route path="/" element={<Navigate replace to="movies" />} />
-          <Route path="*" element={<NoRoute />} />
-        </Routes>
-      </main>
-      <Footer />
+      <ScrollToTop>
+        <Nav />
+        <MobileMenu />
+        <main>
+          <Routes>
+            <Route
+              path="/movies"
+              element={
+                <>
+                  <FilterBtn />
+                  <Grid url={movies} route="movies" />
+                  <Pagination
+                    currentPage={appState.pagination.currentMoviesPage}
+                    totalMedia={appState.pagination.totalMovies}
+                  />
+                  <FilterMenu genres={movieGenres} />
+                </>
+              }
+            ></Route>
+            <Route
+              path="shows"
+              element={
+                <>
+                  <FilterBtn />
+                  <Grid url={shows} route="shows" />
+                  <Pagination
+                    currentPage={appState.pagination.currentShowsPage}
+                    totalMedia={appState.pagination.totalShows}
+                  />
+                  <FilterMenu genres={showGenres} />
+                </>
+              }
+            ></Route>
+            <Route
+              path="search"
+              element={
+                <>
+                  <SearchResultsText />
+                  <Grid />
+                </>
+              }
+            ></Route>
+            <Route
+              path="/movies/:id"
+              element={
+                <>
+                  <Showcase />
+                  <Details />
+                  {appState.currentMedia.recommendations?.length > 0 && (
+                    <Recommendations />
+                  )}
+                </>
+              }
+            />
+            <Route
+              path="/shows/:id"
+              element={
+                <>
+                  <Showcase />
+                  <Details />
+                  {appState.currentMedia.recommendations?.length > 0 && (
+                    <Recommendations />
+                  )}
+                </>
+              }
+            />
+            <Route path="/person/:id" element={<PersonPage />} />
+            <Route path="/" element={<Navigate replace to="movies" />} />
+            <Route path="*" element={<NoRoute />} />
+          </Routes>
+        </main>
+        <Footer />
+      </ScrollToTop>
     </BrowserRouter>
   );
 }

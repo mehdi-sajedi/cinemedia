@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './RecommendationsCard.module.scss';
 
@@ -12,10 +12,6 @@ const RecommendationsCard = ({
   media_type,
 }) => {
   const mediaType = media_type === 'movie' ? 'movies' : 'shows';
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <Link className={styles.card} to={`/${mediaType}/${id}`}>
