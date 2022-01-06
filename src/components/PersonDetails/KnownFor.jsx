@@ -10,7 +10,7 @@ const KnownFor = () => {
 
   return (
     <div className={styles.knownFor}>
-      <h3 className={styles.knownForHeading}>Known for</h3>
+      <h3 className={styles.knownForHeading}>Known For</h3>
       <div className={styles.knownForGrid}>
         {appState.person.combined_credits?.cast.slice(0, 10).map((media) => {
           const route = media.media_type === 'movie' ? 'movies' : 'shows';

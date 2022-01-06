@@ -6,7 +6,7 @@
   left: 0;
   z-index: 2;
   visibility: hidden;
-  transition: all 0.5s ease;
+  transition: all 0.3s ease-out;
   width: 100vw;
   height: 100vh;
   opacity: 0;
@@ -99,7 +99,19 @@
         width: 100%;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 12px;
+
+        // display: flex;
+        // flex-wrap: wrap;
+
+        // @include media('<tablet') {
+        //   grid-template-columns: repeat(10, 1fr);
+        // }
+
+        > * {
+          width: 50px;
+        }
       }
     }
 
@@ -135,11 +147,11 @@
         }
 
         &.reset {
-          background-color: #ccc;
+          background-color: rgb(215, 215, 215);
         }
 
         &.submit {
-          background-color: rgb(83, 182, 126);
+          background-color: rgb(106, 212, 152);
         }
       }
     }
