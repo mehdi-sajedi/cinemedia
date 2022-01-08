@@ -30,7 +30,7 @@ const PersonPage = () => {
       combined_credits.cast = combined_credits.cast
         .filter(
           (media) =>
-            !media.genre_ids.includes(10767) || !media.genre_ids.includes(10767)
+            !media.genre_ids.includes(10763) || !media.genre_ids.includes(10763)
         )
         .sort((a, b) => b.vote_count - a.vote_count);
 
@@ -117,8 +117,14 @@ const PersonPage = () => {
                 )
             )}
           </ul>
-          <h3 className={styles.personalInfoHeading}>Personal Info</h3>
-          <div className={`${styles.line} ${styles.linePersonal}`}></div>
+
+          {(person.birthday || person.deathday || person.place_of_birth) && (
+            <>
+              <h3 className={styles.personalInfoHeading}>Personal Info</h3>
+              <div className={`${styles.line} ${styles.linePersonal}`}></div>
+            </>
+          )}
+
           <div className={styles.personalInfo}>
             {appState.person.birthday && (
               <div className={styles.birthday}>

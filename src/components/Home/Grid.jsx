@@ -65,11 +65,14 @@ const Grid = ({ url, route }) => {
         let { cast: personMedia } = await res.json();
         console.log(personMedia);
 
-        personMedia = personMedia.map((entry) =>
-          entry.media_type === 'movie'
-            ? destructMovieProps(entry)
-            : destructShowProps(entry)
-        );
+        personMedia = personMedia
+          .filter((media) => !media.genre_ids.includes(10763))
+          .sort((a, b) => b.vote_count - a.vote_count)
+          .map((entry) =>
+            entry.media_type === 'movie'
+              ? destructMovieProps(entry)
+              : destructShowProps(entry)
+          );
 
         dispatch({
           type: 'SET-RESULTS',

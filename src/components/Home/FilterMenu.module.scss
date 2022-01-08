@@ -98,15 +98,11 @@
       .watchProvidersList {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
         grid-template-columns: repeat(6, 1fr);
         gap: 12px;
 
-        // display: flex;
-        // flex-wrap: wrap;
-
         // @include media('<tablet') {
-        //   grid-template-columns: repeat(10, 1fr);
+        //   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         // }
 
         > * {
