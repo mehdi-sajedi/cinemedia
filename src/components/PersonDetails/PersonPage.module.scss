@@ -2,7 +2,6 @@
 
 .person {
   display: flex;
-  // justify-content: center;
   column-gap: clamp(1px, 5vw, 3.5rem);
   max-width: var(--max-width);
   margin: 3rem auto;
@@ -141,6 +140,8 @@
     // width: 75%;
     display: flex;
     flex-direction: column;
+    // justify-content: space-between;
+    // min-height: 850px;
 
     @include media('<850.2px') {
       width: 100%;
@@ -155,7 +156,7 @@
       line-height: 1.6;
       letter-spacing: 0;
       white-space: pre-wrap;
-      margin-bottom: 4rem;
+      margin-bottom: 3rem;
 
       @include media('<850.2px') {
         margin-bottom: 2.5rem;

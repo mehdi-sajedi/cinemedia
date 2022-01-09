@@ -10,13 +10,15 @@ const CastCard = ({ name, profile_path: image, character, id }) => {
     `https://image.tmdb.org/t/p/${sizes[1]}${image} ${sizes[1].slice(1) + 'w'}`,
   ];
   return (
-    <Link className={styles.card} to={`/person/${id}`}>
-      <img srcSet={imagePaths.join(`, `)} alt="" />
+    <li className={styles.card}>
+      <Link to={`/person/${id}`}>
+        <img srcSet={imagePaths.join(`, `)} alt="" />
+      </Link>
       <div className={styles.text}>
         <h5 className={styles.actor}>{name}</h5>
         <p>{character}</p>
       </div>
-    </Link>
+    </li>
   );
 };
 

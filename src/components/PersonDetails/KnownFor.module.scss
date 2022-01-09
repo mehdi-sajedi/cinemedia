@@ -1,4 +1,12 @@
+@import '../../include-media.scss';
+
 .knownFor {
+  transform: translateY(1rem);
+
+  @include media('<850.2px') {
+    transform: translateY(0);
+  }
+
   .knownForHeading {
     margin-bottom: 1rem;
     font-weight: 600;

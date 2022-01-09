@@ -8,7 +8,7 @@ const Cast = () => {
   return (
     <div className={styles.cast}>
       <h2 className={styles.heading}>Cast</h2>
-      <div className={styles.castGrid}>
+      <ul className={styles.castGrid}>
         {appState.currentMedia?.credits?.cast?.map((member, idx) => {
           return (
             member.profile_path &&
@@ -17,7 +17,7 @@ const Cast = () => {
             )
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };
