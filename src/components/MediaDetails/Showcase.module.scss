@@ -1,7 +1,11 @@
 @import '../../app.scss';
 
 .main {
-  padding-bottom: 3rem;
+  margin-bottom: 3rem;
+
+  @include media('<880px') {
+    margin-bottom: 2rem;
+  }
 
   .showcase {
     height: 600px;

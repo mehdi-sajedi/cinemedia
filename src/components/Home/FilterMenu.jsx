@@ -30,6 +30,7 @@ const FilterMenu = ({ genres }) => {
 
   const resetForm = () => {
     dispatchFilter({ type: 'RESET' });
+    window.scrollTo(0, 0);
   };
 
   const applyFilters = (e) => {

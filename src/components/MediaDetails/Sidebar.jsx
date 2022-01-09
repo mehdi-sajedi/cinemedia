@@ -73,6 +73,7 @@ const Sidebar = () => {
           </p>
         </div>
         {pathname.includes('shows') ? (
+          // SHOWS ROUTE
           <>
             <div className={styles.seasons}>
               <h4>Seasons</h4>
@@ -99,6 +100,7 @@ const Sidebar = () => {
             </div>
           </>
         ) : (
+          // MOVIES ROUTE
           <>
             <div className={styles.budget}>
               <h4>Budget</h4>
