@@ -8,6 +8,7 @@ import { BsFillPlayFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../Utilities/helpers';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 const backdropBase = 'https://image.tmdb.org/t/p/original/';
 const posterBase = 'https://image.tmdb.org/t/p/w780/';
@@ -19,6 +20,11 @@ const Showcase = () => {
   const [showGallery, setShowGallery] = useState(false);
   const media = appState.currentMedia;
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
+  useDocumentTitle(`${media.title} (${media.release_date?.slice(0, 4)})`);
+
+  // useEffect(() => {
+  //   document.title = `${media.title} (${media.release_date?.slice(0, 4)})`;
+  // }, [media]);
 
   const trailer = media.videos?.results?.find((entry) => {
     return (

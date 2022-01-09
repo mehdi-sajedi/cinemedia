@@ -6,6 +6,7 @@ import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import { formatDate } from '../Utilities/helpers';
 import styles from './PersonPage.module.scss';
 import KnownFor from './KnownFor';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 const posterBase = 'https://image.tmdb.org/t/p/w500';
 
@@ -14,6 +15,7 @@ const PersonPage = () => {
   const { person } = appState;
   const { pathname } = useLocation();
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
+  useDocumentTitle(`${person.name}`);
 
   const URL_PERSON = `https://api.themoviedb.org/3/person/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=combined_credits,external_ids`;
 

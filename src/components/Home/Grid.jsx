@@ -8,13 +8,15 @@ import {
   destructShowProps,
   setSearchPayload,
 } from '../Utilities/helpers';
+import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
 const Grid = ({ url, route }) => {
   const { appState, dispatch } = useContext(AppContext);
   const location = useLocation();
   const [searchParams] = useSearchParams();
-
-  console.log('GRID.jsx');
+  useDocumentTitle(
+    location.pathname.includes('movies') ? 'Popular Movies' : 'Popular Shows'
+  );
 
   // For /movies and /shows routes
   useEffect(() => {
