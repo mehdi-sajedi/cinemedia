@@ -20,8 +20,8 @@ const MobileMenu = () => {
           appState.navMenuOpen ? styles.active : ''
         }`}
       >
-        <div className="overlay">
-          <div>
+        <div className={`overlay ${styles.overlay}`}>
+          <div className={styles.linksWrap}>
             <ul className={styles.links}>
               <li>
                 <Link to="/movies">Movies</Link>

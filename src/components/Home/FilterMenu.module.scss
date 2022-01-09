@@ -101,12 +101,12 @@
         grid-template-columns: repeat(6, 1fr);
         gap: 12px;
 
-        // @include media('<tablet') {
-        //   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        // }
+        @include media('<tablet') {
+          grid-template-columns: repeat(8, 1fr);
+        }
 
-        > * {
-          width: 50px;
+        @include media('<=phone') {
+          grid-template-columns: repeat(auto-fit, minmax(52px, 1fr));
         }
       }
     }
