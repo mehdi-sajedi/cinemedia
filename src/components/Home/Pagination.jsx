@@ -1,30 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../../context/app-context';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import styles from './Pagination.module.scss';
 
 const Pagination = ({ currentPage, totalMedia }) => {
   const { appState, dispatch } = useContext(AppContext);
   const { pathname } = useLocation();
-  const [, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    if (pathname.includes('movies')) {
-      setSearchParams({
-        page: appState.pagination.currentMoviesPage,
-      });
-    } else {
-      setSearchParams({
-        page: appState.pagination.currentShowsPage,
-      });
-    }
-  }, [
-    setSearchParams,
-    pathname,
-    appState.pagination.currentMoviesPage,
-    appState.pagination.currentShowsPage,
-  ]);
 
   const pageNumbers = [];
   let maxPages = Math.ceil(totalMedia / appState.pagination.mediaPerPage);

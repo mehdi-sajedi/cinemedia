@@ -7,5 +7,5 @@ export const useDocumentTitle = (title) => {
     return () => {
       document.title = prevTitle;
     };
-  });
+  }, [title]);
 };
