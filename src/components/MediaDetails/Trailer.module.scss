@@ -22,7 +22,7 @@
   background-color: black;
   border: 5px solid #ccc;
   box-shadow: 0 0 10px 10px black;
-  animation: popIn 0.6s;
+  animation: popIn 0.55s;
 
   @include media('<=phone') {
     width: clamp(1px, 1760px, 82vw);
