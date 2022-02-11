@@ -1,4 +1,4 @@
-@import '../../include-media.scss';
+@import '../../app.scss';
 
 .knownFor {
   transform: translateY(1rem);
@@ -28,6 +28,7 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       width: 138px;
       border-radius: 5px;
+      outline: 1px solid #e3e3e3;
 
       img {
         border-radius: 5px 5px 0 0;
@@ -37,6 +38,7 @@
         font-size: 14px;
         font-weight: 600;
         padding: 10px;
+        color: var(--sub-heading);
       }
     }
   }

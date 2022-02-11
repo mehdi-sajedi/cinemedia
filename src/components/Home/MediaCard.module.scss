@@ -1,4 +1,4 @@
-@import '../../include-media.scss';
+@import '../../app.scss';
 
 .card {
   background-color: rgb(227, 227, 227);
@@ -32,7 +32,7 @@
     }
 
     .name {
-      font-weight: 700;
+      font-weight: 600;
       font-size: 16px;
 
       @include media('<tablet') {
@@ -42,7 +42,9 @@
 
     .release {
       font-size: 14px;
+      font-size: 13px;
       margin-top: 5px;
+      color: var(--sub-heading);
 
       @include media('<=phone') {
         font-size: 13px;

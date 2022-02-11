@@ -9,6 +9,7 @@ const CastCard = ({ name, profile_path: image, character, id }) => {
     `https://image.tmdb.org/t/p/${sizes[0]}${image} ${sizes[0].slice(1) + 'w'}`,
     `https://image.tmdb.org/t/p/${sizes[1]}${image} ${sizes[1].slice(1) + 'w'}`,
   ];
+
   return (
     <li className={styles.card}>
       <Link to={`/person/${id}`}>
