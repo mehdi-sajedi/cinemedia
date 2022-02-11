@@ -31,7 +31,7 @@ const KnownFor = () => {
                   >
                     <img src={`${posterBase}${media.poster_path}`} alt="" />
                   </Link>
-                  <h5 className={styles.name}>
+                  <h5 className={styles.title}>
                     {media.name ? media.name : media.title}
                   </h5>
                 </div>

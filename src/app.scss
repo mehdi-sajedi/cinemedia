@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
-// @import '~react-image-gallery/styles/scss/image-gallery.scss';
 @import './include-media.scss';
 
 :root {
   --max-width: clamp(1px, 1440px, 92vw);
-  --dark-grey: rgb(27, 27, 27);
+  --dark-grey: rgb(25, 25, 25);
   --sub-heading: #3c3c3c;
   --white: #fff;
 }

@@ -34,11 +34,13 @@
         border-radius: 5px 5px 0 0;
       }
 
-      .name {
+      .title {
+        min-height: 65px;
         font-size: 14px;
         font-weight: 600;
         padding: 10px;
         color: var(--sub-heading);
+        letter-spacing: 0;
       }
     }
   }

@@ -10,12 +10,13 @@
   .showcase {
     height: 600px;
     position: relative;
-    background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.98) 0%,
-      rgba(0, 0, 0, 0.75) 50%,
-      rgba(0, 0, 0, 0.5) 100%
-    );
+    // background: linear-gradient(
+    //   to right,
+    //   rgba(0, 0, 0, 0.98) 0%,
+    //   rgba(0, 0, 0, 0.75) 50%,
+    //   rgba(0, 0, 0, 0.5) 100%
+    // );
+    background-color: rgba(0, 0, 0, 0.7);
 
     @include media('<tablet') {
       height: fit-content;
@@ -324,16 +325,15 @@
 
       &.posterHover {
         cursor: pointer;
+        background-color: black;
 
         &:hover {
-          background-color: black;
-
           @include media('<tablet') {
             background-color: transparent;
           }
 
           .poster {
-            opacity: 0.3;
+            opacity: 0.25;
           }
 
           .posterText {
