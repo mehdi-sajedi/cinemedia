@@ -327,6 +327,10 @@
         cursor: pointer;
         background-color: black;
 
+        @include media('<tablet') {
+          background-color: transparent;
+        }
+
         &:hover {
           @include media('<tablet') {
             background-color: transparent;
