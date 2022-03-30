@@ -22,10 +22,6 @@ const Showcase = () => {
   const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
   useDocumentTitle(`${media.title} (${media.release_date?.slice(0, 4)})`);
 
-  // useEffect(() => {
-  //   document.title = `${media.title} (${media.release_date?.slice(0, 4)})`;
-  // }, [media]);
-
   const trailer = media.videos?.results?.find((entry) => {
     return (
       entry.type.toLowerCase() === 'trailer' &&
