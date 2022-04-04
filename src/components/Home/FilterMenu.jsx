@@ -59,7 +59,7 @@ const FilterMenu = ({ genres }) => {
             !appState.filterMenuOpen ? styles.removePointer : ''
           } closeBtn`}
         />
-        <header className={styles.header}>Filter & Sort</header>
+        <header className={styles.header}>Filters</header>
         <form onSubmit={applyFilters} className={styles.form}>
           <CustomRange
             name="Year"
