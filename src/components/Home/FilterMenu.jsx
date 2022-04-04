@@ -18,7 +18,6 @@ const FilterMenu = ({ genres }) => {
   const route = pathname.includes('movies') ? 'movies' : 'shows';
 
   const closeMenu = (e) => {
-    console.log(e.target);
     if (
       e.target.classList.contains('overlay') ||
       e.target.classList.contains('closeBtn') ||

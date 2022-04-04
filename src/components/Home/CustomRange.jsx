@@ -46,7 +46,6 @@ const CustomRange = ({
   };
 
   const handleSliderChange = (v) => {
-    console.log(v);
     dispatchFilter({ type: action, payload: { value: v, route: route } });
   };
 

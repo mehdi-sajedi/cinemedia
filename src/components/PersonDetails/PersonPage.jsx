@@ -27,8 +27,6 @@ const PersonPage = () => {
       if (birthday) birthday = birthday.replace(/-/g, '/');
       if (deathday) deathday = deathday.replace(/-/g, '/');
 
-      console.log({ birthday, deathday, combined_credits, ...rest });
-
       combined_credits.cast = combined_credits.cast
         .filter(
           (media) =>

@@ -23,9 +23,7 @@ const Grid = ({ url, route }) => {
     const getResults = async () => {
       try {
         const res = await fetch(url);
-        // Not using anything from ...rest, but destructuring it for now for completeness/logging
         let { results, total_results, ...rest } = await res.json();
-        console.log({ results, total_results, ...rest });
 
         results = results.map((entry) =>
           route === 'movies'
@@ -42,7 +40,7 @@ const Grid = ({ url, route }) => {
           },
         });
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     };
 
@@ -65,7 +63,6 @@ const Grid = ({ url, route }) => {
         const URL_PERSON_ID = `https://api.themoviedb.org/3/person/${obj.id}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`;
         const res = await fetch(URL_PERSON_ID);
         let { cast: personMedia } = await res.json();
-        console.log(personMedia);
 
         personMedia = personMedia
           .filter((media) => !media.genre_ids.includes(10763))

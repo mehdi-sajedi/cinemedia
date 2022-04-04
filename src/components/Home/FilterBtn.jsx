@@ -7,7 +7,6 @@ const FilterBtn = () => {
   const { appState, dispatch } = useContext(AppContext);
 
   const toggleFilterMenu = (e) => {
-    console.log(e.target);
     dispatch({ type: 'TOGGLE-FILTER-MENU' });
   };
 

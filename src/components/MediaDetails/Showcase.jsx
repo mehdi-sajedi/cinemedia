@@ -45,7 +45,6 @@ const Showcase = () => {
 
       if (mediaType === URL_MOVIE) {
         let { recommendations, ...rest } = await res.json();
-        console.log({ recommendations, ...rest });
 
         dispatch({
           type: 'SET-SINGLE-RESULT',
@@ -61,8 +60,6 @@ const Showcase = () => {
           recommendations,
           ...rest
         } = await res.json();
-        // prettier-ignore
-        console.log({ title, release_date, runtime,  recommendations, ...rest });
 
         dispatch({
           type: 'SET-SINGLE-RESULT',
