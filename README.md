@@ -25,12 +25,6 @@ For the last major route, I wanted to link the cast members to a separate page t
 - SCSS modules
 - [Immer](https://github.com/immerjs/immer)
 
-### What I learned
-
-#### React Router v6
-
-When I initially began building this project, I was using React Router v5. However, I took a break and when I returned my code wasn't running and I was getting error messages regarding my current version of React Router. I needed to upgrade to the latest version and make necessary changes to get my project back up and running. This was a great learning experience for me because it was a testament to the fact things are constantly changing when it comes to web development and there are no shortcomings of opportunities to learn new things.
-
 ## Author
 
 - Website - [Mehdi Sajedi](https://mehdi-sajedi.github.io/)
