@@ -23,7 +23,7 @@ const Grid = ({ url, route }) => {
     const getResults = async () => {
       try {
         const res = await fetch(url);
-        let { results, total_results, ...rest } = await res.json();
+        let { results, total_results } = await res.json();
 
         results = results.map((entry) =>
           route === 'movies'
