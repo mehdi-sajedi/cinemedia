@@ -1,37 +1,13 @@
 import React, { createContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 import { enableMapSet } from 'immer';
+import { initialAppState } from '../data/initialAppState';
+import { initialFilterState } from '../data/initialFilterState';
 enableMapSet();
 
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const initialAppState = {
-    results: {},
-    currentMedia: {},
-    person: {},
-    search: {
-      query: '',
-      person: null,
-      personFullName: '',
-      id: null,
-    },
-    pagination: {
-      currentMoviesPage: 1,
-      currentShowsPage: 1,
-      mediaPerPage: 20,
-      totalMovies: 200,
-      totalShows: 200,
-    },
-    currentSearchText: '',
-    navMenuOpen: false,
-    filterMenuOpen: false,
-    filters: {
-      movies: {},
-      shows: {},
-    },
-  };
-
   const reducer = (draft, action) => {
     // Actions
     if (action.type === 'SET-RESULTS') {
@@ -76,39 +52,6 @@ export const AppProvider = ({ children }) => {
   // -------------------------------------------------------- //
   // -------------------------------------------------------- //
   // -------------------------------------------------------- //
-
-  const initialFilterState = {
-    movies: {
-      runtime: {
-        value: [0, 240],
-      },
-      year: {
-        value: [1980, 2022],
-        valueFormatted: ['2000-01-01', '2022-12-31'],
-      },
-      rating: {
-        value: [0, 100],
-        valueFormatted: [0, 10],
-      },
-      genres: [],
-      watchProviders: [],
-    },
-    shows: {
-      runtime: {
-        value: [0, 240],
-      },
-      year: {
-        value: [1980, 2022],
-        valueFormatted: ['2000-01-01', '2022-12-31'],
-      },
-      rating: {
-        value: [0, 100],
-        valueFormatted: [0, 10],
-      },
-      genres: [],
-      watchProviders: [],
-    },
-  };
 
   const filterReducer = (draft, action) => {
     if (action.type === 'SET-RUNTIME') {

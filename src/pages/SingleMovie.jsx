@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { AppContext } from '../context/app-context';
-import Showcase from '../components/MediaDetails/Showcase';
-import Details from '../components/MediaDetails/Details';
-import Recommendations from '../components/MediaDetails/Recommendations';
+import Showcase from '../components/Media/Showcase';
+import Details from '../components/Media/Details';
+import Recommendations from '../components/Media/Recommendations';
 
 const SingleMovie = () => {
   const { appState } = useContext(AppContext);
