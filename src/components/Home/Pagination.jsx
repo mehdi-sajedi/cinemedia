@@ -4,9 +4,20 @@ import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 import { useLocation } from 'react-router-dom';
 import styles from './Pagination.module.scss';
 
-const Pagination = ({ currentPage, totalMedia }) => {
+const Pagination = () => {
   const { appState, dispatch } = useContext(AppContext);
   const { pathname } = useLocation();
+
+  let currentPage;
+  let totalMedia;
+
+  if (pathname.includes('movies')) {
+    currentPage = appState.pagination.currentMoviesPage;
+    totalMedia = appState.pagination.totalMovies;
+  } else {
+    currentPage = appState.pagination.currentShowsPage;
+    totalMedia = appState.pagination.totalShows;
+  }
 
   const pageNumbers = [];
   let maxPages = Math.ceil(totalMedia / appState.pagination.mediaPerPage);
