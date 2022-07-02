@@ -1,26 +1,14 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../context/app-context';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
-import { useLocation } from 'react-router-dom';
 import styles from './Pagination.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { paginate } from '../../features/movies/movieSlice';
 
 const Pagination = () => {
-  const { appState, dispatch } = useContext(AppContext);
-  const { pathname } = useLocation();
-
-  let currentPage;
-  let totalMedia;
-
-  if (pathname.includes('movies')) {
-    currentPage = appState.pagination.currentMoviesPage;
-    totalMedia = appState.pagination.totalMovies;
-  } else {
-    currentPage = appState.pagination.currentShowsPage;
-    totalMedia = appState.pagination.totalShows;
-  }
+  const dispatch = useDispatch();
+  const { page, totalResults } = useSelector((state) => state.movie);
 
   const pageNumbers = [];
-  let maxPages = Math.ceil(totalMedia / appState.pagination.mediaPerPage);
+  let maxPages = Math.ceil(totalResults / 20);
   maxPages = Math.min(maxPages, 20);
 
   for (let i = 1; i <= maxPages; i++) {
@@ -28,33 +16,27 @@ const Pagination = () => {
   }
 
   pageNumbers.filter((num) => {
-    return currentPage + 2 <= num;
+    return page + 2 <= num;
   });
 
   const handlePaginate = (pageNum) => {
     if (pageNum < 1 || pageNum > maxPages) return;
-    dispatch({
-      type: 'SET-CURRENT-PAGE',
-      payload: { pageNum: pageNum, route: pathname },
-    });
+    dispatch(paginate(pageNum));
   };
 
   return (
     <div className={styles.pagination}>
       <IoIosArrowBack
-        onClick={() => handlePaginate(currentPage - 1)}
+        onClick={() => handlePaginate(page - 1)}
         className={`${styles.arrow} ${styles.arrowBack} ${
-          currentPage === 1 ? 'inactive' : ''
+          page === 1 ? 'inactive' : ''
         }`}
       />
       <div className={styles.mediaPages}>
         <ul>
-          {currentPage >= 3 && (
+          {page >= 3 && (
             <>
-              <li
-                key={1}
-                className={`${1 === currentPage ? styles.activePage : ''} `}
-              >
+              <li key={1} className={`${1 === page ? styles.activePage : ''} `}>
                 <button onClick={() => handlePaginate(1)}>1</button>
               </li>
               <span className={styles.dots}>...</span>
@@ -62,14 +44,12 @@ const Pagination = () => {
           )}
 
           {pageNumbers
-            .filter((num) => currentPage + 2 >= num && currentPage - 1 <= num)
+            .filter((num) => page + 2 >= num && page - 1 <= num)
             .map((pageNum) => {
               return (
                 <li
                   key={pageNum}
-                  className={`${
-                    pageNum === currentPage ? styles.activePage : ''
-                  } `}
+                  className={`${pageNum === page ? styles.activePage : ''} `}
                 >
                   <button onClick={() => handlePaginate(pageNum)}>
                     {pageNum}
@@ -78,14 +58,12 @@ const Pagination = () => {
               );
             })}
 
-          {currentPage + 2 < maxPages && (
+          {page + 2 < maxPages && (
             <>
               <span className={styles.dots}>...</span>
               <li
                 key={maxPages}
-                className={`${
-                  maxPages === currentPage ? styles.activePage : ''
-                } `}
+                className={`${maxPages === page ? styles.activePage : ''} `}
               >
                 <button onClick={() => handlePaginate(maxPages)}>
                   {maxPages}
@@ -96,9 +74,9 @@ const Pagination = () => {
         </ul>
       </div>
       <IoIosArrowForward
-        onClick={() => handlePaginate(currentPage + 1)}
+        onClick={() => handlePaginate(page + 1)}
         className={`${styles.arrow} ${styles.arrowForward} ${
-          currentPage === maxPages ? 'inactive' : ''
+          page === maxPages ? 'inactive' : ''
         }`}
       />
     </div>

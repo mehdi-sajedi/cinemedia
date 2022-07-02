@@ -1,18 +1,18 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../context/app-context';
 import { useLocation } from 'react-router';
 import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import { MdOutlineLink } from 'react-icons/md';
 import { formatDate } from '../Utilities/helpers';
 import styles from './Sidebar.module.scss';
+import { useSelector } from 'react-redux';
 
 const posterBase = 'https://image.tmdb.org/t/p/original';
 
 const Sidebar = () => {
-  const { appState } = useContext(AppContext);
+  const { singleMovie } = useSelector((state) => state.movie);
+
   const { pathname } = useLocation();
 
-  const media = appState.currentMedia;
+  const media = singleMovie;
 
   const socials = [
     {

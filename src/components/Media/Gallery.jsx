@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../context/app-context';
-import ImageGallery from 'react-image-gallery';
+import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
+import { isBrowser } from 'react-device-detect';
 import styles from './Gallery.module.scss';
 import './GalleryExtra.scss';
-import { isBrowser } from 'react-device-detect';
+import ImageGallery from 'react-image-gallery';
 
 const backdropBase = 'https://image.tmdb.org/t/p';
 
 const Gallery = ({ setShowGallery }) => {
-  const { appState } = useContext(AppContext);
+  const { singleMovie } = useSelector((state) => state.movie);
   const sizes = ['780', '1280', ''];
 
-  const images = appState.currentMedia.images.backdrops.map((entry) => {
+  const images = singleMovie.images.backdrops.map((entry) => {
     return {
       original: `${backdropBase}/w780${entry.file_path}`,
       thumbnail: `${backdropBase}/w780${entry.file_path}`,

@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../context/app-context';
 import styles from './Cast.module.scss';
 import CastCard from './CastCard';
+import { useSelector } from 'react-redux';
 
 const Cast = () => {
-  const { appState } = useContext(AppContext);
+  const { singleMovie } = useSelector((state) => state.movie);
+
   return (
     <div className={styles.cast}>
       <h2 className={styles.heading}>Cast</h2>
       <ul className={styles.castGrid}>
-        {appState.currentMedia?.credits?.cast?.map((member, idx) => {
+        {singleMovie.credits?.cast.map((member, idx) => {
           return (
             member.profile_path &&
             idx < 20 && (

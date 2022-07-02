@@ -1,25 +1,24 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { AppContext } from '../../context/app-context';
+import React, { useState } from 'react';
 import styles from './Showcase.module.scss';
 import Trailer from './Trailer';
 import Gallery from './Gallery';
-import { useLocation } from 'react-router';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../Utilities/helpers';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 
+import { useSelector } from 'react-redux';
+
 const backdropBase = 'https://image.tmdb.org/t/p/original/';
 const posterBase = 'https://image.tmdb.org/t/p/w780/';
 
 const Showcase = () => {
-  const { appState, dispatch } = useContext(AppContext);
-  const { pathname } = useLocation();
+  const { singleMovie } = useSelector((state) => state.movie);
+
   const [showTrailer, setShowTrailer] = useState(false);
   const [showGallery, setShowGallery] = useState(false);
-  const media = appState.currentMedia;
-  const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
+  const media = singleMovie;
   useDocumentTitle(`${media.title} (${media.release_date?.slice(0, 4)})`);
 
   const trailer = media.videos?.results?.find((entry) => {
@@ -34,47 +33,6 @@ const Showcase = () => {
   const handleShowGallery = () => {
     hasImages && setShowGallery(true);
   };
-
-  useEffect(() => {
-    const getMediaDetails = async () => {
-      const URL_SHOW = `https://api.themoviedb.org/3/tv/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits,external_ids,images,videos,reviews,recommendations`;
-      const URL_MOVIE = `https://api.themoviedb.org/3/movie/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=credits,external_ids,images,videos,reviews,recommendations`;
-
-      const mediaType = pathname.includes('movies') ? URL_MOVIE : URL_SHOW;
-      const res = await fetch(mediaType);
-
-      if (mediaType === URL_MOVIE) {
-        let { recommendations, ...rest } = await res.json();
-
-        dispatch({
-          type: 'SET-SINGLE-RESULT',
-          payload: { recommendations: recommendations.results, ...rest },
-        });
-      }
-      //
-      else if (mediaType === URL_SHOW) {
-        let {
-          name: title,
-          first_air_date: release_date,
-          episode_run_time: runtime,
-          recommendations,
-          ...rest
-        } = await res.json();
-
-        dispatch({
-          type: 'SET-SINGLE-RESULT',
-          payload: {
-            title,
-            release_date,
-            runtime: runtime[0],
-            recommendations: recommendations.results,
-            ...rest,
-          },
-        });
-      }
-    };
-    getMediaDetails();
-  }, [dispatch, mediaID, pathname]);
 
   return (
     <main className={styles.main}>
