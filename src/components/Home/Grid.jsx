@@ -1,20 +1,14 @@
-import React, { useEffect, useContext } from 'react';
-import { AppContext } from '../../context/app-context';
+import React, { useEffect } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import MediaCard from './MediaCard';
 import GridStyles from './Grid.module.scss';
-import {
-  destructMovieProps,
-  destructShowProps,
-  setSearchPayload,
-} from '../Utilities/helpers';
+import { destructMovieProps, setSearchPayload } from '../Utilities/helpers';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 //
 import { useDispatch, useSelector } from 'react-redux';
 import { getMovies } from '../../features/movies/movieSlice';
 
 const Grid = ({ url, route }) => {
-  const { appState } = useContext(AppContext);
   const location = useLocation();
   const [searchParams] = useSearchParams();
   useDocumentTitle(

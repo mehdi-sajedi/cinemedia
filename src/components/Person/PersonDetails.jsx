@@ -1,83 +1,31 @@
-import React, { useContext, useEffect } from 'react';
-import { AppContext } from '../../context/app-context';
-import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import { formatDate } from '../Utilities/helpers';
-import styles from './PersonPage.module.scss';
-import KnownFor from './KnownFor';
-import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import styles from './PersonDetails.module.scss';
+import { useSelector } from 'react-redux';
+import { getAge } from '../../utilities/utilities';
 
 const posterBase = 'https://image.tmdb.org/t/p/w500';
 
 const PersonPage = () => {
-  const { appState, dispatch } = useContext(AppContext);
-  const { person } = appState;
-  const { pathname } = useLocation();
-  const mediaID = pathname.substring(pathname.lastIndexOf('/') + 1);
-  useDocumentTitle(`${person.name}`);
-
-  const URL_PERSON = `https://api.themoviedb.org/3/person/${mediaID}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=combined_credits,external_ids`;
-
-  useEffect(() => {
-    const getActorDetails = async () => {
-      const res = await fetch(URL_PERSON);
-      let { birthday, deathday, combined_credits, ...rest } = await res.json();
-
-      if (birthday) birthday = birthday.replace(/-/g, '/');
-      if (deathday) deathday = deathday.replace(/-/g, '/');
-
-      combined_credits.cast = combined_credits.cast
-        .filter(
-          (media) =>
-            !media.genre_ids.includes(10763) || !media.genre_ids.includes(10763)
-        )
-        .sort((a, b) => b.vote_count - a.vote_count);
-
-      dispatch({
-        type: 'SET-PERSON',
-        payload: { birthday, deathday, combined_credits, ...rest },
-      });
-    };
-    getActorDetails();
-  }, [URL_PERSON, dispatch]);
-
-  const getAge = (birthString, deathString) => {
-    const birthDate = new Date(birthString);
-
-    let todayOrDeathDate = new Date();
-    if (appState.person.deathday) {
-      todayOrDeathDate = new Date(deathString);
-    }
-
-    let age = todayOrDeathDate.getFullYear() - birthDate.getFullYear();
-    const m = todayOrDeathDate.getMonth() - birthDate.getMonth();
-    if (
-      m < 0 ||
-      (m === 0 && todayOrDeathDate.getDate() < birthDate.getDate())
-    ) {
-      age--;
-    }
-
-    return age;
-  };
+  const { person } = useSelector((state) => state.person);
 
   const socials = [
     {
       base: 'https://instagram.com/',
-      id: appState.person.external_ids?.instagram_id,
+      id: person.external_ids?.instagram_id,
       icon: BsInstagram,
       keyID: 5035739184843,
     },
     {
       base: 'https://facebook.com/',
-      id: appState.person.external_ids?.facebook_id,
+      id: person.external_ids?.facebook_id,
       icon: BsFacebook,
       keyID: 4810573175591,
     },
     {
       base: 'https://twitter.com/',
-      id: appState.person.external_ids?.twitter_id,
+      id: person.external_ids?.twitter_id,
       icon: BsTwitter,
       keyID: 1953038502946,
     },
@@ -126,12 +74,12 @@ const PersonPage = () => {
           )}
 
           <div className={styles.personalInfo}>
-            {appState.person.birthday && (
+            {person.birthday && (
               <div className={styles.birthday}>
                 <h4>Birthday</h4>
                 <p>
                   {formatDate(person.birthday)}
-                  {!appState.person.deathday && (
+                  {!person.deathday && (
                     <span>
                       {' '}
                       ({getAge(person.birthday, person.deathday)} years old)
@@ -140,7 +88,7 @@ const PersonPage = () => {
                 </p>
               </div>
             )}
-            {appState.person.deathday && (
+            {person.deathday && (
               <div className={styles.deathday}>
                 <h4>Day of Death</h4>
                 <p>
@@ -178,7 +126,37 @@ const PersonPage = () => {
             </>
           )}
         </div>
-        <KnownFor />
+        <div className={styles.knownFor}>
+          <h3 className={styles.knownForHeading}>Known For</h3>
+          <div className={styles.knownForGrid}>
+            {person.combined_credits?.cast
+              .slice(0, 10)
+              .filter(
+                (val, idx, arr) => arr.findIndex((t) => t.id === val.id) === idx
+              )
+              .map((media) => {
+                const route = media.media_type === 'movie' ? 'movies' : 'shows';
+                return (
+                  media.poster_path && (
+                    <div
+                      className={styles.knownForMedia}
+                      key={`${media.id}-${media.credit_id}`}
+                    >
+                      <Link
+                        to={`../${route}/${media.id}`}
+                        key={`${media.id}-${media.credit_id}`}
+                      >
+                        <img src={`${posterBase}${media.poster_path}`} alt="" />
+                      </Link>
+                      <h5 className={styles.title}>
+                        {media.name ? media.name : media.title}
+                      </h5>
+                    </div>
+                  )
+                );
+              })}
+          </div>
+        </div>
       </div>
     </section>
   );
