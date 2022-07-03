@@ -1,0 +1,42 @@
+// To style react-image-gallery package
+@import '~react-image-gallery/styles/scss/image-gallery.scss';
+@import '../../include-media.scss';
+
+.image-gallery-slides {
+  margin: 0 auto;
+  width: 75vw;
+  width: 85vw;
+
+  @include media('<desktop') {
+    width: 100vw;
+  }
+}
+
+.image-gallery-slide {
+  margin: 0 auto;
+  width: 100%;
+
+  &.center {
+    z-index: 1;
+  }
+
+  &.right {
+    opacity: 0;
+  }
+
+  .image-gallery-image {
+    width: 100%;
+  }
+}
+
+.image-gallery {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+}
+
+.image-gallery-thumbnail-image {
+  cursor: pointer;
+}

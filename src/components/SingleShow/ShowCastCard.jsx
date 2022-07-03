@@ -1,8 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './CastCard.module.scss';
+import styles from './ShowCastCard.module.scss';
 
-const CastCard = ({ name, profile_path: image, character, id }) => {
+const ShowCastCard = ({ name, profile_path: image, character, id }) => {
   const sizes = ['w92', 'w342'];
 
   const imagePaths = [
@@ -23,4 +22,4 @@ const CastCard = ({ name, profile_path: image, character, id }) => {
   );
 };
 
-export default CastCard;
+export default ShowCastCard;

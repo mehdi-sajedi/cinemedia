@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const getPersonService = async (personId) => {
-  const API_URL = `https://api.themoviedb.org/3/person/${personId}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=combined_credits,external_ids`;
+  const PERSON_API_URL = `https://api.themoviedb.org/3/person/${personId}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=combined_credits,external_ids`;
 
-  const res = await axios.get(API_URL);
+  const res = await axios.get(PERSON_API_URL);
 
   let { birthday, deathday, combined_credits, ...rest } = res.data;
 

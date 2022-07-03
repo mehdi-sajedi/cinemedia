@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './RecommendationsCard.module.scss';
+import styles from './MovieRecommendationsCard.module.scss';
 
 const basePath = 'https://image.tmdb.org/t/p/w780';
 
-const RecommendationsCard = ({ title, backdrop_path, id }) => {
+const MovieRecommendationsCard = ({ title, backdrop_path, id }) => {
   return (
     <Link className={styles.card} to={`/movies/${id}`}>
       <img src={`${basePath}${backdrop_path}`} alt="" />
@@ -15,4 +15,4 @@ const RecommendationsCard = ({ title, backdrop_path, id }) => {
   );
 };
 
-export default RecommendationsCard;
+export default MovieRecommendationsCard;

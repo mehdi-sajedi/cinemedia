@@ -1,37 +1,35 @@
 import React, { useState } from 'react';
-import styles from './Showcase.module.scss';
-import Trailer from './Trailer';
-import Gallery from './Gallery';
+import styles from './ShowShowcase.module.scss';
+import ShowTrailer from './ShowTrailer';
+import ShowGallery from './ShowGallery';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../Utilities/helpers';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
-
 import { useSelector } from 'react-redux';
 
 const backdropBase = 'https://image.tmdb.org/t/p/original/';
 const posterBase = 'https://image.tmdb.org/t/p/w780/';
 
-const Showcase = () => {
-  const { singleMovie } = useSelector((state) => state.movie);
+const ShowShowcase = () => {
+  const { show } = useSelector((state) => state.show);
 
-  const [showTrailer, setShowTrailer] = useState(false);
-  const [showGallery, setShowGallery] = useState(false);
-  const media = singleMovie;
-  useDocumentTitle(`${media.title} (${media.release_date?.slice(0, 4)})`);
+  const [viewTrailer, setViewTrailer] = useState(false);
+  const [viewGallery, setViewGallery] = useState(false);
+  useDocumentTitle(`${show.name} (${show.first_air_date?.slice(0, 4)})`);
 
-  const trailer = media.videos?.results?.find((entry) => {
+  const trailer = show.videos?.results?.find((entry) => {
     return (
       entry.type.toLowerCase() === 'trailer' &&
       entry.site.toLowerCase() === 'youtube'
     );
   });
 
-  const hasImages = media?.images?.backdrops.length > 0;
+  const hasImages = show?.images?.backdrops.length > 0;
 
-  const handleShowGallery = () => {
-    hasImages && setShowGallery(true);
+  const handleViewGallery = () => {
+    hasImages && setViewGallery(true);
   };
 
   return (
@@ -40,7 +38,7 @@ const Showcase = () => {
         <div
           className={styles.backdrop}
           style={{
-            background: `url('${backdropBase}${media.backdrop_path}') no-repeat top center/cover`,
+            background: `url('${backdropBase}${show.backdrop_path}') no-repeat top center/cover`,
           }}
         ></div>
         <div className={styles.content}>
@@ -48,11 +46,11 @@ const Showcase = () => {
             className={`${styles.posterWrap} ${
               hasImages ? styles.posterHover : ''
             }`}
-            onClick={handleShowGallery}
+            onClick={handleViewGallery}
           >
             <img
               className={styles.poster}
-              src={`${posterBase}${media.poster_path}`}
+              src={`${posterBase}${show.poster_path}`}
               alt=""
             />
             <div className={styles.posterText}>
@@ -63,55 +61,55 @@ const Showcase = () => {
           <div className={styles.textContent}>
             <div className={styles.heading}>
               <h1>
-                {media.title}
-                {media.release_date && (
-                  <span>({media.release_date.slice(0, 4)})</span>
+                {show.name}
+                {show.release_date && (
+                  <span>({show.release_date.slice(0, 4)})</span>
                 )}
               </h1>
             </div>
-            {media.tagline && <p className={styles.tagline}>{media.tagline}</p>}
+            {show.tagline && <p className={styles.tagline}>{show.tagline}</p>}
             <div className={styles.row}>
               <div className={styles.ratingAndRuntime}>
                 <div
                   className={styles.voteCircle}
                   style={{
                     border: `3px solid ${
-                      media.vote_average
-                        ? colorPercentage(media.vote_average / 10)
+                      show.vote_average
+                        ? colorPercentage(show.vote_average / 10)
                         : '#777'
                     }`,
                   }}
                 >
                   <p>
-                    {media.vote_average
-                      ? media.vote_average.toFixed(1) * 10
+                    {show.vote_average
+                      ? show.vote_average.toFixed(1) * 10
                       : 'NR'}
                   </p>
                   <FiPercent className={styles.percentSymbol} />
                 </div>
-                {media.runtime ? (
+                {show.runtime ? (
                   <span className={`${styles.dot} ${styles.dot1}`}></span>
                 ) : (
                   ''
                 )}
-                {media.runtime ? (
+                {show.runtime ? (
                   <p className={styles.runtime}>
-                    {formatRuntime(media.runtime)}
+                    {formatRuntime(show.runtime)}
                   </p>
                 ) : (
                   ''
                 )}
               </div>
-              {media.genres?.length > 0 && (
+              {show.genres?.length > 0 && (
                 <span className={`${styles.dot} ${styles.dot2}`}></span>
               )}
               <ul className={styles.genres}>
-                {media.genres?.map(
+                {show.genres?.map(
                   (genre, idx) =>
                     idx < 3 && (
                       <li key={`${genre.name}-${genre.id}`}>
                         {genre.name}
-                        {idx === media.genres.length - 1 || idx === 2
+                        {idx === show.genres.length - 1 || idx === 2
                           ? null
                           : ','}
                       </li>
@@ -119,15 +117,15 @@ const Showcase = () => {
                 )}
               </ul>
             </div>
-            {media.overview && (
+            {show.overview && (
               <div className={styles.overview}>
                 <h3>Overview</h3>
-                <p>{media.overview}</p>
+                <p>{show.overview}</p>
               </div>
             )}
             {trailer && (
               <button
-                onClick={() => setShowTrailer(true)}
+                onClick={() => setViewTrailer(true)}
                 className={styles.trailerBtn}
               >
                 <BsFillPlayFill />
@@ -137,13 +135,13 @@ const Showcase = () => {
           </div>
         </div>
       </div>
-      {showTrailer && (
-        <Trailer trailer={trailer} setShowTrailer={setShowTrailer} />
+      {viewTrailer && (
+        <ShowTrailer trailer={trailer} setViewTrailer={setViewTrailer} />
       )}
 
-      {showGallery && <Gallery setShowGallery={setShowGallery} />}
+      {viewGallery && <ShowGallery setViewGallery={setViewGallery} />}
     </main>
   );
 };
 
-export default Showcase;
+export default ShowShowcase;

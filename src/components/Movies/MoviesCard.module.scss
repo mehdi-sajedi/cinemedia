@@ -1,0 +1,54 @@
+@import '../../app.scss';
+
+.card {
+  background-color: rgb(227, 227, 227);
+  background-color: rgb(238, 238, 238);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.36) 0px 1px 4px;
+  overflow: hidden;
+
+  .imageWrapper {
+    overflow: hidden;
+
+    img {
+      border-radius: 5px 5px 2px 2px;
+      transition: all 0.4s ease;
+      height: 100%;
+    }
+  }
+
+  .details {
+    padding: 20px;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+
+    @include media('<=phone') {
+      padding: 13px;
+      font-size: 12px;
+    }
+
+    .title {
+      font-weight: 600;
+      font-size: 16px;
+
+      @include media('<tablet') {
+        font-size: 15px;
+      }
+    }
+
+    .release {
+      font-size: 14px;
+      font-size: 13px;
+      margin-top: 5px;
+      color: var(--sub-heading);
+
+      @include media('<=phone') {
+        font-size: 13px;
+      }
+    }
+  }
+}

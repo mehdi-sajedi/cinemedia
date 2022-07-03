@@ -1,0 +1,14 @@
+@import '../app.scss';
+
+.showDetails {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  column-gap: 3rem;
+  max-width: var(--max-width);
+  margin: 0 auto 3rem;
+
+  @include media('<=880px') {
+    flex-direction: column;
+  }
+}

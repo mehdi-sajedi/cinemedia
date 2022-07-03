@@ -6,7 +6,7 @@ const initialState = {
   results: [],
   totalResults: 100,
   page: 1,
-  singleMovie: {},
+  movie: {},
   isLoading: false,
   isError: false,
 };
@@ -49,7 +49,7 @@ export const movieSlice = createSlice({
         state.totalResults = action.payload.total_results;
       })
       .addCase(getSingleMovie.fulfilled, (state, action) => {
-        state.singleMovie = action.payload;
+        state.movie = action.payload;
       });
   },
 });

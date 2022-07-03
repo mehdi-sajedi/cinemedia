@@ -1,9 +1,9 @@
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
-import styles from './Pagination.module.scss';
+import styles from './MoviesPagination.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { paginate } from '../../features/movies/movieSlice';
 
-const Pagination = () => {
+const MoviesPagination = () => {
   const dispatch = useDispatch();
   const { page, totalResults } = useSelector((state) => state.movie);
 
@@ -83,4 +83,4 @@ const Pagination = () => {
   );
 };
 
-export default Pagination;
+export default MoviesPagination;

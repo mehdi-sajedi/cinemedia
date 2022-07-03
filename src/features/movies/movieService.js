@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc`;
-
 const getMoviesService = async (page) => {
-  const res = await axios.get(API_URL + `&page=${page}`);
+  const MOVIES_API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&page=${page}`;
+
+  const res = await axios.get(MOVIES_API_URL);
   return res.data;
 };
 

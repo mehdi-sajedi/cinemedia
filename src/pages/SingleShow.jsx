@@ -1,19 +1,33 @@
-import { useContext } from 'react';
-import { AppContext } from '../context/app-context';
-import Showcase from '../components/Media/Showcase';
-import Details from '../components/Media/Details';
-import Recommendations from '../components/Media/Recommendations';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getSingleShow } from '../features/shows/showSlice';
+import { useLocation } from 'react-router';
+import styles from './SingleShow.module.scss';
+import ShowShowcase from '../components/SingleShow/ShowShowcase';
+import ShowCast from '../components/SingleShow/ShowCast';
+import ShowSidebar from '../components/SingleShow/ShowSidebar';
+import ShowRecommendations from '../components/SingleShow/ShowRecommendations';
 
-const SingleMovie = () => {
-  const { appState } = useContext(AppContext);
+const SingleShow = () => {
+  const dispatch = useDispatch();
+  const { pathname } = useLocation();
+
+  const mediaId = pathname.substring(pathname.lastIndexOf('/') + 1);
+
+  useEffect(() => {
+    dispatch(getSingleShow(mediaId));
+  }, [dispatch, mediaId]);
 
   return (
     <>
-      <Showcase />
-      <Details />
-      {appState.currentMedia.recommendations?.length > 0 && <Recommendations />}
+      <ShowShowcase />
+      <section className={styles.showDetails}>
+        <ShowCast />
+        <ShowSidebar />
+      </section>
+      <ShowRecommendations />
     </>
   );
 };
 
-export default SingleMovie;
+export default SingleShow;

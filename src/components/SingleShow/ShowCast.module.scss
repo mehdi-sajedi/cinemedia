@@ -1,0 +1,24 @@
+@import '../../app.scss';
+
+.cast {
+  width: calc(100% - 260px);
+
+  @include media('<=880px') {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .heading {
+    margin-bottom: 1rem;
+  }
+
+  .castGrid {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: flex-start;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1px 1px 1rem;
+  }
+}

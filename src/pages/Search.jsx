@@ -1,11 +1,11 @@
-import SearchResultsText from '../components/Global/SearchResultsText';
-import Grid from '../components/Home/Grid';
+// import SearchResultsText from '../components/Global/SearchResultsText';
+// import Grid from '../components/Movies/MoviesGrid';
 
 const Search = () => {
   return (
     <>
-      <SearchResultsText />
-      <Grid />
+      {/* <SearchResultsText />
+      <Grid /> */}
     </>
   );
 };

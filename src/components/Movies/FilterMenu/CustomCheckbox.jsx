@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../../context/app-context';
+import { AppContext } from '../../../context/app-context';
 import styles from './CustomCheckbox.module.scss';
 
 const basePath = 'https://image.tmdb.org/t/p/original';

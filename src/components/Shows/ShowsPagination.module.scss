@@ -1,0 +1,75 @@
+@import '../../include-media.scss';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 2rem;
+
+  @include media('<tablet') {
+    transform: scale(0.9);
+  }
+
+  .arrow {
+    font-size: 24px;
+    cursor: pointer;
+
+    &.arrowBack {
+      margin-right: 12px;
+    }
+
+    &.arrowForward {
+      margin-left: 12px;
+    }
+  }
+
+  .mediaPages {
+    font-size: 18px;
+
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 35px;
+        margin: 0 2px;
+        border: 1px solid var(--clr-elements-inverse);
+        border-radius: 2px;
+        box-shadow: var(--box-shadow-1);
+
+        button {
+          display: block;
+          width: 100%;
+          height: 100%;
+          padding: 8px 5px;
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          font-size: 16px;
+          color: black;
+        }
+
+        &.activePage {
+          background-color: #333;
+          border-radius: 50%;
+
+          button {
+            color: #fff;
+          }
+        }
+      }
+
+      .dots {
+        margin: 0 3px;
+        font-size: 30px;
+        font-weight: 500;
+      }
+    }
+  }
+}

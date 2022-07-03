@@ -1,17 +1,17 @@
 import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { isBrowser } from 'react-device-detect';
-import styles from './Gallery.module.scss';
-import './GalleryExtra.scss';
+import styles from './MovieGallery.module.scss';
+import './MovieGalleryExtra.scss';
 import ImageGallery from 'react-image-gallery';
 
 const backdropBase = 'https://image.tmdb.org/t/p';
 
-const Gallery = ({ setShowGallery }) => {
-  const { singleMovie } = useSelector((state) => state.movie);
+const MovieGallery = ({ setViewGallery }) => {
+  const { movie } = useSelector((state) => state.movie);
   const sizes = ['780', '1280', ''];
 
-  const images = singleMovie.images.backdrops.map((entry) => {
+  const images = movie.images.backdrops.map((entry) => {
     return {
       original: `${backdropBase}/w780${entry.file_path}`,
       thumbnail: `${backdropBase}/w780${entry.file_path}`,
@@ -31,7 +31,7 @@ const Gallery = ({ setShowGallery }) => {
       e.target.classList.contains('wrapper') ||
       e.target.classList.contains('image-gallery-slide-wrapper')
     ) {
-      setShowGallery(false);
+      setViewGallery(false);
     }
   };
 
@@ -48,4 +48,4 @@ const Gallery = ({ setShowGallery }) => {
   );
 };
 
-export default Gallery;
+export default MovieGallery;

@@ -99,12 +99,10 @@ export const AppProvider = ({ children }) => {
   );
 
   return (
-    <React.StrictMode>
-      <AppContext.Provider
-        value={{ appState, dispatch, filterState, dispatchFilter }}
-      >
-        {children}
-      </AppContext.Provider>
-    </React.StrictMode>
+    <AppContext.Provider
+      value={{ appState, dispatch, filterState, dispatchFilter }}
+    >
+      {children}
+    </AppContext.Provider>
   );
 };

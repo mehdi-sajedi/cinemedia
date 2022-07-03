@@ -1,10 +1,7 @@
 import { useContext } from 'react';
 import { AppContext } from '../context/app-context';
-import FilterBtn from '../components/Home/FilterBtn';
-import Grid from '../components/Home/Grid';
-import Pagination from '../components/Home/Pagination';
-import FilterMenu from '../components/Home/FilterMenu';
-import { showGenres } from '../components/Utilities/helpers';
+import ShowsGrid from '../components/Shows/ShowsGrid';
+import ShowsPagination from '../components/Shows/ShowsPagination';
 
 const Shows = () => {
   const { appState } = useContext(AppContext);
@@ -37,10 +34,10 @@ const Shows = () => {
 
   return (
     <>
-      <FilterBtn />
-      <Grid url={shows} route="shows" />
-      <Pagination />
-      <FilterMenu genres={showGenres} />
+      {/* <FilterBtn /> */}
+      <ShowsGrid url={shows} route="shows" />
+      <ShowsPagination />
+      {/* <FilterMenu genres={showGenres} /> */}
     </>
   );
 };
