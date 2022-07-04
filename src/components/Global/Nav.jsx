@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../../context/app-context';
 import { useLocation } from 'react-router';
 import { Link, useNavigate, createSearchParams } from 'react-router-dom';
@@ -8,31 +8,26 @@ import { IoCloseOutline } from 'react-icons/io5';
 import MobileMenuBtn from './MobileMenuBtn';
 
 const Nav = () => {
+  const [text, setText] = useState('');
   const { appState, dispatch } = useContext(AppContext);
   const navigate = useNavigate();
-  const searchRef = useRef();
   const { pathname } = useLocation();
 
-  const handleFormSubmit = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    const searchText = searchRef.current.value.trim();
-    if (searchText.trim() === '') return;
+    if (text.trim() === '') return;
 
     navigate({
       pathname: '/search',
       search: `?${createSearchParams({
-        query: searchText,
+        query: text,
       })}`,
     });
   };
 
-  const handleKeydown = (e) => {
-    dispatch({ type: 'SET-CURRENT-SEARCH-TEXT', payload: e.target.value });
-  };
-
   const handleClearSearch = () => {
     dispatch({ type: 'SET-CURRENT-SEARCH-TEXT', payload: '' });
-    searchRef.current.focus();
+    // searchRef.current.focus();
   };
 
   return (
@@ -53,13 +48,12 @@ const Nav = () => {
           </Link>
         </div>
         <MobileMenuBtn />
-        <form onSubmit={handleFormSubmit} className={NavStyles.form}>
+        <form onSubmit={onSubmit} className={NavStyles.form}>
           <div className={NavStyles.search}>
             <HiOutlineSearch className={NavStyles.magnify} />
             <input
-              value={appState.currentSearchText}
-              onChange={handleKeydown}
-              ref={searchRef}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
               type="text"
               placeholder="Search..."
             />
