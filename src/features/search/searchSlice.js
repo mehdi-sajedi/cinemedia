@@ -4,6 +4,10 @@ import { errorHandler } from '../../utilities/utilities';
 
 const initialState = {
   results: [],
+  text: '',
+  name: '',
+  id: null,
+  isLoading: false,
 };
 
 export const getSearchResults = createAsyncThunk(
@@ -24,8 +28,15 @@ export const searchSlice = createSlice({
     reset: () => initialState,
   },
   extraReducers: (builder) => {
+    builder.addCase(getSearchResults.pending, (state) => {
+      state.isLoading = true;
+    });
     builder.addCase(getSearchResults.fulfilled, (state, action) => {
-      state.results = action.payload;
+      state.results = action.payload.results;
+      state.text = action.payload.text;
+      state.name = action.payload.name;
+      state.id = action.payload.id;
+      state.isLoading = false;
     });
   },
 });

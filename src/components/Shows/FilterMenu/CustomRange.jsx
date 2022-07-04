@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../../context/app-context';
+import { AppContext } from '../../../context/app-context';
 import styles from './CustomRange.module.scss';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';

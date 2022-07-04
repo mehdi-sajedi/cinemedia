@@ -15,12 +15,10 @@ const MovieRecommendations = () => {
             entry.backdrop_path &&
             backdropCount++ &&
             backdropCount <= 7 && (
-              <>
-                <MovieRecommendationsCard
-                  {...entry}
-                  key={`${entry.id}-${entry.popularity}`}
-                />
-              </>
+              <MovieRecommendationsCard
+                {...entry}
+                key={`${entry.id}${entry.popularity}`}
+              />
             )
           );
         })}

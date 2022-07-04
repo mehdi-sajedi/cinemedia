@@ -4,6 +4,7 @@ import { errorHandler } from '../../utilities/utilities';
 
 const initialState = {
   person: {},
+  isLoading: false,
 };
 
 export const getPerson = createAsyncThunk(
@@ -24,8 +25,12 @@ export const personSlice = createSlice({
     reset: () => initialState,
   },
   extraReducers: (builder) => {
+    builder.addCase(getPerson.pending, (state) => {
+      state.isLoading = true;
+    });
     builder.addCase(getPerson.fulfilled, (state, action) => {
       state.person = action.payload;
+      state.isLoading = false;
     });
   },
 });

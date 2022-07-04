@@ -44,12 +44,20 @@ export const movieSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getMovies.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(getMovies.fulfilled, (state, action) => {
         state.results = action.payload.results;
         state.totalResults = action.payload.total_results;
+        state.isLoading = false;
+      })
+      .addCase(getSingleMovie.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(getSingleMovie.fulfilled, (state, action) => {
         state.movie = action.payload;
+        state.isLoading = false;
       });
   },
 });

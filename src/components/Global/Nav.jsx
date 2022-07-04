@@ -1,17 +1,16 @@
-import React, { useContext, useState } from 'react';
-import { AppContext } from '../../context/app-context';
+import { useState, useRef } from 'react';
 import { useLocation } from 'react-router';
 import { Link, useNavigate, createSearchParams } from 'react-router-dom';
-import NavStyles from './Nav.module.scss';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { IoCloseOutline } from 'react-icons/io5';
+import NavStyles from './Nav.module.scss';
 import MobileMenuBtn from './MobileMenuBtn';
 
 const Nav = () => {
   const [text, setText] = useState('');
-  const { appState, dispatch } = useContext(AppContext);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const searchRef = useRef();
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -25,9 +24,9 @@ const Nav = () => {
     });
   };
 
-  const handleClearSearch = () => {
-    dispatch({ type: 'SET-CURRENT-SEARCH-TEXT', payload: '' });
-    // searchRef.current.focus();
+  const clearSearch = () => {
+    setText('');
+    searchRef.current.focus();
   };
 
   return (
@@ -52,16 +51,19 @@ const Nav = () => {
           <div className={NavStyles.search}>
             <HiOutlineSearch className={NavStyles.magnify} />
             <input
+              ref={searchRef}
               value={text}
               onChange={(e) => setText(e.target.value)}
               type="text"
               placeholder="Search..."
             />
-            {appState.currentSearchText !== '' && (
-              <IoCloseOutline
-                onClick={handleClearSearch}
-                className={NavStyles.clear}
-              />
+            {text !== '' && (
+              <button>
+                <IoCloseOutline
+                  onClick={clearSearch}
+                  className={NavStyles.clear}
+                />
+              </button>
             )}
           </div>
           <button typeof="submit" className={NavStyles.submit}>

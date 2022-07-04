@@ -1,6 +1,6 @@
+import { useSelector } from 'react-redux';
 import styles from './ShowRecommendations.module.scss';
 import ShowRecommendationsCard from './ShowRecommendationsCard';
-import { useSelector } from 'react-redux';
 
 const ShowRecommendations = () => {
   const { show } = useSelector((state) => state.show);
@@ -15,12 +15,10 @@ const ShowRecommendations = () => {
             entry.backdrop_path &&
             backdropCount++ &&
             backdropCount <= 7 && (
-              <>
-                <ShowRecommendationsCard
-                  {...entry}
-                  key={`${entry.id}-${entry.popularity}`}
-                />
-              </>
+              <ShowRecommendationsCard
+                {...entry}
+                key={`${entry.id}-${entry.popularity}`}
+              />
             )
           );
         })}

@@ -44,12 +44,20 @@ export const showSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getShows.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(getShows.fulfilled, (state, action) => {
         state.results = action.payload.results;
         state.totalResults = action.payload.total_results;
+        state.isLoading = false;
+      })
+      .addCase(getSingleShow.pending, (state) => {
+        state.isLoading = true;
       })
       .addCase(getSingleShow.fulfilled, (state, action) => {
         state.show = action.payload;
+        state.isLoading = false;
       });
   },
 });

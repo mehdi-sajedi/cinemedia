@@ -4,15 +4,18 @@ import { getShows } from '../../features/shows/showSlice';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import ShowsCard from './ShowsCard';
 import styles from './ShowsGrid.module.scss';
+import Loading from '../Utilities/Loading';
 
 const ShowsGrid = () => {
-  const { results, page } = useSelector((state) => state.show);
+  const { results, page, isLoading } = useSelector((state) => state.show);
   const dispatch = useDispatch();
   useDocumentTitle('Popular Shows');
 
   useEffect(() => {
     dispatch(getShows(page));
   }, [dispatch, page]);
+
+  if (isLoading) return <Loading />;
 
   return (
     <section className={styles.grid}>

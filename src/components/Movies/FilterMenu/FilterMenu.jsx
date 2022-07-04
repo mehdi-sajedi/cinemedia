@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../../context/app-context';
+import { AppContext } from '../../../context/app-context';
 import styles from './FilterMenu.module.scss';
 import { useLocation } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import CustomRange from './CustomRange';
-import { watchProviders } from '../Utilities/watch-providers';
+import { watchProviders } from '../../Utilities/watch-providers';
 import CustomCheckbox from './CustomCheckbox';
 import { IoCloseOutline } from 'react-icons/io5';
 import { AiOutlineCalendar } from 'react-icons/ai';

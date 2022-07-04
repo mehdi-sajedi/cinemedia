@@ -10,7 +10,12 @@ const getPersonMedia = async (person) => {
     .filter((m) => !m.genre_ids.includes(10763) && m.poster_path)
     .sort((a, b) => b.vote_count - a.vote_count);
 
-  return results;
+  return {
+    results,
+    name: person.name,
+    id: person.id,
+    text: '',
+  };
 };
 
 const getSearchResultsService = async (text) => {
@@ -32,9 +37,15 @@ const getSearchResultsService = async (text) => {
     return getPersonMedia(person || firstEntry);
   } else {
     // User is not trying to search for a person, so return the default API response minus any person objects and only ones that have a poster image
-    return data.results.filter(
+    const results = data.results.filter(
       (entry) => entry.media_type !== 'person' && entry.poster_path
     );
+    return {
+      results,
+      text,
+      name: '',
+      id: null,
+    };
   }
 };
 

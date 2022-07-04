@@ -2,6 +2,9 @@ import { useContext } from 'react';
 import { AppContext } from '../context/app-context';
 import MoviesGrid from '../components/Movies/MoviesGrid';
 import MoviesPagination from '../components/Movies/MoviesPagination';
+import FilterMenu from '../components/Movies/FilterMenu/FilterMenu';
+import FilterBtn from '../components/Home/FilterBtn';
+import { movieGenres } from '../components/Utilities/helpers';
 
 const Movies = () => {
   const { appState } = useContext(AppContext);
@@ -34,10 +37,10 @@ const Movies = () => {
 
   return (
     <>
-      {/* <FilterBtn /> */}
+      <FilterBtn />
       <MoviesGrid url={movies} route="movies" />
       <MoviesPagination />
-      {/* <FilterMenu genres={movieGenres} /> */}
+      <FilterMenu genres={movieGenres} />
     </>
   );
 };

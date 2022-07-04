@@ -6,10 +6,11 @@ import { getSearchResults } from '../../features/search/searchSlice';
 import GridStyles from './SearchGrid.module.scss';
 import MoviesCard from '../Movies/MoviesCard';
 import ShowsCard from '../Shows/ShowsCard';
+import Loading from '../Utilities/Loading';
 
 const SearchGrid = () => {
   const dispatch = useDispatch();
-  const { results } = useSelector((state) => state.search);
+  const { results, isLoading } = useSelector((state) => state.search);
   const [searchParams] = useSearchParams();
   useDocumentTitle('Search Results');
 
@@ -18,6 +19,8 @@ const SearchGrid = () => {
   useEffect(() => {
     dispatch(getSearchResults(searchQuery));
   }, [dispatch, searchQuery]);
+
+  if (isLoading) return <Loading />;
 
   return (
     <section className={GridStyles.grid}>
