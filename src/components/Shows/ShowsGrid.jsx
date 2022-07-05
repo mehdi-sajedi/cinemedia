@@ -1,21 +1,10 @@
-import { useEffect, memo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getShows } from '../../features/shows/showSlice';
-import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import ShowsCard from './ShowsCard';
 import styles from './ShowsGrid.module.scss';
-import Loading from '../Utilities/Loading';
 
 const ShowsGrid = () => {
-  const { results, page, isLoading } = useSelector((state) => state.show);
-  const dispatch = useDispatch();
-  useDocumentTitle('Popular Shows');
-
-  useEffect(() => {
-    dispatch(getShows(page));
-  }, [dispatch, page]);
-
-  if (isLoading) return <Loading />;
+  const { results } = useSelector((state) => state.show);
 
   return (
     <section className={styles.grid}>
@@ -30,4 +19,4 @@ const ShowsGrid = () => {
   );
 };
 
-export default memo(ShowsGrid);
+export default React.memo(ShowsGrid);

@@ -1,22 +1,23 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../context/app-context';
 import { FiSliders } from 'react-icons/fi';
 import styles from './FilterBtn.module.scss';
+import { toggleFilterMenu } from '../../features/movies/movieSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const FilterBtn = () => {
-  const { appState, dispatch } = useContext(AppContext);
+  const dispatch = useDispatch();
+  const { filterMenuOpen } = useSelector((state) => state.movie);
 
-  const toggleFilterMenu = (e) => {
-    dispatch({ type: 'TOGGLE-FILTER-MENU' });
+  const onClick = (e) => {
+    dispatch(toggleFilterMenu());
   };
 
   return (
     <div className={styles.container}>
       <div
         className={`${styles.btnWrap} ${
-          appState.filterMenuOpen ? styles.removePointer : ''
+          filterMenuOpen ? styles.removePointer : ''
         } `}
-        onClick={toggleFilterMenu}
+        onClick={onClick}
       >
         <FiSliders className={styles.btn} />
       </div>

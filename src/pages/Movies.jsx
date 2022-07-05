@@ -1,13 +1,24 @@
-import { useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { AppContext } from '../context/app-context';
 import MoviesGrid from '../components/Movies/MoviesGrid';
 import MoviesPagination from '../components/Movies/MoviesPagination';
 import FilterMenu from '../components/Movies/FilterMenu/FilterMenu';
 import FilterBtn from '../components/Home/FilterBtn';
 import { movieGenres } from '../components/Utilities/helpers';
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { useDispatch, useSelector } from 'react-redux';
+import Loading from '../components/Utilities/Loading';
+import { getMovies } from '../features/movies/movieSlice';
 
 const Movies = () => {
+  const dispatch = useDispatch();
+  const { page, isLoading } = useSelector((state) => state.movie);
   const { appState } = useContext(AppContext);
+  useDocumentTitle('Popular Movies');
+
+  useEffect(() => {
+    dispatch(getMovies(page));
+  }, [dispatch, page]);
 
   const movieFilters = {
     runtime: `&with_runtime.gte=${
@@ -34,6 +45,8 @@ const Movies = () => {
   };
 
   const movies = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}&language=en-US&sort_by=popularity.desc${movieFilters.runtime}${movieFilters.year}${movieFilters.rating}${movieFilters.genre}${movieFilters.watchProviders}`;
+
+  if (isLoading) return <Loading />;
 
   return (
     <>

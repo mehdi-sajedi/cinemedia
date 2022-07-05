@@ -1,21 +1,10 @@
-import { useEffect, memo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getMovies } from '../../features/movies/movieSlice';
-import { useDocumentTitle } from '../../hooks/useDocumentTitle';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import MoviesCard from './MoviesCard';
 import styles from './MoviesGrid.module.scss';
-import Loading from '../Utilities/Loading';
 
 const MoviesGrid = () => {
-  const dispatch = useDispatch();
-  const { results, page, isLoading } = useSelector((state) => state.movie);
-  useDocumentTitle('Popular Movies');
-
-  useEffect(() => {
-    dispatch(getMovies(page));
-  }, [dispatch, page]);
-
-  if (isLoading) return <Loading />;
+  const { results } = useSelector((state) => state.movie);
 
   return (
     <section className={styles.grid}>
@@ -30,4 +19,4 @@ const MoviesGrid = () => {
   );
 };
 
-export default memo(MoviesGrid);
+export default React.memo(MoviesGrid);

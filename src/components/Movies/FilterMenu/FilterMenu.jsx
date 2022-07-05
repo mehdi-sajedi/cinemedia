@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../../context/app-context';
+import React, { useState } from 'react';
 import styles from './FilterMenu.module.scss';
 import { useLocation } from 'react-router-dom';
 import { createPortal } from 'react-dom';
@@ -10,12 +9,24 @@ import { IoCloseOutline } from 'react-icons/io5';
 import { AiOutlineCalendar } from 'react-icons/ai';
 import { FiStar } from 'react-icons/fi';
 import { IoMdTime } from 'react-icons/io';
+import { useSelector, useDispatch } from 'react-redux';
+import { closeFilterMenu } from '../../../features/movies/movieSlice';
+
+const initialState = {
+  year: [1980, 2022],
+  runtime: [0, 240],
+  rating: [0, 100],
+  genres: [],
+  services: [],
+};
 
 const FilterMenu = ({ genres }) => {
-  const { appState, dispatch, filterState, dispatchFilter } =
-    useContext(AppContext);
+  const dispatch = useDispatch();
+  const { filterMenuOpen } = useSelector((state) => state.movie);
   const { pathname } = useLocation();
   const route = pathname.includes('movies') ? 'movies' : 'shows';
+
+  const [formData, setFormData] = useState(initialState);
 
   const closeMenu = (e) => {
     if (
@@ -23,48 +34,43 @@ const FilterMenu = ({ genres }) => {
       e.target.classList.contains('closeBtn') ||
       e.target.classList.contains('submit')
     ) {
-      dispatch({ type: 'CLOSE-FILTER-MENU' });
+      dispatch(closeFilterMenu());
     }
   };
 
   const resetForm = () => {
-    dispatchFilter({ type: 'RESET' });
+    setFormData(initialState);
     window.scrollTo(0, 0);
   };
 
   const applyFilters = (e) => {
     e.preventDefault();
-    dispatch({
-      type: 'APPLY-FILTERS',
-      payload: { filterState, route: route },
-    });
   };
 
   return createPortal(
     <>
       <div
         className={`${styles.overlay} ${
-          appState.filterMenuOpen ? styles.active : ''
+          filterMenuOpen ? styles.active : ''
         } overlay`}
         onClick={closeMenu}
       ></div>
-      <div
-        className={`${styles.menu} ${
-          appState.filterMenuOpen ? styles.active : ''
-        } `}
-      >
+      <div className={`${styles.menu} ${filterMenuOpen ? styles.active : ''} `}>
         <IoCloseOutline
           onClick={closeMenu}
           className={`${styles.closeBtn} ${
-            !appState.filterMenuOpen ? styles.removePointer : ''
+            !filterMenuOpen ? styles.removePointer : ''
           } closeBtn`}
         />
         <header className={styles.header}>Filters</header>
         <form onSubmit={applyFilters} className={styles.form}>
           <CustomRange
+            formData={formData}
+            setFormData={setFormData}
             name="Year"
             defaults={[1980, 2022]}
-            state={filterState[route].year.value}
+            // state={filterState[route].year.value}
+            state="year"
             action="SET-YEAR"
             min={1980}
             max={2022}
@@ -88,9 +94,12 @@ const FilterMenu = ({ genres }) => {
             icon={<AiOutlineCalendar />}
           />
           <CustomRange
+            formData={formData}
+            setFormData={setFormData}
             name="Runtime"
             defaults={[0, 240]}
-            state={filterState[route].runtime.value}
+            // state={filterState[route].runtime.value}
+            state="runtime"
             action="SET-RUNTIME"
             min={0}
             max={240}
@@ -114,9 +123,12 @@ const FilterMenu = ({ genres }) => {
             icon={<IoMdTime />}
           />
           <CustomRange
+            formData={formData}
+            setFormData={setFormData}
             name="Rating"
             defaults={[0, 100]}
-            state={filterState[route].rating.value}
+            // state={filterState[route].rating.value}
+            state="rating"
             action="SET-RATING"
             min={0}
             max={100}
@@ -144,13 +156,15 @@ const FilterMenu = ({ genres }) => {
             <ul className={styles.genresList}>
               {genres.map((obj) => (
                 <CustomCheckbox
+                  formData={formData}
+                  setFormData={setFormData}
+                  state="genres"
                   key={`${obj.id}-${obj.name}-${route}`}
                   name={obj.name}
                   id={obj.id}
                   group="movie-genres"
                   action="TOGGLE-GENRE"
                   route={route}
-                  state={filterState[route].genres}
                 />
               ))}
             </ul>
@@ -161,13 +175,15 @@ const FilterMenu = ({ genres }) => {
             <ul className={styles.watchProvidersList}>
               {watchProviders.map((provider) => (
                 <CustomCheckbox
+                  formData={formData}
+                  setFormData={setFormData}
+                  state="services"
                   key={`${provider.provider_id}-${provider.provider_name}`}
                   name={provider.provider_name}
                   id={provider.provider_id}
                   group="watch-providers"
                   action="TOGGLE-WATCH-PROVIDER"
                   route={route}
-                  state={filterState[route].watchProviders}
                   img={provider.logo_path}
                 />
               ))}

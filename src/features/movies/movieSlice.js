@@ -7,6 +7,7 @@ const initialState = {
   totalResults: 100,
   page: 1,
   movie: {},
+  filterMenuOpen: false,
   isLoading: false,
   isError: false,
 };
@@ -41,6 +42,12 @@ export const movieSlice = createSlice({
     paginate: (state, action) => {
       state.page = action.payload;
     },
+    toggleFilterMenu: (state) => {
+      state.filterMenuOpen = !state.filterMenuOpen;
+    },
+    closeFilterMenu: (state) => {
+      state.filterMenuOpen = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -62,5 +69,6 @@ export const movieSlice = createSlice({
   },
 });
 
-export const { reset, paginate } = movieSlice.actions;
+export const { reset, paginate, toggleFilterMenu, closeFilterMenu } =
+  movieSlice.actions;
 export default movieSlice.reducer;
