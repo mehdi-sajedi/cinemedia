@@ -46,14 +46,19 @@ const Movies = () => {
 
   const movies = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&page=${appState.pagination.currentMoviesPage}&language=en-US&sort_by=popularity.desc${movieFilters.runtime}${movieFilters.year}${movieFilters.rating}${movieFilters.genre}${movieFilters.watchProviders}`;
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
 
   return (
     <>
       <FilterBtn />
-      <MoviesGrid url={movies} route="movies" />
-      <MoviesPagination />
       <FilterMenu genres={movieGenres} />
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <>
+          <MoviesGrid url={movies} route="movies" />
+          <MoviesPagination />
+        </>
+      )}
     </>
   );
 };

@@ -62,8 +62,8 @@ const ShowShowcase = () => {
             <div className={styles.heading}>
               <h1>
                 {show.name}
-                {show.release_date && (
-                  <span>({show.release_date.slice(0, 4)})</span>
+                {show.first_air_date && (
+                  <span>({show.first_air_date.slice(0, 4)})</span>
                 )}
               </h1>
             </div>

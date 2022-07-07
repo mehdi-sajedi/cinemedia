@@ -2,7 +2,7 @@ import React, { createContext } from 'react';
 import { useImmerReducer } from 'use-immer';
 import { enableMapSet } from 'immer';
 import { initialAppState } from '../data/initialAppState';
-import { initialFilterState } from '../data/initialFilterState';
+import { oldInitialFilterState } from '../data/oldInitialFilterState';
 enableMapSet();
 
 export const AppContext = createContext();
@@ -89,13 +89,13 @@ export const AppProvider = ({ children }) => {
         draft[action.payload.route].watchProviders.push(action.payload.id);
       }
     } else if (action.type === 'RESET') {
-      return initialFilterState;
+      return oldInitialFilterState;
     }
   };
 
   const [filterState, dispatchFilter] = useImmerReducer(
     filterReducer,
-    initialFilterState
+    oldInitialFilterState
   );
 
   return (

@@ -11,22 +11,37 @@ import { FiStar } from 'react-icons/fi';
 import { IoMdTime } from 'react-icons/io';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeFilterMenu } from '../../../features/movies/movieSlice';
+import { getMovies } from '../../../features/movies/movieSlice';
+import { movieGenres } from '../../Utilities/helpers';
+import {
+  updateFilterData,
+  resetFilterData,
+} from '../../../features/movies/movieSlice';
+import { initialFilterState } from '../../../data/initialFilterState';
 
-const initialState = {
-  year: [1980, 2022],
-  runtime: [0, 240],
-  rating: [0, 100],
-  genres: [],
-  services: [],
-};
-
-const FilterMenu = ({ genres }) => {
+const FilterMenu = () => {
   const dispatch = useDispatch();
-  const { filterMenuOpen } = useSelector((state) => state.movie);
+  const { filterMenuOpen, page, filterData } = useSelector(
+    (state) => state.movie
+  );
+  const [formData, setFormData] = useState(filterData);
+
   const { pathname } = useLocation();
   const route = pathname.includes('movies') ? 'movies' : 'shows';
 
-  const [formData, setFormData] = useState(initialState);
+  const applyFilters = (e) => {
+    e.preventDefault();
+    dispatch(updateFilterData(formData));
+    dispatch(getMovies(page));
+  };
+
+  const resetForm = (e) => {
+    e.preventDefault();
+    setFormData(initialFilterState);
+    dispatch(resetFilterData());
+    dispatch(getMovies(page));
+    window.scrollTo(0, 0);
+  };
 
   const closeMenu = (e) => {
     if (
@@ -36,15 +51,6 @@ const FilterMenu = ({ genres }) => {
     ) {
       dispatch(closeFilterMenu());
     }
-  };
-
-  const resetForm = () => {
-    setFormData(initialState);
-    window.scrollTo(0, 0);
-  };
-
-  const applyFilters = (e) => {
-    e.preventDefault();
   };
 
   return createPortal(
@@ -154,7 +160,7 @@ const FilterMenu = ({ genres }) => {
           <div className={styles.genres}>
             <h3 className={styles.genresTitle}>Genres</h3>
             <ul className={styles.genresList}>
-              {genres.map((obj) => (
+              {movieGenres.map((obj) => (
                 <CustomCheckbox
                   formData={formData}
                   setFormData={setFormData}

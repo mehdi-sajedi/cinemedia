@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { errorHandler } from '../../utilities/utilities';
 import movieService from './movieService';
+import { initialFilterState } from '../../data/initialFilterState';
 
 const initialState = {
   results: [],
   totalResults: 100,
   page: 1,
   movie: {},
+  filterData: initialFilterState,
   filterMenuOpen: false,
   isLoading: false,
   isError: false,
@@ -15,10 +17,11 @@ const initialState = {
 export const getMovies = createAsyncThunk(
   'movie/getMovies',
   async (page, thunkAPI) => {
+    const filterData = thunkAPI.getState().movie.filterData;
     try {
-      return await movieService.getMoviesService(page);
+      return await movieService.getMoviesService(page, filterData);
     } catch (error) {
-      return thunkAPI.rejectWithValue(errorHandler(error));
+      return await thunkAPI.rejectWithValue(errorHandler(error));
     }
   }
 );
@@ -29,7 +32,7 @@ export const getSingleMovie = createAsyncThunk(
     try {
       return await movieService.getSingleMovieService(id);
     } catch (error) {
-      return thunkAPI.rejectWithValue(errorHandler(error));
+      return await thunkAPI.rejectWithValue(errorHandler(error));
     }
   }
 );
@@ -47,6 +50,12 @@ export const movieSlice = createSlice({
     },
     closeFilterMenu: (state) => {
       state.filterMenuOpen = false;
+    },
+    updateFilterData: (state, action) => {
+      state.filterData = action.payload;
+    },
+    resetFilterData: (state) => {
+      state.filterData = initialFilterState;
     },
   },
   extraReducers: (builder) => {
@@ -69,6 +78,12 @@ export const movieSlice = createSlice({
   },
 });
 
-export const { reset, paginate, toggleFilterMenu, closeFilterMenu } =
-  movieSlice.actions;
+export const {
+  reset,
+  paginate,
+  toggleFilterMenu,
+  closeFilterMenu,
+  updateFilterData,
+  resetFilterData,
+} = movieSlice.actions;
 export default movieSlice.reducer;

@@ -18,9 +18,7 @@ const Nav = () => {
 
     navigate({
       pathname: '/search',
-      search: `?${createSearchParams({
-        query: text,
-      })}`,
+      search: '?' + createSearchParams({ query: text }),
     });
   };
 

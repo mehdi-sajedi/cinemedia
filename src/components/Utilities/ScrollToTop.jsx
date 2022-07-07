@@ -9,7 +9,6 @@ const ScrollToTop = ({ children }) => {
   const { page: showPage } = useSelector((state) => state.show);
 
   useEffect(() => {
-    console.log('RAN');
     window.scrollTo(0, 0);
   }, [location, moviePage, showPage]);
 
