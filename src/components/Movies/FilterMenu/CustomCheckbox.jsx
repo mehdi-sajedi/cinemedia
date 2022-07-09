@@ -7,9 +7,7 @@ const CustomCheckbox = ({
   setFormData,
   id,
   name,
-  action,
   group,
-  route,
   state,
   img,
 }) => {

@@ -1,6 +1,6 @@
 import { FiSliders } from 'react-icons/fi';
 import styles from './FilterBtn.module.scss';
-import { toggleFilterMenu } from '../../features/movies/movieSlice';
+import { toggleFilterMenu } from '../../../features/movies/movieSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const FilterBtn = () => {

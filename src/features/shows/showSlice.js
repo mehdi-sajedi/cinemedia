@@ -1,12 +1,15 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { errorHandler } from '../../utilities/utilities';
 import showService from './showService';
+import { initialShowFilterState } from '../../data/initialShowFilterState';
 
 const initialState = {
   results: [],
   totalResults: 100,
   page: 1,
   show: {},
+  filterData: initialShowFilterState,
+  filterMenuOpen: false,
   isLoading: false,
   isError: false,
 };
@@ -15,7 +18,8 @@ export const getShows = createAsyncThunk(
   'show/getShows',
   async (page, thunkAPI) => {
     try {
-      return await showService.getShowsService(page);
+      const filterData = thunkAPI.getState().show.filterData;
+      return await showService.getShowsService(page, filterData);
     } catch (error) {
       return thunkAPI.rejectWithValue(errorHandler(error));
     }
@@ -41,6 +45,20 @@ export const showSlice = createSlice({
     paginate: (state, action) => {
       state.page = action.payload;
     },
+    toggleFilterMenu: (state) => {
+      state.filterMenuOpen = !state.filterMenuOpen;
+    },
+    closeFilterMenu: (state) => {
+      state.filterMenuOpen = false;
+    },
+    updateFilterData: (state, action) => {
+      state.filterData = action.payload;
+      state.page = 1;
+    },
+    resetFilterData: (state) => {
+      state.filterData = initialShowFilterState;
+      state.page = 1;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -62,5 +80,12 @@ export const showSlice = createSlice({
   },
 });
 
-export const { reset, paginate } = showSlice.actions;
+export const {
+  reset,
+  paginate,
+  toggleFilterMenu,
+  closeFilterMenu,
+  updateFilterData,
+  resetFilterData,
+} = showSlice.actions;
 export default showSlice.reducer;

@@ -10,13 +10,11 @@ const CustomRange = ({
   name,
   defaults,
   state,
-  action,
   min,
   max,
   step,
   tipFormatter,
   marks,
-  route,
   icon,
 }) => {
   let rangeStyles = {

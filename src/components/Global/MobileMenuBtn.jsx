@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../context/app-context';
 import styles from './MobileMenuBtn.module.scss';
 
-const MobileMenuBtn = () => {
-  const { appState, dispatch } = useContext(AppContext);
-
+const MobileMenuBtn = ({ menuOpen, setMenuOpen }) => {
   const toggleMenu = (e) => {
-    dispatch({ type: 'TOGGLE-NAV-MENU' });
+    setMenuOpen((prevState) => !prevState);
   };
 
   return (
@@ -14,7 +10,7 @@ const MobileMenuBtn = () => {
       <input
         onClick={toggleMenu}
         type="checkbox"
-        className={`${appState.navMenuOpen ? styles.active : ''}`}
+        className={`${menuOpen ? styles.active : ''}`}
       />
       <div className={styles.hamburger}>
         <div></div>

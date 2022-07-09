@@ -1,25 +1,22 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../../context/app-context';
+import React from 'react';
 import styles from './CustomRange.module.scss';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 const Range = createSliderWithTooltip(Slider.Range);
 
 const CustomRange = ({
+  formData,
+  setFormData,
   name,
   defaults,
   state,
-  action,
   min,
   max,
   step,
   tipFormatter,
   marks,
-  route,
   icon,
 }) => {
-  const { dispatchFilter } = useContext(AppContext);
-
   let rangeStyles = {
     rail: {
       backgroundColor: '#e2e2e2',
@@ -46,7 +43,10 @@ const CustomRange = ({
   };
 
   const handleSliderChange = (v) => {
-    dispatchFilter({ type: action, payload: { value: v, route: route } });
+    setFormData({
+      ...formData,
+      [state]: v,
+    });
   };
 
   return (
@@ -59,7 +59,7 @@ const CustomRange = ({
         className={styles.range}
         onChange={(v) => handleSliderChange(v)}
         defaultValue={defaults}
-        value={state}
+        value={formData[state]}
         min={min}
         max={max}
         railStyle={rangeStyles.rail}

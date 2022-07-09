@@ -10,20 +10,18 @@ import { AiOutlineCalendar } from 'react-icons/ai';
 import { FiStar } from 'react-icons/fi';
 import { IoMdTime } from 'react-icons/io';
 import { useSelector, useDispatch } from 'react-redux';
-import { closeFilterMenu } from '../../../features/movies/movieSlice';
-import { getMovies } from '../../../features/movies/movieSlice';
 import { movieGenres } from '../../Utilities/helpers';
+import { initialMovieFilterState } from '../../../data/initialMovieFilterState';
 import {
+  getMovies,
+  closeFilterMenu,
   updateFilterData,
   resetFilterData,
 } from '../../../features/movies/movieSlice';
-import { initialFilterState } from '../../../data/initialFilterState';
 
 const FilterMenu = () => {
   const dispatch = useDispatch();
-  const { filterMenuOpen, page, filterData } = useSelector(
-    (state) => state.movie
-  );
+  const { filterMenuOpen, filterData } = useSelector((state) => state.movie);
   const [formData, setFormData] = useState(filterData);
 
   const { pathname } = useLocation();
@@ -32,14 +30,14 @@ const FilterMenu = () => {
   const applyFilters = (e) => {
     e.preventDefault();
     dispatch(updateFilterData(formData));
-    dispatch(getMovies(page));
+    dispatch(getMovies(1));
   };
 
   const resetForm = (e) => {
     e.preventDefault();
-    setFormData(initialFilterState);
+    setFormData(initialMovieFilterState);
     dispatch(resetFilterData());
-    dispatch(getMovies(page));
+    dispatch(getMovies(1));
     window.scrollTo(0, 0);
   };
 

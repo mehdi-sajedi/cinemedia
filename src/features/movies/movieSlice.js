@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { errorHandler } from '../../utilities/utilities';
 import movieService from './movieService';
-import { initialFilterState } from '../../data/initialFilterState';
+import { initialMovieFilterState } from '../../data/initialMovieFilterState';
 
 const initialState = {
   results: [],
   totalResults: 100,
   page: 1,
   movie: {},
-  filterData: initialFilterState,
+  filterData: initialMovieFilterState,
   filterMenuOpen: false,
   isLoading: false,
   isError: false,
@@ -53,9 +53,11 @@ export const movieSlice = createSlice({
     },
     updateFilterData: (state, action) => {
       state.filterData = action.payload;
+      state.page = 1;
     },
     resetFilterData: (state) => {
-      state.filterData = initialFilterState;
+      state.filterData = initialMovieFilterState;
+      state.page = 1;
     },
   },
   extraReducers: (builder) => {

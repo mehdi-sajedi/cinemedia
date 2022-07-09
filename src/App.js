@@ -4,7 +4,6 @@ import './app.scss';
 import Nav from './components/Global/Nav';
 import Footer from './components/Global/Footer';
 import NoRoute from './components/Utilities/NoRoute';
-import MobileMenu from './components/Global/MobileMenu';
 import ScrollToTop from './components/Utilities/ScrollToTop';
 import Movies from './pages/Movies';
 import Shows from './pages/Shows';
@@ -18,7 +17,6 @@ function App() {
     <BrowserRouter>
       <ScrollToTop>
         <Nav />
-        <MobileMenu />
         <main>
           <Routes>
             <Route path="/movies" element={<Movies />} />
