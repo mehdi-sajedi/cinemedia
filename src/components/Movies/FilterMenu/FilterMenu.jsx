@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './FilterMenu.module.scss';
-import { useLocation } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import CustomRange from './CustomRange';
 import { watchProviders } from '../../Utilities/watch-providers';
@@ -23,9 +22,6 @@ const FilterMenu = () => {
   const dispatch = useDispatch();
   const { filterMenuOpen, filterData } = useSelector((state) => state.movie);
   const [formData, setFormData] = useState(filterData);
-
-  const { pathname } = useLocation();
-  const route = pathname.includes('movies') ? 'movies' : 'shows';
 
   const applyFilters = (e) => {
     e.preventDefault();
@@ -73,13 +69,10 @@ const FilterMenu = () => {
             setFormData={setFormData}
             name="Year"
             defaults={[1980, 2022]}
-            // state={filterState[route].year.value}
             state="year"
-            action="SET-YEAR"
             min={1980}
             max={2022}
             step={1}
-            route={route}
             tipFormatter={(v) => v}
             marks={{
               1980: {
@@ -102,13 +95,10 @@ const FilterMenu = () => {
             setFormData={setFormData}
             name="Runtime"
             defaults={[0, 240]}
-            // state={filterState[route].runtime.value}
             state="runtime"
-            action="SET-RUNTIME"
             min={0}
             max={240}
             step={5}
-            route={route}
             tipFormatter={(v) => `${v}m`}
             marks={{
               0: {
@@ -131,13 +121,10 @@ const FilterMenu = () => {
             setFormData={setFormData}
             name="Rating"
             defaults={[0, 100]}
-            // state={filterState[route].rating.value}
             state="rating"
-            action="SET-RATING"
             min={0}
             max={100}
             step={1}
-            route={route}
             tipFormatter={(v) => `${v}%`}
             marks={{
               0: {
@@ -163,12 +150,10 @@ const FilterMenu = () => {
                   formData={formData}
                   setFormData={setFormData}
                   state="genres"
-                  key={`${obj.id}-${obj.name}-${route}`}
+                  key={`${obj.id}-${obj.name}-movie`}
                   name={obj.name}
                   id={obj.id}
                   group="movie-genres"
-                  action="TOGGLE-GENRE"
-                  route={route}
                 />
               ))}
             </ul>
@@ -177,18 +162,16 @@ const FilterMenu = () => {
           <div className={styles.watchProviders}>
             <h3 className={styles.watchProvidersTitle}>Services</h3>
             <ul className={styles.watchProvidersList}>
-              {watchProviders.map((provider) => (
+              {watchProviders.map((p) => (
                 <CustomCheckbox
                   formData={formData}
                   setFormData={setFormData}
                   state="services"
-                  key={`${provider.provider_id}-${provider.provider_name}`}
-                  name={provider.provider_name}
-                  id={provider.provider_id}
+                  key={`${p.provider_id}-${p.provider_name}`}
+                  name={p.provider_name}
+                  id={p.provider_id}
                   group="watch-providers"
-                  action="TOGGLE-WATCH-PROVIDER"
-                  route={route}
-                  img={provider.logo_path}
+                  img={p.logo_path}
                 />
               ))}
             </ul>
