@@ -21,10 +21,11 @@
   }
 
   .details {
-    padding: 20px;
+    padding: 25px 20px 20px;
     min-height: 100px;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     @include media('<=phone') {
       padding: 13px;
@@ -48,6 +49,32 @@
 
       @include media('<=phone') {
         font-size: 13px;
+      }
+    }
+
+    .voteCircle {
+      position: absolute;
+      top: -20px;
+      left: 11px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #081c22;
+      width: 40px;
+      height: 40px;
+      border-radius: 50px;
+      font-size: 12px;
+      color: var(--white);
+
+      // color: rgb(33, 208, 122)
+
+      p {
+        letter-spacing: 0px;
+      }
+
+      .percentSymbol {
+        font-size: 8px;
+        transform: translate(1px, -3px);
       }
     }
   }

@@ -85,7 +85,9 @@ const ShowShowcase = () => {
                       ? show.vote_average.toFixed(1) * 10
                       : 'NR'}
                   </p>
-                  <FiPercent className={styles.percentSymbol} />
+                  {show.vote_average ? (
+                    <FiPercent className={styles.percentSymbol} />
+                  ) : null}
                 </div>
                 {show.runtime ? (
                   <span className={`${styles.dot} ${styles.dot1}`}></span>

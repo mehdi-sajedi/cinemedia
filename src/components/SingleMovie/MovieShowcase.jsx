@@ -7,7 +7,6 @@ import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../Utilities/helpers';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
-
 import { useSelector } from 'react-redux';
 
 const backdropBase = 'https://image.tmdb.org/t/p/original/';
@@ -18,17 +17,16 @@ const MovieShowcase = () => {
 
   const [viewTrailer, setViewTrailer] = useState(false);
   const [viewGallery, setViewGallery] = useState(false);
-  const media = movie;
-  useDocumentTitle(`${media.title} (${media.release_date?.slice(0, 4)})`);
+  useDocumentTitle(`${movie.title} (${movie.release_date?.slice(0, 4)})`);
 
-  const trailer = media.videos?.results?.find((entry) => {
+  const trailer = movie.videos?.results?.find((entry) => {
     return (
       entry.type.toLowerCase() === 'trailer' &&
       entry.site.toLowerCase() === 'youtube'
     );
   });
 
-  const hasImages = media?.images?.backdrops.length > 0;
+  const hasImages = movie?.images?.backdrops.length > 0;
 
   const handleViewGallery = () => {
     hasImages && setViewGallery(true);
@@ -40,7 +38,7 @@ const MovieShowcase = () => {
         <div
           className={styles.backdrop}
           style={{
-            background: `url('${backdropBase}${media.backdrop_path}') no-repeat top center/cover`,
+            background: `url('${backdropBase}${movie.backdrop_path}') no-repeat top center/cover`,
           }}
         ></div>
         <div className={styles.content}>
@@ -52,7 +50,7 @@ const MovieShowcase = () => {
           >
             <img
               className={styles.poster}
-              src={`${posterBase}${media.poster_path}`}
+              src={`${posterBase}${movie.poster_path}`}
               alt=""
             />
             <div className={styles.posterText}>
@@ -63,55 +61,57 @@ const MovieShowcase = () => {
           <div className={styles.textContent}>
             <div className={styles.heading}>
               <h1>
-                {media.title}
-                {media.release_date && (
-                  <span>({media.release_date.slice(0, 4)})</span>
+                {movie.title}
+                {movie.release_date && (
+                  <span>({movie.release_date.slice(0, 4)})</span>
                 )}
               </h1>
             </div>
-            {media.tagline && <p className={styles.tagline}>{media.tagline}</p>}
+            {movie.tagline && <p className={styles.tagline}>{movie.tagline}</p>}
             <div className={styles.row}>
               <div className={styles.ratingAndRuntime}>
                 <div
                   className={styles.voteCircle}
                   style={{
                     border: `3px solid ${
-                      media.vote_average
-                        ? colorPercentage(media.vote_average / 10)
+                      movie.vote_average
+                        ? colorPercentage(movie.vote_average / 10)
                         : '#777'
                     }`,
                   }}
                 >
                   <p>
-                    {media.vote_average
-                      ? media.vote_average.toFixed(1) * 10
+                    {movie.vote_average
+                      ? movie.vote_average.toFixed(1) * 10
                       : 'NR'}
                   </p>
-                  <FiPercent className={styles.percentSymbol} />
+                  {movie.vote_average ? (
+                    <FiPercent className={styles.percentSymbol} />
+                  ) : null}
                 </div>
-                {media.runtime ? (
+                {movie.runtime ? (
                   <span className={`${styles.dot} ${styles.dot1}`}></span>
                 ) : (
                   ''
                 )}
-                {media.runtime ? (
+                {movie.runtime ? (
                   <p className={styles.runtime}>
-                    {formatRuntime(media.runtime)}
+                    {formatRuntime(movie.runtime)}
                   </p>
                 ) : (
                   ''
                 )}
               </div>
-              {media.genres?.length > 0 && (
+              {movie.genres?.length > 0 && (
                 <span className={`${styles.dot} ${styles.dot2}`}></span>
               )}
               <ul className={styles.genres}>
-                {media.genres?.map(
+                {movie.genres?.map(
                   (genre, idx) =>
                     idx < 3 && (
                       <li key={`${genre.name}-${genre.id}`}>
                         {genre.name}
-                        {idx === media.genres.length - 1 || idx === 2
+                        {idx === movie.genres.length - 1 || idx === 2
                           ? null
                           : ','}
                       </li>
@@ -119,10 +119,10 @@ const MovieShowcase = () => {
                 )}
               </ul>
             </div>
-            {media.overview && (
+            {movie.overview && (
               <div className={styles.overview}>
                 <h3>Overview</h3>
-                <p>{media.overview}</p>
+                <p>{movie.overview}</p>
               </div>
             )}
             {trailer && (

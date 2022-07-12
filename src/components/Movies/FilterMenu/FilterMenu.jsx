@@ -9,7 +9,7 @@ import { AiOutlineCalendar } from 'react-icons/ai';
 import { FiStar } from 'react-icons/fi';
 import { IoMdTime } from 'react-icons/io';
 import { useSelector, useDispatch } from 'react-redux';
-import { movieGenres } from '../../Utilities/helpers';
+import { movieGenres } from '../../../data/genres';
 import { initialMovieFilterState } from '../../../data/initialMovieFilterState';
 import {
   getMovies,
