@@ -12,7 +12,6 @@
   }
 
   .column1 {
-    // 1454610
     display: flex;
     flex-direction: column;
     max-width: 23%;
@@ -26,7 +25,7 @@
 
     .image {
       width: 100%;
-      border-radius: 10px;
+      border-radius: 8px;
       box-shadow: 1px 0 10px 1px rgba(150, 150, 150, 0.5);
 
       @include media('<850.2px') {
