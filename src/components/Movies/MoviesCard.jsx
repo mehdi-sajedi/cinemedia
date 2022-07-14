@@ -29,6 +29,7 @@ const MoviesCard = ({
             }`,
           }}
         >
+          <div className={styles.arc}></div>
           <p>{vote_average ? vote_average.toFixed(1) * 10 : 'NR'}</p>
           {vote_average ? <FiPercent className={styles.percentSymbol} /> : null}
         </div>

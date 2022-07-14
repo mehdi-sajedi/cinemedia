@@ -14,6 +14,7 @@ const posterBase = 'https://image.tmdb.org/t/p/w780/';
 
 const MovieShowcase = () => {
   const { movie } = useSelector((state) => state.movie);
+  console.log(movie);
 
   const [viewTrailer, setViewTrailer] = useState(false);
   const [viewGallery, setViewGallery] = useState(false);

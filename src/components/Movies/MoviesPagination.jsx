@@ -26,12 +26,12 @@ const MoviesPagination = () => {
 
   return (
     <div className={styles.pagination}>
-      <IoIosArrowBack
+      <button
         onClick={() => handlePaginate(page - 1)}
-        className={`${styles.arrow} ${styles.arrowBack} ${
-          page === 1 ? 'inactive' : ''
-        }`}
-      />
+        className={`${styles.arrow} ${page === 1 ? 'inactive' : ''}`}
+      >
+        <IoIosArrowBack />
+      </button>
       <div className={styles.mediaPages}>
         <ul>
           {page >= 3 && (
@@ -73,12 +73,12 @@ const MoviesPagination = () => {
           )}
         </ul>
       </div>
-      <IoIosArrowForward
+      <button
         onClick={() => handlePaginate(page + 1)}
-        className={`${styles.arrow} ${styles.arrowForward} ${
-          page === maxPages ? 'inactive' : ''
-        }`}
-      />
+        className={`${styles.arrow} ${page === maxPages ? 'inactive' : ''}`}
+      >
+        <IoIosArrowForward />
+      </button>
     </div>
   );
 };

@@ -7,14 +7,14 @@
   flex-direction: column;
   justify-content: flex-start;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.36) 0px 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
   overflow: hidden;
 
   .imageWrapper {
     overflow: hidden;
 
     img {
-      border-radius: 5px 5px 2px 2px;
       transition: all 0.4s ease;
       height: 100%;
     }
@@ -29,7 +29,7 @@
 
     @include media('<=phone') {
       padding: 13px;
-      font-size: 12px;
+      padding: 25px 13px 13px;
     }
 
     .name {
@@ -66,7 +66,9 @@
       font-size: 12px;
       color: var(--white);
 
-      // color: rgb(33, 208, 122)
+      @include media('<=phone') {
+        left: 6px;
+      }
 
       p {
         letter-spacing: 0px;

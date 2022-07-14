@@ -1,12 +1,14 @@
 @import '../../app.scss';
 
+$breakpoint: '<1025px';
+
 .person {
   display: flex;
   column-gap: clamp(1px, 5vw, 3.5rem);
   max-width: var(--max-width);
   margin: 3rem auto;
 
-  @include media('<850.2px') {
+  @include media($breakpoint) {
     flex-direction: column;
     margin: 2rem auto;
   }
@@ -16,7 +18,7 @@
     flex-direction: column;
     max-width: 23%;
 
-    @include media('<850.2px') {
+    @include media($breakpoint) {
       max-width: 100vw;
       width: 100%;
       align-items: center;
@@ -28,7 +30,7 @@
       border-radius: 8px;
       box-shadow: 1px 0 10px 1px rgba(150, 150, 150, 0.5);
 
-      @include media('<850.2px') {
+      @include media($breakpoint) {
         width: 75%;
         width: clamp(1px, 75%, 400px);
         margin: 0 auto;
@@ -40,7 +42,7 @@
       flex-direction: column;
       margin-top: 2rem;
 
-      @include media('<850.2px') {
+      @include media($breakpoint) {
         width: 100%;
         margin-top: 1.5rem;
       }
@@ -53,7 +55,7 @@
         width: 150px;
         transform: translateX(-10px);
 
-        @include media('<850.2px') {
+        @include media($breakpoint) {
           justify-content: center;
           width: 100%;
           transform: translateX(0);
@@ -63,7 +65,7 @@
           transition: opacity 0.3s ease;
           margin-bottom: 2rem;
 
-          @include media('<850.2px') {
+          @include media($breakpoint) {
             margin-bottom: 1rem;
           }
 
@@ -86,7 +88,7 @@
         font-size: 22px;
         font-weight: 600;
 
-        @include media('<850.2px') {
+        @include media($breakpoint) {
           font-size: 20px;
           margin-top: 1rem;
           display: none;
@@ -97,7 +99,7 @@
         display: flex;
         flex-direction: column;
 
-        @include media('<850.2px') {
+        @include media($breakpoint) {
           margin-top: 1rem;
         }
 
@@ -105,7 +107,7 @@
           &:not(:last-of-type) {
             margin-bottom: 2rem;
 
-            @include media('<850.2px') {
+            @include media($breakpoint) {
               margin-bottom: 1rem;
             }
           }
@@ -114,7 +116,7 @@
             font-weight: 600;
             margin-bottom: 3px;
 
-            @include media('<850.2px') {
+            @include media($breakpoint) {
               margin-bottom: 1.5px;
             }
           }
@@ -124,7 +126,7 @@
               @include media('<desktop') {
                 display: block;
               }
-              @include media('<850.2px') {
+              @include media($breakpoint) {
                 display: inline;
               }
             }
@@ -142,7 +144,7 @@
     // justify-content: space-between;
     // min-height: 850px;
 
-    @include media('<850.2px') {
+    @include media($breakpoint) {
       width: 100%;
     }
 
@@ -157,7 +159,7 @@
       white-space: pre-wrap;
       margin-bottom: 3rem;
 
-      @include media('<850.2px') {
+      @include media($breakpoint) {
         margin-bottom: 2.5rem;
       }
     }
@@ -173,7 +175,7 @@
     &.nameMobile {
       display: none;
 
-      @include media('<850.2px') {
+      @include media($breakpoint) {
         display: inline-flex;
         margin-top: 1.5rem;
         margin-bottom: 0;
@@ -183,7 +185,7 @@
     &.nameDesktop {
       margin-bottom: 2rem;
 
-      @include media('<850.2px') {
+      @include media($breakpoint) {
         display: none;
       }
     }
@@ -201,7 +203,7 @@
     border-radius: 50px;
 
     &.linePersonal {
-      @include media('<850.2px') {
+      @include media($breakpoint) {
         display: none;
       }
     }
@@ -209,7 +211,7 @@
     &.lineBio {
       display: none;
 
-      @include media('<850.2px') {
+      @include media($breakpoint) {
         display: block;
         margin: 0.5rem 0 1.5rem;
       }
@@ -220,7 +222,7 @@
 .knownFor {
   transform: translateY(1rem);
 
-  @include media('<850.2px') {
+  @include media($breakpoint) {
     transform: translateY(0);
   }
 

@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { paginate } from '../../features/shows/showSlice';
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 import styles from './ShowsPagination.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { paginate } from '../../features/shows/showSlice';
 
 const ShowsPagination = () => {
   const dispatch = useDispatch();
@@ -26,12 +26,12 @@ const ShowsPagination = () => {
 
   return (
     <div className={styles.pagination}>
-      <IoIosArrowBack
+      <button
         onClick={() => handlePaginate(page - 1)}
-        className={`${styles.arrow} ${styles.arrowBack} ${
-          page === 1 ? 'inactive' : ''
-        }`}
-      />
+        className={`${styles.arrow} ${page === 1 ? 'inactive' : ''}`}
+      >
+        <IoIosArrowBack />
+      </button>
       <div className={styles.mediaPages}>
         <ul>
           {page >= 3 && (
@@ -73,12 +73,12 @@ const ShowsPagination = () => {
           )}
         </ul>
       </div>
-      <IoIosArrowForward
+      <button
         onClick={() => handlePaginate(page + 1)}
-        className={`${styles.arrow} ${styles.arrowForward} ${
-          page === maxPages ? 'inactive' : ''
-        }`}
-      />
+        className={`${styles.arrow} ${page === maxPages ? 'inactive' : ''}`}
+      >
+        <IoIosArrowForward />
+      </button>
     </div>
   );
 };

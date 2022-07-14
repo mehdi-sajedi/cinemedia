@@ -1,7 +1,7 @@
 @import '../../app.scss';
 
 .main {
-  margin-bottom: 3rem;
+  margin: 3rem 0;
 
   @include media('<880px') {
     margin-bottom: 2rem;

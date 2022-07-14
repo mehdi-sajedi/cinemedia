@@ -7,7 +7,7 @@ import { getAge } from '../../utilities/utilities';
 
 const posterBase = 'https://image.tmdb.org/t/p/w500';
 
-const PersonPage = () => {
+const PersonDetails = () => {
   const { person } = useSelector((state) => state.person);
 
   const socials = [
@@ -162,4 +162,4 @@ const PersonPage = () => {
   );
 };
 
-export default PersonPage;
+export default PersonDetails;
