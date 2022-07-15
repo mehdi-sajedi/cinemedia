@@ -90,32 +90,7 @@ const FilterMenu = () => {
             }}
             icon={<AiOutlineCalendar />}
           />
-          <CustomRange
-            formData={formData}
-            setFormData={setFormData}
-            name="Runtime"
-            defaults={[0, 240]}
-            state="runtime"
-            min={0}
-            max={240}
-            step={5}
-            tipFormatter={(v) => `${v}m`}
-            marks={{
-              0: {
-                style: {
-                  marginTop: '10px',
-                },
-                label: '0m',
-              },
-              240: {
-                style: {
-                  marginTop: '10px',
-                },
-                label: '240m',
-              },
-            }}
-            icon={<IoMdTime />}
-          />
+
           <CustomRange
             formData={formData}
             setFormData={setFormData}
@@ -141,6 +116,32 @@ const FilterMenu = () => {
               },
             }}
             icon={<FiStar />}
+          />
+          <CustomRange
+            formData={formData}
+            setFormData={setFormData}
+            name="Runtime"
+            defaults={[0, 240]}
+            state="runtime"
+            min={0}
+            max={240}
+            step={5}
+            tipFormatter={(v) => `${v}m`}
+            marks={{
+              0: {
+                style: {
+                  marginTop: '10px',
+                },
+                label: '0m',
+              },
+              240: {
+                style: {
+                  marginTop: '10px',
+                },
+                label: '240m',
+              },
+            }}
+            icon={<IoMdTime />}
           />
           <div className={styles.genres}>
             <h3 className={styles.genresTitle}>Genres</h3>

@@ -1,26 +1,24 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleFilterMenu } from '../../../features/movies/movieSlice';
 import { FiSliders } from 'react-icons/fi';
 import styles from './FilterBtn.module.scss';
-import { toggleFilterMenu } from '../../../features/movies/movieSlice';
-import { useDispatch, useSelector } from 'react-redux';
 
 const FilterBtn = () => {
   const dispatch = useDispatch();
   const { filterMenuOpen } = useSelector((state) => state.movie);
 
-  const onClick = (e) => {
+  const toggle = () => {
     dispatch(toggleFilterMenu());
   };
 
   return (
     <div className={styles.container}>
-      <div
-        className={`${styles.btnWrap} ${
-          filterMenuOpen ? styles.removePointer : ''
-        } `}
-        onClick={onClick}
+      <button
+        onClick={toggle}
+        className={`${filterMenuOpen ? styles.removePointer : ''} `}
       >
-        <FiSliders className={styles.btn} />
-      </div>
+        <FiSliders />
+      </button>
     </div>
   );
 };
