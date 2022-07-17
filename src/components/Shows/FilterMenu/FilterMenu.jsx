@@ -180,18 +180,18 @@ const FilterMenu = () => {
 
           <div className={styles.formButtons}>
             <button
-              className={`${styles.reset} ${styles.btn}`}
-              typeof="reset"
-              onClick={resetForm}
-            >
-              Reset
-            </button>
-            <button
               onClick={closeMenu}
               className={`${styles.submit} ${styles.btn} submit`}
               typeof="submit"
             >
               Apply
+            </button>
+            <button
+              className={`${styles.reset} ${styles.btn}`}
+              typeof="reset"
+              onClick={resetForm}
+            >
+              Reset
             </button>
           </div>
         </form>

@@ -3,7 +3,8 @@
 .nav {
   padding: 15px;
   background-color: var(--dark-grey);
-  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+  // box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.6);
 
   .navContent {
     display: flex;
