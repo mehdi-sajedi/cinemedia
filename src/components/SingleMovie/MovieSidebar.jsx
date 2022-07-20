@@ -62,7 +62,10 @@ const MovieSidebar = () => {
           <p>
             {movie.status}
             {movie.status === 'Released' &&
-              ` (${formatDate(movie.release_date, 'short')})`}
+              ` (${formatDate(
+                movie.release_date.replace(/-/g, '/'),
+                'short'
+              )})`}
           </p>
         </div>
         <div className={styles.budget}>

@@ -10,13 +10,9 @@
   outline: 1px solid #e3e3e3;
   overflow: hidden;
 
-  &:hover .popup {
-    transform: translateY(-100%);
-  }
-
   .text {
     padding: 12px;
-    z-index: 3;
+    z-index: 2;
     background-color: white;
 
     h5 {
@@ -24,18 +20,10 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-  }
 
-  .popup {
-    background-color: rgba(221, 221, 221, 0.8);
-    position: absolute;
-    font-size: 14px;
-    bottom: -100%;
-    z-index: 2;
-    width: 102%;
-    height: 100%;
-    padding: 12px;
-    transition: all 0.4s ease;
+      span {
+        font-weight: 500;
+      }
+    }
   }
 }

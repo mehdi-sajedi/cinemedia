@@ -12,6 +12,7 @@ const ShowsCard = ({
   first_air_date,
   id,
   vote_average,
+  vote_count,
 }) => {
   return (
     <div className={styles.card}>
@@ -20,7 +21,10 @@ const ShowsCard = ({
       </Link>
       <div className={styles.details}>
         <h3 className={styles.name}>{name}</h3>
-        <p className={styles.release}>{formatDate(first_air_date, 'short')}</p>
+        <p className={styles.release}>
+          {formatDate(first_air_date.replace(/-/g, '/'), 'short')}
+        </p>
+        <h3 className={styles.name}>{vote_count}</h3>
         <div
           className={styles.voteCircle}
           style={{

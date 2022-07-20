@@ -61,11 +61,7 @@ const ShowSidebar = () => {
       <div className={styles.info}>
         <div className={styles.status}>
           <h4>Status</h4>
-          <p>
-            {show.status}
-            {show.status === 'Released' &&
-              ` (${formatDate(show.release_date, 'short')})`}
-          </p>
+          <p>{show.status}</p>
         </div>
         <div className={styles.seasons}>
           <h4>Seasons</h4>
@@ -77,7 +73,7 @@ const ShowSidebar = () => {
         </div>
         <div className={styles.lastAir}>
           <h4>Last Air Date</h4>
-          <p>{formatDate(show.last_air_date, 'short')}</p>
+          <p>{formatDate(show.last_air_date?.replace(/-/g, '/'), 'short')}</p>
         </div>
         <div className={styles.network}>
           {show.networks?.length > 0 && (

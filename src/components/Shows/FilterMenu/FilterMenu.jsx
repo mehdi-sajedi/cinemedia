@@ -17,6 +17,7 @@ import {
   updateFilterData,
   resetFilterData,
 } from '../../../features/shows/showSlice';
+import SortDropdown from './SortDropdown';
 
 const FilterMenu = () => {
   const dispatch = useDispatch();
@@ -64,6 +65,7 @@ const FilterMenu = () => {
         />
         <header className={styles.header}>Filters</header>
         <form onSubmit={applyFilters} className={styles.form}>
+          <SortDropdown />
           <CustomRange
             formData={formData}
             setFormData={setFormData}
@@ -143,6 +145,7 @@ const FilterMenu = () => {
             }}
             icon={<IoMdTime />}
           />
+          {/* <div className={styles.lineBreak}></div> */}
           <div className={styles.genres}>
             <h3 className={styles.genresTitle}>Genres</h3>
             <ul className={styles.genresList}>
@@ -160,6 +163,7 @@ const FilterMenu = () => {
             </ul>
           </div>
 
+          {/* <div className={styles.lineBreak}></div> */}
           <div className={styles.watchProviders}>
             <h3 className={styles.watchProvidersTitle}>Services</h3>
             <ul className={styles.watchProvidersList}>

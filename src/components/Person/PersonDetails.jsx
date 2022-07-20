@@ -78,7 +78,7 @@ const PersonDetails = () => {
               <div className={styles.birthday}>
                 <h4>Birthday</h4>
                 <p>
-                  {formatDate(person.birthday)}
+                  {formatDate(person.birthday.replace(/-/g, '/'))}
                   {!person.deathday && (
                     <span>
                       {' '}
@@ -92,7 +92,7 @@ const PersonDetails = () => {
               <div className={styles.deathday}>
                 <h4>Day of Death</h4>
                 <p>
-                  {formatDate(person.deathday)}
+                  {formatDate(person.deathday.replace(/-/g, '/'))}
                   <span>
                     {' '}
                     ({getAge(person.birthday, person.deathday)} years old)

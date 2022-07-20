@@ -9,6 +9,7 @@ const initialState = {
   page: 1,
   show: {},
   filterData: initialShowFilterState,
+  sort: 'popularity.desc',
   filterMenuOpen: false,
   isLoading: false,
   isError: false,
@@ -19,7 +20,8 @@ export const getShows = createAsyncThunk(
   async (page, thunkAPI) => {
     try {
       const filterData = thunkAPI.getState().show.filterData;
-      return await showService.getShowsService(page, filterData);
+      const sort = thunkAPI.getState().show.sort;
+      return await showService.getShowsService(page, filterData, sort);
     } catch (error) {
       return thunkAPI.rejectWithValue(errorHandler(error));
     }
@@ -59,6 +61,10 @@ export const showSlice = createSlice({
       state.filterData = initialShowFilterState;
       state.page = 1;
     },
+    updateSortOption: (state, action) => {
+      state.sort = action.payload;
+      state.page = 1;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -87,5 +93,6 @@ export const {
   closeFilterMenu,
   updateFilterData,
   resetFilterData,
+  updateSortOption,
 } = showSlice.actions;
 export default showSlice.reducer;
