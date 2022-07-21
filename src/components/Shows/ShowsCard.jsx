@@ -12,7 +12,6 @@ const ShowsCard = ({
   first_air_date,
   id,
   vote_average,
-  vote_count,
 }) => {
   return (
     <div className={styles.card}>

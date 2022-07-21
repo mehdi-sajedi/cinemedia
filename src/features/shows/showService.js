@@ -3,7 +3,13 @@ import axios from 'axios';
 const getShowsService = async (page, filterData, sort) => {
   const SHOWS_API_URL = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=${sort}&page=${page}`;
 
-  const { year, runtime, rating, genres, services } = filterData;
+  // Left off trying to integrate StatusDropdown
+  // Things to consider:
+  // making a request onChange vs. having to click apply
+  // State storage of the data. Page and sort are separate properties but are both still sent in the request
+  // Do we put the StatusDropdown data in filterData? How about the TypeDropdown?
+
+  const { year, runtime, rating, genres, services, status } = filterData;
 
   let voteCount = 100;
   if (sort === 'first_air_date.desc') voteCount = 10;
@@ -19,6 +25,7 @@ const getShowsService = async (page, filterData, sort) => {
     `&with_watch_providers=${services.join('|')}`,
     `&watch_region=US`,
     `&vote_count.gte=${voteCount}`,
+    `&with_status=${status.join('|')}`,
   ];
 
   const res = await axios.get(SHOWS_API_URL + params.join(''));

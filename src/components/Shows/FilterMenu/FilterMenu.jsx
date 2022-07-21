@@ -18,6 +18,7 @@ import {
   resetFilterData,
 } from '../../../features/shows/showSlice';
 import SortDropdown from './SortDropdown';
+import StatusDropdown from './StatusDropdown';
 
 const FilterMenu = () => {
   const dispatch = useDispatch();
@@ -27,14 +28,14 @@ const FilterMenu = () => {
   const applyFilters = (e) => {
     e.preventDefault();
     dispatch(updateFilterData(formData));
-    dispatch(getShows(1));
+    dispatch(getShows());
   };
 
   const resetForm = (e) => {
     e.preventDefault();
     setFormData(initialShowFilterState);
     dispatch(resetFilterData());
-    dispatch(getShows(1));
+    dispatch(getShows());
     window.scrollTo(0, 0);
   };
 
@@ -66,6 +67,7 @@ const FilterMenu = () => {
         <header className={styles.header}>Filters</header>
         <form onSubmit={applyFilters} className={styles.form}>
           <SortDropdown />
+          <StatusDropdown formData={formData} setFormData={setFormData} />
           <CustomRange
             formData={formData}
             setFormData={setFormData}

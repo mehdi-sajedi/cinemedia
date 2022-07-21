@@ -4,4 +4,5 @@ export const initialShowFilterState = {
   rating: [0, 100],
   genres: [],
   services: [],
+  status: [],
 };

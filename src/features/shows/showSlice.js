@@ -17,10 +17,9 @@ const initialState = {
 
 export const getShows = createAsyncThunk(
   'show/getShows',
-  async (page, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const filterData = thunkAPI.getState().show.filterData;
-      const sort = thunkAPI.getState().show.sort;
+      const { filterData, sort, page } = thunkAPI.getState().show;
       return await showService.getShowsService(page, filterData, sort);
     } catch (error) {
       return thunkAPI.rejectWithValue(errorHandler(error));
@@ -59,6 +58,7 @@ export const showSlice = createSlice({
     },
     resetFilterData: (state) => {
       state.filterData = initialShowFilterState;
+      state.sort = 'popularity.desc';
       state.page = 1;
     },
     updateSortOption: (state, action) => {

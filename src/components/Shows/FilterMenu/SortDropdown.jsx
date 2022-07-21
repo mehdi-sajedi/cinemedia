@@ -1,36 +1,24 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import styles from './SortDropdown.module.scss';
 import { getShows, updateSortOption } from '../../../features/shows/showSlice';
 
 const options = [
-  {
-    value: 'popularity.desc',
-    label: 'Popularity',
-  },
-  {
-    value: 'vote_average.desc',
-    label: 'Rating',
-  },
-  {
-    value: 'first_air_date.desc',
-    label: 'Newly released',
-  },
+  { value: 'popularity.desc', label: 'Popularity' },
+  { value: 'vote_average.desc', label: 'Rating' },
+  { value: 'first_air_date.desc', label: 'Newly released' },
 ];
 
 const customStyles = {
-  control: (styles, state) => ({
-    ...styles,
-    cursor: 'pointer',
-  }),
-  option: (styles, state) => ({
-    ...styles,
-    cursor: 'pointer',
-  }),
+  control: (styles, state) => ({ ...styles, cursor: 'pointer' }),
+  option: (styles, state) => ({ ...styles, cursor: 'pointer' }),
 };
 
 const SortDropdown = () => {
   const dispatch = useDispatch();
+  const { sort } = useSelector((state) => state.show);
+
+  const sortName = options.find((opt) => opt.value === sort);
 
   const setSortOption = (o) => {
     dispatch(updateSortOption(o.value));
@@ -45,7 +33,7 @@ const SortDropdown = () => {
         className={styles.dropdown}
         styles={customStyles}
         onChange={setSortOption}
-        defaultValue={options[0]}
+        defaultValue={sortName}
         isSearchable={false}
       />
     </div>
