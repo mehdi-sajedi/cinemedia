@@ -5,4 +5,5 @@ export const initialShowFilterState = {
   genres: [],
   services: [],
   status: [],
+  type: [],
 };

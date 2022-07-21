@@ -19,6 +19,7 @@ import {
 } from '../../../features/shows/showSlice';
 import SortDropdown from './SortDropdown';
 import StatusDropdown from './StatusDropdown';
+import TypeDropdown from './TypeDropdown';
 
 const FilterMenu = () => {
   const dispatch = useDispatch();
@@ -68,6 +69,7 @@ const FilterMenu = () => {
         <form onSubmit={applyFilters} className={styles.form}>
           <SortDropdown />
           <StatusDropdown formData={formData} setFormData={setFormData} />
+          <TypeDropdown formData={formData} setFormData={setFormData} />
           <CustomRange
             formData={formData}
             setFormData={setFormData}
