@@ -21,11 +21,9 @@ const StatusDropdown = ({ formData, setFormData }) => {
   );
 
   const handleStatusChange = (active) => {
-    const statusValues = active.map((opt) => opt.value);
-
     setFormData({
       ...formData,
-      status: statusValues,
+      status: active,
     });
   };
 
@@ -37,6 +35,7 @@ const StatusDropdown = ({ formData, setFormData }) => {
         className={styles.dropdown}
         styles={customStyles}
         defaultValue={current}
+        value={formData.status}
         isSearchable={false}
         isMulti={true}
         onChange={handleStatusChange}

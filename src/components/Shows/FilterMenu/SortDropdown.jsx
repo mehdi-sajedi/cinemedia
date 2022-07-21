@@ -10,8 +10,8 @@ const options = [
 ];
 
 const customStyles = {
-  control: (styles, state) => ({ ...styles, cursor: 'pointer' }),
-  option: (styles, state) => ({ ...styles, cursor: 'pointer' }),
+  control: (styles) => ({ ...styles, cursor: 'pointer' }),
+  option: (styles) => ({ ...styles, cursor: 'pointer' }),
 };
 
 const SortDropdown = () => {
@@ -34,6 +34,7 @@ const SortDropdown = () => {
         styles={customStyles}
         onChange={setSortOption}
         defaultValue={sortName}
+        value={sortName}
         isSearchable={false}
       />
     </div>

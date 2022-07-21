@@ -5,6 +5,9 @@ const getShowsService = async (page, filterData, sort) => {
 
   const { year, runtime, rating, genres, services, status, type } = filterData;
 
+  const statusValues = status.map((opt) => opt.value);
+  const typeValues = type.map((opt) => opt.value);
+
   let voteCount = 100;
   if (sort === 'first_air_date.desc') voteCount = 10;
 
@@ -19,8 +22,8 @@ const getShowsService = async (page, filterData, sort) => {
     `&with_watch_providers=${services.join('|')}`,
     `&watch_region=US`,
     `&vote_count.gte=${voteCount}`,
-    `&with_status=${status.join('|')}`,
-    `&with_type=${type.join('|')}`,
+    `&with_status=${statusValues.join('|')}`,
+    `&with_type=${typeValues.join('|')}`,
   ];
 
   const res = await axios.get(SHOWS_API_URL + params.join(''));

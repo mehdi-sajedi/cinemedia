@@ -23,11 +23,9 @@ const TypeDropdown = ({ formData, setFormData }) => {
   const current = options.filter((opt) => filterData.type.includes(opt.value));
 
   const handleTypeChange = (active) => {
-    const typeValues = active.map((opt) => opt.value);
-
     setFormData({
       ...formData,
-      type: typeValues,
+      type: active,
     });
   };
 
@@ -39,6 +37,7 @@ const TypeDropdown = ({ formData, setFormData }) => {
         className={styles.dropdown}
         styles={customStyles}
         defaultValue={current}
+        value={formData.type}
         isSearchable={false}
         isMulti={true}
         onChange={handleTypeChange}
