@@ -7,6 +7,7 @@
   margin: 0 auto;
   margin-top: 1.5rem;
   margin-bottom: -1.5rem;
+  justify-content: flex-end;
 
   @include media('<desktop') {
     justify-content: flex-end;
@@ -14,21 +15,27 @@
 
   button {
     background-color: transparent;
-    transform: rotate(90deg);
     border: none;
     cursor: pointer;
     color: black;
+    display: flex;
+    align-items: center;
 
-    @include media('<=phone') {
-      font-size: 35px;
-    }
+    // @include media('<=phone') {
+    //   font-size: 35px;
+    // }
 
-    &.removePointer {
-      cursor: default;
-    }
+    // &.removePointer {
+    //   cursor: default;
+    // }
 
     svg {
-      font-size: 40px;
+      font-size: 32px;
+    }
+
+    span {
+      margin-right: 5px;
+      font-size: 17px;
     }
   }
 }

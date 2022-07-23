@@ -1,47 +1,42 @@
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
-import styles from './StatusDropdown.module.scss';
-
-const options = [
-  { value: 0, label: 'Returning Series' },
-  { value: 3, label: 'Ended' },
-  { value: 4, label: 'Cancelled' },
-];
+import styles from './GenreDropdown.module.scss';
+import { showGenres } from '../../../data/genres';
 
 const customStyles = {
   control: (styles) => ({ ...styles, cursor: 'pointer', fontSize: '15px' }),
   option: (styles) => ({ ...styles, cursor: 'pointer', fontSize: '14px' }),
 };
 
-const StatusDropdown = ({ formData, setFormData }) => {
+const GenreDropdown = ({ formData, setFormData }) => {
   const { filterData } = useSelector((state) => state.show);
 
-  const current = options.filter((opt) =>
-    filterData.status.includes(opt.value)
+  const current = showGenres.filter((opt) =>
+    filterData.type.includes(opt.value)
   );
 
-  const handleStatusChange = (active) => {
+  const handleGenreChange = (active) => {
     setFormData({
       ...formData,
-      status: active,
+      genres: active,
     });
   };
 
   return (
     <div className={styles.sort}>
-      <h3>Status</h3>
+      <h3>Genre</h3>
       <Select
-        options={options}
+        options={showGenres}
         className={styles.dropdown}
         styles={customStyles}
         defaultValue={current}
-        value={formData.status}
+        value={formData.genres}
         isSearchable={false}
         isMulti={true}
-        onChange={handleStatusChange}
+        onChange={handleGenreChange}
       />
     </div>
   );
 };
 
-export default StatusDropdown;
+export default GenreDropdown;

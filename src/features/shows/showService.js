@@ -7,6 +7,7 @@ const getShowsService = async (page, filterData, sort) => {
 
   const statusValues = status.map((opt) => opt.value);
   const typeValues = type.map((opt) => opt.value);
+  const genreValues = genres.map((opt) => opt.value);
 
   let voteCount = 100;
   if (sort === 'first_air_date.desc') voteCount = 10;
@@ -18,7 +19,7 @@ const getShowsService = async (page, filterData, sort) => {
     `&with_runtime.lte=${runtime[1]}`,
     `&vote_average.gte=${rating[0] / 10}`,
     `&vote_average.lte=${rating[1] / 10}`,
-    `&with_genres=${genres.join('|')}`,
+    `&with_genres=${genreValues.join('|')}`,
     `&with_watch_providers=${services.join('|')}`,
     `&watch_region=US`,
     `&vote_count.gte=${voteCount}`,

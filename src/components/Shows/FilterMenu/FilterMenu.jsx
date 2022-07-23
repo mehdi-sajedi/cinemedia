@@ -20,6 +20,7 @@ import {
 import SortDropdown from './SortDropdown';
 import StatusDropdown from './StatusDropdown';
 import TypeDropdown from './TypeDropdown';
+import GenreDropdown from './GenreDropdown';
 
 const FilterMenu = () => {
   const dispatch = useDispatch();
@@ -40,36 +41,53 @@ const FilterMenu = () => {
     window.scrollTo(0, 0);
   };
 
-  const closeMenu = (e) => {
-    if (
-      e.target.classList.contains('overlay') ||
-      e.target.classList.contains('closeBtn') ||
-      e.target.classList.contains('submit')
-    ) {
-      dispatch(closeFilterMenu());
-    }
-  };
+  // const closeMenu = (e) => {
+  //   if (
+  //     e.target.classList.contains('overlay') ||
+  //     e.target.classList.contains('closeBtn') ||
+  //     e.target.classList.contains('submit')
+  //   ) {
+  //     dispatch(closeFilterMenu());
+  //   }
+  // };
 
-  return createPortal(
+  return (
     <>
-      <div
+      {/* <div
         className={`${styles.overlay} ${
           filterMenuOpen ? styles.active : ''
         } overlay`}
         onClick={closeMenu}
-      ></div>
-      <div className={`${styles.menu} ${filterMenuOpen ? styles.active : ''} `}>
-        <IoCloseOutline
+      ></div> */}
+      <div className={`${styles.menu} ${!filterMenuOpen ? styles.close : ''} `}>
+        {/* <IoCloseOutline
           onClick={closeMenu}
           className={`${styles.closeBtn} ${
             !filterMenuOpen ? styles.removePointer : ''
           } closeBtn`}
-        />
-        <header className={styles.header}>Filters</header>
+        /> */}
+        {/* <header className={styles.header}>Filters</header> */}
         <form onSubmit={applyFilters} className={styles.form}>
           <SortDropdown />
+          <div
+            className={styles.lineBreak}
+            style={{ marginBottom: '1rem' }}
+          ></div>
           <StatusDropdown formData={formData} setFormData={setFormData} />
+          <div
+            className={styles.lineBreak}
+            style={{ marginBottom: '1rem' }}
+          ></div>
           <TypeDropdown formData={formData} setFormData={setFormData} />
+          <div
+            className={styles.lineBreak}
+            style={{ marginBottom: '1rem' }}
+          ></div>
+          <GenreDropdown formData={formData} setFormData={setFormData} />
+          <div
+            className={styles.lineBreak}
+            style={{ marginBottom: '1rem' }}
+          ></div>
           <CustomRange
             formData={formData}
             setFormData={setFormData}
@@ -96,7 +114,10 @@ const FilterMenu = () => {
             }}
             icon={<AiOutlineCalendar />}
           />
-
+          <div
+            className={styles.lineBreak}
+            style={{ marginBottom: '1rem' }}
+          ></div>
           <CustomRange
             formData={formData}
             setFormData={setFormData}
@@ -123,6 +144,10 @@ const FilterMenu = () => {
             }}
             icon={<FiStar />}
           />
+          <div
+            className={styles.lineBreak}
+            style={{ marginBottom: '1rem' }}
+          ></div>
           <CustomRange
             formData={formData}
             setFormData={setFormData}
@@ -150,7 +175,7 @@ const FilterMenu = () => {
             icon={<IoMdTime />}
           />
           {/* <div className={styles.lineBreak}></div> */}
-          <div className={styles.genres}>
+          {/* <div className={styles.genres}>
             <h3 className={styles.genresTitle}>Genres</h3>
             <ul className={styles.genresList}>
               {showGenres.map((obj) => (
@@ -165,9 +190,9 @@ const FilterMenu = () => {
                 />
               ))}
             </ul>
-          </div>
+          </div> */}
 
-          {/* <div className={styles.lineBreak}></div> */}
+          <div className={styles.lineBreak}></div>
           <div className={styles.watchProviders}>
             <h3 className={styles.watchProvidersTitle}>Services</h3>
             <ul className={styles.watchProvidersList}>
@@ -185,10 +210,10 @@ const FilterMenu = () => {
               ))}
             </ul>
           </div>
-
+          <div className={styles.lineBreak}></div>
           <div className={styles.formButtons}>
             <button
-              onClick={closeMenu}
+              // onClick={closeMenu}
               className={`${styles.submit} ${styles.btn} submit`}
               typeof="submit"
             >
@@ -204,8 +229,7 @@ const FilterMenu = () => {
           </div>
         </form>
       </div>
-    </>,
-    document.getElementById('filterMenu')
+    </>
   );
 };
 

@@ -4,10 +4,12 @@ import ShowsCard from './ShowsCard';
 import styles from './ShowsGrid.module.scss';
 
 const ShowsGrid = () => {
-  const { results } = useSelector((state) => state.show);
+  const { results, filterMenuOpen } = useSelector((state) => state.show);
 
   return (
-    <section className={styles.grid}>
+    <section
+      className={`${styles.grid} ${!filterMenuOpen ? styles.fullWidth : ''}`}
+    >
       {results.map((entry) => {
         return (
           entry.poster_path && (

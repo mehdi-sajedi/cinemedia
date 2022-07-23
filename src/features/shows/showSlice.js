@@ -10,7 +10,7 @@ const initialState = {
   show: {},
   filterData: initialShowFilterState,
   sort: 'popularity.desc',
-  filterMenuOpen: false,
+  filterMenuOpen: true,
   isLoading: false,
   isError: false,
 };

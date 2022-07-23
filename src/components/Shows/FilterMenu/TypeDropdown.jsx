@@ -13,8 +13,8 @@ const options = [
 ];
 
 const customStyles = {
-  control: (styles) => ({ ...styles, cursor: 'pointer' }),
-  option: (styles) => ({ ...styles, cursor: 'pointer' }),
+  control: (styles) => ({ ...styles, cursor: 'pointer', fontSize: '15px' }),
+  option: (styles) => ({ ...styles, cursor: 'pointer', fontSize: '14px' }),
 };
 
 const TypeDropdown = ({ formData, setFormData }) => {

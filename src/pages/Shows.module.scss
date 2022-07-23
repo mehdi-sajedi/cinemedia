@@ -1,0 +1,10 @@
+@import '../app.scss';
+
+.row {
+  max-width: var(--max-width);
+  display: flex;
+  margin: 3rem auto;
+  justify-content: center;
+  align-items: flex-start;
+  column-gap: 2rem;
+}

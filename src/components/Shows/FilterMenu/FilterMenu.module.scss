@@ -1,46 +1,55 @@
 @import '../../../app.scss';
 
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  visibility: hidden;
-  transition: all 0.3s ease-out;
-  width: 100vw;
-  height: 100vh;
-  opacity: 0;
+// .overlay {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   z-index: 2;
+//   visibility: hidden;
+//   transition: all 0.3s ease-out;
+//   width: 100vw;
+//   height: 100vh;
+//   opacity: 0;
 
-  &.active {
-    visibility: visible;
-    background-color: rgba(0, 0, 0, 0.65);
-    opacity: 1;
-  }
-}
+//   &.active {
+//     visibility: visible;
+//     background-color: rgba(0, 0, 0, 0.65);
+//     opacity: 1;
+//   }
+// }
 
 .menu {
-  position: fixed;
-  height: 100vh;
-  width: 450px;
+  // position: fixed;
+  // height: 100vh;
+  // width: 450px;
   overflow-y: auto;
+  overflow-x: hidden;
+  // top: 0;
+  // left: 0;
+  // background-color: #fafafa;
+  // border-radius: 2px 0 0 2px;
+  // padding: 5rem 2rem 2rem;
+  // z-index: 3;
+  // transform: translateX(-490px);
+  // transition: transform 0.55s ease;
+  // width: 20%;
+  width: 260px;
+  // width: 300px;
+  // width: 330px;
+  // padding: 2rem 1rem;
+  padding-left: 3px;
+  padding-right: 1rem;
+  position: sticky;
   top: 0;
-  left: 0;
-  background-color: #fafafa;
-  border-radius: 2px 0 0 2px;
-  padding: 5rem 2rem 2rem;
-  z-index: 3;
-  transform: translateX(-490px);
-  transition: transform 0.55s ease;
-  // scrollbar-width: none;
+  align-self: flex-start;
+  height: 80vh;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
 
   @include media('<tablet') {
-    transform: translateX(-110vw);
+    // transform: translateX(-110vw);
     width: 100vw;
   }
-
-  // &::-webkit-scrollbar {
-  //   display: none;
-  // }
 
   .closeBtn {
     position: absolute;
@@ -64,6 +73,8 @@
   }
 
   .form {
+    position: relative;
+
     .genres {
       display: flex;
       flex-direction: column;
@@ -80,6 +91,9 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 10px 8px;
         width: 100%;
+
+        display: flex;
+        flex-direction: column;
       }
     }
 
@@ -101,6 +115,7 @@
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         gap: 12px;
+        grid-template-columns: repeat(4, 1fr);
 
         @include media('<tablet') {
           grid-template-columns: repeat(8, 1fr);
@@ -118,6 +133,12 @@
       flex-direction: column;
       margin-bottom: 2rem;
       row-gap: 1.5rem;
+      //
+      // position: fixed;
+      // bottom: 0;
+      // background-color: #333;
+      // padding: 1rem;
+      // width: 200px;
 
       @include media('<desktop') {
         margin-bottom: 6rem;
@@ -164,10 +185,18 @@
     transform: translateX(0);
     opacity: 1;
   }
+
+  &.close {
+    display: none;
+  }
 }
 
 .lineBreak {
-  background-color: #eee;
-  height: 2px;
+  background-color: #ddd;
+  height: 1px;
   border-radius: 10px;
+}
+
+h3 {
+  font-size: 16px;
 }
