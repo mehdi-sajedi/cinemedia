@@ -40,29 +40,32 @@
   padding-left: 3px;
   padding-right: 1rem;
   position: sticky;
-  top: 0;
+  top: 1rem;
   align-self: flex-start;
   height: 80vh;
   scrollbar-width: thin;
   scrollbar-color: #ccc transparent;
 
-  @include media('<tablet') {
-    // transform: translateX(-110vw);
-    width: 100vw;
+  @include media('<=800px') {
+    width: 100%;
+    position: relative;
+    height: auto;
+    padding: 0 1rem;
+    top: 0;
   }
 
-  .closeBtn {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    font-size: 40px;
-    opacity: 0.75;
-    cursor: pointer;
+  // .closeBtn {
+  //   position: absolute;
+  //   right: 15px;
+  //   top: 15px;
+  //   font-size: 40px;
+  //   opacity: 0.75;
+  //   cursor: pointer;
 
-    &.removePointer {
-      cursor: default;
-    }
-  }
+  //   &.removePointer {
+  //     cursor: default;
+  //   }
+  // }
 
   .header {
     text-align: center;
@@ -75,27 +78,27 @@
   .form {
     position: relative;
 
-    .genres {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    // .genres {
+    //   display: flex;
+    //   flex-direction: column;
+    //   align-items: center;
 
-      .genresTitle {
-        width: 100%;
-        margin-bottom: 1.5rem;
-        text-align: center;
-      }
+    //   .genresTitle {
+    //     width: 100%;
+    //     margin-bottom: 1.5rem;
+    //     text-align: center;
+    //   }
 
-      .genresList {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px 8px;
-        width: 100%;
+    //   .genresList {
+    //     display: grid;
+    //     grid-template-columns: repeat(2, 1fr);
+    //     gap: 10px 8px;
+    //     width: 100%;
 
-        display: flex;
-        flex-direction: column;
-      }
-    }
+    //     display: flex;
+    //     flex-direction: column;
+    //   }
+    // }
 
     .watchProviders {
       display: flex;
@@ -113,11 +116,10 @@
       .watchProvidersList {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
         gap: 12px;
         grid-template-columns: repeat(4, 1fr);
 
-        @include media('<tablet') {
+        @include media('<=800px') {
           grid-template-columns: repeat(8, 1fr);
         }
 

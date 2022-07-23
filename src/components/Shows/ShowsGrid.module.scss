@@ -9,7 +9,7 @@
   // max-width: var(--max-width);
   // margin: 3rem auto;
   // width: 100%;
-  width: calc(100% - 260px);
+  width: 100%;
 
   @include media('<desktop') {
     grid-template-columns: repeat(3, 1fr);
@@ -20,7 +20,19 @@
     gap: 1.25rem;
   }
 
-  &.fullWidth {
-    width: 100%;
+  &.menuOpen {
+    width: calc(100% - 260px);
+
+    @include media('<=1100px') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include media('<=1000px') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include media('<=800px') {
+      display: none;
+    }
   }
 }

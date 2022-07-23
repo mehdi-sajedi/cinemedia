@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFilterMenu } from '../../../features/shows/showSlice';
-import { FiSliders } from 'react-icons/fi';
 import { IoOptionsOutline } from 'react-icons/io5';
 import styles from './FilterBtn.module.scss';
 

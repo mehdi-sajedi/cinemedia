@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
 import styles from './FilterMenu.module.scss';
-import { createPortal } from 'react-dom';
 import CustomRange from './CustomRange';
 import { watchProviders } from '../../Utilities/watch-providers';
 import CustomCheckbox from './CustomCheckbox';
-import { IoCloseOutline } from 'react-icons/io5';
 import { AiOutlineCalendar } from 'react-icons/ai';
 import { FiStar } from 'react-icons/fi';
 import { IoMdTime } from 'react-icons/io';
 import { useSelector, useDispatch } from 'react-redux';
-import { showGenres } from '../../../data/genres';
 import { initialShowFilterState } from '../../../data/initialShowFilterState';
 import {
   getShows,
-  closeFilterMenu,
   updateFilterData,
   resetFilterData,
 } from '../../../features/shows/showSlice';
@@ -42,13 +38,17 @@ const FilterMenu = () => {
   };
 
   // const closeMenu = (e) => {
-  //   if (
+  // if (
   //     e.target.classList.contains('overlay') ||
   //     e.target.classList.contains('closeBtn') ||
   //     e.target.classList.contains('submit')
   //   ) {
   //     dispatch(closeFilterMenu());
   //   }
+
+  // if (e.target.classList.contains('submit')) {
+  //   dispatch(closeFilterMenu());
+  // }
   // };
 
   return (
@@ -210,7 +210,6 @@ const FilterMenu = () => {
               ))}
             </ul>
           </div>
-          <div className={styles.lineBreak}></div>
           <div className={styles.formButtons}>
             <button
               // onClick={closeMenu}

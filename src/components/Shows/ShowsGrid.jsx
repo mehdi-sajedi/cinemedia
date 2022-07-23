@@ -8,7 +8,7 @@ const ShowsGrid = () => {
 
   return (
     <section
-      className={`${styles.grid} ${!filterMenuOpen ? styles.fullWidth : ''}`}
+      className={`${styles.grid} ${filterMenuOpen ? styles.menuOpen : ''}`}
     >
       {results.map((entry) => {
         return (
