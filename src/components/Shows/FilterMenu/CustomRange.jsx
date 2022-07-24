@@ -15,7 +15,7 @@ const CustomRange = ({
   step,
   tipFormatter,
   marks,
-  icon,
+  // icon,
 }) => {
   let rangeStyles = {
     rail: {
@@ -52,7 +52,7 @@ const CustomRange = ({
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
-        {icon}
+        {/* {icon} */}
         <h3>{name}</h3>
       </header>
       <Range

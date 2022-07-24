@@ -1,6 +1,9 @@
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import styles from './StatusDropdown.module.scss';
+import makeAnimated from 'react-select/animated';
+
+const animatedComponents = makeAnimated();
 
 const options = [
   { value: 0, label: 'Returning Series' },
@@ -28,7 +31,7 @@ const StatusDropdown = ({ formData, setFormData }) => {
   };
 
   return (
-    <div className={styles.sort}>
+    <div className={styles.select}>
       <h3>Status</h3>
       <Select
         options={options}
@@ -39,6 +42,8 @@ const StatusDropdown = ({ formData, setFormData }) => {
         isSearchable={false}
         isMulti={true}
         onChange={handleStatusChange}
+        closeMenuOnSelect={false}
+        components={animatedComponents}
       />
     </div>
   );

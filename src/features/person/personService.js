@@ -7,9 +7,6 @@ const getPersonService = async (personId) => {
 
   let { birthday, deathday, combined_credits, ...rest } = res.data;
 
-  // if (birthday) birthday = birthday.replace(/-/g, '/');
-  // if (deathday) deathday = deathday.replace(/-/g, '/');
-
   combined_credits.cast = combined_credits.cast
     .filter(
       (media) =>

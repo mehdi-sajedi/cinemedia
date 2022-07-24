@@ -5,7 +5,8 @@ import { watchProviders } from '../../Utilities/watch-providers';
 import CustomCheckbox from './CustomCheckbox';
 import { AiOutlineCalendar } from 'react-icons/ai';
 import { FiStar } from 'react-icons/fi';
-import { IoMdTime } from 'react-icons/io';
+import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
+// import { IoMdTime } from 'react-icons/io';
 import { useSelector, useDispatch } from 'react-redux';
 import { initialShowFilterState } from '../../../data/initialShowFilterState';
 import {
@@ -69,25 +70,13 @@ const FilterMenu = () => {
         {/* <header className={styles.header}>Filters</header> */}
         <form onSubmit={applyFilters} className={styles.form}>
           <SortDropdown />
-          <div
-            className={styles.lineBreak}
-            style={{ marginBottom: '1rem' }}
-          ></div>
+          <div className={styles.lineBreak}></div>
           <StatusDropdown formData={formData} setFormData={setFormData} />
-          <div
-            className={styles.lineBreak}
-            style={{ marginBottom: '1rem' }}
-          ></div>
+          <div className={styles.lineBreak}></div>
           <TypeDropdown formData={formData} setFormData={setFormData} />
-          <div
-            className={styles.lineBreak}
-            style={{ marginBottom: '1rem' }}
-          ></div>
+          <div className={styles.lineBreak}></div>
           <GenreDropdown formData={formData} setFormData={setFormData} />
-          <div
-            className={styles.lineBreak}
-            style={{ marginBottom: '1rem' }}
-          ></div>
+          <div className={styles.lineBreak}></div>
           <CustomRange
             formData={formData}
             setFormData={setFormData}
@@ -114,10 +103,7 @@ const FilterMenu = () => {
             }}
             icon={<AiOutlineCalendar />}
           />
-          <div
-            className={styles.lineBreak}
-            style={{ marginBottom: '1rem' }}
-          ></div>
+          <div className={styles.lineBreak}></div>
           <CustomRange
             formData={formData}
             setFormData={setFormData}
@@ -144,11 +130,8 @@ const FilterMenu = () => {
             }}
             icon={<FiStar />}
           />
-          <div
-            className={styles.lineBreak}
-            style={{ marginBottom: '1rem' }}
-          ></div>
-          <CustomRange
+
+          {/* <CustomRange
             formData={formData}
             setFormData={setFormData}
             name="Runtime"
@@ -173,8 +156,8 @@ const FilterMenu = () => {
               },
             }}
             icon={<IoMdTime />}
-          />
-          {/* <div className={styles.lineBreak}></div> */}
+          /> */}
+
           {/* <div className={styles.genres}>
             <h3 className={styles.genresTitle}>Genres</h3>
             <ul className={styles.genresList}>
@@ -210,20 +193,23 @@ const FilterMenu = () => {
               ))}
             </ul>
           </div>
+          <div className={styles.lineBreak}></div>
           <div className={styles.formButtons}>
             <button
               // onClick={closeMenu}
               className={`${styles.submit} ${styles.btn} submit`}
               typeof="submit"
             >
-              Apply
+              <div className={styles.content}>
+                Apply <HiOutlineArrowNarrowRight />
+              </div>
             </button>
             <button
               className={`${styles.reset} ${styles.btn}`}
               typeof="reset"
               onClick={resetForm}
             >
-              Reset
+              Clear All
             </button>
           </div>
         </form>

@@ -22,6 +22,7 @@
 
   &.menuOpen {
     width: calc(100% - 260px);
+    width: calc(100% - 230px);
 
     @include media('<=1100px') {
       grid-template-columns: repeat(3, 1fr);

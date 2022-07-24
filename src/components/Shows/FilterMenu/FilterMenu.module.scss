@@ -1,42 +1,9 @@
 @import '../../../app.scss';
 
-// .overlay {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   z-index: 2;
-//   visibility: hidden;
-//   transition: all 0.3s ease-out;
-//   width: 100vw;
-//   height: 100vh;
-//   opacity: 0;
-
-//   &.active {
-//     visibility: visible;
-//     background-color: rgba(0, 0, 0, 0.65);
-//     opacity: 1;
-//   }
-// }
-
 .menu {
-  // position: fixed;
-  // height: 100vh;
-  // width: 450px;
   overflow-y: auto;
   overflow-x: hidden;
-  // top: 0;
-  // left: 0;
-  // background-color: #fafafa;
-  // border-radius: 2px 0 0 2px;
-  // padding: 5rem 2rem 2rem;
-  // z-index: 3;
-  // transform: translateX(-490px);
-  // transition: transform 0.55s ease;
-  // width: 20%;
-  width: 260px;
-  // width: 300px;
-  // width: 330px;
-  // padding: 2rem 1rem;
+  width: 230px;
   padding-left: 3px;
   padding-right: 1rem;
   position: sticky;
@@ -54,18 +21,14 @@
     top: 0;
   }
 
-  // .closeBtn {
-  //   position: absolute;
-  //   right: 15px;
-  //   top: 15px;
-  //   font-size: 40px;
-  //   opacity: 0.75;
-  //   cursor: pointer;
+  &.active {
+    transform: translateX(0);
+    opacity: 1;
+  }
 
-  //   &.removePointer {
-  //     cursor: default;
-  //   }
-  // }
+  &.close {
+    display: none;
+  }
 
   .header {
     text-align: center;
@@ -75,121 +38,86 @@
     margin-bottom: 5rem;
   }
 
-  .form {
-    position: relative;
+  .watchProviders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 2rem;
 
-    // .genres {
-    //   display: flex;
-    //   flex-direction: column;
-    //   align-items: center;
-
-    //   .genresTitle {
-    //     width: 100%;
-    //     margin-bottom: 1.5rem;
-    //     text-align: center;
-    //   }
-
-    //   .genresList {
-    //     display: grid;
-    //     grid-template-columns: repeat(2, 1fr);
-    //     gap: 10px 8px;
-    //     width: 100%;
-
-    //     display: flex;
-    //     flex-direction: column;
-    //   }
-    // }
-
-    .watchProviders {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .watchProvidersTitle {
       width: 100%;
-
-      .watchProvidersTitle {
-        width: 100%;
-        margin-top: 2rem;
-        margin-bottom: 1.5rem;
-        text-align: center;
-      }
-
-      .watchProvidersList {
-        width: 100%;
-        display: grid;
-        gap: 12px;
-        grid-template-columns: repeat(4, 1fr);
-
-        @include media('<=800px') {
-          grid-template-columns: repeat(8, 1fr);
-        }
-
-        @include media('<=phone') {
-          grid-template-columns: repeat(auto-fit, minmax(52px, 1fr));
-        }
-      }
+      margin-bottom: 1.5rem;
+      text-align: center;
     }
 
-    .formButtons {
-      margin-top: 4rem;
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 2rem;
-      row-gap: 1.5rem;
-      //
-      // position: fixed;
-      // bottom: 0;
-      // background-color: #333;
-      // padding: 1rem;
-      // width: 200px;
+    .watchProvidersList {
+      width: 100%;
+      display: grid;
+      gap: 12px;
+      gap: 5px;
+      grid-template-columns: repeat(4, 1fr);
 
-      @include media('<desktop') {
-        margin-bottom: 6rem;
+      @include media('<=800px') {
+        grid-template-columns: repeat(8, 1fr);
       }
 
-      .btn {
-        padding: 10px 20px;
-        padding: 15px;
-        cursor: pointer;
-        border-radius: 3px;
-        border: none;
-        outline: none;
-        color: black;
-        font-size: 16px;
-        transition: background-color 0.1s ease;
-
-        // &:focus {
-        //   outline: 2px solid black;
-        // }
-
-        &:hover {
-          opacity: 0.85;
-        }
-
-        &:active {
-          transform: scale(0.97);
-        }
-
-        &.reset {
-          background-color: rgb(225, 225, 225);
-          box-shadow: 0 0 10px -1px rgba(0, 0, 0, 0.4);
-          box-shadow: 0 0 10px -1px rgba(94, 94, 94, 0.8);
-        }
-
-        &.submit {
-          background-color: rgb(34, 200, 136);
-          box-shadow: 0 0 10px -1px rgba(62, 222, 102, 1);
-        }
+      @include media('<=phone') {
+        grid-template-columns: repeat(auto-fit, minmax(52px, 1fr));
       }
     }
   }
 
-  &.active {
-    transform: translateX(0);
-    opacity: 1;
-  }
+  .formButtons {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    row-gap: 1.5rem;
 
-  &.close {
-    display: none;
+    @include media('<desktop') {
+      margin-bottom: 6rem;
+    }
+
+    .btn {
+      padding: 15px;
+      cursor: pointer;
+      border-radius: 2px;
+      border: none;
+      outline: none;
+      color: black;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+
+      &:active {
+        transform: scale(0.97);
+      }
+
+      .content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        svg {
+          transform: scale(1.6);
+          margin-right: 5px;
+        }
+      }
+
+      &.submit {
+        position: relative;
+        background-color: black;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        color: white;
+      }
+
+      &.reset {
+        background-color: rgb(225, 225, 225);
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+        text-align: left;
+      }
+    }
   }
 }
 
@@ -197,6 +125,7 @@
   background-color: #ddd;
   height: 1px;
   border-radius: 10px;
+  margin-bottom: 1rem;
 }
 
 h3 {

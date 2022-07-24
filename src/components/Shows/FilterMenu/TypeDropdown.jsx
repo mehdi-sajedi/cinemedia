@@ -1,15 +1,16 @@
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import styles from './TypeDropdown.module.scss';
+import makeAnimated from 'react-select/animated';
+
+const animatedComponents = makeAnimated();
 
 const options = [
-  { value: 0, label: 'Documentary' },
-  { value: 1, label: 'News' },
+  { value: 4, label: 'Scripted' },
   { value: 2, label: 'Miniseries' },
   { value: 3, label: 'Reality' },
-  { value: 4, label: 'Scripted' },
+  { value: 0, label: 'Documentary' },
   { value: 5, label: 'Talk Show' },
-  { value: 6, label: 'Video' },
 ];
 
 const customStyles = {
@@ -30,7 +31,7 @@ const TypeDropdown = ({ formData, setFormData }) => {
   };
 
   return (
-    <div className={styles.sort}>
+    <div className={styles.select}>
       <h3>Type</h3>
       <Select
         options={options}
@@ -41,6 +42,8 @@ const TypeDropdown = ({ formData, setFormData }) => {
         isSearchable={false}
         isMulti={true}
         onChange={handleTypeChange}
+        closeMenuOnSelect={false}
+        components={animatedComponents}
       />
     </div>
   );

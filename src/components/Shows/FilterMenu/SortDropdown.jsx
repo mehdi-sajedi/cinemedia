@@ -26,7 +26,7 @@ const SortDropdown = () => {
   };
 
   return (
-    <div className={styles.sort}>
+    <div className={styles.select}>
       <h3>Sort by</h3>
       <Select
         options={options}

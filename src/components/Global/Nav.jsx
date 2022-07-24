@@ -3,7 +3,7 @@ import { useLocation } from 'react-router';
 import { Link, useNavigate, createSearchParams } from 'react-router-dom';
 import { HiOutlineSearch } from 'react-icons/hi';
 import { IoCloseOutline } from 'react-icons/io5';
-import NavStyles from './Nav.module.scss';
+import styles from './Nav.module.scss';
 import MobileMenuBtn from './MobileMenuBtn';
 import MobileMenu from './MobileMenu';
 
@@ -31,26 +31,26 @@ const Nav = () => {
 
   return (
     <>
-      <nav className={NavStyles.nav}>
-        <div className={NavStyles.navContent}>
-          <div className={NavStyles.links}>
+      <nav className={styles.nav}>
+        <div className={styles.navContent}>
+          <div className={styles.links}>
             <Link
               to="/movies"
-              className={`${pathname === '/movies' ? NavStyles.active : ''}`}
+              className={`${pathname.includes('movies') ? styles.active : ''}`}
             >
               Movies
             </Link>
             <Link
               to="/shows"
-              className={`${pathname === '/shows' ? NavStyles.active : ''}`}
+              className={`${pathname.includes('shows') ? styles.active : ''}`}
             >
               Shows
             </Link>
           </div>
           <MobileMenuBtn menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-          <form onSubmit={onSubmit} className={NavStyles.form}>
-            <div className={NavStyles.search}>
-              <HiOutlineSearch className={NavStyles.magnify} />
+          <form onSubmit={onSubmit} className={styles.form}>
+            <div className={styles.search}>
+              <HiOutlineSearch className={styles.magnify} />
               <input
                 ref={searchRef}
                 value={text}
@@ -62,14 +62,11 @@ const Nav = () => {
                 <button>
                   <IoCloseOutline
                     onClick={clearSearch}
-                    className={NavStyles.clear}
+                    className={styles.clear}
                   />
                 </button>
               )}
             </div>
-            <button typeof="submit" className={NavStyles.submit}>
-              Search
-            </button>
           </form>
         </div>
       </nav>
