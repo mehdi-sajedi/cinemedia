@@ -21,9 +21,6 @@ const Shows = () => {
   return (
     <>
       <FilterBtn />
-
-      {/* {isLoading && <Loading />} */}
-      {/* {!isLoading && ( */}
       <>
         <div className={styles.row}>
           <FilterMenu />
@@ -31,7 +28,6 @@ const Shows = () => {
         </div>
         <ShowsPagination />
       </>
-      {/* )} */}
     </>
   );
 };

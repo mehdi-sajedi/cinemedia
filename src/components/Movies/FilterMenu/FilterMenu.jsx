@@ -1,22 +1,18 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './FilterMenu.module.scss';
-import { createPortal } from 'react-dom';
 import CustomRange from './CustomRange';
 import { watchProviders } from '../../Utilities/watch-providers';
 import CustomCheckbox from './CustomCheckbox';
-import { IoCloseOutline } from 'react-icons/io5';
-import { AiOutlineCalendar } from 'react-icons/ai';
-import { FiStar } from 'react-icons/fi';
-import { IoMdTime } from 'react-icons/io';
-import { useSelector, useDispatch } from 'react-redux';
-import { movieGenres } from '../../../data/genres';
+import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import { initialMovieFilterState } from '../../../data/initialMovieFilterState';
 import {
   getMovies,
-  closeFilterMenu,
   updateFilterData,
   resetFilterData,
 } from '../../../features/movies/movieSlice';
+import SortDropdown from './SortDropdown';
+import GenreDropdown from './GenreDropdown';
 
 const FilterMenu = () => {
   const dispatch = useDispatch();
@@ -26,44 +22,35 @@ const FilterMenu = () => {
   const applyFilters = (e) => {
     e.preventDefault();
     dispatch(updateFilterData(formData));
-    dispatch(getMovies(1));
+    dispatch(getMovies());
   };
 
   const resetForm = (e) => {
     e.preventDefault();
     setFormData(initialMovieFilterState);
     dispatch(resetFilterData());
-    dispatch(getMovies(1));
+    dispatch(getMovies());
     window.scrollTo(0, 0);
   };
 
-  const closeMenu = (e) => {
-    if (
-      e.target.classList.contains('overlay') ||
-      e.target.classList.contains('closeBtn') ||
-      e.target.classList.contains('submit')
-    ) {
-      dispatch(closeFilterMenu());
-    }
-  };
+  // const closeMenu = (e) => {
+  //   if (
+  //     e.target.classList.contains('overlay') ||
+  //     e.target.classList.contains('closeBtn') ||
+  //     e.target.classList.contains('submit')
+  //   ) {
+  //     dispatch(closeFilterMenu());
+  //   }
+  // };
 
-  return createPortal(
+  return (
     <>
-      <div
-        className={`${styles.overlay} ${
-          filterMenuOpen ? styles.active : ''
-        } overlay`}
-        onClick={closeMenu}
-      ></div>
-      <div className={`${styles.menu} ${filterMenuOpen ? styles.active : ''} `}>
-        <IoCloseOutline
-          onClick={closeMenu}
-          className={`${styles.closeBtn} ${
-            !filterMenuOpen ? styles.removePointer : ''
-          } closeBtn`}
-        />
-        <header className={styles.header}>Filters</header>
+      <div className={`${styles.menu} ${!filterMenuOpen ? styles.close : ''} `}>
         <form onSubmit={applyFilters} className={styles.form}>
+          <SortDropdown />
+          <div className={styles.lineBreak}></div>
+          <GenreDropdown formData={formData} setFormData={setFormData} />
+          <div className={styles.lineBreak}></div>
           <CustomRange
             formData={formData}
             setFormData={setFormData}
@@ -88,9 +75,8 @@ const FilterMenu = () => {
                 label: '2022',
               },
             }}
-            icon={<AiOutlineCalendar />}
           />
-
+          <div className={styles.lineBreak}></div>
           <CustomRange
             formData={formData}
             setFormData={setFormData}
@@ -115,8 +101,8 @@ const FilterMenu = () => {
                 label: '100%',
               },
             }}
-            icon={<FiStar />}
           />
+
           <CustomRange
             formData={formData}
             setFormData={setFormData}
@@ -141,25 +127,9 @@ const FilterMenu = () => {
                 label: '240m',
               },
             }}
-            icon={<IoMdTime />}
           />
-          <div className={styles.genres}>
-            <h3 className={styles.genresTitle}>Genres</h3>
-            <ul className={styles.genresList}>
-              {movieGenres.map((obj) => (
-                <CustomCheckbox
-                  formData={formData}
-                  setFormData={setFormData}
-                  state="genres"
-                  key={`${obj.id}-${obj.name}-movie`}
-                  name={obj.name}
-                  id={obj.id}
-                  group="movie-genres"
-                />
-              ))}
-            </ul>
-          </div>
 
+          <div className={styles.lineBreak}></div>
           <div className={styles.watchProviders}>
             <h3 className={styles.watchProvidersTitle}>Services</h3>
             <ul className={styles.watchProvidersList}>
@@ -177,27 +147,28 @@ const FilterMenu = () => {
               ))}
             </ul>
           </div>
-
+          <div className={styles.lineBreak}></div>
           <div className={styles.formButtons}>
             <button
-              onClick={closeMenu}
+              // onClick={closeMenu}
               className={`${styles.submit} ${styles.btn} submit`}
               typeof="submit"
             >
-              Apply
+              <div className={styles.content}>
+                Apply <HiOutlineArrowNarrowRight />
+              </div>
             </button>
             <button
               className={`${styles.reset} ${styles.btn}`}
               typeof="reset"
               onClick={resetForm}
             >
-              Reset
+              Clear All
             </button>
           </div>
         </form>
       </div>
-    </>,
-    document.getElementById('filterMenu')
+    </>
   );
 };
 

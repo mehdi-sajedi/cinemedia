@@ -5,8 +5,7 @@
   grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
   gap: 2rem;
   background-color: #f5f5f7;
-  max-width: var(--max-width);
-  margin: 3rem auto;
+  width: 100%;
 
   @include media('<desktop') {
     grid-template-columns: repeat(3, 1fr);
@@ -15,5 +14,21 @@
   @include media('<tablet') {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
+  }
+
+  &.menuOpen {
+    width: calc(100% - 230px);
+
+    @include media('<=1100px') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include media('<=1000px') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include media('<=800px') {
+      display: none;
+    }
   }
 }

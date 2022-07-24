@@ -9,17 +9,18 @@ const initialState = {
   page: 1,
   movie: {},
   filterData: initialMovieFilterState,
-  filterMenuOpen: false,
+  sort: 'popularity.desc',
+  filterMenuOpen: true,
   isLoading: false,
   isError: false,
 };
 
 export const getMovies = createAsyncThunk(
   'movie/getMovies',
-  async (page, thunkAPI) => {
-    const filterData = thunkAPI.getState().movie.filterData;
+  async (_, thunkAPI) => {
     try {
-      return await movieService.getMoviesService(page, filterData);
+      const { filterData, sort, page } = thunkAPI.getState().movie;
+      return await movieService.getMoviesService(page, filterData, sort);
     } catch (error) {
       return await thunkAPI.rejectWithValue(errorHandler(error));
     }
@@ -57,6 +58,11 @@ export const movieSlice = createSlice({
     },
     resetFilterData: (state) => {
       state.filterData = initialMovieFilterState;
+      state.sort = 'popularity.desc';
+      state.page = 1;
+    },
+    updateSortOption: (state, action) => {
+      state.sort = action.payload;
       state.page = 1;
     },
   },
@@ -87,5 +93,6 @@ export const {
   closeFilterMenu,
   updateFilterData,
   resetFilterData,
+  updateSortOption,
 } = movieSlice.actions;
 export default movieSlice.reducer;

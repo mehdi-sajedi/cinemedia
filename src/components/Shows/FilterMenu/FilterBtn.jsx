@@ -13,10 +13,7 @@ const FilterBtn = () => {
 
   return (
     <div className={styles.container}>
-      <button
-        onClick={toggle}
-        // className={`${filterMenuOpen ? styles.removePointer : ''} `}
-      >
+      <button onClick={toggle}>
         <span>{filterMenuOpen ? 'Hide Filters' : 'Show Filters'}</span>
         <IoOptionsOutline />
       </button>

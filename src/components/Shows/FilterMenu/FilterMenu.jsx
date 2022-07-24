@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './FilterMenu.module.scss';
 import CustomRange from './CustomRange';
 import { watchProviders } from '../../Utilities/watch-providers';
 import CustomCheckbox from './CustomCheckbox';
-import { AiOutlineCalendar } from 'react-icons/ai';
-import { FiStar } from 'react-icons/fi';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
-// import { IoMdTime } from 'react-icons/io';
-import { useSelector, useDispatch } from 'react-redux';
 import { initialShowFilterState } from '../../../data/initialShowFilterState';
 import {
   getShows,
@@ -54,28 +51,15 @@ const FilterMenu = () => {
 
   return (
     <>
-      {/* <div
-        className={`${styles.overlay} ${
-          filterMenuOpen ? styles.active : ''
-        } overlay`}
-        onClick={closeMenu}
-      ></div> */}
       <div className={`${styles.menu} ${!filterMenuOpen ? styles.close : ''} `}>
-        {/* <IoCloseOutline
-          onClick={closeMenu}
-          className={`${styles.closeBtn} ${
-            !filterMenuOpen ? styles.removePointer : ''
-          } closeBtn`}
-        /> */}
-        {/* <header className={styles.header}>Filters</header> */}
         <form onSubmit={applyFilters} className={styles.form}>
           <SortDropdown />
           <div className={styles.lineBreak}></div>
-          <StatusDropdown formData={formData} setFormData={setFormData} />
+          <GenreDropdown formData={formData} setFormData={setFormData} />
           <div className={styles.lineBreak}></div>
           <TypeDropdown formData={formData} setFormData={setFormData} />
           <div className={styles.lineBreak}></div>
-          <GenreDropdown formData={formData} setFormData={setFormData} />
+          <StatusDropdown formData={formData} setFormData={setFormData} />
           <div className={styles.lineBreak}></div>
           <CustomRange
             formData={formData}
@@ -101,7 +85,6 @@ const FilterMenu = () => {
                 label: '2022',
               },
             }}
-            icon={<AiOutlineCalendar />}
           />
           <div className={styles.lineBreak}></div>
           <CustomRange
@@ -128,7 +111,6 @@ const FilterMenu = () => {
                 label: '100%',
               },
             }}
-            icon={<FiStar />}
           />
 
           {/* <CustomRange
@@ -155,25 +137,7 @@ const FilterMenu = () => {
                 label: '240m',
               },
             }}
-            icon={<IoMdTime />}
           /> */}
-
-          {/* <div className={styles.genres}>
-            <h3 className={styles.genresTitle}>Genres</h3>
-            <ul className={styles.genresList}>
-              {showGenres.map((obj) => (
-                <CustomCheckbox
-                  formData={formData}
-                  setFormData={setFormData}
-                  state="genres"
-                  key={`${obj.id}-${obj.name}-show`}
-                  name={obj.name}
-                  id={obj.id}
-                  group="show-genres"
-                />
-              ))}
-            </ul>
-          </div> */}
 
           <div className={styles.lineBreak}></div>
           <div className={styles.watchProviders}>

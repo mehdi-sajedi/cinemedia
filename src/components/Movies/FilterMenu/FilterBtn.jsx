@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleFilterMenu } from '../../../features/movies/movieSlice';
-import { FiSliders } from 'react-icons/fi';
+import { IoOptionsOutline } from 'react-icons/io5';
 import styles from './FilterBtn.module.scss';
 
 const FilterBtn = () => {
@@ -13,11 +13,9 @@ const FilterBtn = () => {
 
   return (
     <div className={styles.container}>
-      <button
-        onClick={toggle}
-        className={`${filterMenuOpen ? styles.removePointer : ''} `}
-      >
-        <FiSliders />
+      <button onClick={toggle}>
+        <span>{filterMenuOpen ? 'Hide Filters' : 'Show Filters'}</span>
+        <IoOptionsOutline />
       </button>
     </div>
   );

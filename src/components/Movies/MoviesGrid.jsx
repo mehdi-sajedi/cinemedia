@@ -4,10 +4,12 @@ import MoviesCard from './MoviesCard';
 import styles from './MoviesGrid.module.scss';
 
 const MoviesGrid = () => {
-  const { results } = useSelector((state) => state.movie);
+  const { results, filterMenuOpen } = useSelector((state) => state.movie);
 
   return (
-    <section className={styles.grid}>
+    <section
+      className={`${styles.grid} ${filterMenuOpen ? styles.menuOpen : ''}`}
+    >
       {results.map((entry) => {
         return (
           entry.poster_path && (

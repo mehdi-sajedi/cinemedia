@@ -14,20 +14,12 @@
   }
 
   button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: black;
     display: flex;
     align-items: center;
-
-    // @include media('<=phone') {
-    //   font-size: 35px;
-    // }
-
-    // &.removePointer {
-    //   cursor: default;
-    // }
+    background-color: transparent;
+    border: none;
+    color: black;
+    cursor: pointer;
 
     svg {
       font-size: 32px;

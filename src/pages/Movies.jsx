@@ -7,6 +7,7 @@ import Loading from '../components/Utilities/Loading';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMovies } from '../features/movies/movieSlice';
+import styles from './Movies.module.scss';
 
 const Movies = () => {
   const dispatch = useDispatch();
@@ -20,14 +21,13 @@ const Movies = () => {
   return (
     <>
       <FilterBtn />
-      <FilterMenu />
-      {isLoading && <Loading />}
-      {!isLoading && (
-        <>
-          <MoviesGrid />
-          <MoviesPagination />
-        </>
-      )}
+      <>
+        <div className={styles.row}>
+          <FilterMenu />
+          {isLoading ? <Loading /> : <MoviesGrid />}
+        </div>
+        <MoviesPagination />
+      </>
     </>
   );
 };

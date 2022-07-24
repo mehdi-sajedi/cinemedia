@@ -1,7 +1,7 @@
 // import { useSelector } from 'react-redux';
 import Select from 'react-select';
 import styles from './GenreDropdown.module.scss';
-import { showGenres } from '../../../data/genres';
+import { movieGenres } from '../../../data/genres';
 import makeAnimated from 'react-select/animated';
 
 const animatedComponents = makeAnimated();
@@ -20,10 +20,10 @@ const customStyles = {
 };
 
 const GenreDropdown = ({ formData, setFormData }) => {
-  // const { filterData } = useSelector((state) => state.show);
+  // const { filterData } = useSelector((state) => state.movie);
 
-  // const current = showGenres.filter((opt) =>
-  //   filterData.type.includes(opt.value)
+  // const current = movieGenres.filter((opt) =>
+  //   filterData.genres.includes(opt.value)
   // );
 
   const handleGenreChange = (active) => {
@@ -37,7 +37,7 @@ const GenreDropdown = ({ formData, setFormData }) => {
     <div className={styles.select}>
       <h3>Genre</h3>
       <Select
-        options={showGenres}
+        options={movieGenres}
         className={styles.dropdown}
         styles={customStyles}
         // defaultValue={current}
