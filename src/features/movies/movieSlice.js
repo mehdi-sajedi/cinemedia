@@ -10,7 +10,7 @@ const initialState = {
   movie: {},
   filterData: initialMovieFilterState,
   sort: 'popularity.desc',
-  filterMenuOpen: true,
+  filterMenuOpen: false,
   isLoading: false,
   isError: false,
 };

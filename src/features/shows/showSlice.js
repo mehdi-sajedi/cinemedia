@@ -10,9 +10,11 @@ const initialState = {
   show: {},
   filterData: initialShowFilterState,
   sort: 'popularity.desc',
-  filterMenuOpen: true,
+  filterMenuOpen: false,
   isLoading: false,
   isError: false,
+  castScroll: 0,
+  prevShowId: 0,
 };
 
 export const getShows = createAsyncThunk(
@@ -65,6 +67,12 @@ export const showSlice = createSlice({
       state.sort = action.payload;
       state.page = 1;
     },
+    updateCastScroll: (state, action) => {
+      state.castScroll = action.payload;
+    },
+    setPrevShowId: (state, action) => {
+      state.prevShowId = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -94,5 +102,7 @@ export const {
   updateFilterData,
   resetFilterData,
   updateSortOption,
+  updateCastScroll,
+  setPrevShowId,
 } = showSlice.actions;
 export default showSlice.reducer;
