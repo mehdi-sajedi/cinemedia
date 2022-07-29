@@ -9,7 +9,7 @@ const ShowCast = () => {
     <div className={styles.cast}>
       <h2 className={styles.heading}>Cast</h2>
       <ul className={styles.castGrid}>
-        {show.credits?.cast.map((member, idx) => {
+        {show.aggregate_credits?.cast.map((member, idx) => {
           return (
             member.profile_path &&
             idx < 20 && (

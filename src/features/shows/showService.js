@@ -32,7 +32,7 @@ const getShowsService = async (page, filterData, sort) => {
 };
 
 const getSingleShowService = async (id) => {
-  const SINGLE_SHOW_API_URL = `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=recommendations,credits,external_ids,images,videos`;
+  const SINGLE_SHOW_API_URL = `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=recommendations,external_ids,images,videos,aggregate_credits`;
 
   const res = await axios.get(SINGLE_SHOW_API_URL);
   return res.data;

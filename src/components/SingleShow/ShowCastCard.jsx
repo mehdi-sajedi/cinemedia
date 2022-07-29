@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './ShowCastCard.module.scss';
 
-const ShowCastCard = ({ name, profile_path: image, character, id }) => {
+const ShowCastCard = ({ name, profile_path: image, id, roles }) => {
   const sizes = ['w92', 'w342'];
 
   const imagePaths = [
@@ -16,7 +16,7 @@ const ShowCastCard = ({ name, profile_path: image, character, id }) => {
       </Link>
       <div className={styles.text}>
         <h5 className={styles.actor}>{name}</h5>
-        <p>{character}</p>
+        <p>{roles[0].character}</p>
       </div>
     </li>
   );

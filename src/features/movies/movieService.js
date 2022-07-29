@@ -29,7 +29,7 @@ const getMoviesService = async (page, filterData, sort) => {
 };
 
 const getSingleMovieService = async (id) => {
-  const SINGLE_MOVIE_API_URL = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=recommendations,credits,external_ids,images,videos,reviews`;
+  const SINGLE_MOVIE_API_URL = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=recommendations,credits,external_ids,images,videos`;
 
   const res = await axios.get(SINGLE_MOVIE_API_URL);
   return res.data;
