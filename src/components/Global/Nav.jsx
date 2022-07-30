@@ -36,13 +36,13 @@ const Nav = () => {
           <div className={styles.links}>
             <Link
               to="/movies"
-              className={`${pathname.includes('movies') ? styles.active : ''}`}
+              className={`${pathname === '/movies' ? styles.active : ''}`}
             >
               Movies
             </Link>
             <Link
               to="/shows"
-              className={`${pathname.includes('shows') ? styles.active : ''}`}
+              className={`${pathname === '/shows' ? styles.active : ''}`}
             >
               Shows
             </Link>

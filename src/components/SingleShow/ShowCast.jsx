@@ -2,6 +2,8 @@ import styles from './ShowCast.module.scss';
 import ShowCastCard from './ShowCastCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRef, useLayoutEffect, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { TiArrowRight } from 'react-icons/ti';
 import {
   updateCastScroll,
   setPrevShowId,
@@ -41,6 +43,11 @@ const ShowCast = () => {
             )
           );
         })}
+        <li className={styles.viewMore}>
+          <Link to="cast">
+            View More <TiArrowRight />
+          </Link>
+        </li>
       </ul>
     </div>
   );
