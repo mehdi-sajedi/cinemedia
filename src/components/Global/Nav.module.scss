@@ -3,7 +3,6 @@
 .nav {
   padding: 15px;
   background-color: var(--dark-grey);
-  // box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.6);
 
   .navContent {
@@ -26,7 +25,7 @@
         border-bottom: 2px solid transparent;
         transition: opacity 0.3s ease;
         font-size: 18px;
-        color: var(--white);
+        color: var(--text-white);
         padding: 10px 0;
 
         &:last-of-type {
@@ -60,7 +59,7 @@
       }
 
       .search {
-        background-color: var(--white);
+        color: var(--clr-black);
         border-radius: 5px;
         height: 40px;
         width: 300px;

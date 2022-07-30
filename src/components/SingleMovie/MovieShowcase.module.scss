@@ -44,7 +44,7 @@
       z-index: 1;
       max-width: var(--max-width);
       margin: 0 auto;
-      color: var(--white);
+      color: var(--text-white);
       position: relative;
       height: 100%;
 
@@ -161,7 +161,7 @@
             margin: 0 1rem;
             width: 2px;
             border-radius: 10px;
-            background-color: var(--white);
+            color: var(--clr-black);
             opacity: 0.6;
             height: 30px;
 
@@ -235,7 +235,7 @@
           align-items: center;
           background-color: transparent;
           border: none;
-          color: var(--white);
+          color: var(--text-white);
           transition: opacity 0.3s ease;
           margin-top: 2rem;
           letter-spacing: 0.5px;

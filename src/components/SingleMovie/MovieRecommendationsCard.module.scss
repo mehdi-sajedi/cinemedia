@@ -1,16 +1,16 @@
-@import '../../include-media.scss';
+@import '../../app.scss';
 
 .card {
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  border-radius: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   outline: 1px solid #e3e3e3;
-  overflow: hidden;
 
   .text {
     padding: 12px;
+    background-color: var(--bg-white);
 
     h5 {
       font-size: 14px;

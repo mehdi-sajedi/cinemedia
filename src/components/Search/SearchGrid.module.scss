@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
   gap: 2rem;
-  background-color: #f5f5f7;
+  background-color: var(--bg-white);
   max-width: var(--max-width);
   margin: 3rem auto;
 

@@ -85,7 +85,7 @@
       border-radius: 2px;
       border: none;
       outline: none;
-      color: black;
+      color: var(--clr-black);
       font-size: 16px;
       letter-spacing: 0.5px;
       text-transform: uppercase;
@@ -107,9 +107,9 @@
 
       &.submit {
         position: relative;
-        background-color: black;
+        background-color: var(--clr-black);
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-        color: white;
+        color: var(--text-white);
       }
 
       &.reset {
