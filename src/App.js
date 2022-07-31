@@ -11,7 +11,7 @@ import Search from './pages/Search';
 import SingleMovie from './pages/SingleMovie';
 import SingleShow from './pages/SingleShow';
 import Person from './pages/Person';
-import ShowCastPage from './pages/ShowCastPage';
+import ShowCastAndCrew from './pages/ShowCastAndCrew';
 
 function App() {
   return (
@@ -26,7 +26,7 @@ function App() {
             <Route path="/movies/:id" element={<SingleMovie />} />
             <Route path="/shows/:id" element={<SingleShow />} />
             <Route path="/person/:id" element={<Person />} />
-            <Route path="/shows/:id/cast" element={<ShowCastPage />} />
+            <Route path="/shows/:id/cast" element={<ShowCastAndCrew />} />
             <Route path="/" element={<Navigate replace to="movies" />} />
             <Route path="*" element={<NoRoute />} />
           </Routes>

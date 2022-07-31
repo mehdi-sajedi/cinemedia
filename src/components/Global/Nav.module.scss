@@ -59,6 +59,7 @@
       }
 
       .search {
+        background-color: var(--bg-white);
         color: var(--clr-black);
         border-radius: 5px;
         height: 40px;
@@ -72,6 +73,7 @@
         }
 
         input {
+          background-color: var(--bg-white);
           position: absolute;
           left: 0;
           top: 0;

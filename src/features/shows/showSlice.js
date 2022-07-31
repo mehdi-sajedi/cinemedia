@@ -3,6 +3,8 @@ import { errorHandler } from '../../utilities/utilities';
 import showService from './showService';
 import { initialShowFilterState } from '../../data/initialShowFilterState';
 
+const hideEpisodes = JSON.parse(localStorage.getItem('hideEpisodes'));
+
 const initialState = {
   results: [],
   totalResults: 100,
@@ -15,6 +17,7 @@ const initialState = {
   isError: false,
   castScroll: 0,
   prevShowId: 0,
+  hideEpisodes: hideEpisodes,
 };
 
 export const getShows = createAsyncThunk(
@@ -73,6 +76,9 @@ export const showSlice = createSlice({
     setPrevShowId: (state, action) => {
       state.prevShowId = action.payload;
     },
+    toggleHideEpisodes: (state, action) => {
+      state.hideEpisodes = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -104,5 +110,6 @@ export const {
   updateSortOption,
   updateCastScroll,
   setPrevShowId,
+  toggleHideEpisodes,
 } = showSlice.actions;
 export default showSlice.reducer;
