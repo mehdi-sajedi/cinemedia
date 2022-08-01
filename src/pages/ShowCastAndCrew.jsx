@@ -45,7 +45,7 @@ const ShowCastAndCrew = () => {
                   c.profile_path && (
                     <li
                       className={styles.person}
-                      key={`${c.id}${c.popularity}`}
+                      key={`${c.id}${c.roles[0].credit_id}`}
                     >
                       <Link to={`/person/${c.id}`}>
                         <img
@@ -79,7 +79,7 @@ const ShowCastAndCrew = () => {
                   c.profile_path && (
                     <li
                       className={styles.person}
-                      key={`${c.id}${c.popularity}`}
+                      key={`${c.id}${c.jobs[0].credit_id}`}
                     >
                       <Link to={`/person/${c.id}`}>
                         <img
