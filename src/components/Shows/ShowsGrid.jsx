@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import ShowsCard from './ShowsCard';
 import styles from './ShowsGrid.module.scss';
@@ -8,7 +7,9 @@ const ShowsGrid = () => {
 
   return (
     <section
-      className={`${styles.grid} ${filterMenuOpen ? styles.menuOpen : ''}`}
+      className={`${styles.grid} ${filterMenuOpen ? styles.menuOpen : ''} ${
+        styles[results.length]
+      }`}
     >
       {results.map((entry) => {
         return (
@@ -21,4 +22,4 @@ const ShowsGrid = () => {
   );
 };
 
-export default React.memo(ShowsGrid);
+export default ShowsGrid;

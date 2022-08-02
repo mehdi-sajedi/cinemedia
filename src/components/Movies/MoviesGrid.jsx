@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import MoviesCard from './MoviesCard';
 import styles from './MoviesGrid.module.scss';
@@ -8,7 +7,9 @@ const MoviesGrid = () => {
 
   return (
     <section
-      className={`${styles.grid} ${filterMenuOpen ? styles.menuOpen : ''}`}
+      className={`${styles.grid} ${filterMenuOpen ? styles.menuOpen : ''} ${
+        styles[results.length]
+      }`}
     >
       {results.map((entry) => {
         return (
@@ -21,4 +22,4 @@ const MoviesGrid = () => {
   );
 };
 
-export default React.memo(MoviesGrid);
+export default MoviesGrid;

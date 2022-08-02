@@ -27,7 +27,6 @@
     }
   }
   &.1 {
-    grid-template-columns: 350px;
     grid-template-columns: clamp(1px, 350px, 50%);
 
     @include media('<=phone') {
