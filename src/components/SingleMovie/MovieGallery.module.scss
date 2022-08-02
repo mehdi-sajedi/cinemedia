@@ -1,3 +1,5 @@
+@import '../../app.scss';
+
 .wrapper {
   position: fixed;
   top: 0;
@@ -35,5 +37,14 @@
     box-shadow: 0 0 10px 10px black;
     pointer-events: none;
     z-index: 1000;
+  }
+
+  .closeBtn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 60px;
+    color: var(--text-white);
+    cursor: pointer;
   }
 }

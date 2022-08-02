@@ -4,6 +4,7 @@ import { isBrowser } from 'react-device-detect';
 import styles from './ShowGallery.module.scss';
 import './ShowGalleryExtra.scss';
 import ImageGallery from 'react-image-gallery';
+import { IoCloseOutline } from 'react-icons/io5';
 
 const backdropBase = 'https://image.tmdb.org/t/p';
 
@@ -29,7 +30,8 @@ const ShowGallery = ({ setViewGallery }) => {
     if (
       e.target.classList.contains('image-gallery-swipe') ||
       e.target.classList.contains('wrapper') ||
-      e.target.classList.contains('image-gallery-slide-wrapper')
+      e.target.classList.contains('image-gallery-slide-wrapper') ||
+      e.target.closest('.closeBtn')
     ) {
       setViewGallery(false);
     }
@@ -43,6 +45,9 @@ const ShowGallery = ({ setViewGallery }) => {
         className={styles.gallery}
         showFullscreenButton={isBrowser}
       />
+      {isBrowser && (
+        <IoCloseOutline className={`${styles.closeBtn} closeBtn`} />
+      )}
     </div>,
     document.getElementById('imageGallery')
   );
