@@ -84,18 +84,28 @@ export const showSlice = createSlice({
     builder
       .addCase(getShows.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
       })
       .addCase(getShows.fulfilled, (state, action) => {
         state.results = action.payload.results;
         state.totalResults = action.payload.total_results;
         state.isLoading = false;
       })
+      .addCase(getShows.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
       .addCase(getSingleShow.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
       })
       .addCase(getSingleShow.fulfilled, (state, action) => {
         state.show = action.payload;
         state.isLoading = false;
+      })
+      .addCase(getSingleShow.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
       });
   },
 });

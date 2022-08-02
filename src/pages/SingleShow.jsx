@@ -8,10 +8,11 @@ import ShowCast from '../components/SingleShow/ShowCast';
 import ShowSidebar from '../components/SingleShow/ShowSidebar';
 import ShowRecommendations from '../components/SingleShow/ShowRecommendations';
 import Loading from '../components/Utilities/Loading';
+import Error from '../components/Utilities/Error';
 
 const SingleShow = () => {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.show);
+  const { isLoading, isError } = useSelector((state) => state.show);
   const { pathname } = useLocation();
 
   const mediaId = pathname.substring(pathname.lastIndexOf('/') + 1);
@@ -21,6 +22,7 @@ const SingleShow = () => {
   }, [dispatch, mediaId]);
 
   if (isLoading) return <Loading />;
+  if (isError) return <Error />;
 
   return (
     <>

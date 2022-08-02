@@ -5,7 +5,7 @@ import Gallery from './MovieGallery';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
-import { formatRuntime, colorPercentage } from '../Utilities/helpers';
+import { formatRuntime, colorPercentage } from '../../utilities/utilities';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import { useSelector } from 'react-redux';
 
@@ -14,7 +14,6 @@ const posterBase = 'https://image.tmdb.org/t/p/w780/';
 
 const MovieShowcase = () => {
   const { movie } = useSelector((state) => state.movie);
-  console.log(movie);
 
   const [viewTrailer, setViewTrailer] = useState(false);
   const [viewGallery, setViewGallery] = useState(false);

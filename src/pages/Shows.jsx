@@ -5,18 +5,21 @@ import ShowsPagination from '../components/Shows/ShowsPagination';
 import FilterMenu from '../components/Shows/FilterMenu/FilterMenu';
 import FilterBtn from '../components/Shows/FilterMenu/FilterBtn';
 import Loading from '../components/Utilities/Loading';
+import Error from '../components/Utilities/Error';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { getShows } from '../features/shows/showSlice';
 import styles from './Shows.module.scss';
 
 const Shows = () => {
   const dispatch = useDispatch();
-  const { page, isLoading } = useSelector((state) => state.show);
+  const { page, isLoading, isError } = useSelector((state) => state.show);
   useDocumentTitle('Popular Shows');
 
   useEffect(() => {
     dispatch(getShows(page));
   }, [dispatch, page]);
+
+  if (isError) return <Error />;
 
   return (
     <>

@@ -5,7 +5,7 @@ import ShowGallery from './ShowGallery';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
-import { formatRuntime, colorPercentage } from '../Utilities/helpers';
+import { formatRuntime, colorPercentage } from '../../utilities/utilities';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import { useSelector } from 'react-redux';
 

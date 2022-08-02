@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import { formatDate } from '../Utilities/helpers';
 import styles from './MoviesCard.module.scss';
-import { colorPercentage } from '../Utilities/helpers';
+import { formatDate, colorPercentage } from '../../utilities/utilities';
 import { FiPercent } from 'react-icons/fi';
 
 const basePath = 'https://image.tmdb.org/t/p/w500/';
@@ -22,7 +21,7 @@ const MoviesCard = ({
       <div className={styles.details}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.release}>
-          {formatDate(release_date.replace(/-/g, '/'), 'short')}
+          {formatDate(release_date?.replace(/-/g, '/'), 'short')}
         </p>
         <div
           className={styles.voteCircle}

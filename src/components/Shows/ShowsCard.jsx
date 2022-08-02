@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-import { formatDate } from '../Utilities/helpers';
 import styles from './ShowsCard.module.scss';
 import { FiPercent } from 'react-icons/fi';
-import { colorPercentage } from '../Utilities/helpers';
+import { formatDate, colorPercentage } from '../../utilities/utilities';
 
 const basePath = 'https://image.tmdb.org/t/p/w500/';
 

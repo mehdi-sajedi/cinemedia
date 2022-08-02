@@ -241,7 +241,6 @@
           @include media('<tablet') {
             margin-top: 1rem;
             margin: 1rem auto 0 auto;
-            //
             position: absolute;
             bottom: 28px;
             right: clamp(1px, 50px, 2.5vw);

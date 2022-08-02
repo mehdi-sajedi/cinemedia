@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
-import { formatDate } from '../Utilities/helpers';
 import styles from './PersonDetails.module.scss';
 import { useSelector } from 'react-redux';
-import { getAge } from '../../utilities/utilities';
+import { getAge, formatDate } from '../../utilities/utilities';
 
 const posterBase = 'https://image.tmdb.org/t/p/w500';
 

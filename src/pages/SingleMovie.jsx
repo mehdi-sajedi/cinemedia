@@ -8,10 +8,11 @@ import MovieCast from '../components/SingleMovie/MovieCast';
 import MovieSidebar from '../components/SingleMovie/MovieSidebar';
 import MovieRecommendations from '../components/SingleMovie/MovieRecommendations';
 import Loading from '../components/Utilities/Loading';
+import Error from '../components/Utilities/Error';
 
 const SingleMovie = () => {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.movie);
+  const { isLoading, isError } = useSelector((state) => state.movie);
   const { pathname } = useLocation();
 
   const mediaId = pathname.substring(pathname.lastIndexOf('/') + 1);
@@ -21,6 +22,7 @@ const SingleMovie = () => {
   }, [dispatch, mediaId]);
 
   if (isLoading) return <Loading />;
+  if (isError) return <Error />;
 
   return (
     <>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import './app.scss';
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 import Nav from './components/Global/Nav';
 import Footer from './components/Global/Footer';
 import NoRoute from './components/Utilities/NoRoute';

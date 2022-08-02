@@ -6,15 +6,22 @@ import { Link } from 'react-router-dom';
 import styles from './ShowCastAndCrew.module.scss';
 import { BsArrowLeftShort } from 'react-icons/bs';
 import ToggleBtn from '../components/ShowCast/ToggleBtn';
+import Loading from '../components/Utilities/Loading';
+import Error from '../components/Utilities/Error';
 
 const ShowCastAndCrew = () => {
   const dispatch = useDispatch();
-  const { show, hideEpisodes } = useSelector((state) => state.show);
+  const { show, hideEpisodes, isLoading, isError } = useSelector(
+    (state) => state.show
+  );
   const { id } = useParams();
 
   useEffect(() => {
     dispatch(getSingleShow(id));
   }, [dispatch, id]);
+
+  if (isLoading) return <Loading />;
+  if (isError) return <Error />;
 
   return (
     <div className={styles.showCastAndCrew}>

@@ -8,6 +8,7 @@ const initialState = {
   name: '',
   id: null,
   isLoading: false,
+  isError: false,
 };
 
 export const getSearchResults = createAsyncThunk(
@@ -30,6 +31,7 @@ export const searchSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getSearchResults.pending, (state) => {
       state.isLoading = true;
+      state.isError = false;
     });
     builder.addCase(getSearchResults.fulfilled, (state, action) => {
       state.results = action.payload.results;
@@ -37,6 +39,10 @@ export const searchSlice = createSlice({
       state.name = action.payload.name;
       state.id = action.payload.id;
       state.isLoading = false;
+    });
+    builder.addCase(getSearchResults.rejected, (state) => {
+      state.isLoading = false;
+      state.isError = true;
     });
   },
 });

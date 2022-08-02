@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './FilterMenu.module.scss';
 import CustomRange from './CustomRange';
-import { watchProviders } from '../../Utilities/watch-providers';
+import { watchProviders } from '../../../data/watchProviders';
 import CustomCheckbox from './CustomCheckbox';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import { initialShowFilterState } from '../../../data/initialShowFilterState';

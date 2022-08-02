@@ -30,6 +30,7 @@ body {
   color: var(--clr-black);
   background-color: #fafafa;
   // overflow-x: hidden;
+  overflow-y: scroll;
   position: relative;
   min-height: 100%;
 }

@@ -70,18 +70,28 @@ export const movieSlice = createSlice({
     builder
       .addCase(getMovies.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
       })
       .addCase(getMovies.fulfilled, (state, action) => {
         state.results = action.payload.results;
         state.totalResults = action.payload.total_results;
         state.isLoading = false;
       })
+      .addCase(getMovies.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+      })
       .addCase(getSingleMovie.pending, (state) => {
         state.isLoading = true;
+        state.isError = false;
       })
       .addCase(getSingleMovie.fulfilled, (state, action) => {
         state.movie = action.payload;
         state.isLoading = false;
+      })
+      .addCase(getSingleMovie.rejected, (state) => {
+        state.isLoading = false;
+        state.isError = true;
       });
   },
 });

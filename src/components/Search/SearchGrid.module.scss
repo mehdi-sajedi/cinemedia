@@ -4,7 +4,8 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
   gap: 2rem;
-  background-color: var(--bg-white);
+  background-color: inherit;
+  color: var(--clr-black);
   max-width: var(--max-width);
   margin: 3rem auto;
 
@@ -15,5 +16,22 @@
   @include media('<tablet') {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
+  }
+
+  &.2 {
+    @include media('>=desktop') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @include media('<desktop') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  &.1 {
+    grid-template-columns: 350px;
+    grid-template-columns: clamp(1px, 350px, 50%);
+
+    @include media('<=phone') {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }

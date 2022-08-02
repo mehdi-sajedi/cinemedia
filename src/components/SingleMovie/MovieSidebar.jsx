@@ -1,6 +1,6 @@
 import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
 import { MdOutlineLink } from 'react-icons/md';
-import { formatDate } from '../Utilities/helpers';
+import { formatDate } from '../../utilities/utilities';
 import styles from './MovieSidebar.module.scss';
 import { useSelector } from 'react-redux';
 

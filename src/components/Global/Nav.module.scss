@@ -4,128 +4,120 @@
   padding: 15px;
   background-color: var(--dark-grey);
   box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.6);
+}
 
-  .navContent {
+.navContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+
+  .logo {
+    width: 30px;
+  }
+
+  .links {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    max-width: var(--max-width);
-    margin: 0 auto;
+
+    a {
+      border-bottom: 2px solid transparent;
+      transition: opacity 0.3s ease;
+      font-size: 18px;
+      color: var(--text-white);
+      padding: 10px 0;
+
+      &:last-of-type {
+        margin-left: 30px;
+      }
+
+      &:hover {
+        opacity: 0.75;
+      }
+    }
+
+    .active {
+      border-bottom: 2px solid orange;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    @include media('<=phone') {
+      display: none;
+    }
+  }
+
+  .search {
+    background-color: var(--bg-white);
+    color: var(--clr-black);
+    border-radius: 3px;
+    height: 40px;
+    width: 300px;
     position: relative;
 
-    .logo {
-      width: 30px;
+    @include media('<=phone') {
+      display: flex;
+      justify-content: flex-end;
     }
 
-    .links {
-      display: flex;
-      align-items: center;
+    @include media('<400px') {
+      width: 240px;
+    }
 
-      a {
-        border-bottom: 2px solid transparent;
-        transition: opacity 0.3s ease;
-        font-size: 18px;
-        color: var(--text-white);
-        padding: 10px 0;
+    input {
+      background-color: var(--bg-white);
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 17px;
+      outline: none;
+      border: none;
+      border-radius: 3px;
+      height: 100%;
+      width: 100%;
+      padding: 0 2.5rem;
 
-        &:last-of-type {
-          margin-left: 30px;
-        }
-
-        &:hover {
-          opacity: 0.75;
-        }
+      &::placeholder {
+        font-size: 15px;
+        color: black;
+        opacity: 0.6;
       }
 
-      .active {
-        border-bottom: 2px solid orange;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-
-      @include media('<=phone') {
-        display: none;
+      &::-webkit-input-placeholder {
+        opacity: 0.6;
+        color: black;
       }
     }
 
-    .form {
+    .magnify,
+    .clear {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
       display: flex;
+      justify-content: center;
       align-items: center;
+      border-radius: 5px;
+      border: none;
+      z-index: 1;
+    }
 
-      @include media('<=phone') {
-        width: 100%;
-      }
+    .magnify {
+      left: 12px;
+      height: 18px;
+      width: 18px;
+    }
 
-      .search {
-        background-color: var(--bg-white);
-        color: var(--clr-black);
-        border-radius: 5px;
-        height: 40px;
-        width: 300px;
-        position: relative;
-
-        @include media('<=phone') {
-          width: 240px;
-          display: flex;
-          justify-content: flex-end;
-        }
-
-        input {
-          background-color: var(--bg-white);
-          position: absolute;
-          left: 0;
-          top: 0;
-          font-size: 17px;
-          outline: none;
-          border: none;
-          border-radius: 5px;
-          height: 100%;
-          padding-left: 40px;
-
-          &::placeholder {
-            font-size: 15px;
-            color: black;
-            opacity: 0.6;
-          }
-
-          &::-webkit-input-placeholder {
-            opacity: 0.6;
-            color: black;
-          }
-
-          @include media('<tablet') {
-            width: 100%;
-          }
-        }
-
-        .magnify,
-        .clear {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 5px;
-          border: none;
-          z-index: 1;
-        }
-
-        .magnify {
-          left: 12px;
-          height: 18px;
-          width: 18px;
-        }
-        .clear {
-          right: 12px;
-          height: 20px;
-          width: 20px;
-          cursor: pointer;
-          color: #333;
-        }
-      }
+    .clear {
+      right: 12px;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+      color: #333;
     }
   }
 }
