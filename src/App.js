@@ -1,8 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import './app.scss';
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 import Nav from './components/Global/Nav';
 import Footer from './components/Global/Footer';
 import NoRoute from './components/Utilities/NoRoute';
@@ -14,6 +12,7 @@ import SingleMovie from './pages/SingleMovie';
 import SingleShow from './pages/SingleShow';
 import Person from './pages/Person';
 import ShowCastAndCrew from './pages/ShowCastAndCrew';
+import MovieCastAndCrew from './pages/MovieCastAndCrew';
 
 function App() {
   return (
@@ -29,6 +28,7 @@ function App() {
             <Route path="/shows/:id" element={<SingleShow />} />
             <Route path="/person/:id" element={<Person />} />
             <Route path="/shows/:id/cast" element={<ShowCastAndCrew />} />
+            <Route path="/movies/:id/cast" element={<MovieCastAndCrew />} />
             <Route path="/" element={<Navigate replace to="movies" />} />
             <Route path="*" element={<NoRoute />} />
           </Routes>

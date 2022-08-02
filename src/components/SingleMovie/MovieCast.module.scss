@@ -20,5 +20,23 @@
     gap: 1rem;
     overflow-x: auto;
     padding: 1px 1px 1rem;
+
+    .viewMore {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 14px;
+
+      a {
+        display: flex;
+        align-items: center;
+
+        svg {
+          font-size: 30px;
+        }
+      }
+    }
   }
 }

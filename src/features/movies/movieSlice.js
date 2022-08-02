@@ -13,6 +13,8 @@ const initialState = {
   filterMenuOpen: false,
   isLoading: false,
   isError: false,
+  castScroll: 0,
+  prevMovieId: 0,
 };
 
 export const getMovies = createAsyncThunk(
@@ -65,6 +67,12 @@ export const movieSlice = createSlice({
       state.sort = action.payload;
       state.page = 1;
     },
+    updateCastScroll: (state, action) => {
+      state.castScroll = action.payload;
+    },
+    setPrevMovieId: (state, action) => {
+      state.prevMovieId = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -104,5 +112,7 @@ export const {
   updateFilterData,
   resetFilterData,
   updateSortOption,
+  updateCastScroll,
+  setPrevMovieId,
 } = movieSlice.actions;
 export default movieSlice.reducer;
