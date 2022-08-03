@@ -3,47 +3,6 @@
 .movieCastAndCrew {
   margin: 3rem 0;
 
-  .headerContainer {
-    background-color: rgb(238, 238, 238);
-
-    .header {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      margin-bottom: 3rem;
-
-      img {
-        width: 58px;
-        border-radius: 2px;
-        margin: 1rem 0;
-      }
-
-      .movieInfo {
-        display: flex;
-        flex-direction: column;
-        row-gap: 6px;
-        height: 100%;
-        margin-left: 2rem;
-
-        span {
-          font-weight: 400;
-        }
-
-        a {
-          display: flex;
-          align-items: center;
-          font-size: 14px;
-
-          svg {
-            font-size: 30px;
-            margin-right: 5px;
-          }
-        }
-      }
-    }
-  }
-
   .content {
     max-width: var(--max-width);
     display: flex;
@@ -57,59 +16,6 @@
 
       @include media('<900px') {
         flex-direction: column;
-      }
-
-      .cast,
-      .crew {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .crew {
-        @include media('<900px') {
-          margin-top: 7rem;
-        }
-      }
-
-      .castHeading,
-      .crewHeading {
-        font-size: 20px;
-        margin-bottom: 1rem;
-      }
-
-      .castList,
-      .crewList {
-        display: flex;
-        flex-direction: column;
-        row-gap: 1rem;
-      }
-    }
-
-    .person {
-      display: flex;
-      align-items: center;
-
-      img {
-        width: 66px;
-        height: 66px;
-        object-fit: cover;
-        object-position: top;
-        border-radius: 2px;
-      }
-
-      .personInfo {
-        display: flex;
-        flex-direction: column;
-        margin-left: 1.5rem;
-
-        p {
-          font-size: 14px;
-
-          span {
-            transition: 0.3s;
-          }
-        }
       }
     }
   }

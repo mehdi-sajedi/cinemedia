@@ -1,0 +1,31 @@
+.person {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 66px;
+    height: 66px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 2px;
+  }
+
+  .personInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 1.5rem;
+
+    p {
+      font-size: 14px;
+
+      span {
+        transition: 0.3s;
+      }
+    }
+
+    .hide {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

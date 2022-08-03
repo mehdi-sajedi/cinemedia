@@ -7,7 +7,6 @@ const ToggleBtn = () => {
   const { hideEpisodes } = useSelector((state) => state.show);
 
   const onChange = (e) => {
-    console.log('onChange');
     dispatch(toggleHideEpisodes(e.target.checked));
     localStorage.setItem('hideEpisodes', e.target.checked);
   };

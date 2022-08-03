@@ -1,0 +1,25 @@
+@import '../../app.scss';
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.crew {
+  @include media('<900px') {
+    margin-top: 7rem;
+  }
+}
+
+.listHeading {
+  font-size: 20px;
+  margin-bottom: 1rem;
+  text-transform: capitalize;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}

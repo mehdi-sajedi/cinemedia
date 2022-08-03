@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   align-items: center;
-  // margin-top: 3rem;
   margin-bottom: 2rem;
 
   .toggleText {
@@ -14,8 +13,6 @@
 .switch {
   position: relative;
   display: inline-block;
-  // width: 65px;
-  // height: 34px;
   width: 51px;
   width: 56px;
   height: 27px;
@@ -54,13 +51,8 @@
 }
 
 input:checked + .slider {
-  background-color: #2196f3;
   background-color: #209261;
 }
-
-// input:focus + .slider {
-//   box-shadow: 0 0 1px #2196f3;
-// }
 
 input:checked + .slider:before {
   transform: translateX(23px);
