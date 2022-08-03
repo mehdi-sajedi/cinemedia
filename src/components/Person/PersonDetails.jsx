@@ -9,6 +9,9 @@ const posterBase = 'https://image.tmdb.org/t/p/w500';
 const PersonDetails = () => {
   const { person } = useSelector((state) => state.person);
 
+  let creditType = 'cast';
+  if (person.known_for_department !== 'Acting') creditType = 'crew';
+
   const socials = [
     {
       base: 'https://instagram.com/',
@@ -128,11 +131,11 @@ const PersonDetails = () => {
         <div className={styles.knownFor}>
           <h3 className={styles.knownForHeading}>Known For</h3>
           <div className={styles.knownForGrid}>
-            {person.combined_credits?.cast
-              .slice(0, 10)
+            {person.combined_credits?.[creditType]
               .filter(
                 (val, idx, arr) => arr.findIndex((t) => t.id === val.id) === idx
               )
+              .slice(0, 10)
               .map((media) => {
                 const route = media.media_type === 'movie' ? 'movies' : 'shows';
                 return (
@@ -141,10 +144,7 @@ const PersonDetails = () => {
                       className={styles.knownForMedia}
                       key={`${media.id}-${media.credit_id}`}
                     >
-                      <Link
-                        to={`../${route}/${media.id}`}
-                        key={`${media.id}-${media.credit_id}`}
-                      >
+                      <Link to={`../${route}/${media.id}`}>
                         <img src={`${posterBase}${media.poster_path}`} alt="" />
                       </Link>
                       <h5 className={styles.title}>

@@ -5,9 +5,13 @@ const getPersonService = async (personId) => {
 
   const res = await axios.get(PERSON_API_URL);
 
-  let { birthday, deathday, combined_credits, ...rest } = res.data;
+  let { birthday, deathday, combined_credits, known_for_department, ...rest } =
+    res.data;
 
-  combined_credits.cast = combined_credits.cast
+  let creditType = 'cast';
+  if (known_for_department !== 'Acting') creditType = 'crew';
+
+  combined_credits[creditType] = combined_credits[creditType]
     .filter(
       (media) =>
         !media.genre_ids.includes(10763) || !media.genre_ids.includes(10763)
@@ -18,6 +22,7 @@ const getPersonService = async (personId) => {
     birthday,
     deathday,
     combined_credits,
+    known_for_department,
     ...rest,
   };
 };
