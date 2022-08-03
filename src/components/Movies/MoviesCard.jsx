@@ -11,7 +11,6 @@ const MoviesCard = ({
   release_date,
   id,
   vote_average,
-  vote_count,
 }) => {
   return (
     <div className={styles.card}>

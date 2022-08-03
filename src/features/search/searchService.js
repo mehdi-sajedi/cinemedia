@@ -4,14 +4,20 @@ const getPersonMedia = async (person) => {
   const API_URL_PERSON = `https://api.themoviedb.org/3/person/${person.id}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`;
 
   const res = await axios.get(API_URL_PERSON);
-  let { cast: results } = res.data;
+  console.log(res.data);
+  let { cast, crew } = res.data;
 
-  results = results
+  let credits = cast;
+  // If the person has more entries in the crew array, pull the search results from there
+  if (crew.length > cast.length) credits = crew;
+
+  credits = credits
     .filter((m) => !m.genre_ids.includes(10763) && m.poster_path)
+    .filter((val, idx, arr) => arr.findIndex((t) => t.id === val.id) === idx)
     .sort((a, b) => b.vote_count - a.vote_count);
 
   return {
-    results,
+    results: credits,
     name: person.name,
     id: person.id,
     text: '',

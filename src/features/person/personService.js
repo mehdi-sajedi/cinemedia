@@ -16,7 +16,9 @@ const getPersonService = async (personId) => {
       (media) =>
         !media.genre_ids.includes(10763) || !media.genre_ids.includes(10763)
     )
-    .sort((a, b) => b.vote_count - a.vote_count);
+    .filter((val, idx, arr) => arr.findIndex((t) => t.id === val.id) === idx)
+    .sort((a, b) => b.vote_count - a.vote_count)
+    .slice(0, 10);
 
   return {
     birthday,
