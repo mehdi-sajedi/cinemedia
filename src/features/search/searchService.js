@@ -4,7 +4,6 @@ const getPersonMedia = async (person) => {
   const API_URL_PERSON = `https://api.themoviedb.org/3/person/${person.id}/combined_credits?api_key=${process.env.REACT_APP_API_KEY}`;
 
   const res = await axios.get(API_URL_PERSON);
-  console.log(res.data);
   let { cast, crew } = res.data;
 
   let credits = cast;

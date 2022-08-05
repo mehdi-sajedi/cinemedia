@@ -23,6 +23,7 @@ const ShowGallery = ({ setViewGallery }) => {
           } ${idx < 2 ? size : entry.width}w`
       ),
       loading: 'lazy',
+      thumbnailLoading: 'lazy',
     };
   });
 

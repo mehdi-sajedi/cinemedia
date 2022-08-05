@@ -47,7 +47,7 @@ const CustomCheckbox = ({
         }`}
       >
         {group === 'watch-providers' ? (
-          <img src={`${basePath}${img}`} alt="" />
+          <img src={`${basePath}${img}`} loading="lazy" alt="" />
         ) : (
           name
         )}

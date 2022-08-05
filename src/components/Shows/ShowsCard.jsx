@@ -15,7 +15,7 @@ const ShowsCard = ({
   return (
     <div className={styles.card}>
       <Link className={styles.imageWrapper} to={`/shows/${id}`}>
-        <img src={`${basePath}${posterID}`} alt="" />
+        <img src={`${basePath}${posterID}`} loading="lazy" alt="" />
       </Link>
       <div className={styles.details}>
         <h3 className={styles.name}>{name}</h3>

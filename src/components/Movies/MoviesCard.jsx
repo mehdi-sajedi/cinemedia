@@ -15,7 +15,7 @@ const MoviesCard = ({
   return (
     <div className={styles.card}>
       <Link className={styles.imageWrapper} to={`/movies/${id}`}>
-        <img src={`${basePath}${posterID}`} alt="" />
+        <img src={`${basePath}${posterID}`} loading="lazy" alt="" />
       </Link>
       <div className={styles.details}>
         <h3 className={styles.title}>{title}</h3>

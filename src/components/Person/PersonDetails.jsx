@@ -68,7 +68,10 @@ const PersonDetails = () => {
             )}
           </ul>
 
-          {(person.birthday || person.deathday || person.place_of_birth) && (
+          {(person.birthday ||
+            person.deathday ||
+            person.place_of_birth ||
+            person.known_for_department) && (
             <>
               <h3 className={styles.personalInfoHeading}>Personal Info</h3>
               <div className={`${styles.line} ${styles.linePersonal}`}></div>
@@ -76,6 +79,12 @@ const PersonDetails = () => {
           )}
 
           <div className={styles.personalInfo}>
+            {person.known_for_department && (
+              <div className={styles.knownForDep}>
+                <h4>Known For</h4>
+                <p>{person.known_for_department}</p>
+              </div>
+            )}
             {person.birthday && (
               <div className={styles.birthday}>
                 <h4>Birthday</h4>
@@ -140,7 +149,11 @@ const PersonDetails = () => {
                     key={`${media.id}-${media.credit_id}`}
                   >
                     <Link to={`../${route}/${media.id}`}>
-                      <img src={`${posterBase}${media.poster_path}`} alt="" />
+                      <img
+                        src={`${posterBase}${media.poster_path}`}
+                        loading="lazy"
+                        alt=""
+                      />
                     </Link>
                     <h5 className={styles.title}>
                       {media.name ? media.name : media.title}
