@@ -20,7 +20,7 @@ const ShowsCard = ({
       <div className={styles.details}>
         <h3 className={styles.name}>{name}</h3>
         <p className={styles.release}>
-          {formatDate(first_air_date.replace(/-/g, '/'), 'short')}
+          {formatDate(first_air_date?.replace(/-/g, '/'), 'short')}
         </p>
         <div
           className={styles.voteCircle}

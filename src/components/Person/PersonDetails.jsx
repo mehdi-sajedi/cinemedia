@@ -130,12 +130,18 @@ const PersonDetails = () => {
             <h1>{person.name}</h1>
           </Link>
           <div className={`${styles.line} ${styles.lineBio}`}></div>
-          {person.biography && (
+          {/* {person.biography && (
             <>
               <h3 className={styles.bioHeading}>Biography</h3>
               <p className={styles.bio}>{person.biography}</p>
             </>
-          )}
+          )} */}
+          <h3 className={styles.bioHeading}>Biography</h3>
+          <p className={styles.bio}>
+            {person.biography
+              ? person.biography
+              : `We don't have a biography for ${person.name}`}{' '}
+          </p>
         </div>
         <div className={styles.knownFor}>
           <h3 className={styles.knownForHeading}>Known For</h3>
