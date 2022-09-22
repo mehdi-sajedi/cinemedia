@@ -1,4 +1,4 @@
-@import '../../include-media.scss';
+@import '../../app.scss';
 
 .menuWrap {
   position: fixed;
@@ -6,7 +6,7 @@
   left: 0;
   z-index: 1;
 
-  @include media('>=tablet') {
+  @include media('>=desktop') {
     display: none;
   }
 
@@ -42,10 +42,17 @@
         opacity: 0;
         transition: opacity 0.4s ease;
 
+        .links {
+          display: flex;
+          flex-direction: column;
+          row-gap: 1rem;
+        }
+
         li {
           list-style: none;
           color: var(--text-white);
-          padding: 1rem;
+          padding: 10px;
+          // background-color: skyblue;
 
           a {
             text-decoration: none;
@@ -56,6 +63,26 @@
             &:hover {
               color: orange;
             }
+          }
+        }
+
+        .auth {
+          padding: 8px 15px;
+          cursor: pointer;
+          background-color: #ffc107;
+          color: var(--clr-black);
+          border: none;
+          outline: 1px solid transparent;
+          border-radius: 3px;
+          font-size: 12px;
+          transition: all 350ms ease-out;
+          letter-spacing: 0;
+          font-family: inherit;
+
+          &:hover {
+            background-color: transparent;
+            color: var(--text-white);
+            outline: 1px solid #ffc107;
           }
         }
       }

@@ -10,12 +10,6 @@
   .showcase {
     height: 600px;
     position: relative;
-    // background: linear-gradient(
-    //   to right,
-    //   rgba(0, 0, 0, 0.98) 0%,
-    //   rgba(0, 0, 0, 0.75) 50%,
-    //   rgba(0, 0, 0, 0.5) 100%
-    // );
     background-color: rgba(0, 0, 0, 0.7);
 
     @include media('<tablet') {
@@ -38,7 +32,6 @@
     .content {
       display: grid;
       grid-template-columns: 1fr 4fr;
-      align-items: flex-start;
       align-items: center;
       column-gap: 4rem;
       z-index: 1;
@@ -190,7 +183,6 @@
             margin: 0 auto;
             padding-right: 0;
             line-height: 1.5;
-            //
             margin: 10px auto 3rem auto;
           }
 
@@ -224,35 +216,60 @@
           }
         }
 
-        .trailerBtn {
-          font-family: 'Montserrat', sans-serif;
-          cursor: pointer;
-          font-size: 16px;
+        .buttons {
           display: flex;
-          justify-content: center;
           align-items: center;
-          background-color: transparent;
-          border: none;
-          color: var(--text-white);
-          transition: opacity 0.3s ease;
+          column-gap: 2rem;
           margin-top: 2rem;
-          letter-spacing: 0.5px;
 
           @include media('<tablet') {
-            margin-top: 1rem;
-            margin: 1rem auto 0 auto;
-            position: absolute;
-            bottom: 28px;
-            right: clamp(1px, 50px, 2.5vw);
+            margin-top: 0;
+            flex-direction: column;
+            row-gap: 3rem;
           }
 
-          svg {
-            margin-right: 5px;
-            font-size: 30px;
-          }
+          button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            color: var(--text-white);
+            transition: opacity 0.3s ease;
+            letter-spacing: 0.5px;
+            min-height: 35px;
 
-          &:hover {
-            opacity: 0.6;
+            svg {
+              width: 20px;
+              height: 20px;
+              margin-right: 14px;
+            }
+
+            &.trailerBtn svg {
+              width: 35px;
+              height: 35px;
+              margin-right: 8px;
+            }
+
+            &.viewGallery {
+              display: none;
+
+              @include media('<tablet') {
+                display: flex;
+              }
+
+              svg {
+                width: 24px;
+                height: 24px;
+              }
+            }
+
+            &:hover {
+              opacity: 0.6;
+            }
           }
         }
       }
@@ -269,24 +286,12 @@
       cursor: default;
 
       @include media('<tablet') {
-        width: 200px;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1.5rem;
-        position: absolute;
-        bottom: 0;
-        left: clamp(1px, 50px, 2.5vw);
-        width: 150px;
-        width: default;
+        display: none;
       }
 
       .poster {
         transition: opacity 0.3s ease;
         border-radius: 5px;
-
-        @include media('<tablet') {
-          display: none;
-        }
       }
 
       .posterText {
@@ -301,24 +306,12 @@
         justify-content: center;
         align-items: center;
 
-        @include media('<tablet') {
-          font-size: 16px;
-          opacity: 1;
-          position: relative;
-          padding: 5px;
-          text-align: center;
-        }
-
         .icon {
           font-size: 25px;
         }
 
         span {
           margin-left: 6px;
-
-          @include media('<tablet') {
-            margin-left: 10px;
-          }
         }
       }
 
@@ -326,25 +319,13 @@
         cursor: pointer;
         background-color: black;
 
-        @include media('<tablet') {
-          background-color: transparent;
-        }
-
         &:hover {
-          @include media('<tablet') {
-            background-color: transparent;
-          }
-
           .poster {
             opacity: 0.25;
           }
 
           .posterText {
             opacity: 1;
-
-            @include media('<tablet') {
-              opacity: 0.6;
-            }
           }
         }
       }

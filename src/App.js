@@ -13,6 +13,10 @@ import SingleShow from './pages/SingleShow';
 import Person from './pages/Person';
 import ShowCastAndCrew from './pages/ShowCastAndCrew';
 import MovieCastAndCrew from './pages/MovieCastAndCrew';
+import AuthPage from './pages/AuthPage';
+import Watchlist from './pages/Watchlist';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -29,11 +33,14 @@ function App() {
             <Route path="/person/:id" element={<Person />} />
             <Route path="/shows/:id/cast" element={<ShowCastAndCrew />} />
             <Route path="/movies/:id/cast" element={<MovieCastAndCrew />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route path="/watchlist" element={<Watchlist />} />
             <Route path="/" element={<Navigate replace to="movies" />} />
             <Route path="*" element={<NoRoute />} />
           </Routes>
         </main>
         <Footer />
+        <ToastContainer />
       </ScrollToTop>
     </BrowserRouter>
   );

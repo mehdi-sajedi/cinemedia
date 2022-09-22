@@ -10,7 +10,7 @@ const ShowRecommendations = () => {
     <div className={styles.recommendations}>
       <h2 className={styles.heading}>Recommendations</h2>
       <div className={styles.recommendationsGrid}>
-        {show.recommendations?.results.map((entry, idx) => {
+        {show.recommendations?.results.map((entry) => {
           return (
             entry.backdrop_path &&
             backdropCount++ &&

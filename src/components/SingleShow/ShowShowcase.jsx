@@ -1,23 +1,50 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './ShowShowcase.module.scss';
 import ShowTrailer from './ShowTrailer';
 import ShowGallery from './ShowGallery';
-import { BsFillPlayFill } from 'react-icons/bs';
+import { BsFillPlayFill, BsBookmarkFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../../utilities/utilities';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import { useSelector } from 'react-redux';
+import { onValue, ref, update } from 'firebase/database';
+import { db } from '../../config/firebase';
+import { Tooltip } from '@mui/material';
+import { ClickAwayListener } from '@mui/material';
 
 const backdropBase = 'https://image.tmdb.org/t/p/original/';
 const posterBase = 'https://image.tmdb.org/t/p/w780/';
 
 const ShowShowcase = () => {
-  const { show } = useSelector((state) => state.show);
-
   const [viewTrailer, setViewTrailer] = useState(false);
   const [viewGallery, setViewGallery] = useState(false);
+  const [inWatchlist, setInWatchlist] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const { show } = useSelector((state) => state.show);
+  const { id } = useSelector((state) => state.user);
   useDocumentTitle(`${show.name} (${show.first_air_date?.slice(0, 4)})`);
+
+  useEffect(() => {
+    if (!id) return;
+
+    const watchlistRef = ref(db, `watchlist/${id}`);
+    const unsubscribe = onValue(watchlistRef, (snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        const saved = Object.values(data).some(
+          (media) => media.id === show.id && media.type === 'show'
+        );
+        console.log(data);
+        setInWatchlist(saved);
+      } else {
+        console.log('No data available');
+        setInWatchlist(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [id, show.id]);
 
   const trailer = show.videos?.results?.find((entry) => {
     return (
@@ -30,6 +57,36 @@ const ShowShowcase = () => {
 
   const handleViewGallery = () => {
     hasImages && setViewGallery(true);
+  };
+
+  const toggleWatchlist = () => {
+    // User not logged in
+    if (!id) {
+      setShowTooltip(true);
+      return;
+    }
+
+    const key = `watchlist/${id}/${show.id}S`;
+
+    // Item already in Watchlist
+    if (inWatchlist) {
+      return update(ref(db), { [key]: {} });
+    }
+
+    // Item not in Watchlist
+    const showData = {
+      [key]: {
+        id: show.id,
+        date: show.first_air_date,
+        rating: show.vote_average,
+        poster: show.poster_path,
+        name: show.name,
+        type: 'show',
+        user: id,
+      },
+    };
+
+    return update(ref(db), showData);
   };
 
   return (
@@ -125,22 +182,57 @@ const ShowShowcase = () => {
                 <p>{show.overview}</p>
               </div>
             )}
-            {trailer && (
+            <div className={styles.buttons}>
+              {trailer && (
+                <button
+                  onClick={() => setViewTrailer(true)}
+                  className={styles.trailerBtn}
+                >
+                  <BsFillPlayFill />
+                  <span>Play Trailer</span>
+                </button>
+              )}
+              <ClickAwayListener onClickAway={() => setShowTooltip(false)}>
+                <Tooltip
+                  title={
+                    <span style={{ fontSize: '12px', letterSpacing: '0.5px' }}>
+                      Please login to add to Watchlist
+                    </span>
+                  }
+                  arrow
+                  PopperProps={{
+                    disablePortal: true,
+                  }}
+                  onClose={() => setShowTooltip(false)}
+                  open={showTooltip}
+                  disableFocusListener
+                  disableHoverListener
+                  disableTouchListener
+                >
+                  <button onClick={toggleWatchlist} className={styles.bookmark}>
+                    <BsBookmarkFill />
+                    <span>
+                      {inWatchlist
+                        ? 'Remove from Watchlist'
+                        : 'Add To Watchlist'}
+                    </span>
+                  </button>
+                </Tooltip>
+              </ClickAwayListener>
               <button
-                onClick={() => setViewTrailer(true)}
-                className={styles.trailerBtn}
+                className={styles.viewGallery}
+                onClick={handleViewGallery}
               >
-                <BsFillPlayFill />
-                <span>Play Trailer</span>
+                <HiOutlineArrowsExpand className={styles.icon} />
+                <span>View Gallery</span>
               </button>
-            )}
+            </div>
           </div>
         </div>
       </div>
       {viewTrailer && (
         <ShowTrailer trailer={trailer} setViewTrailer={setViewTrailer} />
       )}
-
       {viewGallery && <ShowGallery setViewGallery={setViewGallery} />}
     </main>
   );

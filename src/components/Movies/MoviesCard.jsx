@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './MoviesCard.module.scss';
-import { formatDate, colorPercentage } from '../../utilities/utilities';
 import { FiPercent } from 'react-icons/fi';
+import { formatDate, colorPercentage } from '../../utilities/utilities';
 
 const basePath = 'https://image.tmdb.org/t/p/w500/';
 
@@ -30,7 +30,6 @@ const MoviesCard = ({
             }`,
           }}
         >
-          <div className={styles.arc}></div>
           <p>{vote_average ? vote_average.toFixed(1) * 10 : 'NR'}</p>
           {vote_average ? <FiPercent className={styles.percentSymbol} /> : null}
         </div>
