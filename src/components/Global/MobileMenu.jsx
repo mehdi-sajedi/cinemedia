@@ -1,7 +1,6 @@
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import styles from './MobileMenu.module.scss';
-import { BsBookmarkFill } from 'react-icons/bs';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../../features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
@@ -14,9 +13,6 @@ const MobileMenu = ({ menuOpen, setMenuOpen }) => {
   const { id } = useSelector((state) => state.user);
 
   const closeOverlay = (e) => {
-    // if (e.target.tagName === 'A' || e.target.classList.contains('overlay')) {
-    //   setMenuOpen((prevState) => !prevState);
-    // }
     setMenuOpen((prevState) => !prevState);
   };
 

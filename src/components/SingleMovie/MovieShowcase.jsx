@@ -8,7 +8,7 @@ import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../../utilities/utilities';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
 import { useSelector } from 'react-redux';
-import { onValue, ref, set, update, push, child } from 'firebase/database';
+import { onValue, ref, update } from 'firebase/database';
 import { db } from '../../config/firebase';
 import { Tooltip } from '@mui/material';
 import { ClickAwayListener } from '@mui/material';
