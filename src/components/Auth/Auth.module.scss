@@ -1,0 +1,72 @@
+@import '../../app.scss';
+
+.auth {
+  max-width: var(--max-width);
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 235px);
+
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  .authForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    label {
+      font-size: 14px;
+    }
+
+    .input {
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      color: rgb(67, 76, 94);
+      font-family: inherit;
+      background-color: #eceff4;
+      border: 0px none;
+      width: 300px;
+
+      &:first-of-type {
+        margin-bottom: 2rem;
+      }
+    }
+
+    .submit {
+      margin-top: 3rem;
+      padding: 15px 0;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #3d3d3d;
+      color: var(--text-white);
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0 0 2rem hsla(0, 0%, 5%, 0.2);
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: background-color 300ms ease;
+
+      &:active {
+        transform: scale(0.97);
+      }
+
+      &:hover {
+        background-color: #111;
+      }
+    }
+  }
+
+  .toggle {
+    font-size: 13px;
+    margin-top: 1.5rem;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

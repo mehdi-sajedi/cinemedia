@@ -12,7 +12,7 @@ import Error from '../components/Utilities/Error';
 
 const SingleShow = () => {
   const dispatch = useDispatch();
-  const { isLoading, isError } = useSelector((state) => state.show);
+  const { show, isLoading, isError } = useSelector((state) => state.show);
   const { pathname } = useLocation();
 
   const mediaId = pathname.substring(pathname.lastIndexOf('/') + 1);
@@ -31,7 +31,7 @@ const SingleShow = () => {
         <ShowCast />
         <ShowSidebar />
       </section>
-      <ShowRecommendations />
+      {show.recommendations?.results.length > 0 && <ShowRecommendations />}
     </>
   );
 };

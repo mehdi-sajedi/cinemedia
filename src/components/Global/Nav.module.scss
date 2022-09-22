@@ -21,6 +21,8 @@
   .links {
     display: flex;
     align-items: center;
+    flex-grow: 1;
+    flex-basis: 0;
 
     a {
       border-bottom: 2px solid transparent;
@@ -46,7 +48,7 @@
       }
     }
 
-    @include media('<=phone') {
+    @include media('<desktop') {
       display: none;
     }
   }
@@ -56,16 +58,13 @@
     color: var(--clr-black);
     border-radius: 3px;
     height: 40px;
-    width: 300px;
+    width: 450px;
+    width: clamp(240px, 30vw, 450px);
     position: relative;
 
-    @include media('<=phone') {
+    @include media('<desktop') {
       display: flex;
       justify-content: flex-end;
-    }
-
-    @include media('<400px') {
-      width: 240px;
     }
 
     input {
@@ -118,6 +117,49 @@
       width: 20px;
       cursor: pointer;
       color: #333;
+    }
+  }
+
+  .watchlistAndAuth {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: 2rem;
+    flex-grow: 1;
+    flex-basis: 0;
+
+    @include media('<desktop') {
+      display: none;
+    }
+
+    .watchlist {
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 5px;
+      }
+    }
+
+    .auth {
+      padding: 8px 15px;
+      cursor: pointer;
+      background-color: #ffc107;
+      color: var(--clr-black);
+      border: none;
+      outline: 1px solid transparent;
+      border-radius: 3px;
+      font-size: 15px;
+      transition: all 350ms ease-out;
+      letter-spacing: 0;
+      font-family: inherit;
+
+      &:hover {
+        background-color: transparent;
+        color: var(--text-white);
+        outline: 1px solid #ffc107;
+      }
     }
   }
 }

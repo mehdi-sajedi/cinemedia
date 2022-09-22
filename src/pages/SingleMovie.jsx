@@ -12,7 +12,7 @@ import Error from '../components/Utilities/Error';
 
 const SingleMovie = () => {
   const dispatch = useDispatch();
-  const { isLoading, isError } = useSelector((state) => state.movie);
+  const { movie, isLoading, isError } = useSelector((state) => state.movie);
   const { pathname } = useLocation();
 
   const mediaId = pathname.substring(pathname.lastIndexOf('/') + 1);
@@ -31,7 +31,7 @@ const SingleMovie = () => {
         <MovieCast />
         <MovieSidebar />
       </section>
-      <MovieRecommendations />
+      {movie.recommendations?.results.length > 0 && <MovieRecommendations />}
     </>
   );
 };
