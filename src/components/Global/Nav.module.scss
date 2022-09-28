@@ -54,8 +54,9 @@
   }
 
   .search {
-    background-color: var(--bg-white);
-    color: var(--clr-black);
+    // background-color: var(--bg-white);
+    // color: var(--clr-black);
+
     border-radius: 3px;
     height: 40px;
     width: 450px;
@@ -68,7 +69,9 @@
     }
 
     input {
-      background-color: var(--bg-white);
+      // background-color: var(--bg-white);
+      // background-color: white;
+      color: black;
       position: absolute;
       left: 0;
       top: 0;
@@ -109,6 +112,7 @@
       left: 12px;
       height: 18px;
       width: 18px;
+      color: black;
     }
 
     .clear {
@@ -132,6 +136,16 @@
       display: none;
     }
 
+    .theme {
+      border: none;
+      color: var(--clr-black);
+      color: white;
+      background-color: transparent;
+      font-size: 20px;
+      display: flex;
+      cursor: pointer;
+    }
+
     .watchlist {
       color: var(--text-white);
       display: flex;
@@ -147,6 +161,7 @@
       cursor: pointer;
       background-color: #ffc107;
       color: var(--clr-black);
+      color: black;
       border: none;
       outline: 1px solid transparent;
       border-radius: 3px;

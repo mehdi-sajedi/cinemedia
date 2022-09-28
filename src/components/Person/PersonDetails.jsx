@@ -130,12 +130,6 @@ const PersonDetails = () => {
             <h1>{person.name}</h1>
           </Link>
           <div className={`${styles.line} ${styles.lineBio}`}></div>
-          {/* {person.biography && (
-            <>
-              <h3 className={styles.bioHeading}>Biography</h3>
-              <p className={styles.bio}>{person.biography}</p>
-            </>
-          )} */}
           <h3 className={styles.bioHeading}>Biography</h3>
           <p className={styles.bio}>
             {person.biography

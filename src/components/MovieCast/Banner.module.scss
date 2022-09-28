@@ -1,5 +1,8 @@
+@import '../../app.scss';
+
 .bannerContainer {
   background-color: rgb(238, 238, 238);
+  background-color: var(--bg-white);
 
   .banner {
     max-width: var(--max-width);
@@ -29,6 +32,7 @@
         display: flex;
         align-items: center;
         font-size: 14px;
+        color: var(--sub-heading);
 
         svg {
           font-size: 30px;

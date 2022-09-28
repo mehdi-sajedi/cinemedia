@@ -4,12 +4,22 @@
 :root {
   --max-width: clamp(1px, 1440px, 92vw);
   --dark-grey: rgb(31, 34, 39);
+  --dark-grey: #222;
   --sub-heading: #3c3c3c;
   --text-white: white;
   --bg-white: white;
   --clr-black: black;
   --box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.darkmode {
+  --text-white: white;
+  --bg-white: #333;
+  --clr-black: white;
+  --sub-heading: #ddd;
+
+  background-color: #222;
 }
 
 * {
@@ -19,8 +29,6 @@
 }
 
 html {
-  // overflow-y: scroll;
-  // overflow-x: hidden;
   height: 100%;
 }
 
@@ -29,7 +37,6 @@ body {
   letter-spacing: 0.25px;
   color: var(--clr-black);
   background-color: #fafafa;
-  // overflow-x: hidden;
   overflow-y: scroll;
   position: relative;
   min-height: 100%;

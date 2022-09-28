@@ -1,3 +1,5 @@
+@import '../../app.scss';
+
 .person {
   display: flex;
   align-items: center;
@@ -15,17 +17,17 @@
     flex-direction: column;
     margin-left: 1.5rem;
 
+    h3 {
+      color: var(--clr-black);
+    }
+
     p {
       font-size: 14px;
+      color: var(--sub-heading);
 
       span {
         transition: 0.3s;
       }
-    }
-
-    .hide {
-      opacity: 0;
-      visibility: hidden;
     }
   }
 }

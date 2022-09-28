@@ -80,6 +80,7 @@ $breakpoint: '<1025px';
 
           a {
             padding: 5px 10px;
+            color: var(--clr-black);
           }
         }
       }
@@ -172,6 +173,7 @@ $breakpoint: '<1025px';
     margin-bottom: 1rem;
     font-size: 18px;
     transition: opacity 0.3s ease;
+    color: var(--clr-black);
 
     &.nameMobile {
       display: none;
@@ -259,7 +261,7 @@ $breakpoint: '<1025px';
         font-size: 14px;
         font-weight: 600;
         padding: 10px;
-        color: var(--sub-heading);
+        color: var(--clr-black);
         letter-spacing: 0;
       }
     }

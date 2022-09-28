@@ -27,10 +27,6 @@ $breakpoint: '<880px';
     }
   }
 
-  .socials {
-    margin-bottom: 1rem;
-  }
-
   .budget p,
   .revenue p {
     letter-spacing: 0.5px;
@@ -42,6 +38,7 @@ $breakpoint: '<880px';
     font-size: 24px;
     width: 150px;
     transform: translateX(-10px);
+    margin-bottom: 1rem;
 
     @include media($breakpoint) {
       width: 100%;
@@ -54,6 +51,7 @@ $breakpoint: '<880px';
     a {
       transition: opacity 0.3s ease;
       padding: 5px 10px;
+      color: var(--clr-black);
 
       &:hover {
         opacity: 0.6;
@@ -75,12 +73,6 @@ $breakpoint: '<880px';
 
     @include media($breakpoint) {
       height: 1px;
-    }
-  }
-
-  .network {
-    img {
-      width: 45px;
     }
   }
 }

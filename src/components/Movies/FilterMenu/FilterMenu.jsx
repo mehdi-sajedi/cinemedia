@@ -33,16 +33,6 @@ const FilterMenu = () => {
     window.scrollTo(0, 0);
   };
 
-  // const closeMenu = (e) => {
-  //   if (
-  //     e.target.classList.contains('overlay') ||
-  //     e.target.classList.contains('closeBtn') ||
-  //     e.target.classList.contains('submit')
-  //   ) {
-  //     dispatch(closeFilterMenu());
-  //   }
-  // };
-
   return (
     <>
       <div className={`${styles.menu} ${!filterMenuOpen ? styles.close : ''} `}>
@@ -150,7 +140,6 @@ const FilterMenu = () => {
           <div className={styles.lineBreak}></div>
           <div className={styles.formButtons}>
             <button
-              // onClick={closeMenu}
               className={`${styles.submit} ${styles.btn} submit`}
               typeof="submit"
             >

@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useLocation } from 'react-router';
 import { Link, useNavigate, createSearchParams } from 'react-router-dom';
 import { HiOutlineSearch } from 'react-icons/hi';
-import { IoCloseOutline } from 'react-icons/io5';
+import { IoCloseOutline, IoMoon, IoSunny } from 'react-icons/io5';
 import { BsBookmarkFill } from 'react-icons/bs';
 import styles from './Nav.module.scss';
 import MobileMenuBtn from './MobileMenuBtn';
@@ -15,6 +15,7 @@ import { toastConfig } from '../../utilities/toastConfig';
 const Nav = () => {
   const [text, setText] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [darkmode, setDarkmode] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const searchRef = useRef();
@@ -45,6 +46,16 @@ const Nav = () => {
     toast.info('Logged out', toastConfig);
   };
 
+  const toggleTheme = () => {
+    if (document.body.classList.contains('darkmode')) {
+      setDarkmode(false);
+      document.body.classList.remove('darkmode');
+    } else {
+      setDarkmode(true);
+      document.body.classList.add('darkmode');
+    }
+  };
+
   return (
     <>
       <nav className={styles.nav}>
@@ -64,29 +75,30 @@ const Nav = () => {
             </Link>
           </div>
           <MobileMenuBtn menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-          <div className={styles.search}>
-            <form onSubmit={onSubmit}>
-              <div className={styles.search}>
-                <HiOutlineSearch className={styles.magnify} />
-                <input
-                  ref={searchRef}
-                  value={text}
-                  onChange={(e) => setText(e.target.value)}
-                  type="text"
-                  placeholder="Search..."
-                />
-                {text !== '' && (
-                  <button>
-                    <IoCloseOutline
-                      onClick={clearSearch}
-                      className={styles.clear}
-                    />
-                  </button>
-                )}
-              </div>
-            </form>
-          </div>
+          <form onSubmit={onSubmit}>
+            <div className={styles.search}>
+              <HiOutlineSearch className={styles.magnify} />
+              <input
+                ref={searchRef}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
+                type="text"
+                placeholder="Search..."
+              />
+              {text !== '' && (
+                <button>
+                  <IoCloseOutline
+                    onClick={clearSearch}
+                    className={styles.clear}
+                  />
+                </button>
+              )}
+            </div>
+          </form>
           <div className={styles.watchlistAndAuth}>
+            <button onClick={toggleTheme} className={styles.theme}>
+              {darkmode ? <IoSunny /> : <IoMoon />}
+            </button>
             <Link to="/watchlist" className={styles.watchlist}>
               <BsBookmarkFill />
               Watchlist

@@ -35,20 +35,6 @@ const FilterMenu = () => {
     window.scrollTo(0, 0);
   };
 
-  // const closeMenu = (e) => {
-  // if (
-  //     e.target.classList.contains('overlay') ||
-  //     e.target.classList.contains('closeBtn') ||
-  //     e.target.classList.contains('submit')
-  //   ) {
-  //     dispatch(closeFilterMenu());
-  //   }
-
-  // if (e.target.classList.contains('submit')) {
-  //   dispatch(closeFilterMenu());
-  // }
-  // };
-
   return (
     <>
       <div className={`${styles.menu} ${!filterMenuOpen ? styles.close : ''} `}>
@@ -113,32 +99,6 @@ const FilterMenu = () => {
             }}
           />
 
-          {/* <CustomRange
-            formData={formData}
-            setFormData={setFormData}
-            name="Runtime"
-            defaults={[0, 240]}
-            state="runtime"
-            min={0}
-            max={240}
-            step={5}
-            tipFormatter={(v) => `${v}m`}
-            marks={{
-              0: {
-                style: {
-                  marginTop: '10px',
-                },
-                label: '0m',
-              },
-              240: {
-                style: {
-                  marginTop: '10px',
-                },
-                label: '240m',
-              },
-            }}
-          /> */}
-
           <div className={styles.lineBreak}></div>
           <div className={styles.watchProviders}>
             <h3 className={styles.watchProvidersTitle}>Services</h3>
@@ -160,7 +120,6 @@ const FilterMenu = () => {
           <div className={styles.lineBreak}></div>
           <div className={styles.formButtons}>
             <button
-              // onClick={closeMenu}
               className={`${styles.submit} ${styles.btn} submit`}
               typeof="submit"
             >
