@@ -11,7 +11,7 @@
   align-self: flex-start;
   height: 80vh;
   scrollbar-width: thin;
-  scrollbar-color: rgb(224, 224, 224) transparent;
+  scrollbar-color: #ccc transparent;
 
   @include media('<=800px') {
     width: 100%;
@@ -107,14 +107,14 @@
 
       &.submit {
         position: relative;
-        background-color: black;
-        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-        color: white;
+        background-color: var(--clr-primary);
+        color: var(--text-white);
+        box-shadow: 1px 1px 5px -1px rgba(0, 0, 0, 0.5);
       }
 
       &.reset {
         background-color: rgb(225, 225, 225);
-        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+        box-shadow: 1px 1px 5px -1px rgba(0, 0, 0, 0.4);
         text-align: left;
       }
     }

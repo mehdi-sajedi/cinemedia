@@ -2,8 +2,23 @@
 
 .nav {
   padding: 15px;
-  background-color: var(--dark-grey);
-  box-shadow: 0 0 12px -1px rgba(0, 0, 0, 0.6);
+  background-color: var(--nav-footer);
+  color: var(--clr-black);
+  box-shadow: var(--box-shadow-1);
+
+  a,
+  svg {
+    color: var(--clr-black);
+  }
+
+  .magnify,
+  .clear {
+    color: var(--perm-black);
+  }
+
+  .auth {
+    color: var(--text-white);
+  }
 }
 
 .navContent {
@@ -28,7 +43,7 @@
       border-bottom: 2px solid transparent;
       transition: opacity 0.3s ease;
       font-size: 18px;
-      color: var(--text-white);
+      // color: var(--perm-white);
       padding: 10px 0;
 
       &:last-of-type {
@@ -41,7 +56,7 @@
     }
 
     .active {
-      border-bottom: 2px solid orange;
+      border-bottom: 2px solid var(--clr-primary);
 
       &:hover {
         opacity: 1;
@@ -59,7 +74,6 @@
 
     border-radius: 3px;
     height: 40px;
-    width: 450px;
     width: clamp(240px, 30vw, 450px);
     position: relative;
 
@@ -69,15 +83,12 @@
     }
 
     input {
-      // background-color: var(--bg-white);
-      // background-color: white;
-      color: black;
       position: absolute;
       left: 0;
       top: 0;
       font-size: 17px;
       outline: none;
-      border: none;
+      border: 1px solid var(--clr-border);
       border-radius: 3px;
       height: 100%;
       width: 100%;
@@ -112,7 +123,7 @@
       left: 12px;
       height: 18px;
       width: 18px;
-      color: black;
+      // color: black;
     }
 
     .clear {
@@ -120,7 +131,7 @@
       height: 20px;
       width: 20px;
       cursor: pointer;
-      color: #333;
+      // color: #333;
     }
   }
 
@@ -138,8 +149,6 @@
 
     .theme {
       border: none;
-      color: var(--clr-black);
-      color: white;
       background-color: transparent;
       font-size: 20px;
       display: flex;
@@ -147,7 +156,6 @@
     }
 
     .watchlist {
-      color: var(--text-white);
       display: flex;
       align-items: center;
 
@@ -159,21 +167,17 @@
     .auth {
       padding: 8px 15px;
       cursor: pointer;
-      background-color: #ffc107;
-      color: var(--clr-black);
-      color: black;
+      background-color: var(--clr-primary);
       border: none;
-      outline: 1px solid transparent;
+      border: 1px solid transparent;
       border-radius: 3px;
       font-size: 15px;
-      transition: all 350ms ease-out;
+      transition: opacity 350ms ease-out;
       letter-spacing: 0;
       font-family: inherit;
 
       &:hover {
-        background-color: transparent;
-        color: var(--text-white);
-        outline: 1px solid #ffc107;
+        opacity: 0.8;
       }
     }
   }

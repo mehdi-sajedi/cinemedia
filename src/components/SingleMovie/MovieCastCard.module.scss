@@ -4,9 +4,11 @@
   width: 138px;
   background-color: var(--bg-white);
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  // box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  outline: 1px solid #e3e3e3;
+  // box-shadow: 0 0 10px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow-3);
+  border: 1px solid var(--clr-border);
 
   img {
     width: 100%;

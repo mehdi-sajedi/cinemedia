@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router';
 import { Link, useNavigate, createSearchParams } from 'react-router-dom';
 import { HiOutlineSearch } from 'react-icons/hi';
@@ -8,18 +8,17 @@ import styles from './Nav.module.scss';
 import MobileMenuBtn from './MobileMenuBtn';
 import MobileMenu from './MobileMenu';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutUser } from '../../features/user/userSlice';
+import { logoutUser, toggleTheme } from '../../features/user/userSlice';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../utilities/toastConfig';
 
 const Nav = () => {
   const [text, setText] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
-  const [darkmode, setDarkmode] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const searchRef = useRef();
-  const { id } = useSelector((state) => state.user);
+  const { id, darkmode } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const onSubmit = async (e) => {
@@ -46,15 +45,19 @@ const Nav = () => {
     toast.info('Logged out', toastConfig);
   };
 
-  const toggleTheme = () => {
-    if (document.body.classList.contains('darkmode')) {
-      setDarkmode(false);
-      document.body.classList.remove('darkmode');
-    } else {
-      setDarkmode(true);
-      document.body.classList.add('darkmode');
-    }
+  const toggleDark = () => {
+    dispatch(toggleTheme());
   };
+
+  useEffect(() => {
+    if (darkmode) {
+      document.body.classList.add('darkmode');
+      localStorage.setItem('darkmode', JSON.stringify(true));
+    } else {
+      document.body.classList.remove('darkmode');
+      localStorage.removeItem('darkmode');
+    }
+  }, [darkmode]);
 
   return (
     <>
@@ -96,7 +99,7 @@ const Nav = () => {
             </div>
           </form>
           <div className={styles.watchlistAndAuth}>
-            <button onClick={toggleTheme} className={styles.theme}>
+            <button onClick={toggleDark} className={styles.theme}>
               {darkmode ? <IoSunny /> : <IoMoon />}
             </button>
             <Link to="/watchlist" className={styles.watchlist}>

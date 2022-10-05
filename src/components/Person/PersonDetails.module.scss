@@ -29,7 +29,7 @@ $breakpoint: '<1025px';
     .image {
       width: 100%;
       border-radius: 8px;
-      box-shadow: 1px 0 10px 1px rgba(150, 150, 150, 0.5);
+      box-shadow: var(--box-shadow-2);
 
       @include media($breakpoint) {
         width: 75%;
@@ -247,10 +247,10 @@ $breakpoint: '<1025px';
       display: flex;
       flex-direction: column;
       background-color: var(--bg-white);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       width: 138px;
       border-radius: 5px;
-      outline: 1px solid #e3e3e3;
+      box-shadow: var(--box-shadow-3);
+      border: 1px solid var(--clr-border);
 
       img {
         border-radius: 5px 5px 0 0;

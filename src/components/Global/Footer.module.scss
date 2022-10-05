@@ -2,7 +2,8 @@
 
 .footer {
   height: 75px;
-  background-color: var(--dark-grey);
+  background-color: var(--nav-footer);
+  box-shadow: var(--box-shadow-1);
 
   .content {
     display: flex;
@@ -11,10 +12,11 @@
     max-width: var(--max-width);
     height: 100%;
     margin: 0 auto;
-    color: var(--text-white);
+    color: var(--perm-white);
     line-height: 1.5;
 
     p {
+      color: var(--clr-black);
       font-size: 15px;
       letter-spacing: 0.5px;
     }

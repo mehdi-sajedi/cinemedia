@@ -1,4 +1,4 @@
-@import '../../include-media.scss';
+@import '../../app.scss';
 
 .button {
   z-index: 2;
@@ -73,8 +73,8 @@
       flex: none;
       width: 100%;
       height: 2px;
-      background-color: white;
-      transition: all 0.4s ease;
+      background-color: var(--clr-black);
+      transition: transform 0.4s ease;
 
       &::before,
       &::after {

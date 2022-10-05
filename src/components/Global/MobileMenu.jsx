@@ -1,8 +1,9 @@
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import styles from './MobileMenu.module.scss';
+import { IoMoon, IoSunny } from 'react-icons/io5';
 import { useSelector, useDispatch } from 'react-redux';
-import { logoutUser } from '../../features/user/userSlice';
+import { logoutUser, toggleTheme } from '../../features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../utilities/toastConfig';
@@ -10,10 +11,12 @@ import { toastConfig } from '../../utilities/toastConfig';
 const MobileMenu = ({ menuOpen, setMenuOpen }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { id } = useSelector((state) => state.user);
+  const { id, darkmode } = useSelector((state) => state.user);
 
   const closeOverlay = (e) => {
-    setMenuOpen((prevState) => !prevState);
+    if (!e.target.closest('.theme')) {
+      setMenuOpen((prevState) => !prevState);
+    }
   };
 
   const logout = () => {
@@ -23,6 +26,10 @@ const MobileMenu = ({ menuOpen, setMenuOpen }) => {
       pathname: '/movies',
     });
     toast.info('Logged out', toastConfig);
+  };
+
+  const toggleDark = () => {
+    dispatch(toggleTheme());
   };
 
   return createPortal(
@@ -50,6 +57,14 @@ const MobileMenu = ({ menuOpen, setMenuOpen }) => {
                     Login
                   </Link>
                 )}
+              </li>
+              <li>
+                <button
+                  onClick={toggleDark}
+                  className={`${styles.theme} theme`}
+                >
+                  {darkmode ? <IoSunny /> : <IoMoon />}
+                </button>
               </li>
             </ul>
           </div>

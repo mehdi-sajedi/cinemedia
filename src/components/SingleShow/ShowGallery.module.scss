@@ -31,7 +31,6 @@
     height: clamp(1px, 990px, calc(85vw * 0.5625));
     background-color: black;
     border: none;
-    outline: 5px solid #ccc;
     box-shadow: 0 0 10px 10px black;
     pointer-events: none;
     z-index: 1000;
@@ -42,7 +41,7 @@
     top: 10px;
     right: 10px;
     font-size: 60px;
-    color: var(--text-white);
+    color: var(--perm-white);
     cursor: pointer;
   }
 }

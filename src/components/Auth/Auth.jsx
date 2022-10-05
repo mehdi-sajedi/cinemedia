@@ -22,6 +22,7 @@ const Auth = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (email === '' && password === '') return;
 
     const request = isLoginForm
       ? signInWithEmailAndPassword

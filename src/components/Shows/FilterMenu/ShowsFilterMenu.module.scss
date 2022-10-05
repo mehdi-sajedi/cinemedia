@@ -11,7 +11,7 @@
   align-self: flex-start;
   height: 80vh;
   scrollbar-width: thin;
-  scrollbar-color: #ccc transparent;
+  scrollbar-color: rgb(224, 224, 224) transparent;
 
   @include media('<=800px') {
     width: 100%;
@@ -107,9 +107,9 @@
 
       &.submit {
         position: relative;
-        background-color: black;
+        background-color: var(--clr-primary);
+        color: var(--text-white);
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-        color: white;
       }
 
       &.reset {

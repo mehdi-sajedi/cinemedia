@@ -1,37 +1,35 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import styles from './FilterMenu.module.scss';
+import styles from './MoviesFilterMenu.module.scss';
 import CustomRange from './CustomRange';
 import { watchProviders } from '../../../data/watchProviders';
 import CustomCheckbox from './CustomCheckbox';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
-import { initialShowFilterState } from '../../../data/initialShowFilterState';
+import { initialMovieFilterState } from '../../../data/initialMovieFilterState';
 import {
-  getShows,
+  getMovies,
   updateFilterData,
   resetFilterData,
-} from '../../../features/shows/showSlice';
+} from '../../../features/movies/movieSlice';
 import SortDropdown from './SortDropdown';
-import StatusDropdown from './StatusDropdown';
-import TypeDropdown from './TypeDropdown';
 import GenreDropdown from './GenreDropdown';
 
-const FilterMenu = () => {
+const MoviesFilterMenu = () => {
   const dispatch = useDispatch();
-  const { filterMenuOpen, filterData } = useSelector((state) => state.show);
+  const { filterMenuOpen, filterData } = useSelector((state) => state.movie);
   const [formData, setFormData] = useState(filterData);
 
   const applyFilters = (e) => {
     e.preventDefault();
     dispatch(updateFilterData(formData));
-    dispatch(getShows());
+    dispatch(getMovies());
   };
 
   const resetForm = (e) => {
     e.preventDefault();
-    setFormData(initialShowFilterState);
+    setFormData(initialMovieFilterState);
     dispatch(resetFilterData());
-    dispatch(getShows());
+    dispatch(getMovies());
     window.scrollTo(0, 0);
   };
 
@@ -42,10 +40,6 @@ const FilterMenu = () => {
           <SortDropdown />
           <div className={styles.lineBreak}></div>
           <GenreDropdown formData={formData} setFormData={setFormData} />
-          <div className={styles.lineBreak}></div>
-          <TypeDropdown formData={formData} setFormData={setFormData} />
-          <div className={styles.lineBreak}></div>
-          <StatusDropdown formData={formData} setFormData={setFormData} />
           <div className={styles.lineBreak}></div>
           <CustomRange
             formData={formData}
@@ -99,6 +93,32 @@ const FilterMenu = () => {
             }}
           />
 
+          <CustomRange
+            formData={formData}
+            setFormData={setFormData}
+            name="Runtime"
+            defaults={[0, 240]}
+            state="runtime"
+            min={0}
+            max={240}
+            step={5}
+            tipFormatter={(v) => `${v}m`}
+            marks={{
+              0: {
+                style: {
+                  marginTop: '10px',
+                },
+                label: '0m',
+              },
+              240: {
+                style: {
+                  marginTop: '10px',
+                },
+                label: '240m',
+              },
+            }}
+          />
+
           <div className={styles.lineBreak}></div>
           <div className={styles.watchProviders}>
             <h3 className={styles.watchProvidersTitle}>Services</h3>
@@ -141,4 +161,4 @@ const FilterMenu = () => {
   );
 };
 
-export default React.memo(FilterMenu);
+export default React.memo(MoviesFilterMenu);

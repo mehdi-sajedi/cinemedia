@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import MoviesGrid from '../components/Movies/MoviesGrid';
 import MoviesPagination from '../components/Movies/MoviesPagination';
-import FilterMenu from '../components/Movies/FilterMenu/FilterMenu';
+import MoviesFilterMenu from '../components/Movies/FilterMenu/MoviesFilterMenu';
 import FilterBtn from '../components/Movies/FilterMenu/FilterBtn';
 import Loading from '../components/Utilities/Loading';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
@@ -23,7 +23,7 @@ const Movies = () => {
       <FilterBtn />
       <>
         <div className={styles.row}>
-          <FilterMenu />
+          <MoviesFilterMenu />
           {isLoading ? <Loading /> : <MoviesGrid />}
         </div>
         <MoviesPagination />

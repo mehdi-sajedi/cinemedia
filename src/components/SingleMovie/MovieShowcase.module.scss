@@ -37,7 +37,7 @@
       z-index: 1;
       max-width: var(--max-width);
       margin: 0 auto;
-      color: var(--text-white);
+      color: var(--perm-white);
       position: relative;
       height: 100%;
 
@@ -237,7 +237,7 @@
             cursor: pointer;
             background-color: transparent;
             border: none;
-            color: var(--text-white);
+            color: var(--perm-white);
             transition: opacity 0.3s ease;
             letter-spacing: 0.5px;
             min-height: 35px;

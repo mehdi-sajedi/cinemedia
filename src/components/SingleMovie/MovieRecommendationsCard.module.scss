@@ -5,13 +5,13 @@
   flex-direction: column;
   overflow: hidden;
   border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  outline: 1px solid #e3e3e3;
+  box-shadow: var(--box-shadow-3);
+  border: 1px solid var(--clr-border);
 
   .text {
     padding: 12px;
     background-color: var(--bg-white);
-    color: var(--text-white);
+    color: var(--clr-black);
 
     h5 {
       font-size: 14px;

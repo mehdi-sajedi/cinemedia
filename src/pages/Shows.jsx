@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ShowsGrid from '../components/Shows/ShowsGrid';
 import ShowsPagination from '../components/Shows/ShowsPagination';
-import FilterMenu from '../components/Shows/FilterMenu/FilterMenu';
+import ShowsFilterMenu from '../components/Shows/FilterMenu/ShowsFilterMenu';
 import FilterBtn from '../components/Shows/FilterMenu/FilterBtn';
 import Loading from '../components/Utilities/Loading';
 import Error from '../components/Utilities/Error';
@@ -26,7 +26,7 @@ const Shows = () => {
       <FilterBtn />
       <>
         <div className={styles.row}>
-          <FilterMenu />
+          <ShowsFilterMenu />
           {isLoading ? <Loading /> : <ShowsGrid />}
         </div>
         <ShowsPagination />
