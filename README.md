@@ -2,7 +2,7 @@
 
 ![Design preview](./preview.png)
 
-Live Site URL: https://movies-and-shows.netlify.app/
+Demo: https://movies-and-shows.netlify.app/
 
 ## Overview
 
