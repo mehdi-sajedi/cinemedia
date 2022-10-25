@@ -1,7 +1,22 @@
 import styles from "./CustomRange.module.scss";
+import { IFilterData } from "../../../features/movies/movieSlice";
 import Slider, { createSliderWithTooltip } from "rc-slider";
 import "rc-slider/assets/index.css";
 const Range = createSliderWithTooltip(Slider.Range);
+
+export interface CustomRangeProps {
+  formData: IFilterData;
+  setFormData: React.Dispatch<React.SetStateAction<IFilterData>>;
+  name: string;
+  defaults: number[];
+  state: number[];
+  stateStr: string;
+  min: number;
+  max: number;
+  step: number;
+  tipFormatter: any;
+  marks: any;
+}
 
 const CustomRange = ({
   formData,
@@ -9,12 +24,13 @@ const CustomRange = ({
   name,
   defaults,
   state,
+  stateStr,
   min,
   max,
   step,
   tipFormatter,
   marks,
-}) => {
+}: CustomRangeProps) => {
   let rangeStyles = {
     rail: {
       backgroundColor: "#e2e2e2",
@@ -28,10 +44,9 @@ const CustomRange = ({
     ],
     handle: [
       {
-        position: "absolute",
         height: "25px",
         width: "25px",
-        top: "1px",
+        top: 0,
         border: "3px solid #79c4e2",
       },
     ],
@@ -40,10 +55,10 @@ const CustomRange = ({
     },
   };
 
-  const handleSliderChange = (v) => {
+  const handleSliderChange = (v: any) => {
     setFormData({
       ...formData,
-      [state]: v,
+      [stateStr]: v,
     });
   };
 
@@ -54,22 +69,22 @@ const CustomRange = ({
       </header>
       <Range
         className={styles.range}
-        onChange={(v) => handleSliderChange(v)}
+        onChange={(v: any) => handleSliderChange(v)}
         defaultValue={defaults}
-        value={formData[state]}
+        value={state}
         min={min}
         max={max}
+        step={step}
+        marks={marks}
         railStyle={rangeStyles.rail}
         trackStyle={rangeStyles.track}
-        handleStyle={rangeStyles.handle}
         dotStyle={rangeStyles.dot}
-        step={step}
+        handleStyle={rangeStyles.handle}
         tipProps={{
           placement: "top",
           visible: true,
         }}
         tipFormatter={tipFormatter}
-        marks={marks}
       />
     </div>
   );

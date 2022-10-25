@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import styles from './MoviesFilterMenu.module.scss';
-import CustomRange from './CustomRange';
-import { watchProviders } from '../../../data/watchProviders';
-import CustomCheckbox from './CustomCheckbox';
-import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
-import { initialMovieFilterState } from '../../../data/initialMovieFilterState';
+import React, { useState } from "react";
+import { useAppSelector, useAppDispatch } from "../../../hooks";
+import styles from "./MoviesFilterMenu.module.scss";
+import { watchProviders } from "../../../data/watchProviders";
+import CustomRange from "./CustomRange";
+import CustomCheckbox from "./CustomCheckbox";
+import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { initialMovieFilterState } from "../../../data/initialMovieFilterState";
 import {
   getMovies,
   updateFilterData,
   resetFilterData,
-} from '../../../features/movies/movieSlice';
-import SortDropdown from './SortDropdown';
-import GenreDropdown from './GenreDropdown';
+} from "../../../features/movies/movieSlice";
+import SortDropdown from "./SortDropdown";
+import GenreDropdown from "./GenreDropdown";
 
 const MoviesFilterMenu = () => {
-  const dispatch = useDispatch();
-  const { filterMenuOpen, filterData } = useSelector((state) => state.movie);
+  const dispatch = useAppDispatch();
+  const { filterMenuOpen, filterData } = useAppSelector((state) => state.movie);
   const [formData, setFormData] = useState(filterData);
 
-  const applyFilters = (e) => {
+  const applyFilters = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(updateFilterData(formData));
     dispatch(getMovies());
   };
 
-  const resetForm = (e) => {
+  const resetForm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setFormData(initialMovieFilterState);
     dispatch(resetFilterData());
@@ -35,7 +35,7 @@ const MoviesFilterMenu = () => {
 
   return (
     <>
-      <div className={`${styles.menu} ${!filterMenuOpen ? styles.close : ''} `}>
+      <div className={`${styles.menu} ${!filterMenuOpen ? styles.close : ""} `}>
         <form onSubmit={applyFilters} className={styles.form}>
           <SortDropdown />
           <div className={styles.lineBreak}></div>
@@ -46,23 +46,24 @@ const MoviesFilterMenu = () => {
             setFormData={setFormData}
             name="Year"
             defaults={[1980, 2022]}
-            state="year"
+            state={formData.year}
+            stateStr="year"
             min={1980}
             max={2022}
             step={1}
-            tipFormatter={(v) => v}
+            tipFormatter={(v: number) => v}
             marks={{
               1980: {
                 style: {
-                  marginTop: '10px',
+                  marginTop: "10px",
                 },
-                label: '1980',
+                label: "1980",
               },
               2022: {
                 style: {
-                  marginTop: '10px',
+                  marginTop: "10px",
                 },
-                label: '2022',
+                label: "2022",
               },
             }}
           />
@@ -72,23 +73,24 @@ const MoviesFilterMenu = () => {
             setFormData={setFormData}
             name="Rating"
             defaults={[0, 100]}
-            state="rating"
+            state={formData.rating}
+            stateStr="rating"
             min={0}
             max={100}
             step={1}
-            tipFormatter={(v) => `${v}%`}
+            tipFormatter={(v: number) => `${v}%`}
             marks={{
               0: {
                 style: {
-                  marginTop: '10px',
+                  marginTop: "10px",
                 },
-                label: '0%',
+                label: "0%",
               },
               100: {
                 style: {
-                  marginTop: '10px',
+                  marginTop: "10px",
                 },
-                label: '100%',
+                label: "100%",
               },
             }}
           />
@@ -98,23 +100,24 @@ const MoviesFilterMenu = () => {
             setFormData={setFormData}
             name="Runtime"
             defaults={[0, 240]}
-            state="runtime"
+            state={formData.runtime}
+            stateStr="runtime"
             min={0}
             max={240}
             step={5}
-            tipFormatter={(v) => `${v}m`}
+            tipFormatter={(v: number) => `${v}m`}
             marks={{
               0: {
                 style: {
-                  marginTop: '10px',
+                  marginTop: "10px",
                 },
-                label: '0m',
+                label: "0m",
               },
               240: {
                 style: {
-                  marginTop: '10px',
+                  marginTop: "10px",
                 },
-                label: '240m',
+                label: "240m",
               },
             }}
           />
@@ -128,11 +131,11 @@ const MoviesFilterMenu = () => {
                   formData={formData}
                   setFormData={setFormData}
                   state="services"
-                  key={`${p.provider_id}-${p.provider_name}`}
                   name={p.provider_name}
                   id={p.provider_id}
                   group="watch-providers"
                   img={p.logo_path}
+                  key={`${p.provider_id}-${p.provider_name}`}
                 />
               ))}
             </ul>

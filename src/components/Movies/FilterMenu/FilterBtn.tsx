@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from "../../../hooks";
 import { toggleFilterMenu } from '../../../features/movies/movieSlice';
 import { IoOptionsOutline } from 'react-icons/io5';
 import styles from './FilterBtn.module.scss';
 
 const FilterBtn = () => {
-  const dispatch = useDispatch();
-  const { filterMenuOpen } = useSelector((state) => state.movie);
+  const dispatch = useAppDispatch();
+  const { filterMenuOpen } = useAppSelector((state) => state.movie);
 
   const toggle = () => {
     dispatch(toggleFilterMenu());

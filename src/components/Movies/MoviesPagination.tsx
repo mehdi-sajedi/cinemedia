@@ -1,14 +1,14 @@
-import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
-import styles from './MoviesPagination.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import { paginate } from '../../features/movies/movieSlice';
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+import styles from "./MoviesPagination.module.scss";
+import { useAppSelector, useAppDispatch } from "../../hooks";
+import { paginate } from "../../features/movies/movieSlice";
 
 const MoviesPagination = () => {
-  const dispatch = useDispatch();
-  const { page, totalResults } = useSelector((state) => state.movie);
+  const dispatch = useAppDispatch();
+  const { page, total_results } = useAppSelector((state) => state.movie);
 
-  const pageNumbers = [];
-  let maxPages = Math.ceil(totalResults / 20);
+  const pageNumbers: number[] = [];
+  let maxPages = Math.ceil(total_results / 20);
   maxPages = Math.min(maxPages, 20);
 
   for (let i = 1; i <= maxPages; i++) {
@@ -19,7 +19,7 @@ const MoviesPagination = () => {
     return page + 2 <= num;
   });
 
-  const handlePaginate = (pageNum) => {
+  const handlePaginate = (pageNum: number) => {
     if (pageNum < 1 || pageNum > maxPages) return;
     dispatch(paginate(pageNum));
   };
@@ -28,7 +28,7 @@ const MoviesPagination = () => {
     <div className={styles.pagination}>
       <button
         onClick={() => handlePaginate(page - 1)}
-        className={`${styles.arrow} ${page === 1 ? 'inactive' : ''}`}
+        className={`${styles.arrow} ${page === 1 ? "inactive" : ""}`}
       >
         <IoIosArrowBack />
       </button>
@@ -36,7 +36,7 @@ const MoviesPagination = () => {
         <ul>
           {page >= 3 && (
             <>
-              <li key={1} className={`${1 === page ? styles.activePage : ''} `}>
+              <li key={1} className={`${1 === page ? styles.activePage : ""} `}>
                 <button onClick={() => handlePaginate(1)}>1</button>
               </li>
               <span className={styles.dots}>...</span>
@@ -49,7 +49,7 @@ const MoviesPagination = () => {
               return (
                 <li
                   key={pageNum}
-                  className={`${pageNum === page ? styles.activePage : ''} `}
+                  className={`${pageNum === page ? styles.activePage : ""} `}
                 >
                   <button onClick={() => handlePaginate(pageNum)}>
                     {pageNum}
@@ -63,7 +63,7 @@ const MoviesPagination = () => {
               <span className={styles.dots}>...</span>
               <li
                 key={maxPages}
-                className={`${maxPages === page ? styles.activePage : ''} `}
+                className={`${maxPages === page ? styles.activePage : ""} `}
               >
                 <button onClick={() => handlePaginate(maxPages)}>
                   {maxPages}
@@ -75,7 +75,7 @@ const MoviesPagination = () => {
       </div>
       <button
         onClick={() => handlePaginate(page + 1)}
-        className={`${styles.arrow} ${page === maxPages ? 'inactive' : ''}`}
+        className={`${styles.arrow} ${page === maxPages ? "inactive" : ""}`}
       >
         <IoIosArrowForward />
       </button>
