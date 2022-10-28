@@ -2,7 +2,16 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import searchService from './searchService';
 import { errorHandler } from '../../utilities/utilities';
 
-const initialState = {
+interface searchState {
+  results: {}[];
+  text: string;
+  name: string;
+  id: number | null;
+  isLoading: boolean;
+  isError: boolean;
+}
+
+const initialState: searchState = {
   results: [],
   text: '',
   name: '',
@@ -13,11 +22,11 @@ const initialState = {
 
 export const getSearchResults = createAsyncThunk(
   'search/getSearchResults',
-  async (text, thunkAPI) => {
+  async (text: string, thunkAPI) => {
     try {
       return await searchService.getSearchResultsService(text);
     } catch (error) {
-      return await thunkAPI.rejectWithValue(errorHandler(error));
+      return thunkAPI.rejectWithValue(errorHandler(error));
     }
   }
 );

@@ -2,19 +2,29 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import personService from './personService';
 import { errorHandler } from '../../utilities/utilities';
 
-const initialState = {
-  person: {},
+interface PersonState {
+  person: {
+    name: string;
+  };
+  isLoading: boolean;
+  isError: boolean;
+}
+
+const initialState: PersonState = {
+  person: {
+    name: '',
+  },
   isLoading: false,
   isError: false,
 };
 
 export const getPerson = createAsyncThunk(
   'person/getPerson',
-  async (personId, thunkAPI) => {
+  async (personId: number, thunkAPI) => {
     try {
       return await personService.getPersonService(personId);
     } catch (error) {
-      return await thunkAPI.rejectWithValue(errorHandler(error));
+      return thunkAPI.rejectWithValue(errorHandler(error));
     }
   }
 );

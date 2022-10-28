@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../hooks';
 import { loginUser } from '../../features/user/userSlice';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../utilities/toastConfig';
@@ -16,11 +16,11 @@ const Auth = () => {
   const [isLoginForm, setIsLoginForm] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   useDocumentTitle(isLoginForm ? 'Login' : 'Register');
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (email === '' && password === '') return;
 
@@ -45,7 +45,7 @@ const Auth = () => {
       navigate({
         pathname: '/movies',
       });
-    } catch (error) {
+    } catch (error: any) {
       let message = error.code.slice(5).replaceAll('-', ' ');
       message = message[0].toUpperCase() + message.slice(1).toLowerCase();
       toast.error(message, toastConfig);

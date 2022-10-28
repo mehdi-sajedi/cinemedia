@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { getSingleMovie } from '../features/movies/movieSlice';
 import { useParams } from 'react-router-dom';
 import styles from './MovieCastAndCrew.module.scss';
@@ -10,13 +10,13 @@ import CreditsList from '../components/MovieCast/CreditsList';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const MovieCastAndCrew = () => {
-  const dispatch = useDispatch();
-  const { movie, isLoading, isError } = useSelector((state) => state.movie);
+  const dispatch = useAppDispatch();
+  const { movie, isLoading, isError } = useAppSelector((state) => state.movie);
   const { id } = useParams();
-  useDocumentTitle(`${movie.title} | Cast`);
+  useDocumentTitle(`${movie?.title} | Cast`);
 
   useEffect(() => {
-    dispatch(getSingleMovie(id));
+    dispatch(getSingleMovie(Number(id)));
   }, [dispatch, id]);
 
   if (isLoading) return <Loading />;

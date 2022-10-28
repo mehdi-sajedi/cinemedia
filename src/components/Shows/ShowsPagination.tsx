@@ -1,14 +1,14 @@
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
 import styles from './ShowsPagination.module.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { paginate } from '../../features/shows/showSlice';
 
 const ShowsPagination = () => {
-  const dispatch = useDispatch();
-  const { page, totalResults } = useSelector((state) => state.show);
+  const dispatch = useAppDispatch();
+  const { page, total_results } = useAppSelector((state) => state.show);
 
-  const pageNumbers = [];
-  let maxPages = Math.ceil(totalResults / 20);
+  const pageNumbers: number[] = [];
+  let maxPages = Math.ceil(total_results / 20);
   maxPages = Math.min(maxPages, 20);
 
   for (let i = 1; i <= maxPages; i++) {
@@ -19,7 +19,7 @@ const ShowsPagination = () => {
     return page + 2 <= num;
   });
 
-  const handlePaginate = (pageNum) => {
+  const handlePaginate = (pageNum: number) => {
     if (pageNum < 1 || pageNum > maxPages) return;
     dispatch(paginate(pageNum));
   };

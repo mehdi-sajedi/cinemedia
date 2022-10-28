@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { getSingleMovie } from '../features/movies/movieSlice';
-import { useLocation } from 'react-router';
+import { useParams } from 'react-router';
 import styles from './SingleMovie.module.scss';
 import MovieShowcase from '../components/SingleMovie/MovieShowcase';
 import MovieCast from '../components/SingleMovie/MovieCast';
@@ -11,15 +11,13 @@ import Loading from '../components/Utilities/Loading';
 import Error from '../components/Utilities/Error';
 
 const SingleMovie = () => {
-  const dispatch = useDispatch();
-  const { movie, isLoading, isError } = useSelector((state) => state.movie);
-  const { pathname } = useLocation();
-
-  const mediaId = pathname.substring(pathname.lastIndexOf('/') + 1);
+  const dispatch = useAppDispatch();
+  const { movie, isLoading, isError } = useAppSelector((state) => state.movie);
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getSingleMovie(mediaId));
-  }, [dispatch, mediaId]);
+    dispatch(getSingleMovie(Number(id)));
+  }, [dispatch, id]);
 
   if (isLoading) return <Loading />;
   if (isError) return <Error />;
@@ -31,7 +29,9 @@ const SingleMovie = () => {
         <MovieCast />
         <MovieSidebar />
       </section>
-      {movie.recommendations?.results.length > 0 && <MovieRecommendations />}
+      {movie && movie.recommendations?.results.length > 0 && (
+        <MovieRecommendations />
+      )}
     </>
   );
 };

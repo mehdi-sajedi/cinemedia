@@ -5,17 +5,17 @@ import MoviesFilterMenu from '../components/Movies/FilterMenu/MoviesFilterMenu';
 import FilterBtn from '../components/Movies/FilterMenu/FilterBtn';
 import Loading from '../components/Utilities/Loading';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { getMovies } from '../features/movies/movieSlice';
 import styles from './Movies.module.scss';
 
 const Movies = () => {
-  const dispatch = useDispatch();
-  const { page, isLoading } = useSelector((state) => state.movie);
+  const dispatch = useAppDispatch();
+  const { page, isLoading } = useAppSelector((state) => state.movie);
   useDocumentTitle('Popular Movies');
 
   useEffect(() => {
-    dispatch(getMovies(page));
+    dispatch(getMovies());
   }, [dispatch, page]);
 
   return (

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { useSearchParams } from 'react-router-dom';
 import { getSearchResults } from '../features/search/searchSlice';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
@@ -9,10 +9,10 @@ import Loading from '../components/Utilities/Loading';
 import Error from '../components/Utilities/Error';
 
 const Search = () => {
-  const dispatch = useDispatch();
-  const { isLoading, isError } = useSelector((state) => state.search);
+  const dispatch = useAppDispatch();
+  const { isLoading, isError } = useAppSelector((state) => state.search);
   const [searchParams] = useSearchParams();
-  const searchQuery = searchParams.get('query');
+  const searchQuery = searchParams.get('query') as string;
   useDocumentTitle('Search Results');
 
   useEffect(() => {

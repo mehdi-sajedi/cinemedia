@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { getSingleShow } from '../features/shows/showSlice';
 import { useParams } from 'react-router-dom';
 import styles from './ShowCastAndCrew.module.scss';
@@ -11,13 +11,13 @@ import CreditsList from '../components/ShowCast/CreditsList';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 
 const ShowCastAndCrew = () => {
-  const dispatch = useDispatch();
-  const { show, isLoading, isError } = useSelector((state) => state.show);
+  const dispatch = useAppDispatch();
+  const { show, isLoading, isError } = useAppSelector((state) => state.show);
   const { id } = useParams();
   useDocumentTitle(`${show.name} | Cast`);
 
   useEffect(() => {
-    dispatch(getSingleShow(id));
+    dispatch(getSingleShow(Number(id)));
   }, [dispatch, id]);
 
   if (isLoading) return <Loading />;

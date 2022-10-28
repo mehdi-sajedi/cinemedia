@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import { getSingleShow } from '../features/shows/showSlice';
-import { useLocation } from 'react-router';
+import { useParams } from 'react-router-dom';
 import styles from './SingleShow.module.scss';
 import ShowShowcase from '../components/SingleShow/ShowShowcase';
 import ShowCast from '../components/SingleShow/ShowCast';
@@ -11,15 +11,13 @@ import Loading from '../components/Utilities/Loading';
 import Error from '../components/Utilities/Error';
 
 const SingleShow = () => {
-  const dispatch = useDispatch();
-  const { show, isLoading, isError } = useSelector((state) => state.show);
-  const { pathname } = useLocation();
-
-  const mediaId = pathname.substring(pathname.lastIndexOf('/') + 1);
+  const dispatch = useAppDispatch();
+  const { show, isLoading, isError } = useAppSelector((state) => state.show);
+  const { id } = useParams();
 
   useEffect(() => {
-    dispatch(getSingleShow(mediaId));
-  }, [dispatch, mediaId]);
+    dispatch(getSingleShow(Number(id)));
+  }, [dispatch, id]);
 
   if (isLoading) return <Loading />;
   if (isError) return <Error />;

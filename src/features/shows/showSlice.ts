@@ -2,14 +2,55 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { errorHandler } from '../../utilities/utilities';
 import showService from './showService';
 import { initialShowFilterState } from '../../data/initialShowFilterState';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../../store/store';
 
-const hideEpisodes = JSON.parse(localStorage.getItem('hideEpisodes'));
+const hideEpisodes = JSON.parse(localStorage.getItem('hideEpisodes') as string);
 
-const initialState = {
+export interface IGenre {
+  value: number;
+  label: string;
+}
+
+export interface IFilterData {
+  year: number[];
+  rating: number[];
+  services: number[];
+  genres: IGenre[];
+  status: IGenre[];
+  type: IGenre[];
+}
+
+interface ShowState {
+  results: [];
+  total_results: number;
+  page: number;
+  show: {
+    recommendations: {
+      results: {}[];
+    };
+    name: string;
+  };
+  filterData: IFilterData;
+  sort: string;
+  filterMenuOpen: boolean;
+  isLoading: boolean;
+  isError: boolean;
+  castScroll: number;
+  prevShowId: number;
+  hideEpisodes: boolean;
+}
+
+const initialState: ShowState = {
   results: [],
-  totalResults: 100,
+  total_results: 100,
   page: 1,
-  show: {},
+  show: {
+    recommendations: {
+      results: [],
+    },
+    name: '',
+  },
   filterData: initialShowFilterState,
   sort: 'popularity.desc',
   filterMenuOpen: false,
@@ -20,7 +61,7 @@ const initialState = {
   hideEpisodes: hideEpisodes,
 };
 
-export const getShows = createAsyncThunk(
+export const getShows = createAsyncThunk<ShowState, void, { state: RootState }>(
   'show/getShows',
   async (_, thunkAPI) => {
     try {
@@ -34,7 +75,7 @@ export const getShows = createAsyncThunk(
 
 export const getSingleShow = createAsyncThunk(
   'show/getSingleShow',
-  async (id, thunkAPI) => {
+  async (id: number, thunkAPI) => {
     try {
       return await showService.getSingleShowService(id);
     } catch (error) {
@@ -48,7 +89,7 @@ export const showSlice = createSlice({
   initialState,
   reducers: {
     reset: () => initialState,
-    paginate: (state, action) => {
+    paginate: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
     toggleFilterMenu: (state) => {
@@ -57,7 +98,7 @@ export const showSlice = createSlice({
     closeFilterMenu: (state) => {
       state.filterMenuOpen = false;
     },
-    updateFilterData: (state, action) => {
+    updateFilterData: (state, action: PayloadAction<IFilterData>) => {
       state.filterData = action.payload;
       state.page = 1;
     },
@@ -66,17 +107,17 @@ export const showSlice = createSlice({
       state.sort = 'popularity.desc';
       state.page = 1;
     },
-    updateSortOption: (state, action) => {
+    updateSortOption: (state, action: PayloadAction<string>) => {
       state.sort = action.payload;
       state.page = 1;
     },
-    updateCastScroll: (state, action) => {
+    updateCastScroll: (state, action: PayloadAction<number>) => {
       state.castScroll = action.payload;
     },
-    setPrevShowId: (state, action) => {
+    setPrevShowId: (state, action: PayloadAction<number>) => {
       state.prevShowId = action.payload;
     },
-    toggleHideEpisodes: (state, action) => {
+    toggleHideEpisodes: (state, action: PayloadAction<boolean>) => {
       state.hideEpisodes = action.payload;
     },
   },
@@ -88,7 +129,7 @@ export const showSlice = createSlice({
       })
       .addCase(getShows.fulfilled, (state, action) => {
         state.results = action.payload.results;
-        state.totalResults = action.payload.total_results;
+        state.total_results = action.payload.total_results;
         state.isLoading = false;
       })
       .addCase(getShows.rejected, (state) => {

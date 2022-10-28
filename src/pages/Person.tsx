@@ -1,22 +1,23 @@
 import React, { useEffect } from 'react';
-import { useLocation } from 'react-router';
 import { getPerson } from '../features/person/personSlice';
 import PersonDetails from '../components/Person/PersonDetails';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { useParams } from 'react-router';
 import Loading from '../components/Utilities/Loading';
 import Error from '../components/Utilities/Error';
 
 const Person = () => {
-  const dispatch = useDispatch();
-  const { person, isLoading, isError } = useSelector((state) => state.person);
-  const { pathname } = useLocation();
-  const personId = pathname.substring(pathname.lastIndexOf('/') + 1);
+  const dispatch = useAppDispatch();
+  const { person, isLoading, isError } = useAppSelector(
+    (state) => state.person
+  );
+  const { id } = useParams();
   useDocumentTitle(`${person.name}`);
 
   useEffect(() => {
-    dispatch(getPerson(personId));
-  }, [dispatch, personId]);
+    dispatch(getPerson(Number(id)));
+  }, [dispatch, id]);
 
   if (isLoading) return <Loading />;
   if (isError) return <Error />;

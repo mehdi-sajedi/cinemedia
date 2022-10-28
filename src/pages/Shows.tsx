@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch, useAppSelector } from '../hooks';
 import ShowsGrid from '../components/Shows/ShowsGrid';
 import ShowsPagination from '../components/Shows/ShowsPagination';
 import ShowsFilterMenu from '../components/Shows/FilterMenu/ShowsFilterMenu';
@@ -11,12 +11,12 @@ import { getShows } from '../features/shows/showSlice';
 import styles from './Shows.module.scss';
 
 const Shows = () => {
-  const dispatch = useDispatch();
-  const { page, isLoading, isError } = useSelector((state) => state.show);
+  const dispatch = useAppDispatch();
+  const { page, isLoading, isError } = useAppSelector((state) => state.show);
   useDocumentTitle('Popular Shows');
 
   useEffect(() => {
-    dispatch(getShows(page));
+    dispatch(getShows());
   }, [dispatch, page]);
 
   if (isError) return <Error />;

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useAppSelector } from '../../hooks';
 import styles from './MovieShowcase.module.scss';
 import Trailer from './MovieTrailer';
 import Gallery from './MovieGallery';
@@ -7,7 +8,6 @@ import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../../utilities/utilities';
 import { useDocumentTitle } from '../../hooks/useDocumentTitle';
-import { useSelector } from 'react-redux';
 import { onValue, ref, update } from 'firebase/database';
 import { db } from '../../config/firebase';
 import { Tooltip } from '@mui/material';
@@ -21,9 +21,9 @@ const MovieShowcase = () => {
   const [viewGallery, setViewGallery] = useState(false);
   const [inWatchlist, setInWatchlist] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
-  const { movie } = useSelector((state) => state.movie);
-  const { id } = useSelector((state) => state.user);
-  useDocumentTitle(`${movie.title} (${movie.release_date?.slice(0, 4)})`);
+  const { id } = useAppSelector((state) => state.user);
+  const { movie } = useAppSelector((state) => state.movie);
+  useDocumentTitle(`${movie?.title} (${movie?.release_date?.slice(0, 4)})`);
 
   useEffect(() => {
     if (!id) return;
@@ -33,27 +33,26 @@ const MovieShowcase = () => {
       if (snapshot.exists()) {
         const data = snapshot.val();
         const saved = Object.values(data).some(
-          (media) => media.id === movie.id && media.type === 'movie'
+          (media: any) => media.id === movie?.id && media.type === 'movie'
         );
-        console.log(data);
         setInWatchlist(saved);
       } else {
-        console.log('No data available');
         setInWatchlist(false);
       }
     });
 
     return () => unsubscribe();
-  }, [id, movie.id]);
+  }, [id, movie?.id]);
 
-  const trailer = movie.videos?.results?.find((entry) => {
+  const trailer = movie?.videos?.results?.find((entry) => {
     return (
       entry.type.toLowerCase() === 'trailer' &&
       entry.site.toLowerCase() === 'youtube'
     );
   });
 
-  const hasImages = movie?.images?.backdrops.length > 0;
+  const hasImages =
+    movie?.images.backdrops && movie.images.backdrops.length > 0;
 
   const handleViewGallery = () => {
     hasImages && setViewGallery(true);
@@ -66,7 +65,7 @@ const MovieShowcase = () => {
       return;
     }
 
-    const key = `watchlist/${id}/${movie.id}M`;
+    const key = `watchlist/${id}/${movie?.id}M`;
 
     // Item already in Watchlist
     if (inWatchlist) {
@@ -76,11 +75,11 @@ const MovieShowcase = () => {
     // Item not in Watchlist
     const movieData = {
       [key]: {
-        id: movie.id,
-        date: movie.release_date,
-        rating: movie.vote_average,
-        poster: movie.poster_path,
-        name: movie.title,
+        id: movie?.id,
+        date: movie?.release_date,
+        rating: movie?.vote_average,
+        poster: movie?.poster_path,
+        name: movie?.title,
         type: 'movie',
         user: id,
       },
@@ -95,7 +94,7 @@ const MovieShowcase = () => {
         <div
           className={styles.backdrop}
           style={{
-            background: `url('${backdropBase}${movie.backdrop_path}') no-repeat top center/cover`,
+            background: `url('${backdropBase}${movie?.backdrop_path}') no-repeat top center/cover`,
           }}
         ></div>
         <div className={styles.content}>
@@ -107,7 +106,7 @@ const MovieShowcase = () => {
           >
             <img
               className={styles.poster}
-              src={`${posterBase}${movie.poster_path}`}
+              src={`${posterBase}${movie?.poster_path}`}
               alt=""
             />
             <div className={styles.posterText}>
@@ -118,57 +117,59 @@ const MovieShowcase = () => {
           <div className={styles.textContent}>
             <div className={styles.heading}>
               <h1>
-                {movie.title}
-                {movie.release_date && (
-                  <span>({movie.release_date.slice(0, 4)})</span>
+                {movie?.title}
+                {movie?.release_date && (
+                  <span>({movie?.release_date.slice(0, 4)})</span>
                 )}
               </h1>
             </div>
-            {movie.tagline && <p className={styles.tagline}>{movie.tagline}</p>}
+            {movie?.tagline && (
+              <p className={styles.tagline}>{movie?.tagline}</p>
+            )}
             <div className={styles.row}>
               <div className={styles.ratingAndRuntime}>
                 <div
                   className={styles.voteCircle}
                   style={{
                     border: `3px solid ${
-                      movie.vote_average
-                        ? colorPercentage(movie.vote_average / 10)
+                      movie?.vote_average
+                        ? colorPercentage(movie?.vote_average / 10)
                         : '#777'
                     }`,
                   }}
                 >
                   <p>
-                    {movie.vote_average
-                      ? movie.vote_average.toFixed(1) * 10
+                    {movie?.vote_average
+                      ? +movie?.vote_average.toFixed(1) * 10
                       : 'NR'}
                   </p>
-                  {movie.vote_average ? (
+                  {movie?.vote_average ? (
                     <FiPercent className={styles.percentSymbol} />
                   ) : null}
                 </div>
-                {movie.runtime ? (
+                {movie?.runtime ? (
                   <span className={`${styles.dot} ${styles.dot1}`}></span>
                 ) : (
                   ''
                 )}
-                {movie.runtime ? (
+                {movie?.runtime ? (
                   <p className={styles.runtime}>
-                    {formatRuntime(movie.runtime)}
+                    {formatRuntime(movie?.runtime)}
                   </p>
                 ) : (
                   ''
                 )}
               </div>
-              {movie.genres?.length > 0 && (
+              {movie?.genres && movie.genres.length > 0 && (
                 <span className={`${styles.dot} ${styles.dot2}`}></span>
               )}
               <ul className={styles.genres}>
-                {movie.genres?.map(
-                  (genre, idx) =>
+                {movie?.genres?.map(
+                  (genre: any, idx: number) =>
                     idx < 3 && (
                       <li key={`${genre.name}-${genre.id}`}>
                         {genre.name}
-                        {idx === movie.genres.length - 1 || idx === 2
+                        {idx === movie?.genres.length - 1 || idx === 2
                           ? null
                           : ','}
                       </li>
@@ -176,10 +177,10 @@ const MovieShowcase = () => {
                 )}
               </ul>
             </div>
-            {movie.overview && (
+            {movie?.overview && (
               <div className={styles.overview}>
                 <h3>Overview</h3>
-                <p>{movie.overview}</p>
+                <p>{movie?.overview}</p>
               </div>
             )}
             <div className={styles.buttons}>

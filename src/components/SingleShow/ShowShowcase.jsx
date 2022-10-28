@@ -35,10 +35,8 @@ const ShowShowcase = () => {
         const saved = Object.values(data).some(
           (media) => media.id === show.id && media.type === 'show'
         );
-        console.log(data);
         setInWatchlist(saved);
       } else {
-        console.log('No data available');
         setInWatchlist(false);
       }
     });

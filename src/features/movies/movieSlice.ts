@@ -1,9 +1,9 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { errorHandler } from "../../utilities/utilities";
-import { initialMovieFilterState } from "../../data/initialMovieFilterState";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "../../store/store";
-import movieService from "./movieService";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { errorHandler } from '../../utilities/utilities';
+import { initialMovieFilterState } from '../../data/initialMovieFilterState';
+import type { PayloadAction } from '@reduxjs/toolkit';
+import type { RootState } from '../../store/store';
+import movieService from './movieService';
 
 export interface IGenre {
   value: number;
@@ -14,15 +14,46 @@ export interface IFilterData {
   year: number[];
   runtime: number[];
   rating: number[];
-  genres: IGenre[];
   services: number[];
+  genres: IGenre[];
+}
+
+interface SingleMovie {
+  title: string;
+  release_date: string;
+  id: number;
+  poster_path: string;
+  adult: boolean;
+  overview: string;
+  vote_count: number;
+  popularity: number;
+  vote_average: number;
+  runtime: number;
+  tagline: string;
+  backdrop_path: string;
+  images: {
+    backdrops: {}[];
+  };
+  genres: {
+    id: number;
+    name: string;
+  }[];
+  videos: {
+    results: {
+      type: string;
+      site: string;
+    }[];
+  };
+  recommendations: {
+    results: {}[];
+  };
 }
 
 interface MovieState {
   results: [];
   total_results: number;
   page: number;
-  movie: {};
+  movie?: SingleMovie;
   filterData: IFilterData;
   sort: string;
   filterMenuOpen: boolean;
@@ -36,9 +67,8 @@ const initialState: MovieState = {
   results: [],
   total_results: 100,
   page: 1,
-  movie: {},
   filterData: initialMovieFilterState,
-  sort: "popularity.desc",
+  sort: 'popularity.desc',
   filterMenuOpen: false,
   isLoading: false,
   isError: false,
@@ -50,7 +80,7 @@ export const getMovies = createAsyncThunk<
   MovieState,
   void,
   { state: RootState }
->("movie/getMovies", async (_, thunkAPI) => {
+>('movie/getMovies', async (_, thunkAPI) => {
   try {
     const { page, filterData, sort } = thunkAPI.getState().movie;
     return await movieService.getMoviesService(page, filterData, sort);
@@ -60,7 +90,7 @@ export const getMovies = createAsyncThunk<
 });
 
 export const getSingleMovie = createAsyncThunk(
-  "movie/getSingleMovie",
+  'movie/getSingleMovie',
   async (id: number, thunkAPI) => {
     try {
       return await movieService.getSingleMovieService(id);
@@ -71,7 +101,7 @@ export const getSingleMovie = createAsyncThunk(
 );
 
 export const movieSlice = createSlice({
-  name: "movie",
+  name: 'movie',
   initialState,
   reducers: {
     reset: () => initialState,
@@ -90,7 +120,7 @@ export const movieSlice = createSlice({
     },
     resetFilterData: (state) => {
       state.filterData = initialMovieFilterState;
-      state.sort = "popularity.desc";
+      state.sort = 'popularity.desc';
       state.page = 1;
     },
     updateSortOption: (state, action: PayloadAction<string>) => {

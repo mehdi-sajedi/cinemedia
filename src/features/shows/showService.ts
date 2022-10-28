@@ -1,9 +1,14 @@
 import axios from 'axios';
+import { IFilterData } from './showSlice';
 
-const getShowsService = async (page, filterData, sort) => {
+const getShowsService = async (
+  page: number,
+  filterData: IFilterData,
+  sort: string
+) => {
   const SHOWS_API_URL = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=${sort}&page=${page}`;
 
-  const { year, runtime, rating, genres, services, status, type } = filterData;
+  const { year, rating, genres, services, status, type } = filterData;
 
   const statusValues = status.map((opt) => opt.value);
   const typeValues = type.map((opt) => opt.value);
@@ -15,8 +20,6 @@ const getShowsService = async (page, filterData, sort) => {
   const params = [
     `&first_air_date.gte=${year[0]}-01-01`,
     `&first_air_date.lte=${year[1]}-12-31`,
-    `&with_runtime.gte=${runtime[0]}`,
-    `&with_runtime.lte=${runtime[1]}`,
     `&vote_average.gte=${rating[0] / 10}`,
     `&vote_average.lte=${rating[1] / 10}`,
     `&with_genres=${genreValues.join('|')}`,
@@ -31,7 +34,7 @@ const getShowsService = async (page, filterData, sort) => {
   return res.data;
 };
 
-const getSingleShowService = async (id) => {
+const getSingleShowService = async (id: number) => {
   const SINGLE_SHOW_API_URL = `https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=recommendations,external_ids,images,videos,aggregate_credits`;
 
   const res = await axios.get(SINGLE_SHOW_API_URL);

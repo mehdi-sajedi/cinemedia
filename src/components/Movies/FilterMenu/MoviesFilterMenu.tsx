@@ -130,7 +130,8 @@ const MoviesFilterMenu = () => {
                 <CustomCheckbox
                   formData={formData}
                   setFormData={setFormData}
-                  state="services"
+                  state={formData.services}
+                  stateStr="services"
                   name={p.provider_name}
                   id={p.provider_id}
                   group="watch-providers"
