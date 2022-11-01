@@ -12,9 +12,7 @@ import { onValue, ref, update } from 'firebase/database';
 import { db } from '../../config/firebase';
 import { Tooltip } from '@mui/material';
 import { ClickAwayListener } from '@mui/material';
-
-const backdropBase = 'https://image.tmdb.org/t/p/original/';
-const posterBase = 'https://image.tmdb.org/t/p/w780/';
+import { imageBase } from '../../data/imagePaths';
 
 const ShowShowcase = () => {
   const [viewTrailer, setViewTrailer] = useState(false);
@@ -93,7 +91,7 @@ const ShowShowcase = () => {
         <div
           className={styles.backdrop}
           style={{
-            background: `url('${backdropBase}${show.backdrop_path}') no-repeat top center/cover`,
+            background: `url('${imageBase}original${show.backdrop_path}') no-repeat top center/cover`,
           }}
         ></div>
         <div className={styles.content}>
@@ -105,7 +103,7 @@ const ShowShowcase = () => {
           >
             <img
               className={styles.poster}
-              src={`${posterBase}${show.poster_path}`}
+              src={`${imageBase}w780${show.poster_path}`}
               alt=""
             />
             <div className={styles.posterText}>

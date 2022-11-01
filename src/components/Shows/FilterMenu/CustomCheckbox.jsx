@@ -1,6 +1,6 @@
 import styles from './CustomCheckbox.module.scss';
+import { imageBase } from '../../../data/imagePaths';
 
-const basePath = 'https://image.tmdb.org/t/p/original';
 
 const CustomCheckbox = ({
   formData,
@@ -47,7 +47,7 @@ const CustomCheckbox = ({
         }`}
       >
         {group === 'watch-providers' ? (
-          <img src={`${basePath}${img}`} loading="lazy" alt="" />
+          <img src={`${imageBase}original${img}`} loading="lazy" alt="" />
         ) : (
           name
         )}

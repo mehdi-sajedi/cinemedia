@@ -1,22 +1,23 @@
 import styles from './Banner.module.scss';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../hooks';
 import { Link, useParams } from 'react-router-dom';
 import { BsArrowLeftShort } from 'react-icons/bs';
+import { imageBase } from '../../data/imagePaths';
 
 const Banner = () => {
-  const { movie } = useSelector((state) => state.movie);
+  const { movie } = useAppSelector((state) => state.movie);
   const { id } = useParams();
 
   return (
     <div className={styles.bannerContainer}>
       <header className={styles.banner}>
         <img
-          src={`https://image.tmdb.org/t/p/w342${movie.poster_path}`}
-          alt="/"
+          src={`${imageBase}w342${movie?.poster_path}`}
+          alt="Poster"
         />
         <div className={styles.movieInfo}>
           <h2>
-            {movie.title} <span> ({movie.release_date?.slice(0, 4)}) </span>
+            {movie?.title} <span> ({movie?.release_date.slice(0, 4)}) </span>
           </h2>
           <Link to={`/movies/${id}`}>
             <BsArrowLeftShort /> Back to main

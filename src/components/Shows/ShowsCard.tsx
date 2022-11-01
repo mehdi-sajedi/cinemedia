@@ -2,8 +2,15 @@ import { Link } from 'react-router-dom';
 import styles from './ShowsCard.module.scss';
 import { FiPercent } from 'react-icons/fi';
 import { formatDate, colorPercentage } from '../../utilities/utilities';
+import { imageBase } from '../../data/imagePaths';
 
-const basePath = 'https://image.tmdb.org/t/p/w500/';
+interface ShowsCardProps {
+  poster_path: string;
+  name: string;
+  first_air_date: string;
+  id: number;
+  vote_average: number;
+}
 
 const ShowsCard = ({
   poster_path: posterID,
@@ -11,11 +18,11 @@ const ShowsCard = ({
   first_air_date,
   id,
   vote_average,
-}) => {
+}: ShowsCardProps) => {
   return (
     <div className={styles.card}>
       <Link className={styles.imageWrapper} to={`/shows/${id}`}>
-        <img src={`${basePath}${posterID}`} loading="lazy" alt="" />
+        <img src={`${imageBase}w500${posterID}`} loading="lazy" alt="" />
       </Link>
       <div className={styles.details}>
         <h3 className={styles.name}>{name}</h3>
@@ -30,7 +37,7 @@ const ShowsCard = ({
             }`,
           }}
         >
-          <p>{vote_average ? vote_average.toFixed(1) * 10 : 'NR'}</p>
+          <p>{vote_average ? +vote_average.toFixed(1) * 10 : 'NR'}</p>
           {vote_average ? <FiPercent className={styles.percentSymbol} /> : null}
         </div>
       </div>

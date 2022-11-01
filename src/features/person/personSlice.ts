@@ -1,19 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import personService from './personService';
 import { errorHandler } from '../../utilities/utilities';
-
-interface PersonState {
-  person: {
-    name: string;
-  };
-  isLoading: boolean;
-  isError: boolean;
-}
+import { PersonState } from './personTypes';
 
 const initialState: PersonState = {
-  person: {
-    name: '',
-  },
   isLoading: false,
   isError: false,
 };

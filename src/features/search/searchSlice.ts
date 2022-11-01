@@ -1,17 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import searchService from './searchService';
 import { errorHandler } from '../../utilities/utilities';
+import { SearchState } from './searchTypes';
 
-interface searchState {
-  results: {}[];
-  text: string;
-  name: string;
-  id: number | null;
-  isLoading: boolean;
-  isError: boolean;
-}
-
-const initialState: searchState = {
+const initialState: SearchState = {
   results: [],
   text: '',
   name: '',

@@ -1,20 +1,27 @@
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import styles from './MobileMenu.module.scss';
 import { IoMoon, IoSunny } from 'react-icons/io5';
-import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser, toggleTheme } from '../../features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../utilities/toastConfig';
 
-const MobileMenu = ({ menuOpen, setMenuOpen }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { id, darkmode } = useSelector((state) => state.user);
+interface MobileMenuProps {
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-  const closeOverlay = (e) => {
-    if (!e.target.closest('.theme')) {
+const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { id, darkmode } = useAppSelector((state) => state.user);
+
+  const closeOverlay = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLDivElement;
+
+    if (!target.closest('.theme')) {
       setMenuOpen((prevState) => !prevState);
     }
   };
@@ -71,7 +78,7 @@ const MobileMenu = ({ menuOpen, setMenuOpen }) => {
         </div>
       </div>
     </div>,
-    document.getElementById('mobileMenu')
+    document.getElementById('mobileMenu')!
   );
 };
 

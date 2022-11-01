@@ -4,64 +4,7 @@ import { initialMovieFilterState } from '../../data/initialMovieFilterState';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../store/store';
 import movieService from './movieService';
-
-export interface IGenre {
-  value: number;
-  label: string;
-}
-
-export interface IFilterData {
-  year: number[];
-  runtime: number[];
-  rating: number[];
-  services: number[];
-  genres: IGenre[];
-}
-
-interface SingleMovie {
-  title: string;
-  release_date: string;
-  id: number;
-  poster_path: string;
-  adult: boolean;
-  overview: string;
-  vote_count: number;
-  popularity: number;
-  vote_average: number;
-  runtime: number;
-  tagline: string;
-  backdrop_path: string;
-  images: {
-    backdrops: {}[];
-  };
-  genres: {
-    id: number;
-    name: string;
-  }[];
-  videos: {
-    results: {
-      type: string;
-      site: string;
-    }[];
-  };
-  recommendations: {
-    results: {}[];
-  };
-}
-
-interface MovieState {
-  results: [];
-  total_results: number;
-  page: number;
-  movie?: SingleMovie;
-  filterData: IFilterData;
-  sort: string;
-  filterMenuOpen: boolean;
-  isLoading: boolean;
-  isError: boolean;
-  castScroll: number;
-  prevMovieId: number;
-}
+import { MovieState, MovieFilterData } from './movieTypes';
 
 const initialState: MovieState = {
   results: [],
@@ -114,7 +57,7 @@ export const movieSlice = createSlice({
     closeFilterMenu: (state) => {
       state.filterMenuOpen = false;
     },
-    updateFilterData: (state, action: PayloadAction<IFilterData>) => {
+    updateFilterData: (state, action: PayloadAction<MovieFilterData>) => {
       state.filterData = action.payload;
       state.page = 1;
     },

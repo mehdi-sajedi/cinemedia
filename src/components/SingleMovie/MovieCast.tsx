@@ -1,7 +1,7 @@
 import styles from './MovieCast.module.scss';
 import MovieCastCard from './MovieCastCard';
-import { useSelector, useDispatch } from 'react-redux';
-import { useRef, useLayoutEffect, useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import React, { useRef, useLayoutEffect, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { TiArrowRight } from 'react-icons/ti';
 import {
@@ -10,24 +10,26 @@ import {
 } from '../../features/movies/movieSlice';
 
 const MovieCast = () => {
-  const { movie, castScroll, prevMovieId } = useSelector(
+  const dispatch = useAppDispatch();
+  const { movie, castScroll, prevMovieId } = useAppSelector(
     (state) => state.movie
   );
 
-  const dispatch = useDispatch();
-  const ref = useRef(null);
+  const ref = useRef<null | HTMLUListElement>(null);
 
-  const scrollEvent = (e) => {
-    dispatch(updateCastScroll(e.target.scrollLeft));
+  const scrollEvent = (e: React.UIEvent<HTMLUListElement>) => {
+    dispatch(updateCastScroll(e.currentTarget.scrollLeft));
   };
 
   useEffect(() => {
-    dispatch(setPrevMovieId(movie.id));
+    movie && dispatch(setPrevMovieId(movie?.id));
     // eslint-disable-next-line
   }, [dispatch]);
 
   useLayoutEffect(() => {
-    ref.current.scrollLeft = movie.id === prevMovieId ? castScroll : 0;
+    if (ref.current) {
+      ref.current.scrollLeft = movie?.id === prevMovieId ? castScroll : 0;
+    }
     // eslint-disable-next-line
   }, []);
 
@@ -35,7 +37,7 @@ const MovieCast = () => {
     <div className={styles.cast}>
       <h2 className={styles.heading}>Cast</h2>
       <ul className={styles.castGrid} ref={ref} onScroll={scrollEvent}>
-        {movie.credits?.cast.map((member, idx) => {
+        {movie?.credits?.cast.map((member, idx) => {
           return (
             member.profile_path &&
             idx < 20 && (

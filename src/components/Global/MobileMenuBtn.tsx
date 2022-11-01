@@ -1,7 +1,13 @@
+import React from 'react';
 import styles from './MobileMenuBtn.module.scss';
 
-const MobileMenuBtn = ({ menuOpen, setMenuOpen }) => {
-  const toggleMenu = (e) => {
+interface MobileMenuBtnProps {
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const MobileMenuBtn = ({ menuOpen, setMenuOpen }: MobileMenuBtnProps) => {
+  const toggleMenu = () => {
     setMenuOpen((prevState) => !prevState);
   };
 

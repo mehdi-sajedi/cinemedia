@@ -1,6 +1,7 @@
 import styles from './CreditsItem.module.scss';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { imageBaseFace } from '../../data/imagePaths';
 
 const CreditsItem = ({
   id,
@@ -15,11 +16,7 @@ const CreditsItem = ({
   return (
     <li className={styles.person}>
       <Link to={`/person/${id}`}>
-        <img
-          loading="lazy"
-          src={`https://image.tmdb.org/t/p/w132_and_h132_face${profile_path}`}
-          alt=""
-        />
+        <img loading="lazy" src={`${imageBaseFace}${profile_path}`} alt="" />
       </Link>
       <div className={styles.personInfo}>
         <Link to={`/person/${id}`}>

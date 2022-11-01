@@ -6,8 +6,7 @@ import { formatDate, colorPercentage } from '../../utilities/utilities';
 import { ref, update } from 'firebase/database';
 import { useSelector } from 'react-redux';
 import { db } from '../../config/firebase';
-
-const basePath = 'https://image.tmdb.org/t/p/w500/';
+import { imageBase } from '../../data/imagePaths';
 
 const WatchlistCard = ({ poster, name, date, id, rating, type }) => {
   const { id: userId } = useSelector((state) => state.user);
@@ -22,7 +21,7 @@ const WatchlistCard = ({ poster, name, date, id, rating, type }) => {
   return (
     <div className={styles.card}>
       <Link className={styles.imageWrapper} to={`/${type}s/${id}`}>
-        <img src={`${basePath}${poster}`} loading="lazy" alt="" />
+        <img src={`${imageBase}w500${poster}`} loading="lazy" alt="" />
       </Link>
       <div className={styles.details}>
         <h3 className={styles.name}>{name}</h3>

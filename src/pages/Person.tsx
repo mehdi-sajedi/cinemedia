@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { getPerson } from '../features/person/personSlice';
 import PersonDetails from '../components/Person/PersonDetails';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
@@ -13,7 +13,7 @@ const Person = () => {
     (state) => state.person
   );
   const { id } = useParams();
-  useDocumentTitle(`${person.name}`);
+  useDocumentTitle(`${person?.name}`);
 
   useEffect(() => {
     dispatch(getPerson(Number(id)));

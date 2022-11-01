@@ -1,27 +1,28 @@
-import Select from "react-select";
-import styles from "./GenreDropdown.module.scss";
-import { movieGenres } from "../../../data/genres";
-import makeAnimated from "react-select/animated";
-import { IFilterData } from "../../../features/movies/movieSlice";
+import Select from 'react-select';
+import styles from './GenreDropdown.module.scss';
+import { movieGenres } from '../../../data/genres';
+import makeAnimated from 'react-select/animated';
+import { MovieFilterData } from '../../../features/movies/movieTypes';
+import { StylesConfig } from 'react-select';
 
 const animatedComponents = makeAnimated();
 
-const customStyles = {
-  control: (styles: any) => ({
+const customStyles: StylesConfig = {
+  control: (styles) => ({
     ...styles,
-    cursor: "pointer",
-    fontSize: "15px",
+    cursor: 'pointer',
+    fontSize: '15px',
   }),
-  option: (styles: any) => ({
+  option: (styles) => ({
     ...styles,
-    cursor: "pointer",
-    fontSize: "14px",
+    cursor: 'pointer',
+    fontSize: '14px',
   }),
 };
 
 interface GenreDropdownProps {
-  formData: IFilterData;
-  setFormData: React.Dispatch<React.SetStateAction<IFilterData>>;
+  formData: MovieFilterData;
+  setFormData: React.Dispatch<React.SetStateAction<MovieFilterData>>;
 }
 
 const GenreDropdown = ({ formData, setFormData }: GenreDropdownProps) => {

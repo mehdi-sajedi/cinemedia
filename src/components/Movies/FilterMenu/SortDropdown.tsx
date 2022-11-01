@@ -1,26 +1,27 @@
-import { useAppSelector, useAppDispatch } from "../../../hooks";
-import Select from "react-select";
-import styles from "./SortDropdown.module.scss";
+import { useAppSelector, useAppDispatch } from '../../../hooks';
+import Select from 'react-select';
+import styles from './SortDropdown.module.scss';
 import {
   getMovies,
   updateSortOption,
-} from "../../../features/movies/movieSlice";
+} from '../../../features/movies/movieSlice';
+import { StylesConfig } from 'react-select';
 
 const options = [
-  { value: "popularity.desc", label: "Popularity" },
-  { value: "vote_average.desc", label: "Rating" },
-  { value: "primary_release_date.desc", label: "Newly released" },
-  { value: "revenue.desc", label: "Revenue" },
-  { value: "vote_count.desc", label: "Review count" },
+  { value: 'popularity.desc', label: 'Popularity' },
+  { value: 'vote_average.desc', label: 'Rating' },
+  { value: 'primary_release_date.desc', label: 'Newly released' },
+  { value: 'revenue.desc', label: 'Revenue' },
+  { value: 'vote_count.desc', label: 'Review count' },
 ];
 
-const customStyles = {
-  control: (styles: any) => ({
+const customStyles: StylesConfig = {
+  control: (styles) => ({
     ...styles,
-    cursor: "pointer",
-    fontSize: "15px",
+    cursor: 'pointer',
+    fontSize: '15px',
   }),
-  option: (styles: any) => ({ ...styles, cursor: "pointer", fontSize: "14px" }),
+  option: (styles) => ({ ...styles, cursor: 'pointer', fontSize: '14px' }),
 };
 
 const SortDropdown = () => {

@@ -1,16 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../../hooks';
 import styles from './SearchGrid.module.scss';
 import MoviesCard from '../Movies/MoviesCard';
 import ShowsCard from '../Shows/ShowsCard';
+import { isMovie } from '../../features/search/searchTypes';
 
 const SearchGrid = () => {
-  const { results } = useSelector((state) => state.search);
+  const { results } = useAppSelector((state) => state.search);
 
   return (
     <section className={`${styles.grid} ${styles[results.length]}`}>
       {results?.map((entry) => {
-        return entry.media_type === 'movie' ? (
+        return isMovie(entry) ? (
           <MoviesCard {...entry} key={`${entry.id}${entry.credit_id}`} />
         ) : (
           <ShowsCard {...entry} key={`${entry.id}${entry.credit_id}`} />
@@ -20,4 +20,4 @@ const SearchGrid = () => {
   );
 };
 
-export default React.memo(SearchGrid);
+export default SearchGrid;

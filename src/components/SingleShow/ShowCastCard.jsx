@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import styles from './ShowCastCard.module.scss';
+import { imageBase } from '../../data/imagePaths';
 
 const ShowCastCard = ({ name, profile_path: image, id, roles }) => {
   const sizes = ['w92', 'w342'];
 
   const imagePaths = [
-    `https://image.tmdb.org/t/p/${sizes[0]}${image} ${sizes[0].slice(1) + 'w'}`,
-    `https://image.tmdb.org/t/p/${sizes[1]}${image} ${sizes[1].slice(1) + 'w'}`,
+    `${imageBase}${sizes[0]}${image} ${sizes[0].slice(1) + 'w'}`,
+    `${imageBase}${sizes[1]}${image} ${sizes[1].slice(1) + 'w'}`,
   ];
 
   return (

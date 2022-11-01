@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useLocation } from 'react-router';
 import { Link, useNavigate, createSearchParams } from 'react-router-dom';
 import { HiOutlineSearch } from 'react-icons/hi';
@@ -7,21 +8,20 @@ import { BsBookmarkFill } from 'react-icons/bs';
 import styles from './Nav.module.scss';
 import MobileMenuBtn from './MobileMenuBtn';
 import MobileMenu from './MobileMenu';
-import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser, toggleTheme } from '../../features/user/userSlice';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../utilities/toastConfig';
 
 const Nav = () => {
+  const dispatch = useAppDispatch();
+  const { id, darkmode } = useAppSelector((state) => state.user);
   const [text, setText] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useNavigate();
   const { pathname } = useLocation();
-  const searchRef = useRef();
-  const { id, darkmode } = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const searchRef = useRef<null | HTMLInputElement>(null);
+  const navigate = useNavigate();
 
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (text.trim() === '') return;
 
@@ -33,7 +33,7 @@ const Nav = () => {
 
   const clearSearch = () => {
     setText('');
-    searchRef.current.focus();
+    searchRef?.current?.focus();
   };
 
   const logout = () => {

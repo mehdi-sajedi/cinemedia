@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useAppSelector } from '../../hooks';
 import styles from './MovieShowcase.module.scss';
-import Trailer from './MovieTrailer';
-import Gallery from './MovieGallery';
+import MovieTrailer from './MovieTrailer';
+import MovieGallery from './MovieGallery';
 import { BsFillPlayFill, BsBookmarkFill } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
@@ -12,9 +12,7 @@ import { onValue, ref, update } from 'firebase/database';
 import { db } from '../../config/firebase';
 import { Tooltip } from '@mui/material';
 import { ClickAwayListener } from '@mui/material';
-
-const backdropBase = 'https://image.tmdb.org/t/p/original/';
-const posterBase = 'https://image.tmdb.org/t/p/w780/';
+import { imageBase } from '../../data/imagePaths';
 
 const MovieShowcase = () => {
   const [viewTrailer, setViewTrailer] = useState(false);
@@ -94,7 +92,7 @@ const MovieShowcase = () => {
         <div
           className={styles.backdrop}
           style={{
-            background: `url('${backdropBase}${movie?.backdrop_path}') no-repeat top center/cover`,
+            background: `url('${imageBase}original${movie?.backdrop_path}') no-repeat top center/cover`,
           }}
         ></div>
         <div className={styles.content}>
@@ -106,7 +104,7 @@ const MovieShowcase = () => {
           >
             <img
               className={styles.poster}
-              src={`${posterBase}${movie?.poster_path}`}
+              src={`${imageBase}w780${movie?.poster_path}`}
               alt=""
             />
             <div className={styles.posterText}>
@@ -165,7 +163,7 @@ const MovieShowcase = () => {
               )}
               <ul className={styles.genres}>
                 {movie?.genres?.map(
-                  (genre: any, idx: number) =>
+                  (genre, idx: number) =>
                     idx < 3 && (
                       <li key={`${genre.name}-${genre.id}`}>
                         {genre.name}
@@ -232,10 +230,10 @@ const MovieShowcase = () => {
         </div>
       </div>
       {viewTrailer && (
-        <Trailer trailer={trailer} setViewTrailer={setViewTrailer} />
+        <MovieTrailer trailer={trailer} setViewTrailer={setViewTrailer} />
       )}
 
-      {viewGallery && <Gallery setViewGallery={setViewGallery} />}
+      {viewGallery && <MovieGallery setViewGallery={setViewGallery} />}
     </main>
   );
 };

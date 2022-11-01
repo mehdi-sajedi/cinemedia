@@ -3,8 +3,7 @@ import { MdOutlineLink } from 'react-icons/md';
 import { formatDate } from '../../utilities/utilities';
 import styles from './ShowSidebar.module.scss';
 import { useSelector } from 'react-redux';
-
-const posterBase = 'https://image.tmdb.org/t/p/original';
+import { imageBase } from '../../data/imagePaths';
 
 const ShowSidebar = () => {
   const { show } = useSelector((state) => state.show);
@@ -79,7 +78,10 @@ const ShowSidebar = () => {
           {show.networks?.length > 0 && (
             <>
               <h4>Network</h4>
-              <img src={`${posterBase}${show.networks[0].logo_path}`} alt="" />
+              <img
+                src={`${imageBase}original${show.networks[0].logo_path}`}
+                alt=""
+              />
             </>
           )}
         </div>

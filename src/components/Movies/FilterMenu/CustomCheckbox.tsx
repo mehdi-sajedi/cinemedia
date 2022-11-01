@@ -1,11 +1,10 @@
-import styles from "./CustomCheckbox.module.scss";
-import { IFilterData } from "../../../features/movies/movieSlice";
-
-const basePath = "https://image.tmdb.org/t/p/original";
+import styles from './CustomCheckbox.module.scss';
+import { MovieFilterData } from '../../../features/movies/movieTypes';
+import { imageBase } from '../../../data/imagePaths';
 
 interface CustomCheckboxProps {
-  formData: IFilterData;
-  setFormData: React.Dispatch<React.SetStateAction<IFilterData>>;
+  formData: MovieFilterData;
+  setFormData: React.Dispatch<React.SetStateAction<MovieFilterData>>;
   id: number;
   name: string;
   group: string;
@@ -28,7 +27,7 @@ const CustomCheckbox = ({
     let newState;
 
     if (state.includes(id)) {
-      newState = state.filter((x: any) => x !== id);
+      newState = state.filter((x) => x !== id);
     } else {
       newState = [...state, id];
     }
@@ -46,17 +45,17 @@ const CustomCheckbox = ({
         id={name}
         checked={state?.includes(id)}
         onChange={toggleCheckbox}
-        className={state?.includes(id) ? styles.active : ""}
+        className={state?.includes(id) ? styles.active : ''}
       />
 
       <label
         htmlFor={name}
         className={`${
-          group === "watch-providers" ? styles.watch : styles.text
-        } ${state?.length > 0 && !state?.includes(id) ? styles.fade : ""}`}
+          group === 'watch-providers' ? styles.watch : styles.text
+        } ${state?.length > 0 && !state?.includes(id) ? styles.fade : ''}`}
       >
-        {group === "watch-providers" ? (
-          <img src={`${basePath}${img}`} loading="lazy" alt="" />
+        {group === 'watch-providers' ? (
+          <img src={`${imageBase}original${img}`} loading="lazy" alt="" />
         ) : (
           name
         )}

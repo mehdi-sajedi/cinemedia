@@ -1,12 +1,12 @@
-import styles from "./CustomRange.module.scss";
-import { IFilterData } from "../../../features/movies/movieSlice";
-import Slider, { createSliderWithTooltip } from "rc-slider";
-import "rc-slider/assets/index.css";
+import styles from './CustomRange.module.scss';
+import { MovieFilterData } from '../../../features/movies/movieTypes';
+import Slider, { createSliderWithTooltip } from 'rc-slider';
+import 'rc-slider/assets/index.css';
 const Range = createSliderWithTooltip(Slider.Range);
 
 export interface CustomRangeProps {
-  formData: IFilterData;
-  setFormData: React.Dispatch<React.SetStateAction<IFilterData>>;
+  formData: MovieFilterData;
+  setFormData: React.Dispatch<React.SetStateAction<MovieFilterData>>;
   name: string;
   defaults: number[];
   state: number[];
@@ -33,25 +33,25 @@ const CustomRange = ({
 }: CustomRangeProps) => {
   let rangeStyles = {
     rail: {
-      backgroundColor: "#e2e2e2",
-      height: "50%",
+      backgroundColor: '#e2e2e2',
+      height: '50%',
     },
 
     track: [
       {
-        height: "50%",
+        height: '50%',
       },
     ],
     handle: [
       {
-        height: "25px",
-        width: "25px",
+        height: '25px',
+        width: '25px',
         top: 0,
-        border: "3px solid #79c4e2",
+        border: '3px solid #79c4e2',
       },
     ],
     dot: {
-      opacity: "0",
+      opacity: '0',
     },
   };
 
@@ -81,7 +81,7 @@ const CustomRange = ({
         dotStyle={rangeStyles.dot}
         handleStyle={rangeStyles.handle}
         tipProps={{
-          placement: "top",
+          placement: 'top',
           visible: true,
         }}
         tipFormatter={tipFormatter}

@@ -5,8 +5,7 @@ import styles from './ShowGallery.module.scss';
 import './ShowGalleryExtra.scss';
 import ImageGallery from 'react-image-gallery';
 import { IoCloseOutline } from 'react-icons/io5';
-
-const backdropBase = 'https://image.tmdb.org/t/p';
+import { imageBase } from '../../data/imagePaths';
 
 const ShowGallery = ({ setViewGallery }) => {
   const { show } = useSelector((state) => state.show);
@@ -14,13 +13,13 @@ const ShowGallery = ({ setViewGallery }) => {
 
   const images = show.images.backdrops.map((entry) => {
     return {
-      original: `${backdropBase}/w780${entry.file_path}`,
-      thumbnail: `${backdropBase}/w780${entry.file_path}`,
+      original: `${imageBase}w780${entry.file_path}`,
+      thumbnail: `${imageBase}w780${entry.file_path}`,
       srcSet: sizes.map(
         (size, idx) =>
-          `${backdropBase}/${idx < 2 ? 'w' : 'original'}${size}${
-            entry.file_path
-          } ${idx < 2 ? size : entry.width}w`
+          `${imageBase}${idx < 2 ? 'w' : 'original'}${size}${entry.file_path} ${
+            idx < 2 ? size : entry.width
+          }w`
       ),
       loading: 'lazy',
       thumbnailLoading: 'lazy',
