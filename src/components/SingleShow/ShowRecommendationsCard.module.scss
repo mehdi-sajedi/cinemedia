@@ -8,6 +8,10 @@
   box-shadow: var(--box-shadow-3);
   border: 1px solid var(--clr-border);
 
+  a {
+    display: flex;
+  }
+
   .text {
     padding: 12px;
     background-color: var(--bg-white);
