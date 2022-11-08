@@ -60,7 +60,6 @@ const MovieGallery = ({ setViewGallery }: MovieGalleryProps) => {
       <ImageGallery
         slideInterval={2400}
         items={images}
-        className={styles.gallery}
         showFullscreenButton={isBrowser}
       />
       {isBrowser && (
