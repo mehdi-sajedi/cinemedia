@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { useAppSelector, useAppDispatch } from "../../../hooks";
-import styles from "./MoviesFilterMenu.module.scss";
-import { watchProviders } from "../../../data/watchProviders";
-import CustomRange from "./CustomRange";
-import CustomCheckbox from "./CustomCheckbox";
-import { HiOutlineArrowNarrowRight } from "react-icons/hi";
-import { initialMovieFilterState } from "../../../data/initialMovieFilterState";
+import React, { useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../../../hooks';
+import styles from './MoviesFilterMenu.module.scss';
+import { watchProviders } from '../../../data/watchProviders';
+import CustomRange from './CustomRange';
+import CustomCheckbox from './CustomCheckbox';
+import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
+import { initialMovieFilterState } from '../../../data/initialMovieFilterState';
 import {
   getMovies,
   updateFilterData,
   resetFilterData,
-} from "../../../features/movies/movieSlice";
-import SortDropdown from "./SortDropdown";
-import GenreDropdown from "./GenreDropdown";
+} from '../../../features/movies/movieSlice';
+import SortDropdown from './SortDropdown';
+import GenreDropdown from './GenreDropdown';
 
 const MoviesFilterMenu = () => {
   const dispatch = useAppDispatch();
@@ -35,7 +35,7 @@ const MoviesFilterMenu = () => {
 
   return (
     <>
-      <div className={`${styles.menu} ${!filterMenuOpen ? styles.close : ""} `}>
+      <div className={`${styles.menu} ${!filterMenuOpen ? styles.close : ''} `}>
         <form onSubmit={applyFilters} className={styles.form}>
           <SortDropdown />
           <div className={styles.lineBreak}></div>
@@ -55,15 +55,15 @@ const MoviesFilterMenu = () => {
             marks={{
               1980: {
                 style: {
-                  marginTop: "10px",
+                  marginTop: '10px',
                 },
-                label: "1980",
+                label: '1980',
               },
               2022: {
                 style: {
-                  marginTop: "10px",
+                  marginTop: '10px',
                 },
-                label: "2022",
+                label: '2022',
               },
             }}
           />
@@ -82,15 +82,15 @@ const MoviesFilterMenu = () => {
             marks={{
               0: {
                 style: {
-                  marginTop: "10px",
+                  marginTop: '10px',
                 },
-                label: "0%",
+                label: '0%',
               },
               100: {
                 style: {
-                  marginTop: "10px",
+                  marginTop: '10px',
                 },
-                label: "100%",
+                label: '100%',
               },
             }}
           />
@@ -109,15 +109,15 @@ const MoviesFilterMenu = () => {
             marks={{
               0: {
                 style: {
-                  marginTop: "10px",
+                  marginTop: '10px',
                 },
-                label: "0m",
+                label: '0m',
               },
               240: {
                 style: {
-                  marginTop: "10px",
+                  marginTop: '10px',
                 },
-                label: "240m",
+                label: '240m',
               },
             }}
           />

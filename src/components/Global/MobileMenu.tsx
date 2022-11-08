@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { toastConfig } from '../../utilities/toastConfig';
 
+const mobileMenu = document.getElementById('mobileMenu') as HTMLElement;
+
 interface MobileMenuProps {
   menuOpen: boolean;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -78,7 +80,7 @@ const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
         </div>
       </div>
     </div>,
-    document.getElementById('mobileMenu')!
+    mobileMenu
   );
 };
 

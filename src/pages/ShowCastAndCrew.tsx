@@ -14,7 +14,7 @@ const ShowCastAndCrew = () => {
   const dispatch = useAppDispatch();
   const { show, isLoading, isError } = useAppSelector((state) => state.show);
   const { id } = useParams();
-  useDocumentTitle(`${show.name} | Cast`);
+  useDocumentTitle(`${show?.name} | Cast`);
 
   useEffect(() => {
     dispatch(getSingleShow(Number(id)));
@@ -29,8 +29,14 @@ const ShowCastAndCrew = () => {
       <div className={styles.content}>
         <ToggleBtn />
         <div className={styles.lists}>
-          <CreditsList creditType="cast" work="roles" />
-          <CreditsList creditType="crew" work="jobs" />
+          <CreditsList
+            credits={show?.aggregate_credits.cast}
+            creditType="Cast"
+          />
+          <CreditsList
+            credits={show?.aggregate_credits.crew}
+            creditType="Crew"
+          />
         </div>
       </div>
     </div>

@@ -2,12 +2,11 @@ import axios from 'axios';
 import { PersonCredits } from './personTypes';
 
 const getPersonService = async (personId: number) => {
-  const PERSON_API_URL = `https://api.themoviedb.org/3/person/${personId}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=combined_credits,external_ids`;
+  const PERSON_API_URL = `https://api.themoviedb.org/3/person/${personId}?api_key=${process.env.REACT_APP_API_KEY}&append_to_response=combined_credits,external_ids,images`;
 
   const res = await axios.get(PERSON_API_URL);
 
-  let { birthday, deathday, combined_credits, known_for_department, ...rest } =
-    res.data;
+  let { combined_credits, known_for_department, ...rest } = res.data;
 
   let credits: PersonCredits[] = combined_credits.cast;
 
@@ -23,8 +22,6 @@ const getPersonService = async (personId: number) => {
   return {
     known_for_department,
     credits,
-    birthday,
-    deathday,
     ...rest,
   };
 };

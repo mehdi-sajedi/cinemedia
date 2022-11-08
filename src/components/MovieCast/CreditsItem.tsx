@@ -6,18 +6,18 @@ interface CreditsItemProps {
   id: number;
   profile_path: string;
   name: string;
-  creditType: string;
   character?: string;
   job?: string;
+  kind: 'Cast' | 'Crew';
 }
 
 const CreditsItem = ({
   id,
   profile_path,
   name,
-  creditType,
   character,
   job,
+  kind,
 }: CreditsItemProps) => {
   return (
     <li className={styles.person}>
@@ -28,7 +28,7 @@ const CreditsItem = ({
         <Link to={`/person/${id}`}>
           <h3>{name}</h3>
         </Link>
-        <p>{creditType === 'cast' ? character : job} </p>
+        <p>{kind === 'Cast' ? character : job} </p>
       </div>
     </li>
   );

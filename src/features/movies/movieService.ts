@@ -12,9 +12,9 @@ const getMoviesService = async (
 
   const genreValues = genres.map((opt) => opt.value);
 
-  let voteCount = 100;
-  if (sort === 'vote_average.desc') voteCount = 500;
-  else if (sort === 'primary_release_date.desc') voteCount = 5;
+  let minimumVotes = 100;
+  if (sort === 'vote_average.desc') minimumVotes = 500;
+  else if (sort === 'primary_release_date.desc') minimumVotes = 5;
 
   const params = [
     `&primary_release_date.gte=${year[0]}-01-01`,
@@ -26,7 +26,7 @@ const getMoviesService = async (
     `&with_genres=${genreValues.join('|')}`,
     `&with_watch_providers=${services.join('|')}`,
     `&watch_region=US`,
-    `&vote_count.gte=${voteCount}`,
+    `&vote_count.gte=${minimumVotes}`,
   ];
 
   const res = await axios.get(MOVIES_API_URL + params.join(''));

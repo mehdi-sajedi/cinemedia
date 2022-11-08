@@ -6,7 +6,7 @@ const override = {
 };
 
 const Loading = () => {
-  return <ClipLoader cssOverride={override} color={'#aaa'} size={50} />;
+  return <ClipLoader cssOverride={override} color="#17b28e" size={50} />;
 };
 
 export default Loading;

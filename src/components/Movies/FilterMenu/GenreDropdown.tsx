@@ -44,7 +44,6 @@ const GenreDropdown = ({ formData, setFormData }: GenreDropdownProps) => {
         isSearchable={false}
         isMulti={true}
         onChange={handleGenreChange}
-        closeMenuOnSelect={false}
         components={animatedComponents}
       />
     </div>

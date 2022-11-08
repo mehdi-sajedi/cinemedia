@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { SearchState, APIResult, Person, isPerson } from './searchTypes';
+import { Show, Movie, Person, isPerson, isShowOrMovie } from './searchTypes';
 
 const getSearchResultsService = async (text: string) => {
   const API_URL_MOVIES_SHOWS = `https://api.themoviedb.org/3/search/multi?api_key=${process.env.REACT_APP_API_KEY}&query=${text}`;
 
   const { data } = await axios.get(API_URL_MOVIES_SHOWS);
-  let results: APIResult[] = data.results;
+
+  let results: (Show | Movie | Person)[] = data.results;
 
   // Check if API returns a person of exact match to user search
   const person = results.find(
@@ -21,11 +22,12 @@ const getSearchResultsService = async (text: string) => {
     return getPersonMedia(firstEntry);
   } else {
     // User is not trying to search for a person, so return the default API response minus any person objects and only ones that have a poster image
-    results = results.filter((entry) => {
-      return !isPerson(entry) && entry.poster_path;
+    const filteredResults = results.filter((entry): entry is Show | Movie => {
+      return isShowOrMovie(entry) && !!entry.poster_path;
     });
+
     return {
-      results: results as SearchState['results'],
+      results: filteredResults,
       text,
       name: '',
       id: null,
@@ -39,11 +41,12 @@ const getPersonMedia = async (person: Person) => {
   const res = await axios.get(API_URL_PERSON);
   let { cast, crew } = res.data;
 
-  let credits: SearchState['results'] = cast;
+  let credits: (Show | Movie)[] = cast;
+
   // If the person has more entries in the crew array, pull the search results from there
   if (crew.length > cast.length) credits = crew;
 
-  credits = credits
+  const filteredCredits = credits
     // Remove entries that don't have a poster image or are of genre type `news`
     .filter((m) => m.poster_path && !m.genre_ids.includes(10763))
     // Remove duplicate entries due to actor having multiple credits for a single show/movie
@@ -51,7 +54,7 @@ const getPersonMedia = async (person: Person) => {
     .sort((a, b) => b.vote_count - a.vote_count);
 
   return {
-    results: credits,
+    results: filteredCredits,
     text: '',
     name: person.name,
     id: person.id,

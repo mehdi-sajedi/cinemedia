@@ -33,12 +33,19 @@ export interface Person {
   name: string;
 }
 
-export type APIResult = Show | Movie | Person;
-
 export function isMovie(media: Movie | Show): media is Movie {
   return (media as Movie).media_type === 'movie';
 }
 
-export function isPerson(media: Movie | Show | Person): media is Person {
+export function isPerson(media: Show | Movie | Person): media is Person {
   return (media as Person).media_type === 'person';
+}
+
+export function isShowOrMovie(
+  media: Show | Movie | Person
+): media is Show | Movie {
+  return (
+    (media as Show).media_type === 'tv' ||
+    (media as Movie).media_type === 'movie'
+  );
 }

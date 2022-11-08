@@ -1,3 +1,5 @@
+export type Watchlist = WatchlistItem[];
+
 export interface WatchlistItem {
   date: string;
   id: number;

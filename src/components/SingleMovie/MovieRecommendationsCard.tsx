@@ -14,12 +14,14 @@ const MovieRecommendationsCard = ({
   id,
 }: MovieRecommendationsCardProps) => {
   return (
-    <Link className={styles.card} to={`/movies/${id}`}>
-      <img src={`${imageBase}w780${backdrop_path}`} loading="lazy" alt="" />
+    <div className={styles.card}>
+      <Link to={`/movies/${id}`}>
+        <img src={`${imageBase}w780${backdrop_path}`} loading="lazy" alt="" />
+      </Link>
       <div className={styles.text}>
-        <h5 className={styles.actor}>{title}</h5>
+        <h5>{title}</h5>
       </div>
-    </Link>
+    </div>
   );
 };
 

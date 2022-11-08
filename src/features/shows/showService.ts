@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { IFilterData } from './showSlice';
+import { ShowFilterData } from './showTypes';
 
 const getShowsService = async (
   page: number,
-  filterData: IFilterData,
+  filterData: ShowFilterData,
   sort: string
 ) => {
   const SHOWS_API_URL = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=${sort}&page=${page}`;
@@ -14,8 +14,8 @@ const getShowsService = async (
   const typeValues = type.map((opt) => opt.value);
   const genreValues = genres.map((opt) => opt.value);
 
-  let voteCount = 100;
-  if (sort === 'first_air_date.desc') voteCount = 10;
+  let minimumVotes = 100;
+  if (sort === 'first_air_date.desc') minimumVotes = 10;
 
   const params = [
     `&first_air_date.gte=${year[0]}-01-01`,
@@ -25,7 +25,7 @@ const getShowsService = async (
     `&with_genres=${genreValues.join('|')}`,
     `&with_watch_providers=${services.join('|')}`,
     `&watch_region=US`,
-    `&vote_count.gte=${voteCount}`,
+    `&vote_count.gte=${minimumVotes}`,
     `&with_status=${statusValues.join('|')}`,
     `&with_type=${typeValues.join('|')}`,
   ];

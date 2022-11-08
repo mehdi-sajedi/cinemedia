@@ -6,7 +6,7 @@ const darkmode = JSON.parse(localStorage.getItem('darkmode') as string);
 interface UserState {
   userEmail: string | null;
   id: string | null;
-  darkmode?: boolean | null;
+  darkmode?: boolean;
 }
 
 const initialState: UserState = {

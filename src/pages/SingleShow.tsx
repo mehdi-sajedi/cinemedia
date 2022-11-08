@@ -29,7 +29,9 @@ const SingleShow = () => {
         <ShowCast />
         <ShowSidebar />
       </section>
-      {show.recommendations?.results.length > 0 && <ShowRecommendations />}
+      {show && show.recommendations?.results?.length > 0 && (
+        <ShowRecommendations />
+      )}
     </>
   );
 };

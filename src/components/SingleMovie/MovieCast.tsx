@@ -22,7 +22,7 @@ const MovieCast = () => {
   };
 
   useEffect(() => {
-    movie && dispatch(setPrevMovieId(movie?.id));
+    movie && dispatch(setPrevMovieId(movie.id));
     // eslint-disable-next-line
   }, [dispatch]);
 

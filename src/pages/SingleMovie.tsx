@@ -29,7 +29,7 @@ const SingleMovie = () => {
         <MovieCast />
         <MovieSidebar />
       </section>
-      {movie && movie.recommendations?.results.length > 0 && (
+      {movie && movie.recommendations?.results?.length > 0 && (
         <MovieRecommendations />
       )}
     </>

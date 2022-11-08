@@ -69,7 +69,7 @@ const MovieSidebar = () => {
         <div className={styles.budget}>
           <h4>Budget</h4>
           <p>
-            {(movie?.budget as number) > 0
+            {(movie?.budget!) > 0
               ? '$' + Number(movie?.budget).toLocaleString()
               : '-'}
           </p>
@@ -77,7 +77,7 @@ const MovieSidebar = () => {
         <div className={styles.revenue}>
           <h4>Revenue</h4>
           <p>
-            {(movie?.revenue as number) > 0
+            {(movie?.revenue!) > 0
               ? '$' + Number(movie?.revenue).toLocaleString()
               : '-'}
           </p>

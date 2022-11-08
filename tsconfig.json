@@ -22,5 +22,5 @@
     "allowUnusedLabels": false,
     "noImplicitReturns": true
   },
-  "include": ["src"]
+  "include": ["src", "notes/powerkick.ts"]
 }

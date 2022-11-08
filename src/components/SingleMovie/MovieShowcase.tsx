@@ -13,6 +13,7 @@ import { db } from '../../config/firebase';
 import { Tooltip } from '@mui/material';
 import { ClickAwayListener } from '@mui/material';
 import { imageBase } from '../../data/imagePaths';
+import { Watchlist } from '../../config/firebaseTypes';
 
 const MovieShowcase = () => {
   const [viewTrailer, setViewTrailer] = useState(false);
@@ -30,10 +31,11 @@ const MovieShowcase = () => {
     const unsubscribe = onValue(watchlistRef, (snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();
-        const saved = Object.values(data).some(
-          (media: any) => media.id === movie?.id && media.type === 'movie'
+        const dataArr: Watchlist = Object.values(data);
+        const isSaved = dataArr.some(
+          (media) => media.id === movie?.id && media.type === 'movie'
         );
-        setInWatchlist(saved);
+        setInWatchlist(isSaved);
       } else {
         setInWatchlist(false);
       }
@@ -145,11 +147,7 @@ const MovieShowcase = () => {
                     <FiPercent className={styles.percentSymbol} />
                   ) : null}
                 </div>
-                {movie?.runtime ? (
-                  <span className={`${styles.dot} ${styles.dot1}`}></span>
-                ) : (
-                  ''
-                )}
+                {movie?.runtime ? <span className={styles.dot}></span> : ''}
                 {movie?.runtime ? (
                   <p className={styles.runtime}>
                     {formatRuntime(movie?.runtime)}
@@ -163,7 +161,7 @@ const MovieShowcase = () => {
               )}
               <ul className={styles.genres}>
                 {movie?.genres?.map(
-                  (genre, idx: number) =>
+                  (genre, idx) =>
                     idx < 3 && (
                       <li key={`${genre.name}-${genre.id}`}>
                         {genre.name}

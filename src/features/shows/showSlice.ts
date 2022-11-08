@@ -4,53 +4,16 @@ import showService from './showService';
 import { initialShowFilterState } from '../../data/initialShowFilterState';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
+import { ShowState, ShowFilterData } from './showTypes';
 
-const hideEpisodes = JSON.parse(localStorage.getItem('hideEpisodes') as string);
-
-export interface IGenre {
-  value: number;
-  label: string;
-}
-
-export interface IFilterData {
-  year: number[];
-  rating: number[];
-  services: number[];
-  genres: IGenre[];
-  status: IGenre[];
-  type: IGenre[];
-}
-
-interface ShowState {
-  results: [];
-  total_results: number;
-  page: number;
-  show: {
-    recommendations: {
-      results: {}[];
-    };
-    name: string;
-  };
-  filterData: IFilterData;
-  sort: string;
-  filterMenuOpen: boolean;
-  isLoading: boolean;
-  isError: boolean;
-  castScroll: number;
-  prevShowId: number;
-  hideEpisodes: boolean;
-}
+const hideEpisodes: boolean = JSON.parse(
+  localStorage.getItem('hideEpisodes') as string
+);
 
 const initialState: ShowState = {
   results: [],
   total_results: 100,
   page: 1,
-  show: {
-    recommendations: {
-      results: [],
-    },
-    name: '',
-  },
   filterData: initialShowFilterState,
   sort: 'popularity.desc',
   filterMenuOpen: false,
@@ -98,7 +61,7 @@ export const showSlice = createSlice({
     closeFilterMenu: (state) => {
       state.filterMenuOpen = false;
     },
-    updateFilterData: (state, action: PayloadAction<IFilterData>) => {
+    updateFilterData: (state, action: PayloadAction<ShowFilterData>) => {
       state.filterData = action.payload;
       state.page = 1;
     },

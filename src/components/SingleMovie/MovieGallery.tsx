@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAppSelector } from '../../hooks';
 import { createPortal } from 'react-dom';
 import { isBrowser } from 'react-device-detect';
@@ -8,6 +8,9 @@ import ImageGallery from 'react-image-gallery';
 import { IoCloseOutline } from 'react-icons/io5';
 import { ReactImageGalleryItem } from 'react-image-gallery';
 import { imageBase } from '../../data/imagePaths';
+import { useKeyPress } from '../../hooks/useKeydownListener';
+
+const imageGallery = document.getElementById('imageGallery') as HTMLElement;
 
 interface MovieGalleryProps {
   setViewGallery: React.Dispatch<React.SetStateAction<boolean>>;
@@ -15,7 +18,12 @@ interface MovieGalleryProps {
 
 const MovieGallery = ({ setViewGallery }: MovieGalleryProps) => {
   const { movie } = useAppSelector((state) => state.movie);
+  const escapePressed = useKeyPress('Escape');
   const sizes = ['780', '1280', ''];
+
+  useEffect(() => {
+    if (escapePressed) setViewGallery(false);
+  }, [escapePressed, setViewGallery]);
 
   const images = movie?.images.backdrops.map((entry) => {
     return {
@@ -59,7 +67,7 @@ const MovieGallery = ({ setViewGallery }: MovieGalleryProps) => {
         <IoCloseOutline className={`${styles.closeBtn} closeBtn`} />
       )}
     </div>,
-    document.getElementById('imageGallery')!
+    imageGallery
   );
 };
 

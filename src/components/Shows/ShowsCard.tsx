@@ -13,7 +13,7 @@ interface ShowsCardProps {
 }
 
 const ShowsCard = ({
-  poster_path: posterID,
+  poster_path,
   name,
   first_air_date,
   id,
@@ -22,7 +22,7 @@ const ShowsCard = ({
   return (
     <div className={styles.card}>
       <Link className={styles.imageWrapper} to={`/shows/${id}`}>
-        <img src={`${imageBase}w500${posterID}`} loading="lazy" alt="" />
+        <img src={`${imageBase}w500${poster_path}`} loading="lazy" alt="" />
       </Link>
       <div className={styles.details}>
         <h3 className={styles.name}>{name}</h3>

@@ -27,8 +27,8 @@ const MovieCastAndCrew = () => {
       <Banner />
       <div className={styles.content}>
         <div className={styles.lists}>
-          <CreditsList creditType="cast" />
-          <CreditsList creditType="crew" />
+          <CreditsList credits={movie?.credits.cast} kind="Cast" />
+          <CreditsList credits={movie?.credits.crew} kind="Crew" />
         </div>
       </div>
     </div>

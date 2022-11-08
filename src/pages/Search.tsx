@@ -12,10 +12,11 @@ const Search = () => {
   const dispatch = useAppDispatch();
   const { isLoading, isError } = useAppSelector((state) => state.search);
   const [searchParams] = useSearchParams();
-  const searchQuery = searchParams.get('query') as string;
+  const searchQuery = searchParams.get('query');
   useDocumentTitle('Search Results');
 
   useEffect(() => {
+    if (searchQuery === null) return;
     dispatch(getSearchResults(searchQuery));
   }, [dispatch, searchQuery]);
 

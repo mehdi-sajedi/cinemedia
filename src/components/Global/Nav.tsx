@@ -14,12 +14,12 @@ import { toastConfig } from '../../utilities/toastConfig';
 
 const Nav = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const { id, darkmode } = useAppSelector((state) => state.user);
   const [text, setText] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
-  const { pathname } = useLocation();
   const searchRef = useRef<null | HTMLInputElement>(null);
-  const navigate = useNavigate();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
