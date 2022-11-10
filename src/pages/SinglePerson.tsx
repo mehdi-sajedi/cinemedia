@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { getPerson } from '../features/person/personSlice';
-import PersonDetails from '../components/Person/PersonDetails';
+import PersonDetails from '../components/SinglePerson/PersonDetails';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { useParams } from 'react-router';

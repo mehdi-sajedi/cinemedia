@@ -1,4 +1,4 @@
-import { useAppSelector, useAppDispatch } from "../../../hooks";
+import { useAppSelector, useAppDispatch } from '../../../hooks';
 import { toggleFilterMenu } from '../../../features/movies/movieSlice';
 import { IoOptionsOutline } from 'react-icons/io5';
 import styles from './FilterBtn.module.scss';
@@ -14,8 +14,8 @@ const FilterBtn = () => {
   return (
     <div className={styles.container}>
       <button onClick={toggle}>
-        <span>{filterMenuOpen ? 'Hide Filters' : 'Show Filters'}</span>
         <IoOptionsOutline />
+        <span>{filterMenuOpen ? 'Hide Filters' : 'Show Filters'}</span>
       </button>
     </div>
   );

@@ -1,0 +1,75 @@
+@import '../../app.scss';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 2.5rem;
+
+  @include media('<tablet') {
+    transform: scale(0.9);
+  }
+
+  button {
+    display: flex;
+    color: var(--clr-black);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  .arrow {
+    font-size: 32px;
+    padding: 5px 10px;
+    margin: 0 5px;
+  }
+
+  .mediaPages {
+    font-size: 18px;
+
+    ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+
+      li {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        width: 35px;
+        margin: 0 2px;
+        border-radius: 2px;
+
+        button {
+          display: block;
+          width: 100%;
+          height: 100%;
+          padding: 8px 5px;
+          font-size: 16px;
+        }
+
+        &.activePage {
+          border-radius: 50%;
+          background-color: var(--clr-primary);
+
+          button {
+            color: var(--text-white);
+          }
+        }
+      }
+
+      .dots {
+        margin: 0 3px;
+        font-size: 30px;
+        font-weight: 500;
+
+        @include media('<=phone') {
+          font-size: 24px;
+          margin: 0;
+        }
+      }
+    }
+  }
+}

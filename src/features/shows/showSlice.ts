@@ -12,7 +12,7 @@ const hideEpisodes: boolean = JSON.parse(
 
 const initialState: ShowState = {
   results: [],
-  total_results: 100,
+  total_pages: 20,
   page: 1,
   filterData: initialShowFilterState,
   sort: 'popularity.desc',
@@ -92,7 +92,7 @@ export const showSlice = createSlice({
       })
       .addCase(getShows.fulfilled, (state, action) => {
         state.results = action.payload.results;
-        state.total_results = action.payload.total_results;
+        state.total_pages = action.payload.total_pages;
         state.isLoading = false;
       })
       .addCase(getShows.rejected, (state) => {

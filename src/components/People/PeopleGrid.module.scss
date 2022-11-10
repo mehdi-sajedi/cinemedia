@@ -1,0 +1,19 @@
+@import '../../app.scss';
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 2rem;
+  background-color: inherit;
+  color: var(--clr-black);
+  width: 100%;
+
+  @include media('<desktop') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media('<tablet') {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}

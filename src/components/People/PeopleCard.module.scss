@@ -1,0 +1,41 @@
+@import '../../app.scss';
+
+.card {
+  background-color: var(--bg-white);
+  color: var(--clr-black);
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: var(--box-shadow-4);
+  min-width: 0;
+
+  .imageWrapper {
+    display: flex;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    padding: 25px 20px 20px;
+
+    .name {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    ul {
+      font-weight: 300;
+      margin-top: 1rem;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+
+      li {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

@@ -76,6 +76,12 @@ const Nav = () => {
             >
               Shows
             </Link>
+            <Link
+              to="/person"
+              className={`${pathname === '/person' ? styles.active : ''}`}
+            >
+              People
+            </Link>
           </div>
           <MobileMenuBtn menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <form onSubmit={onSubmit}>

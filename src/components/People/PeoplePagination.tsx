@@ -1,11 +1,11 @@
 import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io';
-import styles from './MoviesPagination.module.scss';
+import styles from './PeoplePagination.module.scss';
 import { useAppSelector, useAppDispatch } from '../../hooks';
-import { paginate } from '../../features/movies/movieSlice';
+import { paginate } from '../../features/person/personSlice';
 
-const MoviesPagination = () => {
+const PeoplePagination = () => {
   const dispatch = useAppDispatch();
-  const { page, total_pages } = useAppSelector((state) => state.movie);
+  const { page, total_pages } = useAppSelector((state) => state.person);
 
   const pageNumbers: number[] = [];
   const maxPages = Math.min(total_pages, 20);
@@ -82,4 +82,4 @@ const MoviesPagination = () => {
   );
 };
 
-export default MoviesPagination;
+export default PeoplePagination;

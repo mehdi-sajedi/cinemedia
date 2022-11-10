@@ -5,11 +5,10 @@ import { paginate } from '../../features/shows/showSlice';
 
 const ShowsPagination = () => {
   const dispatch = useAppDispatch();
-  const { page, total_results } = useAppSelector((state) => state.show);
+  const { page, total_pages } = useAppSelector((state) => state.show);
 
   const pageNumbers: number[] = [];
-  let maxPages = Math.ceil(total_results / 20);
-  maxPages = Math.min(maxPages, 20);
+  const maxPages = Math.min(total_pages, 20);
 
   for (let i = 1; i <= maxPages; i++) {
     pageNumbers.push(i);
