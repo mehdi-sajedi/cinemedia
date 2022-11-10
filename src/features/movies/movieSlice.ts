@@ -8,7 +8,7 @@ import { MovieState, MovieFilterData } from './movieTypes';
 
 const initialState: MovieState = {
   results: [],
-  total_results: 100,
+  total_pages: 20,
   page: 1,
   filterData: initialMovieFilterState,
   sort: 'popularity.desc',
@@ -86,7 +86,7 @@ export const movieSlice = createSlice({
       .addCase(getMovies.fulfilled, (state, action) => {
         state.isLoading = false;
         state.results = action.payload.results;
-        state.total_results = action.payload.total_results;
+        state.total_pages = action.payload.total_pages;
       })
       .addCase(getMovies.rejected, (state) => {
         state.isLoading = false;

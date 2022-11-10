@@ -5,13 +5,13 @@
   color: var(--clr-black);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   border-radius: 5px;
   box-shadow: var(--box-shadow-4);
   overflow: hidden;
   position: relative;
 
   .imageWrapper {
+    display: flex;
     overflow: hidden;
 
     img {
@@ -42,7 +42,6 @@
     }
 
     .release {
-      font-size: 14px;
       font-size: 13px;
       margin-top: 5px;
       color: var(--sub-heading);

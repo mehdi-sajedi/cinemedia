@@ -1,6 +1,6 @@
 export interface ShowState {
   results: BasicShow[];
-  total_results: number;
+  total_pages: number;
   page: number;
   show?: SingleShow;
   filterData: ShowFilterData;

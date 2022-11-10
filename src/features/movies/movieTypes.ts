@@ -1,3 +1,17 @@
+export interface MovieState {
+  results: BasicMovie[];
+  total_pages: number;
+  page: number;
+  movie?: SingleMovie;
+  filterData: MovieFilterData;
+  sort: string;
+  filterMenuOpen: boolean;
+  isLoading: boolean;
+  isError: boolean;
+  castScroll: number;
+  prevMovieId: number;
+}
+
 export interface MovieFilterData {
   year: number[];
   runtime: number[];
@@ -76,18 +90,4 @@ export interface SingleMovie extends BasicMovie {
       popularity: number;
     }[];
   };
-}
-
-export interface MovieState {
-  results: BasicMovie[];
-  total_results: number;
-  page: number;
-  movie?: SingleMovie;
-  filterData: MovieFilterData;
-  sort: string;
-  filterMenuOpen: boolean;
-  isLoading: boolean;
-  isError: boolean;
-  castScroll: number;
-  prevMovieId: number;
 }

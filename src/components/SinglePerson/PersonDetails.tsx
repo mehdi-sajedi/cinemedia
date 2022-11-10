@@ -1,9 +1,12 @@
 import { useAppSelector } from '../../hooks';
+import styles from './PersonDetails.module.scss';
 import { Link } from 'react-router-dom';
 import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
-import styles from './PersonDetails.module.scss';
-import { getAge, formatDate } from '../../utilities/utilities';
+import { HiChevronRight, HiChevronLeft } from 'react-icons/hi';
 import { imageBase } from '../../data/imagePaths';
+import { getAge, formatDate } from '../../utilities/utilities';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const PersonDetails = () => {
   const { person } = useAppSelector((state) => state.person);
@@ -29,15 +32,48 @@ const PersonDetails = () => {
     },
   ];
 
+  const hasMultipleImages = person?.images.profiles.length! > 1;
+
   return (
     <section className={styles.person}>
       <div className={styles.column1}>
-        {person?.profile_path && (
-          <img
-            className={styles.image}
-            src={`${imageBase}w780${person?.profile_path}`}
-            alt=""
-          />
+        {hasMultipleImages ? (
+          <Carousel
+            className={styles.carousel}
+            showArrows={true}
+            infiniteLoop={true}
+            showThumbs={false}
+            showStatus={false}
+            renderArrowPrev={(clickHandler) => (
+              <HiChevronLeft
+                className={`${styles.arrow} ${styles.arrowLeft}`}
+                onClick={clickHandler}
+              />
+            )}
+            renderArrowNext={(clickHandler) => (
+              <HiChevronRight
+                className={`${styles.arrow} ${styles.arrowRight}`}
+                onClick={clickHandler}
+              />
+            )}
+          >
+            {person?.images.profiles.map((p) => (
+              <img
+                key={p.file_path.slice(0, -4)}
+                className={styles.image}
+                src={`${imageBase}w780${p.file_path}`}
+                alt=""
+              />
+            ))}
+          </Carousel>
+        ) : (
+          person?.profile_path && (
+            <img
+              className={styles.singleImage}
+              src={`${imageBase}w780${person.profile_path}`}
+              alt=""
+            />
+          )
         )}
         <Link
           to={`/search?query=${person?.name.split(' ').join('+')}`}
@@ -45,7 +81,6 @@ const PersonDetails = () => {
         >
           <h1>{person?.name}</h1>
         </Link>
-
         <aside className={styles.details}>
           <ul className={styles.socials}>
             {socials.map(
@@ -63,7 +98,6 @@ const PersonDetails = () => {
                 )
             )}
           </ul>
-
           {(person?.birthday ||
             person?.deathday ||
             person?.place_of_birth ||
@@ -73,16 +107,15 @@ const PersonDetails = () => {
               <div className={`${styles.line} ${styles.linePersonal}`}></div>
             </>
           )}
-
           <div className={styles.personalInfo}>
             {person?.known_for_department && (
-              <div className={styles.knownForDep}>
+              <div>
                 <h4>Known For</h4>
                 <p>{person?.known_for_department}</p>
               </div>
             )}
             {person?.birthday && (
-              <div className={styles.birthday}>
+              <div>
                 <h4>Birthday</h4>
                 <p>
                   {formatDate(person?.birthday.replace(/-/g, '/'))}
@@ -96,7 +129,7 @@ const PersonDetails = () => {
               </div>
             )}
             {person?.deathday && (
-              <div className={styles.deathday}>
+              <div>
                 <h4>Day of Death</h4>
                 <p>
                   {formatDate(person?.deathday.replace(/-/g, '/'))}
@@ -108,7 +141,7 @@ const PersonDetails = () => {
               </div>
             )}
             {person?.place_of_birth && (
-              <div className={styles.birthplace}>
+              <div>
                 <h4>Place of Birth</h4>
                 <p>{person?.place_of_birth}</p>
               </div>
@@ -118,7 +151,7 @@ const PersonDetails = () => {
       </div>
 
       <div className={styles.column2}>
-        <div className={styles.mainText}>
+        <div>
           <Link
             to={`/search?query=${person?.name?.split(' ').join('+')}`}
             className={`${styles.name} ${styles.nameDesktop}`}

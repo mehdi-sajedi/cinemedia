@@ -54,6 +54,9 @@ const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
                 <Link to="/shows">Shows</Link>
               </li>
               <li>
+                <Link to="/person">People</Link>
+              </li>
+              <li>
                 <Link to="/watchlist">Watchlist</Link>
               </li>
               <li>
