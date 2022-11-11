@@ -27,7 +27,9 @@ const MoviesCard = ({
       <div className={styles.details}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.release}>
-          {formatDate(release_date?.replace(/-/g, '/'), 'short')}
+          {release_date
+            ? formatDate(release_date.replace(/-/g, '/'), 'short')
+            : ''}
         </p>
         <div
           className={styles.voteCircle}
