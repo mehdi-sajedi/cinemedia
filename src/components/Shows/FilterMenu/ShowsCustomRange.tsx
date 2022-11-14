@@ -1,17 +1,15 @@
-import styles from './CustomRange.module.scss';
+import styles from './ShowsCustomRange.module.scss';
 import { ShowFilterData } from '../../../features/shows/showTypes';
 import { CustomRangeStyles } from '../../../utilities/CustomRangeStyles';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 const Range = createSliderWithTooltip(Slider.Range);
 
-interface CustomRangeProps {
+interface ShowsCustomRangeProps {
   formData: ShowFilterData;
   setFormData: React.Dispatch<React.SetStateAction<ShowFilterData>>;
   name: string;
-  defaults: number[];
   state: number[];
-  stateStr: string;
   min: number;
   max: number;
   step: number;
@@ -19,52 +17,50 @@ interface CustomRangeProps {
   marks: any;
 }
 
-const CustomRange = ({
+const ShowsCustomRange = ({
   formData,
   setFormData,
   name,
-  defaults,
-  state,
-  stateStr,
   min,
   max,
   step,
-  tipFormatter,
+  state,
   marks,
-}: CustomRangeProps) => {
+  tipFormatter,
+}: ShowsCustomRangeProps) => {
   const handleSliderChange = (v: any) => {
     setFormData({
       ...formData,
-      [stateStr]: v,
+      [name]: v,
     });
   };
 
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
-        <h3>{name}</h3>
+        <h3 className={styles.name}>{name}</h3>
       </header>
       <Range
         className={styles.range}
-        onChange={(v) => handleSliderChange(v)}
-        defaultValue={defaults}
+        onChange={(v: any) => handleSliderChange(v)}
+        defaultValue={[min, max]}
         value={state}
         min={min}
         max={max}
+        step={step}
+        marks={marks}
+        tipFormatter={tipFormatter}
         railStyle={CustomRangeStyles.rail}
         trackStyle={CustomRangeStyles.track}
-        handleStyle={CustomRangeStyles.handle}
         dotStyle={CustomRangeStyles.dot}
-        step={step}
+        handleStyle={CustomRangeStyles.handle}
         tipProps={{
           placement: 'top',
           visible: true,
         }}
-        tipFormatter={tipFormatter}
-        marks={marks}
       />
     </div>
   );
 };
 
-export default CustomRange;
+export default ShowsCustomRange;

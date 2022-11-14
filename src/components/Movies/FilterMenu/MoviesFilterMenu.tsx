@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../hooks';
 import styles from './MoviesFilterMenu.module.scss';
 import { watchProviders } from '../../../data/watchProviders';
-import CustomRange from './CustomRange';
+import MoviesCustomRange from './MoviesCustomRange';
 import CustomCheckbox from './CustomCheckbox';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import { initialMovieFilterState } from '../../../data/initialMovieFilterState';
@@ -13,6 +13,7 @@ import {
 } from '../../../features/movies/movieSlice';
 import SortDropdown from './SortDropdown';
 import GenreDropdown from './GenreDropdown';
+import { markStyles } from '../../../utilities/CustomRangeMarksStyles';
 
 const MoviesFilterMenu = () => {
   const dispatch = useAppDispatch();
@@ -33,6 +34,36 @@ const MoviesFilterMenu = () => {
     window.scrollTo(0, 0);
   };
 
+  const rangeProps = [
+    {
+      name: 'year',
+      min: 1980,
+      max: 2022,
+      step: 1,
+      tipFormatter: (v: number) => v,
+      state: formData.year,
+      marks: markStyles.year,
+    },
+    {
+      name: 'rating',
+      min: 0,
+      max: 100,
+      step: 1,
+      tipFormatter: (v: number) => v + '%',
+      state: formData.rating,
+      marks: markStyles.rating,
+    },
+    {
+      name: 'runtime',
+      min: 0,
+      max: 240,
+      step: 5,
+      tipFormatter: (v: number) => v + 'm',
+      state: formData.runtime,
+      marks: markStyles.runtime,
+    },
+  ];
+
   return (
     <>
       <div className={`${styles.menu} ${!filterMenuOpen ? styles.close : ''} `}>
@@ -41,87 +72,20 @@ const MoviesFilterMenu = () => {
           <div className={styles.lineBreak}></div>
           <GenreDropdown formData={formData} setFormData={setFormData} />
           <div className={styles.lineBreak}></div>
-          <CustomRange
-            formData={formData}
-            setFormData={setFormData}
-            name="Year"
-            defaults={[1980, 2022]}
-            state={formData.year}
-            stateStr="year"
-            min={1980}
-            max={2022}
-            step={1}
-            tipFormatter={(v: number) => v}
-            marks={{
-              1980: {
-                style: {
-                  marginTop: '10px',
-                },
-                label: '1980',
-              },
-              2022: {
-                style: {
-                  marginTop: '10px',
-                },
-                label: '2022',
-              },
-            }}
-          />
-          <div className={styles.lineBreak}></div>
-          <CustomRange
-            formData={formData}
-            setFormData={setFormData}
-            name="Rating"
-            defaults={[0, 100]}
-            state={formData.rating}
-            stateStr="rating"
-            min={0}
-            max={100}
-            step={1}
-            tipFormatter={(v: number) => `${v}%`}
-            marks={{
-              0: {
-                style: {
-                  marginTop: '10px',
-                },
-                label: '0%',
-              },
-              100: {
-                style: {
-                  marginTop: '10px',
-                },
-                label: '100%',
-              },
-            }}
-          />
-
-          <CustomRange
-            formData={formData}
-            setFormData={setFormData}
-            name="Runtime"
-            defaults={[0, 240]}
-            state={formData.runtime}
-            stateStr="runtime"
-            min={0}
-            max={240}
-            step={5}
-            tipFormatter={(v: number) => `${v}m`}
-            marks={{
-              0: {
-                style: {
-                  marginTop: '10px',
-                },
-                label: '0m',
-              },
-              240: {
-                style: {
-                  marginTop: '10px',
-                },
-                label: '240m',
-              },
-            }}
-          />
-
+          {rangeProps.map((r) => (
+            <MoviesCustomRange
+              key={r.name}
+              formData={formData}
+              setFormData={setFormData}
+              name={r.name}
+              min={r.min}
+              max={r.max}
+              step={r.step}
+              state={r.state}
+              marks={r.marks}
+              tipFormatter={r.tipFormatter}
+            />
+          ))}
           <div className={styles.lineBreak}></div>
           <div className={styles.watchProviders}>
             <h3 className={styles.watchProvidersTitle}>Services</h3>
