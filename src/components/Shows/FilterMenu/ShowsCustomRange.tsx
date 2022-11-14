@@ -42,7 +42,7 @@ const ShowsCustomRange = ({
       </header>
       <Range
         className={styles.range}
-        onChange={(v: any) => handleSliderChange(v)}
+        onChange={handleSliderChange}
         defaultValue={[min, max]}
         value={state}
         min={min}

@@ -1,4 +1,4 @@
-const style = { marginTop: '0px' };
+const style = { marginTop: '10px' };
 
 export const markStyles = {
   year: {
