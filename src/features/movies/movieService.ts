@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { MovieFilterData } from './movieTypes';
+import { MovieFilterData, MovieSort } from './movieTypes';
 
 const getMoviesService = async (
   page: number,
   filterData: MovieFilterData,
-  sort: string
+  sort: MovieSort
 ) => {
   const MOVIES_API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=${sort}&page=${page}`;
 

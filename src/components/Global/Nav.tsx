@@ -67,18 +67,21 @@ const Nav = () => {
             <Link
               to="/movies"
               className={`${pathname === '/movies' ? styles.active : ''}`}
+              tabIndex={-1}
             >
               Movies
             </Link>
             <Link
               to="/shows"
               className={`${pathname === '/shows' ? styles.active : ''}`}
+              tabIndex={-1}
             >
               Shows
             </Link>
             <Link
               to="/person"
               className={`${pathname === '/person' ? styles.active : ''}`}
+              tabIndex={-1}
             >
               People
             </Link>

@@ -2,7 +2,7 @@ import Select from 'react-select';
 import styles from './StatusDropdown.module.scss';
 import makeAnimated from 'react-select/animated';
 import { ShowFilterData } from '../../../features/shows/showTypes';
-import { StylesConfig } from 'react-select';
+import { dropdownStyles } from '../../../utilities/dropdownStyles';
 
 const animatedComponents = makeAnimated();
 
@@ -11,11 +11,6 @@ const options = [
   { value: 3, label: 'Ended' },
   { value: 4, label: 'Cancelled' },
 ];
-
-const customStyles: StylesConfig = {
-  control: (styles) => ({ ...styles, cursor: 'pointer', fontSize: '15px' }),
-  option: (styles) => ({ ...styles, cursor: 'pointer', fontSize: '14px' }),
-};
 
 interface StatusDropdownProps {
   formData: ShowFilterData;
@@ -36,7 +31,7 @@ const StatusDropdown = ({ formData, setFormData }: StatusDropdownProps) => {
       <Select
         options={options}
         className={styles.dropdown}
-        styles={customStyles}
+        styles={dropdownStyles}
         value={formData.status}
         isSearchable={false}
         isMulti={true}

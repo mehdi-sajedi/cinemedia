@@ -4,7 +4,7 @@ import { initialMovieFilterState } from '../../data/initialMovieFilterState';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../store/store';
 import movieService from './movieService';
-import { MovieState, MovieFilterData } from './movieTypes';
+import { MovieState, MovieFilterData, MovieSort } from './movieTypes';
 
 const initialState: MovieState = {
   results: [],
@@ -66,7 +66,7 @@ export const movieSlice = createSlice({
       state.sort = 'popularity.desc';
       state.page = 1;
     },
-    updateSortOption: (state, action: PayloadAction<string>) => {
+    updateSortOption: (state, action: PayloadAction<MovieSort>) => {
       state.sort = action.payload;
       state.page = 1;
     },

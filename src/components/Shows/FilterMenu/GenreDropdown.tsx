@@ -3,22 +3,8 @@ import styles from './GenreDropdown.module.scss';
 import { showGenres } from '../../../data/genres';
 import makeAnimated from 'react-select/animated';
 import { ShowFilterData } from '../../../features/shows/showTypes';
-import { StylesConfig } from 'react-select';
-
+import { dropdownStyles } from '../../../utilities/dropdownStyles';
 const animatedComponents = makeAnimated();
-
-const customStyles: StylesConfig = {
-  control: (styles) => ({
-    ...styles,
-    cursor: 'pointer',
-    fontSize: '15px',
-  }),
-  option: (styles) => ({
-    ...styles,
-    cursor: 'pointer',
-    fontSize: '14px',
-  }),
-};
 
 interface GenreDropdownProps {
   formData: ShowFilterData;
@@ -39,7 +25,7 @@ const GenreDropdown = ({ formData, setFormData }: GenreDropdownProps) => {
       <Select
         options={showGenres}
         className={styles.dropdown}
-        styles={customStyles}
+        styles={dropdownStyles}
         value={formData.genres}
         isSearchable={false}
         isMulti={true}

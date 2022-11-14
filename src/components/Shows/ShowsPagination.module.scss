@@ -16,6 +16,11 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
+    transition: opacity 200ms;
+
+    &:hover {
+      opacity: 0.75;
+    }
   }
 
   .arrow {

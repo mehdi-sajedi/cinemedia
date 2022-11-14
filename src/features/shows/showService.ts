@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { ShowFilterData } from './showTypes';
+import { ShowFilterData, ShowSort } from './showTypes';
 
 const getShowsService = async (
   page: number,
   filterData: ShowFilterData,
-  sort: string
+  sort: ShowSort
 ) => {
   const SHOWS_API_URL = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=${sort}&page=${page}`;
 

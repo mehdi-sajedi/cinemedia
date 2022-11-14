@@ -4,7 +4,7 @@ import showService from './showService';
 import { initialShowFilterState } from '../../data/initialShowFilterState';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
-import { ShowState, ShowFilterData } from './showTypes';
+import { ShowState, ShowFilterData, ShowSort } from './showTypes';
 
 const hideEpisodes: boolean = JSON.parse(
   localStorage.getItem('hideEpisodes') as string
@@ -70,7 +70,7 @@ export const showSlice = createSlice({
       state.sort = 'popularity.desc';
       state.page = 1;
     },
-    updateSortOption: (state, action: PayloadAction<string>) => {
+    updateSortOption: (state, action: PayloadAction<ShowSort>) => {
       state.sort = action.payload;
       state.page = 1;
     },

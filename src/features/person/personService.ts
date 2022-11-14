@@ -8,7 +8,10 @@ const getPeopleService = async (page: number) => {
   let { results, ...rest } = res.data;
 
   results = results.filter(
-    (m: any) => m.profile_path && m.known_for.length >= 3
+    (m: any) =>
+      m.profile_path &&
+      m.known_for.length >= 3 &&
+      m.known_for.some((media: any) => media.vote_count >= 100)
   );
 
   return { results, ...rest };

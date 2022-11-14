@@ -15,6 +15,7 @@ export interface BasePerson {
     title?: string;
     name?: string;
     id: number;
+    vote_count: number;
   }[];
 }
 

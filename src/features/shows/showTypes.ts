@@ -4,7 +4,7 @@ export interface ShowState {
   page: number;
   show?: SingleShow;
   filterData: ShowFilterData;
-  sort: string;
+  sort: ShowSort;
   filterMenuOpen: boolean;
   isLoading: boolean;
   isError: boolean;
@@ -13,16 +13,21 @@ export interface ShowState {
   hideEpisodes: boolean;
 }
 
+export type ShowSort =
+  | 'popularity.desc'
+  | 'vote_average.desc'
+  | 'first_air_date.desc';
+
 export interface ShowFilterData {
   year: number[];
   rating: number[];
   services: number[];
   status: {
-    value: number;
+    value: 0 | 3 | 4;
     label: string;
   }[];
   type: {
-    value: number;
+    value: 0 | 2 | 3 | 4 | 5;
     label: string;
   }[];
   genres: {

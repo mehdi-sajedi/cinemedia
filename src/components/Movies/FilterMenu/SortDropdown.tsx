@@ -5,24 +5,21 @@ import {
   getMovies,
   updateSortOption,
 } from '../../../features/movies/movieSlice';
-import { StylesConfig } from 'react-select';
+import { MovieSort } from '../../../features/movies/movieTypes';
+import { dropdownStyles } from '../../../utilities/dropdownStyles';
 
-const options = [
+interface optionsType {
+  value: MovieSort;
+  label: string;
+}
+
+const options: optionsType[] = [
   { value: 'popularity.desc', label: 'Popularity' },
   { value: 'vote_average.desc', label: 'Rating' },
   { value: 'primary_release_date.desc', label: 'Newly released' },
   { value: 'revenue.desc', label: 'Revenue' },
   { value: 'vote_count.desc', label: 'Review count' },
 ];
-
-const customStyles: StylesConfig = {
-  control: (styles) => ({
-    ...styles,
-    cursor: 'pointer',
-    fontSize: '15px',
-  }),
-  option: (styles) => ({ ...styles, cursor: 'pointer', fontSize: '14px' }),
-};
 
 const SortDropdown = () => {
   const dispatch = useAppDispatch();
@@ -41,7 +38,7 @@ const SortDropdown = () => {
       <Select
         options={options}
         className={styles.dropdown}
-        styles={customStyles}
+        styles={dropdownStyles}
         onChange={setSortOption}
         defaultValue={sortName}
         value={sortName}

@@ -4,13 +4,20 @@ export interface MovieState {
   page: number;
   movie?: SingleMovie;
   filterData: MovieFilterData;
-  sort: string;
+  sort: MovieSort;
   filterMenuOpen: boolean;
   isLoading: boolean;
   isError: boolean;
   castScroll: number;
   prevMovieId: number;
 }
+
+export type MovieSort =
+  | 'popularity.desc'
+  | 'vote_average.desc'
+  | 'primary_release_date.desc'
+  | 'revenue.desc'
+  | 'vote_count.desc';
 
 export interface MovieFilterData {
   year: number[];

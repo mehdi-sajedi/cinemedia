@@ -2,7 +2,7 @@ import Select from 'react-select';
 import styles from './TypeDropdown.module.scss';
 import makeAnimated from 'react-select/animated';
 import { ShowFilterData } from '../../../features/shows/showTypes';
-import { StylesConfig } from 'react-select';
+import { dropdownStyles } from '../../../utilities/dropdownStyles';
 
 const animatedComponents = makeAnimated();
 
@@ -13,11 +13,6 @@ const options = [
   { value: 0, label: 'Documentary' },
   { value: 5, label: 'Talk Show' },
 ];
-
-const customStyles: StylesConfig = {
-  control: (styles) => ({ ...styles, cursor: 'pointer', fontSize: '15px' }),
-  option: (styles) => ({ ...styles, cursor: 'pointer', fontSize: '14px' }),
-};
 
 interface TypeDropdownProps {
   formData: ShowFilterData;
@@ -38,7 +33,7 @@ const TypeDropdown = ({ formData, setFormData }: TypeDropdownProps) => {
       <Select
         options={options}
         className={styles.dropdown}
-        styles={customStyles}
+        styles={dropdownStyles}
         value={formData.type}
         isSearchable={false}
         isMulti={true}
