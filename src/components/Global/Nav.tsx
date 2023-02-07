@@ -16,7 +16,7 @@ const Nav = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { id, darkmode } = useAppSelector((state) => state.user);
+  const { id, lightmode } = useAppSelector((state) => state.user);
   const [text, setText] = useState('');
   const [menuOpen, setMenuOpen] = useState(false);
   const searchRef = useRef<null | HTMLInputElement>(null);
@@ -45,19 +45,19 @@ const Nav = () => {
     toast.info('Logged out', toastConfig);
   };
 
-  const toggleDark = () => {
+  const toggleLight = () => {
     dispatch(toggleTheme());
   };
 
   useEffect(() => {
-    if (darkmode) {
-      document.body.classList.add('darkmode');
-      localStorage.setItem('darkmode', JSON.stringify(true));
+    if (lightmode) {
+      document.body.classList.add('lightmode');
+      localStorage.setItem('lightmode', JSON.stringify(true));
     } else {
-      document.body.classList.remove('darkmode');
-      localStorage.removeItem('darkmode');
+      document.body.classList.remove('lightmode');
+      localStorage.removeItem('lightmode');
     }
-  }, [darkmode]);
+  }, [lightmode]);
 
   return (
     <>
@@ -108,8 +108,8 @@ const Nav = () => {
             </div>
           </form>
           <div className={styles.watchlistAndAuth}>
-            <button onClick={toggleDark} className={styles.theme}>
-              {darkmode ? <IoSunny /> : <IoMoon />}
+            <button onClick={toggleLight} className={styles.theme}>
+              {lightmode ? <IoSunny /> : <IoMoon />}
             </button>
             <Link to="/watchlist" className={styles.watchlist}>
               <BsBookmarkFill />

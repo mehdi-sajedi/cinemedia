@@ -1,19 +1,19 @@
 :root {
   // Nav/Footer
-  --light-1: 0 1px 3px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(27, 31, 35, 0.15);
+  --dark-1: 0 0 20px -10px rgba(150, 150, 150, 0.2),
+    0 0 1px 1px rgba(125, 125, 125, 0.2);
   // Person page image
-  --light-2: 1px 0 10px rgba(0, 0, 0, 0.2);
+  --dark-2: 1px 0 10px rgba(0, 0, 0, 0.2);
   // Small Cards (recs, cast, known for)
-  --light-3: 0 1px 12px -3px rgba(0, 0, 0, 0.1);
+  --dark-3: 0 1px 12px -3px rgba(0, 0, 0, 0.1);
   // Large Cards (main grid)
-  --light-4: rgba(0, 0, 0, 0.07) 0px 1px 3px 0px,
+  --dark-4: rgba(0, 0, 0, 0.07) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.12) 0px 0px 0px 1px;
 }
 
-.darkmode {
-  --dark-1: 0 0 20px -10px rgba(150, 150, 150, 0.2),
-    0 0 1px 1px rgba(125, 125, 125, 0.2);
-  --dark-2: var(--light-2);
-  --dark-3: var(--light-3);
-  --dark-4: var(--light-4);
+.lightmode {
+  --light-1: 0 1px 3px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(27, 31, 35, 0.15);
+  --light-2: var(--dark-2);
+  --light-3: var(--dark-3);
+  --light-4: var(--dark-4);
 }

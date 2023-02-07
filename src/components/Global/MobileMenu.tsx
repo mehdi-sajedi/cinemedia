@@ -18,7 +18,7 @@ interface MobileMenuProps {
 const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { id, darkmode } = useAppSelector((state) => state.user);
+  const { id, lightmode } = useAppSelector((state) => state.user);
 
   const closeOverlay = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
@@ -37,7 +37,7 @@ const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
     toast.info('Logged out', toastConfig);
   };
 
-  const toggleDark = () => {
+  const toggleLight = () => {
     dispatch(toggleTheme());
   };
 
@@ -72,10 +72,10 @@ const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
               </li>
               <li>
                 <button
-                  onClick={toggleDark}
+                  onClick={toggleLight}
                   className={`${styles.theme} theme`}
                 >
-                  {darkmode ? <IoSunny /> : <IoMoon />}
+                  {lightmode ? <IoMoon /> : <IoSunny />}
                 </button>
               </li>
             </ul>

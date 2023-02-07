@@ -1,18 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const user = JSON.parse(localStorage.getItem('user') as string);
-const darkmode = JSON.parse(localStorage.getItem('darkmode') as string);
+const lightmode = JSON.parse(localStorage.getItem('lightmode') as string);
 
 interface UserState {
   userEmail: string | null;
   id: string | null;
-  darkmode?: boolean;
+  lightmode?: boolean;
 }
 
 const initialState: UserState = {
   userEmail: user?.userEmail,
   id: user?.id,
-  darkmode: darkmode,
+  lightmode: lightmode,
 };
 
 const userSlice = createSlice({
@@ -28,7 +28,7 @@ const userSlice = createSlice({
       state.id = null;
     },
     toggleTheme: (state) => {
-      state.darkmode = !state.darkmode;
+      state.lightmode = !state.lightmode;
     },
   },
 });
