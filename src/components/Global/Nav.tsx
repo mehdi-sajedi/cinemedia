@@ -109,7 +109,7 @@ const Nav = () => {
           </form>
           <div className={styles.watchlistAndAuth}>
             <button onClick={toggleLight} className={styles.theme}>
-              {lightmode ? <IoSunny /> : <IoMoon />}
+              {lightmode ? <IoMoon /> : <IoSunny />}
             </button>
             <Link to="/watchlist" className={styles.watchlist}>
               <BsBookmarkFill />
