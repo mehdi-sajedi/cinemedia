@@ -14,9 +14,11 @@ const WatchlistGrid = () => {
     if (id) {
       const watchlist = ref(db, `watchlist/${id}`);
       const unsubscribe = onValue(watchlist, (snapshot) => {
-        const data = snapshot.val();
-        const dataArr: Watchlist = Object.values(data);
-        setWatchlist(dataArr);
+        const watchlistItems = snapshot.val();
+        if (watchlistItems !== null) {
+          const watchlistItemsArr: Watchlist = Object.values(watchlistItems);
+          setWatchlist(watchlistItemsArr);
+        } else setWatchlist(null);
       });
 
       return () => unsubscribe();

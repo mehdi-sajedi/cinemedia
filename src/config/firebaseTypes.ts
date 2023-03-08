@@ -1,4 +1,4 @@
-export type Watchlist = WatchlistItem[];
+export type Watchlist = WatchlistItem[] | null;
 
 export interface WatchlistItem {
   date: string;
