@@ -11,6 +11,7 @@ import {
 
 const ShowCast = () => {
   const dispatch = useAppDispatch();
+  // const { lightmode } = useAppSelector((state) => state.user);
   const { show, castScroll, prevShowId } = useAppSelector(
     (state) => state.show
   );
@@ -36,24 +37,38 @@ const ShowCast = () => {
   return (
     <div className={styles.cast}>
       <h2 className={styles.heading}>Cast</h2>
-      <ul className={styles.castGrid} ref={ref} onScroll={scrollEvent}>
-        {show?.aggregate_credits?.cast.map((member, idx) => {
-          return (
-            member.profile_path &&
-            idx < 20 && (
-              <ShowCastCard
-                {...member}
-                key={`${member.id}-${member.popularity}`}
-              />
-            )
-          );
-        })}
-        <li className={styles.viewMore}>
-          <Link to="cast">
-            View More <TiArrowRight />
-          </Link>
-        </li>
-      </ul>
+      <div className={styles.castGridWrapper}>
+        <ul className={styles.castGrid} ref={ref} onScroll={scrollEvent}>
+          {show?.aggregate_credits?.cast.map((member, idx) => {
+            return (
+              member.profile_path &&
+              idx < 20 && (
+                <ShowCastCard
+                  {...member}
+                  key={`${member.id}-${member.popularity}`}
+                />
+              )
+            );
+          })}
+          <li className={styles.viewMore}>
+            <Link to="cast">
+              View More <TiArrowRight />
+            </Link>
+          </li>
+        </ul>
+        {/* {lightmode && (
+          <div
+            className={`${styles.castGridBlur} ${styles.lightmodeBlur} 
+           ${castScroll > 30 ? styles.noBlur : ''}`}
+          ></div>
+        )}
+        {!lightmode && (
+          <div
+            className={`${styles.castGridBlur} ${styles.darkmodeBlur} 
+           ${castScroll > 30 ? styles.noBlur : ''}`}
+          ></div>
+        )} */}
+      </div>
     </div>
   );
 };

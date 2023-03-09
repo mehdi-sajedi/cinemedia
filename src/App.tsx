@@ -25,15 +25,21 @@ function App() {
         <Nav />
         <main>
           <Routes>
-            <Route path="/movies" element={<Movies />} />
-            <Route path="/shows" element={<Shows />} />
-            <Route path="/person" element={<People />} />
+            <Route path="/movies">
+              <Route index element={<Movies />} />
+              <Route path=":id" element={<SingleMovie />} />
+              <Route path=":id/cast" element={<MovieCastAndCrew />} />
+            </Route>
+            <Route path="/shows">
+              <Route index element={<Shows />} />
+              <Route path=":id" element={<SingleShow />} />
+              <Route path=":id/cast" element={<ShowCastAndCrew />} />
+            </Route>
+            <Route path="/person">
+              <Route index element={<People />} />
+              <Route path=":id" element={<Person />} />
+            </Route>
             <Route path="/search" element={<Search />} />
-            <Route path="/movies/:id" element={<SingleMovie />} />
-            <Route path="/shows/:id" element={<SingleShow />} />
-            <Route path="/person/:id" element={<Person />} />
-            <Route path="/shows/:id/cast" element={<ShowCastAndCrew />} />
-            <Route path="/movies/:id/cast" element={<MovieCastAndCrew />} />
             <Route path="/auth" element={<AuthPage />} />
             <Route path="/watchlist" element={<Watchlist />} />
             <Route path="/" element={<Navigate replace to="movies" />} />

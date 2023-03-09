@@ -12,6 +12,32 @@
     margin-bottom: 1rem;
   }
 
+  .castGridWrapper {
+    height: 100%;
+    position: relative;
+    display: flex;
+  }
+
+  .castGridBlur {
+    position: sticky;
+    transition: none;
+    transition: box-shadow 300ms linear;
+
+    &.darkmodeBlur {
+      box-shadow: 0 0 10px 4px rgba(32, 32, 32, 1),
+        -5px 0 20px 7px rgba(32, 32, 32, 1),
+        -8px 0 30px 10px rgba(32, 32, 32, 1);
+    }
+    &.lightmodeBlur {
+      box-shadow: 0 0 10px 3px rgba(255, 255, 255, 1),
+        -5px 0 20px 6px rgba(255, 255, 255, 1),
+        -8px 0 30px 9px rgba(255, 255, 255, 1);
+    }
+    &.noBlur {
+      box-shadow: none;
+    }
+  }
+
   .castGrid {
     position: relative;
     display: grid;
@@ -20,6 +46,17 @@
     gap: 1rem;
     overflow-x: auto;
     padding: 1px 1px 1rem;
+
+    // &::after {
+    //   content: '';
+    //   position: sticky;
+    //   // width: 10px;
+    //   height: 100%;
+    //   box-shadow: 0 0 30px 30px rgba(255, 255, 255, 0.9);
+    //   // box-shadow: 0 0 30px 30px rgba(40, 40, 40, 0.9);
+    //   top: 0;
+    //   right: -11px;
+    // }
 
     .viewMore {
       display: flex;

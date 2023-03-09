@@ -31,6 +31,7 @@ const getPersonService = async (personId: number) => {
 
   credits = credits
     .filter((media) => media.poster_path && !media.genre_ids.includes(10763))
+    // Prevent the same media from being displayed more than once. Happens when a person is credited for multiple roles.
     .filter((val, idx, arr) => arr.findIndex((t) => t.id === val.id) === idx)
     .sort((a, b) => b.vote_count - a.vote_count)
     .slice(0, 15);
