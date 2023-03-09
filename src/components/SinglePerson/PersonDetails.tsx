@@ -176,7 +176,7 @@ const PersonDetails = () => {
                   className={styles.knownForMedia}
                   key={`${media.id}-${media.credit_id}`}
                 >
-                  <Link to={`../${route}/${media.id}`}>
+                  <Link to={`/${route}/${media.id}`}>
                     <img
                       src={`${imageBase}w500${media.poster_path}`}
                       loading="lazy"
