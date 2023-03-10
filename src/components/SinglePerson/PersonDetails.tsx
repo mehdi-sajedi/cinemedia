@@ -168,11 +168,11 @@ const PersonDetails = () => {
         </div>
         <div className={styles.knownFor}>
           <h3 className={styles.knownForHeading}>Known For</h3>
-          <div className={styles.knownForGrid}>
+          <ul className={styles.knownForGrid}>
             {person?.credits.map((media) => {
               const route = media.media_type === 'movie' ? 'movies' : 'shows';
               return (
-                <div
+                <li
                   className={styles.knownForMedia}
                   key={`${media.id}-${media.credit_id}`}
                 >
@@ -183,13 +183,20 @@ const PersonDetails = () => {
                       alt=""
                     />
                   </Link>
-                  <h5 className={styles.title}>
-                    {media.media_type === 'movie' ? media.title : media.name}
-                  </h5>
-                </div>
+                  <div className={styles.mediaInfo}>
+                    <h5 className={styles.title}>
+                      {media.media_type === 'movie' ? media.title : media.name}
+                    </h5>
+                    <p className={styles.year}>
+                      {media.media_type === 'movie'
+                        ? media.release_date?.slice(0, 4)
+                        : media.first_air_date?.slice(0, 4)}
+                    </p>
+                  </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
         </div>
       </div>
     </section>

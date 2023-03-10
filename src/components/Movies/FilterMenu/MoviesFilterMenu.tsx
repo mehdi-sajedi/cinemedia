@@ -38,7 +38,7 @@ const MoviesFilterMenu = () => {
     {
       name: 'year',
       min: 1980,
-      max: 2022,
+      max: 2023,
       step: 1,
       tipFormatter: (v: number) => v,
       state: formData.year,

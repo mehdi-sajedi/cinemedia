@@ -88,7 +88,8 @@
       color: black;
       font-size: 16px;
       letter-spacing: 0.5px;
-      text-transform: uppercase;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
       &:active {
         transform: scale(0.97);
@@ -109,12 +110,10 @@
         position: relative;
         background-color: var(--clr-primary);
         color: var(--text-white);
-        box-shadow: 1px 1px 5px -1px rgba(0, 0, 0, 0.5);
       }
 
       &.reset {
-        background-color: rgb(225, 225, 225);
-        box-shadow: 1px 1px 5px -1px rgba(0, 0, 0, 0.4);
+        background-color: rgb(235, 235, 235);
         text-align: left;
       }
     }

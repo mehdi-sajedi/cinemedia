@@ -236,13 +236,21 @@ $breakpoint: '<1025px';
             border-radius: 5px 5px 0 0;
           }
 
-          .title {
-            min-height: 65px;
-            font-size: 14px;
-            font-weight: 600;
+          .mediaInfo {
             padding: 10px;
+            min-height: 65px;
             color: var(--clr-black);
-            letter-spacing: 0;
+
+            .title {
+              font-size: 14px;
+              font-weight: 600;
+              margin-bottom: 5px;
+            }
+
+            .year {
+              font-size: 13px;
+              color: var(--sub-heading);
+            }
           }
         }
       }

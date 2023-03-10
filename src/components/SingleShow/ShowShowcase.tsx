@@ -87,6 +87,16 @@ const ShowShowcase = () => {
     return update(ref(db), showData);
   };
 
+  const formatLastAirDate = (date: string) => {
+    if (show?.status !== 'Returning Series') {
+      date = '-' + show?.last_air_date.slice(0, 4);
+      if (show?.first_air_date.slice(0, 4) === show?.last_air_date.slice(0, 4))
+        date = '';
+    } else date = '-';
+
+    return date;
+  };
+
   return (
     <main className={styles.main}>
       <div className={styles.showcase}>
@@ -118,7 +128,12 @@ const ShowShowcase = () => {
               <h1>
                 {show?.name}
                 {show?.first_air_date && (
-                  <span>({show?.first_air_date.slice(0, 4)})</span>
+                  <span>
+                    (
+                    {show?.first_air_date.slice(0, 4) +
+                      formatLastAirDate(show?.last_air_date)}
+                    )
+                  </span>
                 )}
               </h1>
             </div>

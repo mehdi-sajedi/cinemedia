@@ -3,7 +3,7 @@ const style = { marginTop: '10px' };
 export const markStyles = {
   year: {
     1980: { style, label: '1980' },
-    2022: { style, label: '2022' },
+    2023: { style, label: '2023' },
   },
   rating: {
     0: { style, label: '0%' },

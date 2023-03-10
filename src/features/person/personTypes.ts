@@ -49,4 +49,6 @@ export interface PersonCredits {
   vote_count: number;
   name?: string;
   title?: string;
+  release_date?: string;
+  first_air_date?: string;
 }
