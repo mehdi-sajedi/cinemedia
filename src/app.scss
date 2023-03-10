@@ -10,10 +10,10 @@
   --primary-font: 'Montserrat', sans-serif;
 
   --text-white: black;
-  --bg-white: #343434;
-  --clr-black: white;
+  --bg-white: #3a4146;
+  --clr-black: #f6f9ff;
   --sub-heading: #ddd;
-  --nav-footer: #1a1a1a;
+  --nav-footer: #1e2125;
   --clr-border: #000;
 
   --box-shadow-1: var(--dark-1);
@@ -52,7 +52,7 @@ body {
   font-family: var(--primary-font);
   letter-spacing: 0.25px;
   color: var(--clr-black);
-  background-color: #202020;
+  background-color: #212529;
   overflow-y: scroll;
   position: relative;
   min-height: 100%;
