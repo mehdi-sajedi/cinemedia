@@ -34,26 +34,26 @@
 
       /* Rotate On Hover When Checked */
       &:hover + .hamburger > div {
-        transform: rotate(315deg);
+        transform: rotate(225deg);
       }
     }
 
     /* Show Menu */
-    &:checked ~ .menu {
-      visibility: visible;
-    }
+    // &:checked ~ .menu {
+    //   visibility: visible;
+    // }
 
-    &:checked ~ .menu > div {
-      transform: scale(1);
-      transform: scale(1.5);
-      transition-duration: 0.75s;
-    }
+    // &:checked ~ .menu > div {
+    //   transform: scale(1);
+    //   transform: scale(1.5);
+    //   transition-duration: 0.75s;
+    // }
 
-    &:checked ~ .menu > div > div {
-      opacity: 1;
-      transition: opacity 0.4s cubic-bezier(0.69, 0.1, 0.73, 0.26) 0.1s;
-      line-height: 1.6;
-    }
+    // &:checked ~ .menu > div > div {
+    //   opacity: 1;
+    //   transition: opacity 0.4s cubic-bezier(0.69, 0.1, 0.73, 0.26) 0.1s;
+    //   line-height: 1.6;
+    // }
   }
 
   .hamburger {
