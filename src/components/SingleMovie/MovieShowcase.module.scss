@@ -3,7 +3,7 @@
 .main {
   margin: 3rem 0;
 
-  @include media('<880px') {
+  @include media('<=880px') {
     margin: 2rem 0;
   }
 

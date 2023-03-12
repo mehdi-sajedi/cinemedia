@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import styles from './ShowRecommendationsCard.module.scss';
+import { Link } from 'react-router-dom';
 import { imageBase } from '../../data/imagePaths';
 
 interface ShowRecommendationsCardProps {
@@ -14,14 +14,14 @@ const ShowRecommendationsCard = ({
   id,
 }: ShowRecommendationsCardProps) => {
   return (
-    <div className={styles.card}>
+    <li className={styles.card}>
       <Link to={`/shows/${id}`}>
         <img src={`${imageBase}w780${backdrop_path}`} loading="lazy" alt="" />
       </Link>
       <div className={styles.text}>
         <h5>{name}</h5>
       </div>
-    </div>
+    </li>
   );
 };
 

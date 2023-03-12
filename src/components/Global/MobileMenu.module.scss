@@ -3,8 +3,8 @@
 .menuWrap {
   position: fixed;
   top: 0;
-  left: 0;
-  z-index: 1;
+  right: 0;
+  z-index: 2;
 
   @include media('>=desktop') {
     display: none;
@@ -13,57 +13,112 @@
   .menu {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
     height: 100%;
+    opacity: 0;
     visibility: hidden;
     overflow: hidden;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     z-index: 1;
+    transition: all 400ms;
+    background-color: rgba(0, 0, 0, 0.88);
+
+    &.active {
+      visibility: visible;
+      opacity: 1;
+
+      .overlay {
+        transform: translateX(0);
+
+        .linksWrap {
+          opacity: 1;
+          transition: all 400ms;
+        }
+      }
+    }
 
     .overlay {
-      background-color: rgba(0, 0, 0, 0.82);
-      background-color: rgba(0, 0, 0, 0.92);
-      width: 200vw;
-      height: 200vw;
+      background-color: #2a3035;
+      height: 100vh;
+      width: 220px;
+      transform: translateX(220px);
       display: flex;
-      flex: none;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      transform: scale(0);
-      transition: all 0.4s ease;
-      border-radius: 50%;
+      padding-top: 20px;
+      transition: all 400ms;
+
+      @include media('<=500px') {
+        width: clamp(160px, 50vw, 100%);
+        transform: translateX(clamp(160px, 50vw, 100%));
+      }
+
+      .closeBtn {
+        padding: 10px;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        color: white;
+        align-self: flex-end;
+        background-color: transparent;
+        margin-top: -15px;
+        margin-right: clamp(1px, 1.2vw, 20px);
+
+        svg {
+          font-size: 42px;
+        }
+      }
 
       .linksWrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         text-align: center;
-        max-width: 90vw;
-        max-height: 100vh;
         opacity: 0;
-        transition: opacity 0.4s ease;
+        transition: all 400ms;
+        align-self: flex-start;
+        margin-left: 20px;
 
         .links {
           display: flex;
           flex-direction: column;
-          row-gap: 1rem;
-          align-items: center;
+          font-size: 18px;
+          row-gap: 10px;
+
+          .authLi {
+            width: 0;
+          }
+
+          li {
+            display: flex;
+            align-items: center;
+
+            a {
+              display: flex;
+              align-items: center;
+              align-self: flex-start;
+
+              svg {
+                margin-right: 10px;
+              }
+            }
+          }
         }
 
         li {
           list-style: none;
           color: var(--perm-white);
-          padding: 10px;
 
           a {
             text-decoration: none;
             color: inherit;
-            transition: opacity 0.4s ease;
-            padding: 15px;
+            transition: all 400ms;
+            padding: 15px 15px 15px 0;
 
             &:hover {
               opacity: 0.5;
-              // color: var(--clr-primary);
             }
           }
         }
@@ -72,13 +127,14 @@
           padding: 8px 15px;
           cursor: pointer;
           background-color: var(--clr-primary);
-          color: var(--text-white);
+          color: white;
           border: none;
           border-radius: 3px;
-          font-size: 12px;
+          font-size: 16px;
           transition: opacity 350ms ease-out;
           letter-spacing: 0;
           font-family: inherit;
+          margin-top: 7px;
 
           &:hover {
             opacity: 0.9;
@@ -88,25 +144,11 @@
         .theme {
           border: none;
           background-color: transparent;
-          font-size: 32px;
+          font-size: 36px;
           display: flex;
           cursor: pointer;
           color: var(--perm-white);
-        }
-      }
-    }
-
-    &.active {
-      visibility: visible;
-
-      .overlay {
-        transform: scale(1.5);
-        transition-duration: 0.75s;
-
-        .linksWrap {
-          opacity: 1;
-          transition: opacity 0.4s ease 0.1s;
-          line-height: 1.6;
+          margin-top: 15px;
         }
       }
     }

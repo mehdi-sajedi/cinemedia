@@ -9,7 +9,7 @@ const ShowRecommendations = () => {
   return (
     <div className={styles.recommendations}>
       <h2 className={styles.heading}>Recommendations</h2>
-      <div className={styles.recommendationsGrid}>
+      <ul className={styles.recommendationsGrid}>
         {show?.recommendations?.results.map((entry) => {
           return (
             entry.backdrop_path &&
@@ -22,7 +22,7 @@ const ShowRecommendations = () => {
             )
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };
