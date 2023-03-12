@@ -21,22 +21,22 @@
     height: 50px;
     opacity: 0;
 
-    &.active {
-      + .hamburger > div {
-        transform: rotate(135deg);
-      }
+    // &.active {
+    //   + .hamburger > div {
+    //     transform: rotate(135deg);
+    //   }
 
-      + .hamburger > div:before,
-      + .hamburger > div:after {
-        top: 0;
-        transform: rotate(90deg);
-      }
+    //   + .hamburger > div:before,
+    //   + .hamburger > div:after {
+    //     top: 0;
+    //     transform: rotate(90deg);
+    //   }
 
-      /* Rotate On Hover When Checked */
-      &:hover + .hamburger > div {
-        transform: rotate(225deg);
-      }
-    }
+    //   /* Rotate On Hover When Checked */
+    //   &:hover + .hamburger > div {
+    //     transform: rotate(225deg);
+    //   }
+    // }
 
     /* Show Menu */
     // &:checked ~ .menu {

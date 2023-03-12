@@ -7,6 +7,13 @@
   box-shadow: var(--box-shadow-1);
   position: relative;
 
+  @include media('<desktop') {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    opacity: 0.97;
+  }
+
   a,
   svg {
     color: var(--clr-black);

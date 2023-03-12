@@ -2,7 +2,10 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import styles from './MobileMenu.module.scss';
-import { IoMoon, IoSunny } from 'react-icons/io5';
+import { IoCloseOutline, IoMoon, IoSunny } from 'react-icons/io5';
+import { FaTv } from 'react-icons/fa';
+import { BiCameraMovie } from 'react-icons/bi';
+import { BsPeopleFill, BsBookmarkFill } from 'react-icons/bs';
 import { logoutUser, toggleTheme } from '../../features/user/userSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -23,9 +26,8 @@ const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
   const closeOverlay = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLDivElement;
 
-    if (!target.closest('.theme')) {
-      setMenuOpen((prevState) => !prevState);
-    }
+    if (target.closest('.close') || target.classList.contains('outside'))
+      setMenuOpen(false);
   };
 
   const logout = () => {
@@ -43,23 +45,37 @@ const MobileMenu = ({ menuOpen, setMenuOpen }: MobileMenuProps) => {
 
   return createPortal(
     <div onClick={closeOverlay} className={styles.menuWrap}>
-      <div className={`${styles.menu} ${menuOpen ? styles.active : ''}`}>
+      <div
+        className={`${styles.menu} ${menuOpen ? styles.active : ''} outside`}
+      >
         <div className={`overlay ${styles.overlay}`}>
+          <button className={`${styles.closeBtn} close`}>
+            <IoCloseOutline />
+          </button>
           <div className={styles.linksWrap}>
             <ul className={styles.links}>
-              <li>
-                <Link to="/movies">Movies</Link>
+              <li className="close">
+                <Link to="/movies">
+                  <BiCameraMovie /> Movies
+                </Link>
               </li>
-              <li>
-                <Link to="/shows">Shows</Link>
+              <li className="close">
+                <Link to="/shows">
+                  <FaTv /> Shows
+                </Link>
               </li>
-              <li>
-                <Link to="/person">People</Link>
+              <li className="close">
+                <Link to="/person">
+                  <BsPeopleFill />
+                  People
+                </Link>
               </li>
-              <li>
-                <Link to="/watchlist">Watchlist</Link>
+              <li className="close">
+                <Link to="/watchlist">
+                  <BsBookmarkFill /> Watchlist
+                </Link>
               </li>
-              <li>
+              <li className={`${styles.authLi} close`}>
                 {id ? (
                   <button onClick={logout} className={styles.auth}>
                     Logout
