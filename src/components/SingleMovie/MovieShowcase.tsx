@@ -3,7 +3,7 @@ import { useAppSelector } from '../../hooks';
 import styles from './MovieShowcase.module.scss';
 import MovieTrailer from './MovieTrailer';
 import MovieGallery from './MovieGallery';
-import { BsFillPlayFill, BsBookmarkFill } from 'react-icons/bs';
+import { BsPlay, BsBookmark } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
 import { formatRuntime, colorPercentage } from '../../utilities/utilities';
@@ -185,7 +185,7 @@ const MovieShowcase = () => {
                   onClick={() => setViewTrailer(true)}
                   className={styles.trailerBtn}
                 >
-                  <BsFillPlayFill />
+                  <BsPlay />
                   <span>Play Trailer</span>
                 </button>
               )}
@@ -207,7 +207,7 @@ const MovieShowcase = () => {
                   disableTouchListener
                 >
                   <button onClick={toggleWatchlist} className={styles.bookmark}>
-                    <BsBookmarkFill />
+                    <BsBookmark />
                     <span>
                       {inWatchlist
                         ? 'Remove from Watchlist'

@@ -3,7 +3,7 @@ import { useAppSelector } from '../../hooks';
 import styles from './ShowShowcase.module.scss';
 import ShowTrailer from './ShowTrailer';
 import ShowGallery from './ShowGallery';
-import { BsFillPlayFill, BsBookmarkFill } from 'react-icons/bs';
+import { BsPlay, BsBookmark } from 'react-icons/bs';
 import { HiOutlineArrowsExpand } from 'react-icons/hi';
 import { FiPercent } from 'react-icons/fi';
 import { colorPercentage } from '../../utilities/utilities';
@@ -189,7 +189,7 @@ const ShowShowcase = () => {
                   onClick={() => setViewTrailer(true)}
                   className={styles.trailerBtn}
                 >
-                  <BsFillPlayFill />
+                  <BsPlay />
                   <span>Play Trailer</span>
                 </button>
               )}
@@ -211,11 +211,11 @@ const ShowShowcase = () => {
                   disableTouchListener
                 >
                   <button onClick={toggleWatchlist} className={styles.bookmark}>
-                    <BsBookmarkFill />
+                    <BsBookmark />
                     <span>
                       {inWatchlist
                         ? 'Remove from Watchlist'
-                        : 'Add To Watchlist'}
+                        : 'Add to Watchlist'}
                     </span>
                   </button>
                 </Tooltip>
