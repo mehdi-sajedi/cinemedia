@@ -81,6 +81,7 @@
               letter-spacing: 2px;
 
               @include media('<tablet') {
+                display: inline-block;
                 font-size: 22px;
               }
             }
