@@ -89,6 +89,7 @@
         }
 
         .tagline {
+          font-size: 15px;
           font-style: italic;
           margin-bottom: 12px;
 
@@ -122,6 +123,7 @@
           .ratingAndRuntime {
             display: flex;
             align-items: center;
+            font-size: 15px;
 
             @include media('<tablet') {
               margin: 1rem 0;
@@ -198,6 +200,7 @@
 
         .genres {
           display: flex;
+          font-size: 15px;
 
           @include media('<desktop') {
             flex-wrap: wrap;

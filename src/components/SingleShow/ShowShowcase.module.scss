@@ -89,6 +89,7 @@
         }
 
         .tagline {
+          font-size: 15px;
           font-style: italic;
           margin-bottom: 12px;
 
@@ -198,6 +199,7 @@
 
         .genres {
           display: flex;
+          font-size: 15px;
 
           @include media('<desktop') {
             flex-wrap: wrap;
