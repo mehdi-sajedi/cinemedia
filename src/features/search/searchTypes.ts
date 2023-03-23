@@ -1,8 +1,7 @@
 export interface SearchState {
   results: (Show | Movie)[];
   text: string;
-  name: string;
-  id: number | null;
+  person: Person | null;
   isLoading: boolean;
   isError: boolean;
 }
@@ -33,6 +32,7 @@ export interface Person {
   media_type: string;
   name: string;
   popularity: number;
+  profile_path: string;
 }
 
 export function isMovie(media: Movie | Show): media is Movie {

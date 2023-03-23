@@ -29,9 +29,8 @@ const getSearchResultsService = async (text: string) => {
 
     return {
       results: filteredResults,
+      person: null,
       text,
-      name: '',
-      id: null,
     };
   }
 };
@@ -61,9 +60,8 @@ const getPersonMedia = async (person: Person) => {
 
   return {
     results: filteredCredits,
+    person,
     text: '',
-    name: person.name,
-    id: person.id,
   };
 };
 

@@ -66,22 +66,18 @@ const MovieSidebar = () => {
               )})`}
           </p>
         </div>
-        <div className={styles.budget}>
-          <h4>Budget</h4>
-          <p>
-            {(movie?.budget!) > 0
-              ? '$' + Number(movie?.budget).toLocaleString()
-              : '-'}
-          </p>
-        </div>
-        <div className={styles.revenue}>
-          <h4>Revenue</h4>
-          <p>
-            {(movie?.revenue!) > 0
-              ? '$' + Number(movie?.revenue).toLocaleString()
-              : '-'}
-          </p>
-        </div>
+        {movie?.budget! > 0 && (
+          <div className={styles.budget}>
+            <h4>Budget</h4>
+            <p>${Number(movie?.budget).toLocaleString()}</p>
+          </div>
+        )}
+        {movie?.revenue! > 0 && (
+          <div className={styles.revenue}>
+            <h4>Revenue</h4>
+            <p>${Number(movie?.revenue).toLocaleString()}</p>
+          </div>
+        )}
       </div>
     </aside>
   );

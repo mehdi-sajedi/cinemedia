@@ -39,9 +39,7 @@ const Nav = () => {
   const logout = () => {
     dispatch(logoutUser());
     localStorage.removeItem('user');
-    navigate({
-      pathname: '/movies',
-    });
+    navigate({ pathname: '/movies' });
     toast.info('Logged out', toastConfig);
   };
 

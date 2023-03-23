@@ -6,8 +6,7 @@ import { SearchState } from './searchTypes';
 const initialState: SearchState = {
   results: [],
   text: '',
-  name: '',
-  id: null,
+  person: null,
   isLoading: false,
   isError: false,
 };
@@ -37,8 +36,7 @@ export const searchSlice = createSlice({
     builder.addCase(getSearchResults.fulfilled, (state, action) => {
       state.results = action.payload.results;
       state.text = action.payload.text;
-      state.name = action.payload.name;
-      state.id = action.payload.id;
+      state.person = action.payload.person;
       state.isLoading = false;
     });
     builder.addCase(getSearchResults.rejected, (state) => {
