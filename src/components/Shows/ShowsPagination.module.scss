@@ -12,7 +12,7 @@
 
   button {
     display: flex;
-    color: var(--clr-black);
+    color: var(--clr-white);
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -60,7 +60,7 @@
           background-color: var(--clr-primary);
 
           button {
-            color: var(--text-white);
+            color: var(--text-black);
           }
         }
       }

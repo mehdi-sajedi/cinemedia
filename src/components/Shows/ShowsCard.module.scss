@@ -1,8 +1,8 @@
 @import '../../app.scss';
 
 .card {
-  background-color: var(--bg-white);
-  color: var(--clr-black);
+  background-color: var(--bg-dark);
+  color: var(--clr-white);
   display: flex;
   flex-direction: column;
   border-radius: 5px;

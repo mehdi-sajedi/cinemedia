@@ -3,7 +3,7 @@
 .nav {
   padding: 15px;
   background-color: var(--nav-footer);
-  color: var(--clr-black);
+  color: var(--clr-white);
   box-shadow: var(--box-shadow-1);
   position: relative;
 
@@ -16,7 +16,7 @@
 
   a,
   svg {
-    color: var(--clr-black);
+    color: var(--clr-white);
   }
 
   .magnify,
@@ -25,7 +25,7 @@
   }
 
   .auth {
-    color: var(--text-white);
+    color: var(--text-black);
   }
 }
 

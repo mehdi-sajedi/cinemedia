@@ -9,12 +9,12 @@
   --perm-black: black;
   --primary-font: 'Montserrat', sans-serif;
 
-  --text-white: black;
-  --bg-white: #3a4146;
-  --clr-black: #f6f9ff;
+  --text-black: black;
+  --bg-dark: #3a4146;
+  --clr-white: #f6f9ff;
   --sub-heading: #ddd;
   --nav-footer: #1e2125;
-  --clr-border: #000;
+  --clr-border: black;
 
   --box-shadow-1: var(--dark-1);
   --box-shadow-2: var(--dark-2);
@@ -25,9 +25,9 @@
 .lightmode {
   background-color: #fafafa;
 
-  --text-white: white;
-  --bg-white: white;
-  --clr-black: black;
+  --text-black: white;
+  --bg-dark: white;
+  --clr-white: black;
   --sub-heading: #3c3c3c;
   --nav-footer: #f5f5f5;
   --clr-border: #e3e3e3;
@@ -51,7 +51,7 @@ html {
 body {
   font-family: var(--primary-font);
   letter-spacing: 0.25px;
-  color: var(--clr-black);
+  color: var(--clr-white);
   background-color: #212529;
   overflow-y: scroll;
   position: relative;

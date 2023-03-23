@@ -119,7 +119,7 @@ $breakpoint: '<1024px';
 
           a {
             padding: 5px 10px;
-            color: var(--clr-black);
+            color: var(--clr-white);
           }
         }
       }
@@ -226,7 +226,7 @@ $breakpoint: '<1024px';
         .knownForMedia {
           display: flex;
           flex-direction: column;
-          background-color: var(--bg-white);
+          background-color: var(--bg-dark);
           width: 138px;
           border-radius: 5px;
           box-shadow: var(--box-shadow-3);
@@ -239,7 +239,7 @@ $breakpoint: '<1024px';
           .mediaInfo {
             padding: 10px;
             min-height: 65px;
-            color: var(--clr-black);
+            color: var(--clr-white);
 
             .title {
               font-size: 14px;
@@ -263,7 +263,7 @@ $breakpoint: '<1024px';
     margin-bottom: 1rem;
     font-size: 18px;
     transition: opacity 0.3s ease;
-    color: var(--clr-black);
+    color: var(--clr-white);
 
     &.nameMobile {
       display: none;
