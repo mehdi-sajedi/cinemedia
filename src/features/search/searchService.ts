@@ -8,6 +8,13 @@ const getSearchResultsService = async (text: string) => {
 
   let results: (Show | Movie | Person)[] = data.results;
 
+  const onlyOnePersonInResults =
+    results.filter((r) => isPerson(r)).length === 1;
+  if (onlyOnePersonInResults) {
+    const person = results.find((r) => isPerson(r)) as Person;
+    return getPersonMedia(person);
+  }
+
   results.sort((b, a) => a.popularity - b.popularity);
 
   const firstEntry = results[0];
@@ -42,7 +49,12 @@ const getPersonMedia = async (person: Person) => {
 
   const filteredCredits = credits
     // Remove entries that don't have a poster image or are of genre type `news`
-    .filter((m) => m.poster_path && !m.genre_ids.includes(10763))
+    .filter(
+      (m) =>
+        m.poster_path &&
+        !m.genre_ids.includes(10763) &&
+        !m.genre_ids.includes(10767)
+    )
     // Remove duplicate entries due to actor having multiple credits for a single show/movie
     .filter((val, idx, arr) => arr.findIndex((t) => t.id === val.id) === idx)
     .sort((a, b) => b.vote_count - a.vote_count);
