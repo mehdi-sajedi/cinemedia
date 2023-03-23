@@ -37,13 +37,4 @@
     pointer-events: none;
     z-index: 1000;
   }
-
-  .closeBtn {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    font-size: 60px;
-    color: var(--perm-white);
-    cursor: pointer;
-  }
 }

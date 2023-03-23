@@ -5,7 +5,6 @@ import { isBrowser } from 'react-device-detect';
 import styles from './ShowGallery.module.scss';
 import './ShowGalleryExtra.scss';
 import ImageGallery from 'react-image-gallery';
-import { IoCloseOutline } from 'react-icons/io5';
 import { ReactImageGalleryItem } from 'react-image-gallery';
 import { imageBase } from '../../data/imagePaths';
 import { useKeyPress } from '../../hooks/useKeydownListener';
@@ -48,8 +47,7 @@ const ShowGallery = ({ setViewGallery }: ShowGalleryProps) => {
     if (
       target.classList.contains('image-gallery-swipe') ||
       target.classList.contains('wrapper') ||
-      target.classList.contains('image-gallery-slide-wrapper') ||
-      target.closest('.closeBtn')
+      target.classList.contains('image-gallery-slide-wrapper')
     ) {
       setViewGallery(false);
     }
@@ -61,10 +59,8 @@ const ShowGallery = ({ setViewGallery }: ShowGalleryProps) => {
         slideInterval={2400}
         items={images}
         showFullscreenButton={isBrowser}
+        showIndex={true}
       />
-      {isBrowser && (
-        <IoCloseOutline className={`${styles.closeBtn} closeBtn`} />
-      )}
     </div>,
     imageGallery
   );
