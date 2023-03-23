@@ -15,6 +15,7 @@ export interface BaseMedia {
   vote_average: number;
   poster_path: string;
   genre_ids: number[];
+  popularity: number;
 }
 
 export interface Show extends BaseMedia {
@@ -31,6 +32,7 @@ export interface Person {
   id: number;
   media_type: string;
   name: string;
+  popularity: number;
 }
 
 export function isMovie(media: Movie | Show): media is Movie {

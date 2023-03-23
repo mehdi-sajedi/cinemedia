@@ -8,17 +8,11 @@ const getSearchResultsService = async (text: string) => {
 
   let results: (Show | Movie | Person)[] = data.results;
 
-  // Check if API returns a person of exact match to user search
-  const person = results.find(
-    (entry): entry is Person =>
-      isPerson(entry) && entry.name.toLowerCase() === text.toLowerCase()
-  );
+  results.sort((b, a) => a.popularity - b.popularity);
 
   const firstEntry = results[0];
 
-  if (person) {
-    return getPersonMedia(person);
-  } else if (isPerson(firstEntry)) {
+  if (isPerson(firstEntry)) {
     return getPersonMedia(firstEntry);
   } else {
     // User is not trying to search for a person, so return the default API response minus any person objects and only ones that have a poster image
