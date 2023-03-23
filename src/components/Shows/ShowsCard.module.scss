@@ -28,7 +28,6 @@
     position: relative;
 
     @include media('<=phone') {
-      padding: 13px;
       padding: 25px 13px 13px;
     }
 
