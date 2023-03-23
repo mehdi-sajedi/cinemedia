@@ -227,10 +227,14 @@ $breakpoint: '<1024px';
           display: flex;
           flex-direction: column;
           background-color: var(--bg-dark);
-          width: 138px;
+          width: 145px;
           border-radius: 5px;
           box-shadow: var(--box-shadow-3);
           border: 1px solid var(--clr-border);
+
+          @include media($breakpoint) {
+            width: 138px;
+          }
 
           img {
             border-radius: 5px 5px 0 0;
