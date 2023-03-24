@@ -1,12 +1,13 @@
-import { ClipLoader } from 'react-spinners';
+import { PulseLoader } from 'react-spinners';
 
 const override = {
-  display: 'block',
-  margin: '5rem auto',
+  display: 'flex',
+  margin: '5rem auto 100vh',
+  justifyContent: 'center',
 };
 
 const Loading = () => {
-  return <ClipLoader cssOverride={override} color="#17b28e" size={50} />;
+  return <PulseLoader cssOverride={override} color="#17b28e" size={9} />;
 };
 
 export default Loading;

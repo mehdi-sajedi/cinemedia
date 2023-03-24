@@ -1,5 +1,23 @@
 @import '../../app.scss';
 
+@mixin delayTransition {
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+      transition-delay: #{240 + $i * 12}ms;
+    }
+  }
+}
+
+@mixin transformTransition {
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+      transform: translateX(#{$i * 3}px);
+    }
+  }
+}
+
+$transition-duration: 400ms;
+
 .menuWrap {
   position: fixed;
   top: 0;
@@ -22,7 +40,7 @@
     display: flex;
     justify-content: flex-end;
     z-index: 1;
-    transition: all 400ms;
+    transition: all $transition-duration;
     background-color: rgba(0, 0, 0, 0.88);
 
     &.active {
@@ -33,8 +51,17 @@
         transform: translateX(0);
 
         .linksWrap {
-          opacity: 1;
-          transition: all 400ms;
+          .links {
+            li {
+              opacity: 1;
+              @include delayTransition;
+              @for $i from 1 through 6 {
+                &:nth-child(#{$i}) {
+                  transform: translateX(0);
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -48,7 +75,7 @@
       flex-direction: column;
       align-items: center;
       padding-top: 20px;
-      transition: all 400ms;
+      transition: all $transition-duration;
 
       @include media('<=500px') {
         width: clamp(160px, 50vw, 100%);
@@ -76,8 +103,7 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        opacity: 0;
-        transition: all 400ms;
+        opacity: 1;
         align-self: flex-start;
         margin-left: 20px;
 
@@ -92,8 +118,11 @@
           }
 
           li {
+            @include transformTransition();
             display: flex;
             align-items: center;
+            opacity: 0;
+            transition: all $transition-duration;
 
             a {
               display: flex;
@@ -114,7 +143,7 @@
           a {
             text-decoration: none;
             color: inherit;
-            transition: all 400ms;
+            transition: all $transition-duration;
             padding: 15px 15px 15px 0;
 
             &:hover {
@@ -131,7 +160,7 @@
           border: none;
           border-radius: 3px;
           font-size: 16px;
-          transition: opacity 350ms ease-out;
+          transition: opacity $transition-duration ease-out;
           letter-spacing: 0;
           font-family: inherit;
           margin-top: 7px;

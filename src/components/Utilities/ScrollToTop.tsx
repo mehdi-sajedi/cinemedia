@@ -11,10 +11,11 @@ const ScrollToTop = ({ children }: ScrollToTopProps) => {
 
   const { page: moviePage } = useAppSelector((state) => state.movie);
   const { page: showPage } = useAppSelector((state) => state.show);
+  const { page: personPage } = useAppSelector((state) => state.person);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location, moviePage, showPage]);
+  }, [location, moviePage, showPage, personPage]);
 
   return <>{children}</>;
 };
