@@ -32,6 +32,7 @@ export interface SinglePerson {
     instagram_id: string;
     facebook_id: string;
     twitter_id: string;
+    tiktok_id: string;
   };
   images: {
     profiles: {

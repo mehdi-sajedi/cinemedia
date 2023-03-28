@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../hooks';
 import styles from './PersonDetails.module.scss';
 import { Link } from 'react-router-dom';
-import { BsInstagram, BsFacebook, BsTwitter } from 'react-icons/bs';
+import { BsInstagram, BsFacebook, BsTwitter, BsTiktok } from 'react-icons/bs';
 import { HiChevronRight, HiChevronLeft } from 'react-icons/hi';
 import { imageBase } from '../../data/imagePaths';
 import { getAge, formatDate } from '../../utilities/utilities';
@@ -29,6 +29,12 @@ const PersonDetails = () => {
       id: person?.external_ids.twitter_id,
       icon: BsTwitter,
       keyID: 1953038502946,
+    },
+    {
+      base: 'https://tiktok.com/@',
+      id: person?.external_ids.tiktok_id,
+      icon: BsTiktok,
+      keyID: 732561398455,
     },
   ];
 
