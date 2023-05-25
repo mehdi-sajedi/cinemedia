@@ -2,7 +2,7 @@
 
 ![Design preview](./preview.png)
 
-Demo: https://movies-and-shows.netlify.app/
+Demo: [cinemedia.netlify.app](https://cinemedia.netlify.app/)
 
 ## Overview
 
@@ -29,4 +29,4 @@ For the last major route, I wanted to link the cast members to a separate page t
 
 ## Author
 
-- Website - [Mehdi Sajedi](https://mehdisajedi.netlify.app/)
+- Website - [Mehdi Sajedi](https://mehdisajedi.com/)

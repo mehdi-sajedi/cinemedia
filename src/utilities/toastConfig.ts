@@ -4,6 +4,6 @@ export const toastConfig: ToastOptions = {
   position: 'bottom-left',
   pauseOnHover: false,
   pauseOnFocusLoss: false,
-  autoClose: 2000,
+  autoClose: 3000,
   theme: 'dark',
 };
