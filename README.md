@@ -1,4 +1,4 @@
-# Movie Gallery
+# Cinemedia
 
 ![Design preview](./preview.png)
 
