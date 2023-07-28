@@ -35,5 +35,10 @@
   .emptyList {
     margin-top: 4rem;
     text-align: center;
+
+    a {
+      text-decoration: underline;
+      color: var(--clr-white);
+    }
   }
 }

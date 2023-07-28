@@ -5,6 +5,7 @@ import { onValue, ref } from 'firebase/database';
 import { db } from '../../config/firebase';
 import WatchlistCard from './WatchlistCard';
 import { Watchlist } from '../../config/firebaseTypes';
+import { Link } from 'react-router-dom';
 
 const WatchlistGrid = () => {
   const [watchlist, setWatchlist] = useState<Watchlist>([]);
@@ -30,7 +31,11 @@ const WatchlistGrid = () => {
   return (
     <div className={styles.watchlist}>
       <h1>My Watchlist</h1>
-      {!id && <p className={styles.emptyList}>Login to start adding items!</p>}
+      {!id && (
+        <p className={styles.emptyList}>
+          <Link to='/auth'>Login</Link> to start adding items!
+        </p>
+      )}
       {watchlist && (
         <div className={styles.grid}>
           {watchlist.map((item) => (
