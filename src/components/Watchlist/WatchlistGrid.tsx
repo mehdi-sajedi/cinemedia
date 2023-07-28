@@ -45,7 +45,7 @@ const WatchlistGrid = () => {
       )}
       {!watchlist && (
         <p className={styles.emptyList}>
-          Add items to your Watchlist to have them appear here!
+          Add movies or shows to your Watchlist to have them appear here!
         </p>
       )}
     </div>

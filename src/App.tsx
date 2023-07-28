@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import './app.scss';
+import './App.scss';
 import Nav from './components/Global/Nav';
 import Footer from './components/Global/Footer';
 import NoRoute from './components/Utilities/NoRoute';
