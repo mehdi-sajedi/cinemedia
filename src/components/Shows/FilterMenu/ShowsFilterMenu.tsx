@@ -92,10 +92,10 @@ const ShowsFilterMenu = () => {
                   formData={formData}
                   setFormData={setFormData}
                   state={formData.services}
-                  stateStr="services"
+                  stateStr='services'
                   name={p.provider_name}
                   id={p.provider_id}
-                  group="watch-providers"
+                  group='watch-providers'
                   img={p.logo_path}
                   key={`${p.provider_id}-${p.provider_name}`}
                 />
@@ -106,7 +106,7 @@ const ShowsFilterMenu = () => {
           <div className={styles.formButtons}>
             <button
               className={`${styles.submit} ${styles.btn} submit`}
-              typeof="submit"
+              typeof='submit'
             >
               <div className={styles.content}>
                 Apply <HiOutlineArrowNarrowRight />
@@ -114,7 +114,7 @@ const ShowsFilterMenu = () => {
             </button>
             <button
               className={`${styles.reset} ${styles.btn}`}
-              typeof="reset"
+              typeof='reset'
               onClick={resetForm}
             >
               Clear All

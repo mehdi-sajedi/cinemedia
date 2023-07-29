@@ -43,7 +43,7 @@ $breakpoint: '<1024px';
         box-shadow: var(--box-shadow-2);
       }
 
-      .arrow {
+      .arrowBtn {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -52,6 +52,13 @@ $breakpoint: '<1024px';
         cursor: pointer;
         color: #ccc;
         height: 100%;
+        background-color: transparent;
+        border: none;
+
+        &:focus-visible {
+          color: #2fa6ff;
+          outline: none;
+        }
 
         &:hover {
           color: white;
@@ -238,10 +245,11 @@ $breakpoint: '<1024px';
 
           img {
             border-radius: 5px 5px 0 0;
+            display: flex;
           }
 
           .mediaInfo {
-            padding: 10px;
+            padding: 14px 10px 10px 10px;
             min-height: 65px;
             color: var(--clr-white);
 

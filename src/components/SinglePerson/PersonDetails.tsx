@@ -51,16 +51,20 @@ const PersonDetails = () => {
             showThumbs={false}
             showStatus={false}
             renderArrowPrev={(clickHandler) => (
-              <HiChevronLeft
-                className={`${styles.arrow} ${styles.arrowLeft}`}
+              <button
                 onClick={clickHandler}
-              />
+                className={`${styles.arrowBtn} ${styles.arrowLeft}`}
+              >
+                <HiChevronLeft />
+              </button>
             )}
             renderArrowNext={(clickHandler) => (
-              <HiChevronRight
-                className={`${styles.arrow} ${styles.arrowRight}`}
+              <button
                 onClick={clickHandler}
-              />
+                className={`${styles.arrowBtn} ${styles.arrowRight}`}
+              >
+                <HiChevronRight />
+              </button>
             )}
           >
             {person?.images.profiles.map((p) => (
@@ -68,7 +72,7 @@ const PersonDetails = () => {
                 key={p.file_path.slice(0, -4)}
                 className={styles.image}
                 src={`${imageBase}w780${p.file_path}`}
-                alt=""
+                alt=''
               />
             ))}
           </Carousel>
@@ -77,7 +81,7 @@ const PersonDetails = () => {
             <img
               className={styles.singleImage}
               src={`${imageBase}w780${person.profile_path}`}
-              alt=""
+              alt=''
             />
           )
         )}
@@ -95,8 +99,8 @@ const PersonDetails = () => {
                   <li key={`${social.id}-${social.keyID}`}>
                     <a
                       href={`${social.base}${social.id}`}
-                      target="_blank"
-                      rel="noreferrer"
+                      target='_blank'
+                      rel='noreferrer'
                     >
                       {<social.icon />}
                     </a>
@@ -185,8 +189,8 @@ const PersonDetails = () => {
                   <Link to={`/${route}/${media.id}`}>
                     <img
                       src={`${imageBase}w500${media.poster_path}`}
-                      loading="lazy"
-                      alt=""
+                      loading='lazy'
+                      alt=''
                     />
                   </Link>
                   <div className={styles.mediaInfo}>

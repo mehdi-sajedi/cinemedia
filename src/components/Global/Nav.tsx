@@ -63,23 +63,20 @@ const Nav = () => {
         <div className={styles.navContent}>
           <div className={styles.links}>
             <Link
-              to="/movies"
+              to='/movies'
               className={`${pathname === '/movies' ? styles.active : ''}`}
-              tabIndex={-1}
             >
               Movies
             </Link>
             <Link
-              to="/shows"
+              to='/shows'
               className={`${pathname === '/shows' ? styles.active : ''}`}
-              tabIndex={-1}
             >
               Shows
             </Link>
             <Link
-              to="/person"
+              to='/person'
               className={`${pathname === '/person' ? styles.active : ''}`}
-              tabIndex={-1}
             >
               People
             </Link>
@@ -87,20 +84,23 @@ const Nav = () => {
           <MobileMenuBtn menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <form onSubmit={onSubmit}>
             <div className={styles.search}>
-              <HiOutlineSearch className={styles.magnify} />
+              <i className={styles.magnify}>
+                <HiOutlineSearch />
+              </i>
               <input
                 ref={searchRef}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
-                type="text"
-                placeholder="Search..."
+                type='text'
+                placeholder='Search...'
               />
               {text !== '' && (
-                <button>
-                  <IoCloseOutline
-                    onClick={clearSearch}
-                    className={styles.clear}
-                  />
+                <button
+                  type='button'
+                  className={styles.clear}
+                  onClick={clearSearch}
+                >
+                  <IoCloseOutline />
                 </button>
               )}
             </div>
@@ -109,7 +109,7 @@ const Nav = () => {
             <button onClick={toggleLight} className={styles.theme}>
               {lightmode ? <IoMoon /> : <IoSunny />}
             </button>
-            <Link to="/watchlist" className={styles.watchlist}>
+            <Link to='/watchlist' className={styles.watchlist}>
               <BsBookmarkFill />
               Watchlist
             </Link>
@@ -118,7 +118,7 @@ const Nav = () => {
                 Logout
               </button>
             ) : (
-              <Link to="/auth" className={styles.auth}>
+              <Link to='/auth' className={styles.auth}>
                 Login
               </Link>
             )}
