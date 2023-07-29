@@ -1,0 +1,41 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  .toggleText {
+    margin-left: 1rem;
+    font-size: 15px;
+  }
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+  width: 51px;
+  width: 56px;
+  height: 27px;
+  background-color: #333;
+  cursor: pointer;
+  border: none;
+  border-radius: 100px;
+
+  .circle {
+    position: absolute;
+    left: 6px;
+    bottom: 3px;
+    height: 21px;
+    width: 21px;
+    border-radius: 100px;
+    background-color: white;
+    transition: 200ms;
+  }
+
+  &.active {
+    background-color: #209261;
+
+    .circle {
+      transform: translateX(23px);
+    }
+  }
+}

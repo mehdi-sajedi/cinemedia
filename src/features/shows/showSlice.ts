@@ -6,8 +6,8 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../store/store';
 import { ShowState, ShowFilterData, ShowSort } from './showTypes';
 
-const hideEpisodes: boolean = JSON.parse(
-  localStorage.getItem('hideEpisodes') as string
+const episodesHidden: boolean = JSON.parse(
+  localStorage.getItem('episodesHidden') as string
 );
 
 const initialState: ShowState = {
@@ -21,7 +21,7 @@ const initialState: ShowState = {
   isError: false,
   castScroll: 0,
   prevShowId: 0,
-  hideEpisodes: hideEpisodes,
+  episodesHidden: episodesHidden,
 };
 
 export const getShows = createAsyncThunk<ShowState, void, { state: RootState }>(
@@ -80,8 +80,8 @@ export const showSlice = createSlice({
     setPrevShowId: (state, action: PayloadAction<number>) => {
       state.prevShowId = action.payload;
     },
-    toggleHideEpisodes: (state, action: PayloadAction<boolean>) => {
-      state.hideEpisodes = action.payload;
+    toggleEpisodesHidden: (state, action: PayloadAction<boolean>) => {
+      state.episodesHidden = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -124,6 +124,6 @@ export const {
   updateSortOption,
   updateCastScroll,
   setPrevShowId,
-  toggleHideEpisodes,
+  toggleEpisodesHidden,
 } = showSlice.actions;
 export default showSlice.reducer;

@@ -10,7 +10,7 @@ export interface ShowState {
   isError: boolean;
   castScroll: number;
   prevShowId: number;
-  hideEpisodes: boolean;
+  episodesHidden: boolean;
 }
 
 export type ShowSort =

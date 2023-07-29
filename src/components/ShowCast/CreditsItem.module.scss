@@ -8,10 +8,12 @@
     object-fit: cover;
     object-position: top;
     border-radius: 2px;
+    display: flex;
   }
 
   .personInfo {
     display: flex;
+    align-items: flex-start;
     flex-direction: column;
     margin-left: 1.5rem;
 
@@ -22,6 +24,7 @@
     p {
       font-size: 14px;
       color: var(--sub-heading);
+      margin-top: 3px;
 
       span {
         transition: 0.3s;
