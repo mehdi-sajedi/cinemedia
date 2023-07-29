@@ -1,0 +1,27 @@
+.listItem {
+  display: flex;
+  align-items: center;
+
+  button {
+    background-color: transparent;
+    cursor: pointer;
+    transition: 400ms;
+    border: 1px solid var(--perm-black);
+    margin: 2px;
+    border-radius: 2px;
+    opacity: 1;
+
+    img {
+      display: flex;
+      border-radius: 1px;
+    }
+
+    &.active {
+      opacity: 1;
+    }
+
+    &.fade {
+      opacity: 0.15;
+    }
+  }
+}

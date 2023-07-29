@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '../../../hooks';
 import styles from './MoviesFilterMenu.module.scss';
 import { watchProviders } from '../../../data/watchProviders';
 import MoviesCustomRange from './MoviesCustomRange';
-import CustomCheckbox from './CustomCheckbox';
+import MoviesServiceItem from './MoviesServiceItem';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import { initialMovieFilterState } from '../../../data/initialMovieFilterState';
 import {
@@ -91,14 +91,13 @@ const MoviesFilterMenu = () => {
             <h3 className={styles.watchProvidersTitle}>Services</h3>
             <ul className={styles.watchProvidersList}>
               {watchProviders.map((p) => (
-                <CustomCheckbox
+                <MoviesServiceItem
                   formData={formData}
                   setFormData={setFormData}
                   state={formData.services}
                   stateStr='services'
-                  name={p.provider_name}
                   id={p.provider_id}
-                  group='watch-providers'
+                  name={p.provider_name}
                   img={p.logo_path}
                   key={`${p.provider_id}-${p.provider_name}`}
                 />

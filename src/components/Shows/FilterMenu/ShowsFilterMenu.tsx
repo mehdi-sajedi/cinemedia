@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import styles from './ShowsFilterMenu.module.scss';
 import { watchProviders } from '../../../data/watchProviders';
 import ShowsCustomRange from './ShowsCustomRange';
-import CustomCheckbox from './CustomCheckbox';
+import ShowsServiceItem from './ShowsServiceItem';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import { initialShowFilterState } from '../../../data/initialShowFilterState';
 import {
@@ -88,14 +88,13 @@ const ShowsFilterMenu = () => {
             <h3 className={styles.watchProvidersTitle}>Services</h3>
             <ul className={styles.watchProvidersList}>
               {watchProviders.map((p) => (
-                <CustomCheckbox
+                <ShowsServiceItem
                   formData={formData}
                   setFormData={setFormData}
                   state={formData.services}
                   stateStr='services'
-                  name={p.provider_name}
                   id={p.provider_id}
-                  group='watch-providers'
+                  name={p.provider_name}
                   img={p.logo_path}
                   key={`${p.provider_id}-${p.provider_name}`}
                 />
