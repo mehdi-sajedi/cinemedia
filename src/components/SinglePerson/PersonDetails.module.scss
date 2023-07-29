@@ -252,11 +252,17 @@ $breakpoint: '<1024px';
             padding: 14px 10px 10px 10px;
             min-height: 65px;
             color: var(--clr-white);
+            overflow: hidden;
 
             .title {
               font-size: 14px;
               font-weight: 600;
               margin-bottom: 5px;
+              overflow: hidden;
+              display: -webkit-box;
+              -webkit-line-clamp: 3; /* number of lines to show */
+              line-clamp: 3;
+              -webkit-box-orient: vertical;
             }
 
             .year {
