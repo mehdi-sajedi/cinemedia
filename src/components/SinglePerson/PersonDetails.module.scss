@@ -15,6 +15,7 @@ $breakpoint: '<1024px';
   }
 
   .column1 {
+    $img-radius: 3px;
     display: flex;
     flex-direction: column;
     width: 23%;
@@ -27,19 +28,19 @@ $breakpoint: '<1024px';
     }
 
     .carousel {
-      border-radius: 8px;
+      border-radius: $img-radius;
 
       @include media($breakpoint) {
         width: clamp(1px, 75%, 400px);
       }
 
       > * {
-        border-radius: 8px;
+        border-radius: $img-radius;
       }
 
       .image {
         width: 100%;
-        border-radius: 8px;
+        border-radius: $img-radius;
         box-shadow: var(--box-shadow-2);
       }
 
@@ -76,7 +77,7 @@ $breakpoint: '<1024px';
 
     .singleImage {
       width: 100%;
-      border-radius: 8px;
+      border-radius: $img-radius;
       box-shadow: var(--box-shadow-2);
 
       @include media($breakpoint) {
@@ -235,17 +236,25 @@ $breakpoint: '<1024px';
           flex-direction: column;
           background-color: var(--bg-dark);
           width: 145px;
-          border-radius: 5px;
+          border-radius: 3px;
           box-shadow: var(--box-shadow-3);
           border: 1px solid var(--clr-border);
+          overflow: hidden;
 
           @include media($breakpoint) {
             width: 138px;
           }
 
-          img {
-            border-radius: 5px 5px 0 0;
-            display: flex;
+          a {
+            position: relative;
+            overflow: hidden;
+            padding-top: 150%;
+
+            img {
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
           }
 
           .mediaInfo {
