@@ -14,12 +14,16 @@
 
     @include media('<tablet') {
       height: fit-content;
-      background: linear-gradient(
-        to right,
-        rgba(0, 0, 0, 0.75) 0%,
-        rgba(0, 0, 0, 0.75) 50%,
-        rgba(0, 0, 0, 0.75) 100%
-      );
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+
+    &.noBackdrop {
+      background-color: var(--showcase);
+
+      .content,
+      .buttons button {
+        color: var(--clr-black) !important;
+      }
     }
 
     .backdrop {
@@ -94,7 +98,7 @@
 
           @include media('<tablet') {
             text-align: center;
-            margin-bottom: 0px;
+            margin-bottom: 0;
             max-width: 95vw;
             margin: 0 auto;
           }
@@ -109,9 +113,9 @@
           margin-bottom: 1rem;
 
           @include media('<desktop') {
+            display: flex;
             flex-direction: column;
             align-items: flex-start;
-            display: flex;
           }
 
           @include media('<tablet') {
@@ -132,13 +136,14 @@
               justify-content: center;
               align-items: center;
               background-color: #081c22;
+              color: var(--perm-white);
               width: 55px;
               height: 55px;
               border-radius: 50px;
               font-size: 18px;
 
               p {
-                letter-spacing: 0px;
+                letter-spacing: 0;
               }
 
               .percentSymbol {

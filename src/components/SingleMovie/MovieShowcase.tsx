@@ -90,7 +90,11 @@ const MovieShowcase = () => {
 
   return (
     <main className={styles.main}>
-      <div className={styles.showcase}>
+      <div
+        className={`${styles.showcase} ${
+          !movie?.backdrop_path ? styles.noBackdrop : ''
+        }`}
+      >
         <div
           className={styles.backdrop}
           style={{
@@ -107,7 +111,7 @@ const MovieShowcase = () => {
             <img
               className={styles.poster}
               src={`${imageBase}w780${movie?.poster_path}`}
-              alt=""
+              alt=''
             />
             <div className={styles.posterText}>
               <HiOutlineArrowsExpand className={styles.icon} />
@@ -216,13 +220,15 @@ const MovieShowcase = () => {
                   </button>
                 </Tooltip>
               </ClickAwayListener>
-              <button
-                className={styles.viewGallery}
-                onClick={handleViewGallery}
-              >
-                <HiOutlineArrowsExpand className={styles.icon} />
-                <span>View Gallery</span>
-              </button>
+              {hasImages && (
+                <button
+                  className={styles.viewGallery}
+                  onClick={handleViewGallery}
+                >
+                  <HiOutlineArrowsExpand className={styles.icon} />
+                  <span>View Gallery</span>
+                </button>
+              )}
             </div>
           </div>
         </div>

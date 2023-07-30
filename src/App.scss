@@ -3,19 +3,22 @@
 @import './box-shadows.scss';
 
 :root {
-  --max-width: clamp(1px, 1440px, 92vw);
+  /* ---------------Globals--------------- */
+  --primary-font: 'Montserrat', sans-serif;
   --clr-primary: #17b28e;
   --perm-white: white;
   --perm-black: black;
-  --primary-font: 'Montserrat', sans-serif;
-
+  --max-width: clamp(1px, 1440px, 92vw);
+  /* ---------------Dark-Mode--------------- */
+  --bg-body: #212529;
   --text-black: black;
   --bg-dark: #3a4146;
   --clr-white: #f6f9ff;
   --sub-heading: #ddd;
   --nav-footer: #1e2125;
   --clr-border: black;
-
+  --showcase: var(--bg-dark);
+  /* ---------------Box-Shadows--------------- */
   --box-shadow-1: var(--dark-1);
   --box-shadow-2: var(--dark-2);
   --box-shadow-3: var(--dark-3);
@@ -23,15 +26,16 @@
 }
 
 .lightmode {
-  background-color: #fafafa;
-
+  /* ---------------Light-Mode--------------- */
+  --bg-body: #fafafa;
   --text-black: white;
   --bg-dark: white;
   --clr-white: black;
   --sub-heading: #3c3c3c;
   --nav-footer: #f5f5f5;
   --clr-border: #e3e3e3;
-
+  --showcase: #eee;
+  /* ---------------Box-Shadows--------------- */
   --box-shadow-1: var(--light-1);
   --box-shadow-2: var(--light-2);
   --box-shadow-3: var(--light-3);
@@ -52,7 +56,7 @@ body {
   font-family: var(--primary-font);
   letter-spacing: 0.25px;
   color: var(--clr-white);
-  background-color: #212529;
+  background-color: var(--bg-body);
   overflow-y: scroll;
   position: relative;
   min-height: 100%;

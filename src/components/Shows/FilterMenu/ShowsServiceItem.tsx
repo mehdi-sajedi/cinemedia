@@ -1,6 +1,6 @@
 import styles from './ShowsServiceItem.module.scss';
-import { imageBase } from '../../../data/imagePaths';
 import { ShowFilterData } from '../../../features/shows/showTypes';
+import { imageBase } from '../../../data/imagePaths';
 
 interface ShowsServiceItemProps {
   formData: ShowFilterData;
@@ -40,9 +40,7 @@ const ShowsServiceItem = ({
       <button
         type='button'
         onClick={toggleService}
-        className={` ${
-          state.length > 0 && !state.includes(id) ? styles.fade : ''
-        }`}
+        className={state.length > 0 && !state.includes(id) ? styles.fade : ''}
         aria-pressed={state.includes(id)}
         aria-label={name}
       >

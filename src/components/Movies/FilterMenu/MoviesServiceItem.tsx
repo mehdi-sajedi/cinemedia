@@ -40,9 +40,7 @@ const MoviesServiceItem = ({
       <button
         type='button'
         onClick={toggleService}
-        className={` ${
-          state.length > 0 && !state.includes(id) ? styles.fade : ''
-        }`}
+        className={state.length > 0 && !state.includes(id) ? styles.fade : ''}
         aria-pressed={state.includes(id)}
         aria-label={name}
       >
