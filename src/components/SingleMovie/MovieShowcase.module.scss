@@ -1,9 +1,11 @@
 @import '../../include-media.scss';
 
+$tablet: '<=880px';
+
 .main {
   margin: 3rem 0;
 
-  @include media('<=880px') {
+  @include media($tablet) {
     margin: 2rem 0;
   }
 
@@ -12,7 +14,7 @@
     position: relative;
     background-color: rgba(0, 0, 0, 0.77);
 
-    @include media('<tablet') {
+    @include media($tablet) {
       height: fit-content;
     }
 
@@ -44,14 +46,14 @@
       position: relative;
       height: 100%;
 
-      @include media('<tablet') {
+      @include media($tablet) {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
       }
 
       .textContent {
-        @include media('<tablet') {
+        @include media($tablet) {
           display: flex;
           flex-direction: column;
           padding: 2rem 0 3rem;
@@ -62,7 +64,7 @@
           align-items: center;
           flex-wrap: wrap;
 
-          @include media('<tablet') {
+          @include media($tablet) {
             justify-content: center;
             text-align: center;
             max-width: 95vw;
@@ -72,7 +74,7 @@
           h1 {
             margin-bottom: 5px;
 
-            @include media('<tablet') {
+            @include media($tablet) {
               font-size: 26px;
             }
 
@@ -82,7 +84,7 @@
               font-weight: 400;
               letter-spacing: 2px;
 
-              @include media('<tablet') {
+              @include media($tablet) {
                 display: inline-block;
                 font-size: 22px;
               }
@@ -95,7 +97,7 @@
           font-style: italic;
           margin-bottom: 12px;
 
-          @include media('<tablet') {
+          @include media($tablet) {
             text-align: center;
             margin-bottom: 0;
             max-width: 95vw;
@@ -117,7 +119,7 @@
             align-items: flex-start;
           }
 
-          @include media('<tablet') {
+          @include media($tablet) {
             align-items: center;
             margin-top: 5px;
           }
@@ -127,7 +129,7 @@
             align-items: center;
             font-size: 15px;
 
-            @include media('<tablet') {
+            @include media($tablet) {
               margin: 1rem 0;
             }
 
@@ -184,20 +186,20 @@
             padding-right: 1rem;
           }
 
-          @include media('<tablet') {
+          @include media($tablet) {
             max-height: fit-content;
             text-align: center;
-            max-width: 92vw;
             margin: 0 auto;
             padding-right: 0;
             line-height: 1.5;
             margin: 10px auto 3rem auto;
+            max-width: 75ch;
           }
 
           h3 {
             margin-bottom: 8px;
 
-            @include media('<tablet') {
+            @include media($tablet) {
               margin-bottom: 5px;
             }
           }
@@ -212,7 +214,7 @@
             margin-top: 1rem;
           }
 
-          @include media('<tablet') {
+          @include media($tablet) {
             text-align: center;
             justify-content: center;
             max-width: 95vw;
@@ -231,7 +233,7 @@
           column-gap: 2rem;
           margin-top: 2rem;
 
-          @include media('<tablet') {
+          @include media($tablet) {
             margin-top: 0;
             flex-direction: column;
             row-gap: 3rem;
@@ -266,7 +268,7 @@
             &.viewGallery {
               display: none;
 
-              @include media('<tablet') {
+              @include media($tablet) {
                 display: flex;
               }
 
@@ -288,19 +290,19 @@
       width: 300px;
       display: flex;
       align-items: flex-start;
-      border-radius: 5px;
+      border-radius: 3px;
       position: relative;
       transition: background-color 0.3s ease;
       font-size: 20px;
       cursor: default;
 
-      @include media('<tablet') {
+      @include media($tablet) {
         display: none;
       }
 
       .poster {
         transition: opacity 0.3s ease;
-        border-radius: 5px;
+        border-radius: 3px;
       }
 
       .posterText {
