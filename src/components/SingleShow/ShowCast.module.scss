@@ -3,7 +3,7 @@
 .cast {
   width: calc(100% - 260px);
 
-  @include media('<=880px') {
+  @include media('<880px') {
     width: 100%;
     margin-bottom: 2rem;
   }

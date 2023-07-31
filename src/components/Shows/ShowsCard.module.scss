@@ -27,7 +27,7 @@
     flex-direction: column;
     position: relative;
 
-    @include media('<=phone') {
+    @include media('<phone') {
       padding: 28px 13px 18px;
     }
 
@@ -35,7 +35,7 @@
       font-weight: 600;
       font-size: 16px;
 
-      @include media('<=phone') {
+      @include media('<phone') {
         font-size: 14px;
       }
     }
@@ -45,7 +45,7 @@
       margin-top: 5px;
       color: var(--sub-heading);
 
-      @include media('<=phone') {
+      @include media('<phone') {
         font-size: 12px;
       }
     }
@@ -64,7 +64,7 @@
       font-size: 12px;
       color: var(--perm-white);
 
-      @include media('<=phone') {
+      @include media('<phone') {
         left: 6px;
       }
 

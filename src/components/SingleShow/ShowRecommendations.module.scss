@@ -19,11 +19,11 @@
     margin-bottom: 1.5rem;
     padding: 1px 1px 1rem;
 
-    @include media('<=1200px') {
+    @include media('<1200px') {
       grid-template-columns: repeat(3, 1fr);
     }
 
-    @include media('<=phone') {
+    @include media('<phone') {
       grid-template-columns: repeat(2, 1fr);
     }
   }

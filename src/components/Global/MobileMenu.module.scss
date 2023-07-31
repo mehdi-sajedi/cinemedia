@@ -77,7 +77,7 @@ $transition-duration: 400ms;
       padding-top: 20px;
       transition: all $transition-duration;
 
-      @include media('<=500px') {
+      @include media('<500px') {
         width: clamp(160px, 50vw, 100%);
         transform: translateX(clamp(160px, 50vw, 100%));
       }
