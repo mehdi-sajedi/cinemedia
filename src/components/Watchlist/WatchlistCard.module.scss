@@ -5,30 +5,35 @@
   color: var(--clr-white);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  border-radius: 5px;
+  border-radius: 3px;
   box-shadow: var(--box-shadow-4);
   overflow: hidden;
 
+  img {
+    display: flex;
+  }
+
   .imageWrapper {
-    overflow: hidden;
+    position: relative;
+    padding-top: 150%;
 
     img {
-      transition: all 0.4s ease;
-      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   }
 
   .details {
-    padding: 25px 20px 20px;
+    padding: 28px 20px 20px;
     min-height: 100px;
     display: flex;
     flex-direction: column;
     position: relative;
+    height: 100%;
 
     @include media('<phone') {
-      padding: 13px;
-      padding: 25px 13px 13px;
+      padding: 28px 13px 18px;
     }
 
     .name {
@@ -36,18 +41,17 @@
       font-size: 16px;
 
       @include media('<tablet') {
-        font-size: 15px;
+        font-size: 14px;
       }
     }
 
     .release {
-      font-size: 14px;
       font-size: 13px;
       margin-top: 5px;
       color: var(--sub-heading);
 
       @include media('<phone') {
-        font-size: 13px;
+        font-size: 12px;
       }
     }
 
@@ -70,7 +74,7 @@
       }
 
       p {
-        letter-spacing: 0px;
+        letter-spacing: 0;
       }
 
       .percentSymbol {

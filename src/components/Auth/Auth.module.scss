@@ -1,3 +1,5 @@
+@import '../../include-media.scss';
+
 .auth {
   max-width: var(--max-width);
   margin: 5rem auto;
@@ -5,7 +7,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 235px);
+  height: calc(100vh - 310px);
+  height: calc(100svh - 310px);
+
+  @include media('<desktop') {
+    height: calc(100vh - 305px);
+    height: calc(100svh - 305px);
+  }
 
   h1 {
     margin-bottom: 2rem;
