@@ -10,11 +10,10 @@
   .showcase {
     height: 600px;
     position: relative;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.77);
 
     @include media('<tablet') {
       height: fit-content;
-      background-color: rgba(0, 0, 0, 0.75);
     }
 
     &.noBackdrop {
@@ -177,6 +176,8 @@
           padding-right: 3rem;
           font-size: 15px;
           letter-spacing: 0;
+          line-height: 1.4;
+          max-width: 88ch;
 
           @include media('<desktop') {
             max-height: 150px;

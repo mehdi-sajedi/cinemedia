@@ -21,22 +21,22 @@
   }
 
   .details {
-    padding: 30px 20px 20px;
+    padding: 28px 20px 20px;
     min-height: 100px;
     display: flex;
     flex-direction: column;
     position: relative;
 
     @include media('<=phone') {
-      padding: 30px 13px 13px;
+      padding: 28px 13px 18px;
     }
 
     .title {
       font-weight: 600;
       font-size: 16px;
 
-      @include media('<tablet') {
-        font-size: 15px;
+      @include media('<=phone') {
+        font-size: 14px;
       }
     }
 
@@ -46,7 +46,7 @@
       color: var(--sub-heading);
 
       @include media('<=phone') {
-        font-size: 13px;
+        font-size: 12px;
       }
     }
 
