@@ -1,0 +1,31 @@
+@import './box-shadows.scss';
+
+:root {
+  /* ---------------Globals--------------- */
+  --primary-font: 'Montserrat', sans-serif;
+  --clr-primary: #17b28e;
+  --perm-white: white;
+  --perm-black: black;
+  --max-width: clamp(1px, 1440px, 92vw);
+  /* ---------------Dark-Mode--------------- */
+  --bg-body: #212529;
+  --text-black: black;
+  --bg-dark: #3a4146;
+  --clr-white: #f6f9ff;
+  --sub-heading: #ddd;
+  --nav-footer: #1e2125;
+  --clr-border: black;
+  --showcase: var(--bg-dark);
+}
+
+.lightmode {
+  /* ---------------Light-Mode--------------- */
+  --bg-body: #fafafa;
+  --text-black: white;
+  --bg-dark: white;
+  --clr-white: black;
+  --sub-heading: #3c3c3c;
+  --nav-footer: #f5f5f5;
+  --clr-border: #e3e3e3;
+  --showcase: #eee;
+}
