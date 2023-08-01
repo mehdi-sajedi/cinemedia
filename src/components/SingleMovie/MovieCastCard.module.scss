@@ -2,7 +2,7 @@
 
 .card {
   width: 138px;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-card);
   border-radius: 3px;
   box-shadow: var(--box-shadow-3);
   border: 1px solid var(--clr-border);
@@ -22,7 +22,7 @@
 
     p {
       margin-top: 5px;
-      color: var(--sub-heading);
+      color: var(--secondary-text);
       font-size: 13px;
     }
   }

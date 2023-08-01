@@ -5,7 +5,7 @@
   grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
   gap: 2rem;
   background-color: inherit;
-  color: var(--clr-white);
+  color: var(--primary-text);
   width: 100%;
 
   @include media('<desktop') {

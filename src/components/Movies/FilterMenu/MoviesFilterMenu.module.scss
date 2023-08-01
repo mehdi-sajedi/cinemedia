@@ -72,19 +72,23 @@
     }
 
     .btn {
+      font-size: 17px;
+      font-weight: 500;
       padding: 15px;
-      cursor: pointer;
-      border-radius: 2px;
+      border-radius: 3px;
       border: none;
-      outline: none;
-      color: black;
-      font-size: 16px;
-      letter-spacing: 0.5px;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+      text-align: left;
+      cursor: pointer;
+      box-shadow: 0 0 4px -1px rgba(0, 0, 0, 0.5);
 
-      &:active {
-        transform: scale(0.97);
+      &.submit {
+        background-color: var(--clr-primary);
+        color: var(--alternate-text);
+      }
+
+      &.reset {
+        background-color: rgb(242, 242, 242);
+        color: var(--perm-black);
       }
 
       .content {
@@ -98,15 +102,8 @@
         }
       }
 
-      &.submit {
-        position: relative;
-        background-color: var(--clr-primary);
-        color: var(--text-black);
-      }
-
-      &.reset {
-        background-color: rgb(235, 235, 235);
-        text-align: left;
+      &:active {
+        transform: scale(0.97);
       }
     }
   }

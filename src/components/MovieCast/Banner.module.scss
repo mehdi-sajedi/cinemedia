@@ -1,5 +1,5 @@
 .bannerContainer {
-  background-color: var(--bg-dark);
+  background-color: var(--bg-card);
 
   .banner {
     max-width: var(--max-width);
@@ -30,7 +30,7 @@
         display: flex;
         align-items: center;
         font-size: 14px;
-        color: var(--sub-heading);
+        color: var(--secondary-text);
 
         svg {
           font-size: 30px;

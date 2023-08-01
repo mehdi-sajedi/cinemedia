@@ -9,22 +9,22 @@
   --max-width: clamp(1px, 1440px, 92vw);
   /* ---------------Dark-Mode--------------- */
   --bg-body: #212529;
-  --text-black: black;
-  --bg-dark: #3a4146;
-  --clr-white: #f6f9ff;
-  --sub-heading: #ddd;
+  --bg-card: #3a4146;
+  --primary-text: #f6f9ff;
+  --secondary-text: #ddd;
+  --alternate-text: black;
   --nav-footer: #1e2125;
   --clr-border: black;
-  --showcase: var(--bg-dark);
+  --showcase: var(--bg-card);
 }
 
 .lightmode {
   /* ---------------Light-Mode--------------- */
   --bg-body: #fafafa;
-  --text-black: white;
-  --bg-dark: white;
-  --clr-white: black;
-  --sub-heading: #3c3c3c;
+  --bg-card: white;
+  --primary-text: black;
+  --secondary-text: #3c3c3c;
+  --alternate-text: #f6f9ff;
   --nav-footer: #f5f5f5;
   --clr-border: #e3e3e3;
   --showcase: #eee;

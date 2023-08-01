@@ -48,7 +48,7 @@
       font-size: 16px;
       cursor: pointer;
       background-color: var(--clr-primary);
-      color: var(--text-black);
+      color: var(--alternate-text);
       border: none;
       border-radius: 5px;
       box-shadow: 0 0 20px -1px rgba(13, 13, 13, 0.2);
@@ -65,7 +65,7 @@
   .toggle {
     font-size: 13px;
     margin-top: 1.5rem;
-    color: var(--clr-white);
+    color: var(--primary-text);
 
     &:hover {
       text-decoration: underline;

@@ -1,8 +1,8 @@
 @import '../../include-media.scss';
 
 .card {
-  background-color: var(--bg-dark);
-  color: var(--clr-white);
+  background-color: var(--bg-card);
+  color: var(--primary-text);
   display: flex;
   flex-direction: column;
   border-radius: 3px;
@@ -48,7 +48,7 @@
     .release {
       font-size: 13px;
       margin-top: 5px;
-      color: var(--sub-heading);
+      color: var(--secondary-text);
 
       @include media('<phone') {
         font-size: 12px;
@@ -86,7 +86,7 @@
     .delete {
       background-color: transparent;
       border: none;
-      color: var(--clr-white);
+      color: var(--primary-text);
       font-size: 13px;
       cursor: pointer;
       padding: 5px;
