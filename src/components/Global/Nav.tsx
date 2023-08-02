@@ -81,7 +81,6 @@ const Nav = () => {
               People
             </Link>
           </div>
-          <MobileMenuBtn menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <form onSubmit={onSubmit}>
             <div className={styles.search}>
               <i className={styles.magnify}>
@@ -105,6 +104,7 @@ const Nav = () => {
               )}
             </div>
           </form>
+          <MobileMenuBtn menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <div className={styles.watchlistAndAuth}>
             <button onClick={toggleLight} className={styles.theme}>
               {lightmode ? <IoMoon /> : <IoSunny />}

@@ -1,11 +1,12 @@
 @import '../../include-media.scss';
 
 .nav {
-  padding: 15px;
+  position: relative;
+  display: flex;
+  height: var(--nav-height);
   background-color: var(--nav-footer);
   color: var(--primary-text);
   box-shadow: var(--box-shadow-1);
-  position: relative;
 
   @include media('<desktop') {
     position: sticky;
@@ -30,12 +31,13 @@
 }
 
 .navContent {
+  max-width: var(--max-width);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: var(--max-width);
   margin: 0 auto;
   position: relative;
+  width: 100%;
 
   .logo {
     width: 30px;
@@ -84,6 +86,7 @@
     @include media('<desktop') {
       display: flex;
       justify-content: flex-end;
+      width: clamp(240px, 40vw, 340px);
     }
 
     input {

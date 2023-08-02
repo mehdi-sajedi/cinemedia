@@ -1,5 +1,7 @@
+@import '../../include-media.scss';
+
 .footer {
-  height: 75px;
+  height: var(--footer-height);
   background-color: var(--nav-footer);
   box-shadow: var(--box-shadow-1);
 

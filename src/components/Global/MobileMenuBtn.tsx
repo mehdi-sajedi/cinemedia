@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './MobileMenuBtn.module.scss';
+import { HiOutlineMenu } from 'react-icons/hi';
 
 interface MobileMenuBtnProps {
   menuOpen: boolean;
@@ -12,16 +13,14 @@ const MobileMenuBtn = ({ menuOpen, setMenuOpen }: MobileMenuBtnProps) => {
   };
 
   return (
-    <div className={styles.button}>
-      <input
-        onClick={toggleMenu}
-        type="checkbox"
-        className={`${menuOpen ? styles.active : ''}`}
-      />
-      <div className={styles.hamburger}>
-        <div></div>
-      </div>
-    </div>
+    <button
+      className={styles.btn}
+      onClick={toggleMenu}
+      aria-pressed={menuOpen}
+      aria-label='Mobile menu'
+    >
+      <HiOutlineMenu />
+    </button>
   );
 };
 

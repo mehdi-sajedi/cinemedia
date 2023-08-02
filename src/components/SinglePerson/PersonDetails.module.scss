@@ -7,11 +7,12 @@ $breakpoint: '<1024px';
   column-gap: clamp(1px, 5vw, 3.5rem);
   max-width: var(--max-width);
   margin: 3rem auto;
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - var(--nav-height) - var(--footer-height) - 6rem);
 
   @include media($breakpoint) {
     flex-direction: column;
     margin: 2rem auto;
+    min-height: calc(100vh - var(--nav-height) - var(--footer-height) - 4rem);
   }
 
   .column1 {

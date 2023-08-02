@@ -1,96 +1,17 @@
 @import '../../include-media.scss';
 
-.button {
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  transform: translate(-46px, -9px);
-  right: 0;
+.btn {
+  display: flex;
+  font-size: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 
   @include media('>=desktop') {
     display: none;
   }
 
-  input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    cursor: pointer;
-    width: 50px;
-    height: 50px;
-    opacity: 0;
-
-    // &.active {
-    //   + .hamburger > div {
-    //     transform: rotate(135deg);
-    //   }
-
-    //   + .hamburger > div:before,
-    //   + .hamburger > div:after {
-    //     top: 0;
-    //     transform: rotate(90deg);
-    //   }
-
-    //   /* Rotate On Hover When Checked */
-    //   &:hover + .hamburger > div {
-    //     transform: rotate(225deg);
-    //   }
-    // }
-
-    /* Show Menu */
-    // &:checked ~ .menu {
-    //   visibility: visible;
-    // }
-
-    // &:checked ~ .menu > div {
-    //   transform: scale(1);
-    //   transform: scale(1.5);
-    //   transition-duration: 0.75s;
-    // }
-
-    // &:checked ~ .menu > div > div {
-    //   opacity: 1;
-    //   transition: opacity 0.4s cubic-bezier(0.69, 0.1, 0.73, 0.26) 0.1s;
-    //   line-height: 1.6;
-    // }
-  }
-
-  .hamburger {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 60px;
-    height: 60px;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    > div {
-      position: relative;
-      flex: none;
-      width: 100%;
-      height: 2px;
-      background-color: var(--primary-text);
-      transition: transform 0.4s ease;
-
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        z-index: 1;
-        top: -10px;
-        width: 100%;
-        height: 2px;
-        background-color: inherit;
-        /* Practical use of inherit. Grabs the same color as the parent element */
-      }
-
-      &:after {
-        top: 10px;
-      }
-    }
+  svg {
+    color: var(--primary-text);
   }
 }
