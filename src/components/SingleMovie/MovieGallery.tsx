@@ -28,6 +28,9 @@ const MovieGallery = ({ setViewGallery }: MovieGalleryProps) => {
     return {
       original: `${imageBase}w780${entry.file_path}`,
       thumbnail: `${imageBase}w780${entry.file_path}`,
+      originalWidth: 780,
+      originalHeight: 439,
+      sizes: '(max-width: 780px) 780px, (max-width: 1280px) 1280px',
       srcSet: sizes
         .map(
           (size, idx) =>
@@ -38,6 +41,8 @@ const MovieGallery = ({ setViewGallery }: MovieGalleryProps) => {
         .join(', '),
       loading: 'lazy',
       thumbnailLoading: 'lazy',
+      originalAlt: '',
+      thumbnailAlt: '',
     } as ReactImageGalleryItem;
   })!;
 

@@ -12,23 +12,11 @@ interface ShowCastCardProps {
   }[];
 }
 
-const ShowCastCard = ({
-  name,
-  profile_path: image,
-  id,
-  roles,
-}: ShowCastCardProps) => {
-  const sizes = ['w92', 'w342'];
-
-  const imagePaths = [
-    `${imageBase}${sizes[0]}${image} ${sizes[0].slice(1) + 'w'}`,
-    `${imageBase}${sizes[1]}${image} ${sizes[1].slice(1) + 'w'}`,
-  ];
-
+const ShowCastCard = ({ name, profile_path, id, roles }: ShowCastCardProps) => {
   return (
     <li className={styles.card}>
       <Link to={`/person/${id}`}>
-        <img srcSet={imagePaths.join(`, `)} alt="" />
+        <img src={`${imageBase}w342${profile_path}`} alt='' />
       </Link>
       <div className={styles.text}>
         <h5 className={styles.actor}>{name}</h5>

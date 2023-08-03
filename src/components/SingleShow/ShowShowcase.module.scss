@@ -2,7 +2,7 @@
 
 $tablet: '<880px';
 
-.main {
+.section {
   margin: 3rem 0;
 
   @include media($tablet) {
@@ -72,6 +72,7 @@ $tablet: '<880px';
           }
 
           h1 {
+            font-size: 32px;
             margin-bottom: 5px;
 
             @include media($tablet) {
@@ -291,17 +292,19 @@ $tablet: '<880px';
       align-items: flex-start;
       border-radius: 3px;
       position: relative;
-      transition: background-color 0.3s ease;
       font-size: 20px;
-      cursor: default;
+      border: none;
+      overflow: hidden;
+      background-color: black;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
 
       @include media($tablet) {
         display: none;
       }
 
-      .poster {
-        transition: opacity 300ms ease;
-        border-radius: 3px;
+      .posterImage {
+        transition: opacity 0.3s ease;
       }
 
       .posterText {
@@ -311,13 +314,15 @@ $tablet: '<880px';
         position: absolute;
         top: 0;
         left: 0;
+        transition: opacity 0.3s ease;
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: opacity 300ms ease;
+        color: var(--perm-white);
 
         .icon {
           font-size: 25px;
+          display: flex;
         }
 
         span {
@@ -325,19 +330,21 @@ $tablet: '<880px';
         }
       }
 
-      &.posterHover {
-        cursor: pointer;
-        background-color: black;
-
-        &:hover {
-          .poster {
-            opacity: 0.25;
-          }
-
-          .posterText {
-            opacity: 1;
-          }
+      &:hover {
+        .posterImage {
+          opacity: 0.25;
         }
+        .posterText {
+          opacity: 1;
+        }
+      }
+    }
+    .posterImage.noGallery {
+      width: 300px;
+      border-radius: 3px;
+
+      @include media($tablet) {
+        display: none;
       }
     }
   }

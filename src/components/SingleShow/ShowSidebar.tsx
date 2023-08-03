@@ -36,7 +36,7 @@ const ShowSidebar = () => {
   ];
 
   return (
-    <aside className={styles.sidebar}>
+    <div className={styles.sidebar}>
       <ul className={styles.socials}>
         {socials.map(
           (social) =>
@@ -86,7 +86,7 @@ const ShowSidebar = () => {
           )}
         </div>
       </div>
-    </aside>
+    </div>
   );
 };
 

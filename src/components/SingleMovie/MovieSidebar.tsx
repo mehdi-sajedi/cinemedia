@@ -35,7 +35,7 @@ const MovieSidebar = () => {
   ];
 
   return (
-    <aside className={styles.sidebar}>
+    <div className={styles.sidebar}>
       <ul className={styles.socials}>
         {socials.map(
           (social) =>
@@ -79,7 +79,7 @@ const MovieSidebar = () => {
           </div>
         )}
       </div>
-    </aside>
+    </div>
   );
 };
 

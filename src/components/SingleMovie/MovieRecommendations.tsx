@@ -7,7 +7,7 @@ const MovieRecommendations = () => {
   let backdropCount = 1;
 
   return (
-    <div className={styles.recommendations}>
+    <section className={styles.recommendations}>
       <h2 className={styles.heading}>Recommendations</h2>
       <ul className={styles.recommendationsGrid}>
         {movie?.recommendations?.results.map((entry) => {
@@ -23,7 +23,7 @@ const MovieRecommendations = () => {
           );
         })}
       </ul>
-    </div>
+    </section>
   );
 };
 

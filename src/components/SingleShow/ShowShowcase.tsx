@@ -98,7 +98,7 @@ const ShowShowcase = () => {
   };
 
   return (
-    <main className={styles.main}>
+    <section className={styles.section}>
       <div
         className={`${styles.showcase} ${
           !show?.backdrop_path ? styles.noBackdrop : ''
@@ -111,22 +111,30 @@ const ShowShowcase = () => {
           }}
         ></div>
         <div className={styles.content}>
-          <div
-            className={`${styles.posterWrap} ${
-              hasImages ? styles.posterHover : ''
-            }`}
-            onClick={handleViewGallery}
-          >
+        {hasImages ? (
+            <button
+              className={`${styles.posterWrap} ${styles.hasImages}`}
+              onClick={handleViewGallery}
+            >
+              <img
+                className={styles.posterImage}
+                src={`${imageBase}w780${show?.poster_path}`}
+                alt=''
+              />
+              <p className={styles.posterText}>
+                <i>
+                  <HiOutlineArrowsExpand className={styles.icon} />
+                </i>
+                <span>View Gallery</span>
+              </p>
+            </button>
+          ) : (
             <img
-              className={styles.poster}
+              className={`${styles.posterImage} ${styles.noGallery}`}
               src={`${imageBase}w780${show?.poster_path}`}
               alt=''
             />
-            <div className={styles.posterText}>
-              <HiOutlineArrowsExpand className={styles.icon} />
-              <span>View Gallery</span>
-            </div>
-          </div>
+          )}
           <div className={styles.textContent}>
             <div className={styles.heading}>
               <h1>
@@ -241,7 +249,7 @@ const ShowShowcase = () => {
         <ShowTrailer trailer={trailer} setViewTrailer={setViewTrailer} />
       )}
       {viewGallery && <ShowGallery setViewGallery={setViewGallery} />}
-    </main>
+    </section>
   );
 };
 

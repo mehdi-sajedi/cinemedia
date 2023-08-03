@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
+import styles from './NoRoute.module.scss';
 
 const NoRoute = () => {
   return (
-    <main style={{ padding: '1rem' }}>
+    <div className={styles.noRoute}>
       <p>There's nothing here!</p>
-      <Link to="/movies">Back to home</Link>
-    </main>
+      <Link to='/movies'>Back to home</Link>
+    </div>
   );
 };
 
