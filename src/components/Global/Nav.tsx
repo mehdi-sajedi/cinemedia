@@ -61,26 +61,32 @@ const Nav = () => {
     <>
       <nav className={styles.nav}>
         <div className={styles.navContent}>
-          <div className={styles.links}>
-            <Link
-              to='/movies'
-              className={`${pathname === '/movies' ? styles.active : ''}`}
-            >
-              Movies
-            </Link>
-            <Link
-              to='/shows'
-              className={`${pathname === '/shows' ? styles.active : ''}`}
-            >
-              Shows
-            </Link>
-            <Link
-              to='/person'
-              className={`${pathname === '/person' ? styles.active : ''}`}
-            >
-              People
-            </Link>
-          </div>
+          <ul className={styles.links}>
+            <li>
+              <Link
+                to='/movies'
+                className={`${pathname === '/movies' ? styles.active : ''}`}
+              >
+                Movies
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/shows'
+                className={`${pathname === '/shows' ? styles.active : ''}`}
+              >
+                Shows
+              </Link>
+            </li>
+            <li>
+              <Link
+                to='/person'
+                className={`${pathname === '/person' ? styles.active : ''}`}
+              >
+                People
+              </Link>
+            </li>
+          </ul>
           <form onSubmit={onSubmit}>
             <div className={styles.search}>
               <i className={styles.magnify}>

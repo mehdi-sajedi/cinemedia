@@ -39,25 +39,25 @@
   position: relative;
   width: 100%;
 
-  .logo {
-    width: 30px;
-  }
-
   .links {
     display: flex;
     align-items: center;
     flex-grow: 1;
     flex-basis: 0;
 
-    a {
-      border-bottom: 2px solid transparent;
-      transition: opacity 0.3s ease;
+    li {
       font-size: 18px;
-      padding: 10px 0;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
 
       &:not(:last-of-type) {
         margin-right: 30px;
       }
+    }
+
+    a {
+      transition: opacity 0.3s ease;
+      padding: 10px 0;
 
       &:hover {
         opacity: 0.75;
