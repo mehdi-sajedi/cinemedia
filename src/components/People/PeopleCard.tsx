@@ -20,7 +20,7 @@ const PeopleCard = ({ profile_path, name, id, known_for }: PeopleCardProps) => {
         <img src={`${imageBase}w500${profile_path}`} loading="lazy" alt="" />
       </Link>
       <div className={styles.details}>
-        <p className={styles.name}>{name}</p>
+        <h3 className={styles.name}>{name}</h3>
         <ul>
           {known_for.map((m) => (
             <li key={`${name}${m.id}`}>{m.title || m.name}</li>

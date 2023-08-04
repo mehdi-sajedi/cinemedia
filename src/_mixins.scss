@@ -1,0 +1,37 @@
+@import './variables';
+
+@mixin scrollbars(
+  $size: 10px,
+  $foreground-color: var(--scrollbar-thumb),
+  $background-color: var(--bg-card)
+) {
+  // For Chrome & Safari
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+    background: $background-color;
+    border-radius: 100px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+    border-radius: 100px;
+    height: calc($size -2px);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: lighten(#757575, 10%);
+    }
+  }
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+    border-radius: 100px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  }
+
+  // Standard version (Firefox only for now)
+  scrollbar-color: $foreground-color $background-color;
+
+  &:hover {
+    scrollbar-color: lighten(#757575, 10%) $background-color;
+  }
+}

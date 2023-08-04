@@ -1,4 +1,4 @@
-@import '../../include-media.scss';
+@import '../../include-media';
 
 @mixin delayTransition {
   @for $i from 1 through 6 {

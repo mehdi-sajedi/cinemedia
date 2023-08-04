@@ -107,9 +107,9 @@ const ShowsFilterMenu = () => {
               className={`${styles.submit} ${styles.btn} submit`}
               typeof='submit'
             >
-              <div className={styles.content}>
+              <span className={styles.content}>
                 Apply <HiOutlineArrowNarrowRight />
-              </div>
+              </span>
             </button>
             <button
               className={`${styles.reset} ${styles.btn}`}
