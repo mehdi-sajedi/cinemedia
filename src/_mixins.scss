@@ -1,38 +1,52 @@
 @import './variables';
 
 @mixin scrollbars(
-  $size: 10px,
-  $foreground-color: var(--scrollbar-thumb),
-  $background-color: var(--bg-card)
+  $bg-color: var(--bg-card),
+  $fg-color: var(--scrollbar-thumb)
 ) {
   // For Chrome & Safari
   &::-webkit-scrollbar {
-    width: $size;
-    height: $size;
-    background: $background-color;
-    border-radius: 100px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: $foreground-color;
-    border-radius: 100px;
-    height: calc($size -2px);
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    background-color: $bg-color;
 
-    &:hover {
-      background: lighten(#757575, 10%);
+    @if $bg-color == transparent {
+      width: 14px;
     }
   }
   &::-webkit-scrollbar-track {
-    background: $background-color;
+    background-color: $bg-color;
     border-radius: 100px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $fg-color;
+    border-radius: 100px;
+    background-clip: padding-box;
+    border: 4px solid $bg-color;
+
+    &:hover {
+      // #757575 = $fg-color
+      background-color: lighten(#757575, 10%);
+    }
+
+    @if $bg-color == transparent {
+      &:hover {
+        background-color: $fg-color;
+      }
+    }
   }
 
-  // Standard version (Firefox only for now)
-  scrollbar-color: $foreground-color $background-color;
+  // For Firefox
+  scrollbar-color: $fg-color $bg-color;
 
   &:hover {
-    scrollbar-color: lighten(#757575, 10%) $background-color;
+    // #757575 = $fg-color
+    scrollbar-color: lighten(#757575, 10%) $bg-color;
+  }
+
+  @if $bg-color == transparent {
+    scrollbar-width: thin;
+    &:hover {
+      scrollbar-color: $fg-color $bg-color;
+    }
   }
 }
 

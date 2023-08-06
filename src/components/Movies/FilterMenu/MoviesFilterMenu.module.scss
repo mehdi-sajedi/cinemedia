@@ -1,4 +1,5 @@
 @import '../../../include-media';
+@import '../../../mixins';
 
 .menu {
   overflow-y: auto;
@@ -10,8 +11,7 @@
   top: 1rem;
   align-self: flex-start;
   height: 80vh;
-  scrollbar-width: thin;
-  scrollbar-color: #ccc transparent;
+  @include scrollbars(transparent);
 
   @include media('<800px') {
     width: 100%;
