@@ -8,6 +8,8 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 2;
+  opacity: 1;
+  animation: fadeIn 0.55s;
 }
 
 .trailer {
@@ -15,24 +17,22 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: clamp(1px, 1760px, 90vw);
-  height: clamp(1px, 990px, calc(90vw * 0.5625));
+  width: clamp(1px, 1760px, 88vw);
+  height: clamp(1px, 990px, calc(88vw * 0.5625));
   max-height: 92vh;
   max-width: calc(1.7778 * 92vh);
   background-color: black;
   border: 5px solid #ccc;
   box-shadow: 0 0 10px 10px black;
-  animation: popIn 0.55s;
 
   @include media('<phone') {
-    width: clamp(1px, 1760px, 82vw);
-    height: clamp(1px, 990px, calc(82vw * 0.5625));
+    width: clamp(1px, 1760px, 86vw);
+    height: clamp(1px, 990px, calc(86vw * 0.5625));
   }
 }
 
-@keyframes popIn {
+@keyframes fadeIn {
   from {
-    width: 0;
-    height: 0;
+    opacity: 0;
   }
 }

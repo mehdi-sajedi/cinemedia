@@ -6,6 +6,7 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.88);
   z-index: 2;
+  animation: fadeIn 0.55s;
 
   i {
     position: fixed;
@@ -34,5 +35,11 @@
     box-shadow: 0 0 10px 10px black;
     pointer-events: none;
     z-index: 1000;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
 }
