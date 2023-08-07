@@ -3,7 +3,7 @@
 @mixin delayTransition {
   @for $i from 1 through 6 {
     &:nth-child(#{$i}) {
-      transition-delay: #{240 + $i * 12}ms;
+      transition-delay: #{240 + $i * 42}ms;
     }
   }
 }
@@ -11,7 +11,7 @@
 @mixin transformTransition {
   @for $i from 1 through 6 {
     &:nth-child(#{$i}) {
-      transform: translateX(#{$i * 3}px);
+      transform: translateX(#{$i * 2}px);
     }
   }
 }
@@ -40,7 +40,7 @@ $transition-duration: 400ms;
     display: flex;
     justify-content: flex-end;
     z-index: 1;
-    transition: all $transition-duration;
+    transition: opacity $transition-duration, visibility $transition-duration;
     background-color: rgba(0, 0, 0, 0.88);
 
     &.active {
@@ -67,7 +67,7 @@ $transition-duration: 400ms;
     }
 
     .overlay {
-      background-color: #3a4146;
+      background-color: var(--bg-mobile-menu);
       height: 100vh;
       width: 220px;
       transform: translateX(220px);
@@ -75,7 +75,8 @@ $transition-duration: 400ms;
       flex-direction: column;
       align-items: center;
       padding-top: 20px;
-      transition: all $transition-duration;
+      transition: transform $transition-duration,
+        visibility $transition-duration;
 
       @include media('<500px') {
         width: clamp(160px, 50vw, 100%);
@@ -94,6 +95,7 @@ $transition-duration: 400ms;
 
         svg {
           font-size: 42px;
+          color: var(--primary-text);
         }
       }
 
@@ -109,8 +111,8 @@ $transition-duration: 400ms;
         .links {
           display: flex;
           flex-direction: column;
-          font-size: 18px;
-          row-gap: 10px;
+          font-size: 19px;
+          row-gap: 15px;
 
           .authLi {
             width: 0;
@@ -137,13 +139,13 @@ $transition-duration: 400ms;
 
         li {
           list-style: none;
-          color: var(--perm-white);
 
           a {
             text-decoration: none;
             color: inherit;
-            transition: all $transition-duration;
+            transition: opacity $transition-duration;
             padding: 15px 15px 15px 0;
+            color: var(--primary-text);
 
             &:hover {
               opacity: 0.5;
@@ -175,8 +177,8 @@ $transition-duration: 400ms;
           font-size: 36px;
           display: flex;
           cursor: pointer;
-          color: var(--perm-white);
           margin-top: 15px;
+          color: var(--primary-text);
         }
       }
     }
