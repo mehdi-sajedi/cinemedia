@@ -40,7 +40,7 @@ const WatchlistCard = ({
         <img src={`${imageBase}w500${poster}`} loading="lazy" alt="" />
       </Link>
       <div className={styles.details}>
-        <h3 className={styles.name}>{name}</h3>
+        <h2 className={styles.name}>{name}</h2>
         <p className={styles.release}>
           {formatDate(date?.replace(/-/g, '/'), 'short')}
         </p>

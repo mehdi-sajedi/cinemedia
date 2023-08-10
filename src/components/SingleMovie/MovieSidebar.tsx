@@ -56,7 +56,7 @@ const MovieSidebar = () => {
       {socials.some((s) => s.id) && <div className={styles.line}></div>}
       <div className={styles.info}>
         <div className={styles.status}>
-          <h4>Status</h4>
+          <h3>Status</h3>
           <p>
             {movie?.status}
             {movie?.status === 'Released' &&
@@ -68,13 +68,13 @@ const MovieSidebar = () => {
         </div>
         {movie?.budget! > 0 && (
           <div className={styles.budget}>
-            <h4>Budget</h4>
+            <h3>Budget</h3>
             <p>${Number(movie?.budget).toLocaleString()}</p>
           </div>
         )}
         {movie?.revenue! > 0 && (
           <div className={styles.revenue}>
-            <h4>Revenue</h4>
+            <h3>Revenue</h3>
             <p>${Number(movie?.revenue).toLocaleString()}</p>
           </div>
         )}

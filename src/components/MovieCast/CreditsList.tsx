@@ -10,7 +10,7 @@ interface CreditsListProps {
 const CreditsList = ({ credits, kind }: CreditsListProps) => {
   return (
     <div className={styles.listContainer}>
-      <h3 className={styles.listHeading}>{kind}</h3>
+      <h2 className={styles.listHeading}>{kind}</h2>
       <ul className={styles.list}>
         {credits?.map(
           (c) =>

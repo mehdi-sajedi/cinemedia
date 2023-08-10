@@ -113,7 +113,7 @@ $breakpoint: '<1024px';
 
         li {
           transition: opacity 0.3s ease;
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
 
           @include media($breakpoint) {
             margin-bottom: 1rem;
@@ -147,6 +147,7 @@ $breakpoint: '<1024px';
       }
 
       .personalInfo {
+        margin-top: 8px;
         display: flex;
         flex-direction: column;
 
@@ -156,14 +157,15 @@ $breakpoint: '<1024px';
 
         > * {
           &:not(:last-of-type) {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
 
             @include media($breakpoint) {
               margin-bottom: 1rem;
             }
           }
 
-          h4 {
+          h2 {
+            font-size: 17px;
             font-weight: 600;
             margin-bottom: 3px;
 
@@ -197,6 +199,7 @@ $breakpoint: '<1024px';
     }
 
     .bioHeading {
+      font-size: 17px;
       font-weight: 600;
       margin-bottom: 10px;
     }
@@ -220,6 +223,7 @@ $breakpoint: '<1024px';
       }
 
       .knownForHeading {
+        font-size: 17px;
         margin-bottom: 1rem;
         font-weight: 600;
       }

@@ -57,19 +57,19 @@ const ShowSidebar = () => {
       {socials.some((s) => s.id) && <div className={styles.line}></div>}
       <div className={styles.info}>
         <div className={styles.status}>
-          <h4>Status</h4>
+          <h3>Status</h3>
           <p>{show?.status}</p>
         </div>
         <div>
-          <h4>Seasons</h4>
+          <h3>Seasons</h3>
           <p>{show?.number_of_seasons}</p>
         </div>
         <div>
-          <h4>Episodes</h4>
+          <h3>Episodes</h3>
           <p>{show?.number_of_episodes}</p>
         </div>
         <div>
-          <h4>Last Air Date</h4>
+          <h3>Last Air Date</h3>
           {show?.last_air_date && (
             <p>{formatDate(show.last_air_date.replace(/-/g, '/'), 'short')}</p>
           )}
@@ -77,7 +77,7 @@ const ShowSidebar = () => {
         <div className={styles.network}>
           {show?.networks && show.networks.length > 0 && (
             <>
-              <h4>Network</h4>
+              <h3>Network</h3>
               <img
                 src={`${imageBase}original${show?.networks[0].logo_path}`}
                 alt=""

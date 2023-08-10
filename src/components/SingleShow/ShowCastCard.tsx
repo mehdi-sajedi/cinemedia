@@ -19,7 +19,7 @@ const ShowCastCard = ({ name, profile_path, id, roles }: ShowCastCardProps) => {
         <img src={`${imageBase}w342${profile_path}`} alt='' />
       </Link>
       <div className={styles.text}>
-        <h5 className={styles.actor}>{name}</h5>
+        <h3 className={styles.actor}>{name}</h3>
         <p>{roles[0].character}</p>
       </div>
     </li>

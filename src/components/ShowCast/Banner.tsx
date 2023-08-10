@@ -11,11 +11,11 @@ const Banner = () => {
   return (
     <div className={styles.bannerContainer}>
       <header className={styles.banner}>
-        <img src={`${imageBase}w342${show?.poster_path}`} alt="Poster" />
+        <img src={`${imageBase}w342${show?.poster_path}`} alt='Poster' />
         <div className={styles.showInfo}>
-          <h2>
+          <h1>
             {show?.name} <span> ({show?.first_air_date?.slice(0, 4)}) </span>
-          </h2>
+          </h1>
           <Link to={`/shows/${id}`}>
             <BsArrowLeftShort /> Back to main
           </Link>

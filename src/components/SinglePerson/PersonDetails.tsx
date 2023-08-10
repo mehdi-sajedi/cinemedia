@@ -108,25 +108,19 @@ const PersonDetails = () => {
                 )
             )}
           </ul>
-          {(person?.birthday ||
-            person?.deathday ||
-            person?.place_of_birth ||
-            person?.known_for_department) && (
-            <>
-              <h3 className={styles.personalInfoHeading}>Personal Info</h3>
-              <div className={`${styles.line} ${styles.linePersonal}`}></div>
-            </>
+          {socials.some((social) => social.id) && (
+            <div className={`${styles.line} ${styles.linePersonal}`}></div>
           )}
           <div className={styles.personalInfo}>
             {person?.known_for_department && (
               <div>
-                <h4>Known For</h4>
+                <h2>Known For</h2>
                 <p>{person?.known_for_department}</p>
               </div>
             )}
             {person?.birthday && (
               <div>
-                <h4>Birthday</h4>
+                <h2>Birthday</h2>
                 <p>
                   {formatDate(person?.birthday.replace(/-/g, '/'))}
                   {!person.deathday && (
@@ -140,7 +134,7 @@ const PersonDetails = () => {
             )}
             {person?.deathday && (
               <div>
-                <h4>Day of Death</h4>
+                <h2>Day of Death</h2>
                 <p>
                   {formatDate(person?.deathday.replace(/-/g, '/'))}
                   <span>
@@ -152,7 +146,7 @@ const PersonDetails = () => {
             )}
             {person?.place_of_birth && (
               <div>
-                <h4>Place of Birth</h4>
+                <h2>Place of Birth</h2>
                 <p>{person?.place_of_birth}</p>
               </div>
             )}
@@ -169,7 +163,7 @@ const PersonDetails = () => {
             <h1>{person?.name}</h1>
           </Link>
           <div className={`${styles.line} ${styles.lineBio}`}></div>
-          <h3 className={styles.bioHeading}>Biography</h3>
+          <h2 className={styles.bioHeading}>Biography</h2>
           <p className={styles.bio}>
             {person?.biography
               ? person.biography
@@ -177,7 +171,7 @@ const PersonDetails = () => {
           </p>
         </div>
         <div className={styles.knownFor}>
-          <h3 className={styles.knownForHeading}>Known For</h3>
+          <h2 className={styles.knownForHeading}>Known For</h2>
           <ul className={styles.knownForGrid}>
             {person?.credits.map((media) => {
               const route = media.media_type === 'movie' ? 'movies' : 'shows';
@@ -194,9 +188,9 @@ const PersonDetails = () => {
                     />
                   </Link>
                   <div className={styles.mediaInfo}>
-                    <h5 className={styles.title}>
+                    <h3 className={styles.title}>
                       {media.media_type === 'movie' ? media.title : media.name}
-                    </h5>
+                    </h3>
                     <p className={styles.year}>
                       {media.media_type === 'movie'
                         ? media.release_date?.slice(0, 4)

@@ -78,6 +78,7 @@ $tablet: '<880px';
 
             @include media($tablet) {
               font-size: 26px;
+              max-width: 88vw;
             }
 
             span {

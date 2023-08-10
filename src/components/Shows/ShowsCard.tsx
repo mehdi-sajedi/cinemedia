@@ -25,7 +25,7 @@ const ShowsCard = ({
         <img src={`${imageBase}w500${poster_path}`} loading="lazy" alt="" />
       </Link>
       <div className={styles.details}>
-        <h3 className={styles.name}>{name}</h3>
+        <h2 className={styles.name}>{name}</h2>
         <p className={styles.release}>
           {first_air_date
             ? formatDate(first_air_date.replace(/-/g, '/'), 'short')

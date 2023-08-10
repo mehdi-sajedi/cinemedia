@@ -19,7 +19,7 @@ const MovieRecommendationsCard = ({
         <img src={`${imageBase}w780${backdrop_path}`} loading="lazy" alt="" />
       </Link>
       <div className={styles.text}>
-        <h5>{title}</h5>
+        <h3>{title}</h3>
       </div>
     </li>
   );

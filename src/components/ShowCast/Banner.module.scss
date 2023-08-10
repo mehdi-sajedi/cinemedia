@@ -1,5 +1,4 @@
 .bannerContainer {
-  background-color: rgb(238, 238, 238);
   background-color: var(--bg-card);
 
   .banner {
@@ -21,6 +20,10 @@
       row-gap: 6px;
       height: 100%;
       margin-left: 2rem;
+
+      h1 {
+        font-size: 26px;
+      }
 
       span {
         font-weight: 400;

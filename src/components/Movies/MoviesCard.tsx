@@ -25,7 +25,7 @@ const MoviesCard = ({
         <img src={`${imageBase}w500${poster_path}`} loading="lazy" alt="" />
       </Link>
       <div className={styles.details}>
-        <h3 className={styles.title}>{title}</h3>
+        <h2 className={styles.title}>{title}</h2>
         <p className={styles.release}>
           {release_date
             ? formatDate(release_date.replace(/-/g, '/'), 'short')

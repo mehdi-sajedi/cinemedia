@@ -11,14 +11,11 @@ const Banner = () => {
   return (
     <div className={styles.bannerContainer}>
       <header className={styles.banner}>
-        <img
-          src={`${imageBase}w342${movie?.poster_path}`}
-          alt="Poster"
-        />
+        <img src={`${imageBase}w342${movie?.poster_path}`} alt='Poster' />
         <div className={styles.movieInfo}>
-          <h2>
+          <h1>
             {movie?.title} <span> ({movie?.release_date.slice(0, 4)}) </span>
-          </h2>
+          </h1>
           <Link to={`/movies/${id}`}>
             <BsArrowLeftShort /> Back to main
           </Link>
