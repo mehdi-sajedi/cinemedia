@@ -1,4 +1,5 @@
 @import '../../include-media';
+@import '../../mixins';
 
 $tablet: '<880px';
 
@@ -174,27 +175,12 @@ $tablet: '<880px';
         }
 
         .overview {
-          margin-bottom: 1rem;
-          overflow-y: auto;
-          padding-right: 3rem;
           font-size: 15px;
-          letter-spacing: 0;
-          line-height: 1.4;
-          max-width: 88ch;
-
-          @include media('<desktop') {
-            max-height: 150px;
-            padding-right: 1rem;
-          }
+          margin-bottom: 1rem;
 
           @include media($tablet) {
-            max-height: fit-content;
             text-align: center;
-            margin: 0 auto;
-            padding-right: 0;
-            line-height: 1.5;
             margin: 10px auto 3rem auto;
-            max-width: 75ch;
           }
 
           h3 {
@@ -202,6 +188,27 @@ $tablet: '<880px';
 
             @include media($tablet) {
               margin-bottom: 5px;
+            }
+          }
+
+          p {
+            max-width: 88ch;
+            padding-right: 2rem;
+            overflow-y: auto;
+            line-height: 1.4;
+            letter-spacing: 0;
+
+            @include media('<desktop') {
+              max-height: 150px;
+              padding-right: 1rem;
+              @include scrollbars(transparent);
+            }
+
+            @include media($tablet) {
+              max-height: fit-content;
+              max-width: 75ch;
+              padding-right: 0;
+              line-height: 1.5;
             }
           }
         }
