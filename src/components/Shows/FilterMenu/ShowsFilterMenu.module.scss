@@ -5,7 +5,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   width: 230px;
-  padding-left: 3px;
+  padding-left: 1px;
   padding-right: 1rem;
   position: sticky;
   top: 1rem;
@@ -46,7 +46,6 @@
     .watchProvidersList {
       width: 100%;
       display: grid;
-      gap: 12px;
       gap: 5px;
       grid-template-columns: repeat(4, 1fr);
 
@@ -61,11 +60,10 @@
   }
 
   .formButtons {
-    margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
     row-gap: 1.5rem;
+    margin: 2rem 0 2rem 2px;
 
     @include media('<desktop') {
       margin-bottom: 6rem;
