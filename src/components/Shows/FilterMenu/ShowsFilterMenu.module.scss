@@ -69,6 +69,10 @@
       margin-bottom: 6rem;
     }
 
+    @include media('<800px') {
+      margin: 2rem 0 2rem;
+    }
+
     .btn {
       font-size: 17px;
       font-weight: 500;

@@ -7,6 +7,7 @@ import { imageBase } from '../../data/imagePaths';
 import { getAge, formatDate } from '../../utilities/utilities';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import './Carousel.scss';
 
 const PersonDetails = () => {
   const { person } = useAppSelector((state) => state.person);
@@ -17,24 +18,28 @@ const PersonDetails = () => {
       id: person?.external_ids.instagram_id,
       icon: BsInstagram,
       keyID: 5035739184843,
+      name: 'Instagram',
     },
     {
       base: 'https://facebook.com/',
       id: person?.external_ids.facebook_id,
       icon: BsFacebook,
       keyID: 4810573175591,
+      name: 'Facebook',
     },
     {
       base: 'https://twitter.com/',
       id: person?.external_ids.twitter_id,
       icon: BsTwitter,
       keyID: 1953038502946,
+      name: 'Twitter',
     },
     {
       base: 'https://tiktok.com/@',
       id: person?.external_ids.tiktok_id,
       icon: BsTiktok,
       keyID: 732561398455,
+      name: 'TikTok',
     },
   ];
 
@@ -54,6 +59,7 @@ const PersonDetails = () => {
               <button
                 onClick={clickHandler}
                 className={`${styles.arrowBtn} ${styles.arrowLeft}`}
+                aria-label='Previous image'
               >
                 <HiChevronLeft />
               </button>
@@ -62,6 +68,7 @@ const PersonDetails = () => {
               <button
                 onClick={clickHandler}
                 className={`${styles.arrowBtn} ${styles.arrowRight}`}
+                aria-label='Next image'
               >
                 <HiChevronRight />
               </button>
@@ -88,10 +95,12 @@ const PersonDetails = () => {
         <Link
           to={`/search?query=${person?.name.split(' ').join('+')}`}
           className={`${styles.name} ${styles.nameMobile}`}
+          aria-label={`Get search results for ${person?.name}`}
+          title={`Get search results for ${person?.name}`}
         >
           <h1>{person?.name}</h1>
         </Link>
-        <aside className={styles.details}>
+        <div className={styles.details}>
           <ul className={styles.socials}>
             {socials.map(
               (social) =>
@@ -101,6 +110,7 @@ const PersonDetails = () => {
                       href={`${social.base}${social.id}`}
                       target='_blank'
                       rel='noreferrer'
+                      aria-label={`${person?.name} ${social.name}`}
                     >
                       {<social.icon />}
                     </a>
@@ -151,7 +161,7 @@ const PersonDetails = () => {
               </div>
             )}
           </div>
-        </aside>
+        </div>
       </div>
 
       <div className={styles.column2}>
@@ -159,6 +169,8 @@ const PersonDetails = () => {
           <Link
             to={`/search?query=${person?.name?.split(' ').join('+')}`}
             className={`${styles.name} ${styles.nameDesktop}`}
+            aria-label={`Get search results for ${person?.name}`}
+            title={`Get search results for ${person?.name}`}
           >
             <h1>{person?.name}</h1>
           </Link>
@@ -174,25 +186,25 @@ const PersonDetails = () => {
           <h2 className={styles.knownForHeading}>Known For</h2>
           <ul className={styles.knownForGrid}>
             {person?.credits.map((media) => {
-              const route = media.media_type === 'movie' ? 'movies' : 'shows';
+              const isMovie = media.media_type === 'movie' ? true : false;
               return (
                 <li
                   className={styles.knownForMedia}
                   key={`${media.id}-${media.credit_id}`}
                 >
-                  <Link to={`/${route}/${media.id}`}>
+                  <Link to={`/${isMovie ? 'movies' : 'shows'}/${media.id}`}>
                     <img
                       src={`${imageBase}w500${media.poster_path}`}
                       loading='lazy'
-                      alt=''
+                      alt={isMovie ? media.title : media.name}
                     />
                   </Link>
                   <div className={styles.mediaInfo}>
                     <h3 className={styles.title}>
-                      {media.media_type === 'movie' ? media.title : media.name}
+                      {isMovie ? media.title : media.name}
                     </h3>
                     <p className={styles.year}>
-                      {media.media_type === 'movie'
+                      {isMovie
                         ? media.release_date?.slice(0, 4)
                         : media.first_air_date?.slice(0, 4)}
                     </p>

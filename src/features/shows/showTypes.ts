@@ -59,6 +59,7 @@ export interface SingleShow extends BasicShow {
   last_air_date: string;
   networks: {
     logo_path: string;
+    name: string;
   }[];
   external_ids: {
     facebook_id: string;

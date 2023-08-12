@@ -37,7 +37,7 @@ const WatchlistCard = ({
   return (
     <div className={styles.card}>
       <Link className={styles.imageWrapper} to={`/${type}s/${id}`}>
-        <img src={`${imageBase}w500${poster}`} loading="lazy" alt="" />
+        <img src={`${imageBase}w500${poster}`} loading='lazy' alt={name} />
       </Link>
       <div className={styles.details}>
         <h2 className={styles.name}>{name}</h2>
@@ -55,7 +55,11 @@ const WatchlistCard = ({
           <p>{rating ? +rating.toFixed(1) * 10 : 'NR'}</p>
           {rating ? <FiPercent className={styles.percentSymbol} /> : null}
         </div>
-        <button onClick={deleteItem} className={styles.delete}>
+        <button
+          onClick={deleteItem}
+          className={styles.delete}
+          title='Remove from watchlist'
+        >
           <BsBookmarkFill />
         </button>
       </div>

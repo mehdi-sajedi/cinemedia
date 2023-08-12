@@ -13,24 +13,28 @@ const MovieSidebar = () => {
       id: movie?.external_ids.instagram_id,
       icon: BsInstagram,
       keyID: 9823479237498,
+      name: 'Instagram',
     },
     {
       base: 'https://facebook.com/',
       id: movie?.external_ids.facebook_id,
       icon: BsFacebook,
       keyID: 1458972394879,
+      name: 'Facebook',
     },
     {
       base: 'https://twitter.com/',
       id: movie?.external_ids.twitter_id,
       icon: BsTwitter,
       keyID: 7849236987293,
+      name: 'Twitter',
     },
     {
       base: '',
       id: movie?.homepage,
       icon: MdOutlineLink,
       keyID: 8386725394781,
+      name: 'Website',
     },
   ];
 
@@ -43,8 +47,9 @@ const MovieSidebar = () => {
               <li key={`${social.id}-${social.keyID}`}>
                 <a
                   href={`${social.base}${social.id}`}
-                  target="_blank"
-                  rel="noreferrer"
+                  target='_blank'
+                  rel='noreferrer'
+                  aria-label={`${movie?.title} ${social.name}`}
                 >
                   {<social.icon />}
                 </a>

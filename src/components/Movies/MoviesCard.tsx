@@ -22,7 +22,11 @@ const MoviesCard = ({
   return (
     <div className={styles.card}>
       <Link className={styles.imageWrapper} to={`/movies/${id}`}>
-        <img src={`${imageBase}w500${poster_path}`} loading="lazy" alt="" />
+        <img
+          src={`${imageBase}w500${poster_path}`}
+          loading='lazy'
+          alt={title}
+        />
       </Link>
       <div className={styles.details}>
         <h2 className={styles.title}>{title}</h2>
@@ -40,7 +44,9 @@ const MoviesCard = ({
           }}
         >
           <p>{vote_average ? +vote_average.toFixed(1) * 10 : 'NR'}</p>
-          {vote_average ? <FiPercent className={styles.percentSymbol} /> : null}
+          {vote_average ? (
+            <FiPercent className={styles.percentSymbol} aria-hidden={true} />
+          ) : null}
         </div>
       </div>
     </div>

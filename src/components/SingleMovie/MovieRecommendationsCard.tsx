@@ -16,7 +16,11 @@ const MovieRecommendationsCard = ({
   return (
     <li className={styles.card}>
       <Link to={`/movies/${id}`}>
-        <img src={`${imageBase}w780${backdrop_path}`} loading="lazy" alt="" />
+        <img
+          src={`${imageBase}w780${backdrop_path}`}
+          loading='lazy'
+          alt={title}
+        />
       </Link>
       <div className={styles.text}>
         <h3>{title}</h3>

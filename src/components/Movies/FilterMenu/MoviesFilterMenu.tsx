@@ -109,6 +109,7 @@ const MoviesFilterMenu = () => {
             <button
               className={`${styles.submit} ${styles.btn} submit`}
               typeof='submit'
+              aria-label='Apply filters'
             >
               <span className={styles.content}>
                 Apply <HiOutlineArrowNarrowRight />
@@ -118,6 +119,7 @@ const MoviesFilterMenu = () => {
               className={`${styles.reset} ${styles.btn}`}
               typeof='reset'
               onClick={resetForm}
+              aria-label='Clear all filters'
             >
               Clear All
             </button>

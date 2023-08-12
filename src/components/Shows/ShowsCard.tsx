@@ -22,7 +22,7 @@ const ShowsCard = ({
   return (
     <div className={styles.card}>
       <Link className={styles.imageWrapper} to={`/shows/${id}`}>
-        <img src={`${imageBase}w500${poster_path}`} loading="lazy" alt="" />
+        <img src={`${imageBase}w500${poster_path}`} loading='lazy' alt={name} />
       </Link>
       <div className={styles.details}>
         <h2 className={styles.name}>{name}</h2>

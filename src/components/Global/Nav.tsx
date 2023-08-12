@@ -112,7 +112,13 @@ const Nav = () => {
           </form>
           <MobileMenuBtn menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
           <div className={styles.watchlistAndAuth}>
-            <button onClick={toggleLight} className={styles.theme}>
+            <button
+              onClick={toggleLight}
+              className={styles.theme}
+              role='switch'
+              aria-label='Light mode'
+              aria-checked={lightmode}
+            >
               {lightmode ? <IoMoon /> : <IoSunny />}
             </button>
             <Link to='/watchlist' className={styles.watchlist}>

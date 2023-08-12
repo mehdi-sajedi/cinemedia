@@ -14,24 +14,28 @@ const ShowSidebar = () => {
       id: show?.external_ids?.instagram_id,
       icon: BsInstagram,
       keyID: 9823479237498,
+      name: 'Instagram',
     },
     {
       base: 'https://facebook.com/',
       id: show?.external_ids?.facebook_id,
       icon: BsFacebook,
       keyID: 1458972394879,
+      name: 'Facebook',
     },
     {
       base: 'https://twitter.com/',
       id: show?.external_ids?.twitter_id,
       icon: BsTwitter,
       keyID: 7849236987293,
+      name: 'Twitter',
     },
     {
       base: '',
       id: show?.homepage,
       icon: MdOutlineLink,
       keyID: 8386725394781,
+      name: 'Website',
     },
   ];
 
@@ -44,8 +48,9 @@ const ShowSidebar = () => {
               <li key={`${social.id}-${social.keyID}`}>
                 <a
                   href={`${social.base}${social.id}`}
-                  target="_blank"
-                  rel="noreferrer"
+                  target='_blank'
+                  rel='noreferrer'
+                  aria-label={`${show?.name} ${social.name}`}
                 >
                   {<social.icon />}
                 </a>
@@ -80,7 +85,7 @@ const ShowSidebar = () => {
               <h3>Network</h3>
               <img
                 src={`${imageBase}original${show?.networks[0].logo_path}`}
-                alt=""
+                alt={show?.networks[0].name}
               />
             </>
           )}

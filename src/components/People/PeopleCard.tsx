@@ -17,7 +17,11 @@ const PeopleCard = ({ profile_path, name, id, known_for }: PeopleCardProps) => {
   return (
     <div className={styles.card}>
       <Link to={`/person/${id}`} className={styles.imageWrapper}>
-        <img src={`${imageBase}w500${profile_path}`} loading="lazy" alt="" />
+        <img
+          src={`${imageBase}w500${profile_path}`}
+          loading='lazy'
+          alt={name}
+        />
       </Link>
       <div className={styles.details}>
         <h2 className={styles.name}>{name}</h2>

@@ -7,11 +7,6 @@
   flex-direction: column;
   border-radius: 3px;
   box-shadow: var(--box-shadow-4);
-  overflow: hidden;
-
-  img {
-    display: flex;
-  }
 
   .imageWrapper {
     position: relative;
@@ -21,6 +16,7 @@
       position: absolute;
       top: 0;
       left: 0;
+      border-radius: 3px 3px 0 0;
     }
   }
 
