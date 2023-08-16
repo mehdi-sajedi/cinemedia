@@ -31,11 +31,22 @@ const WatchlistGrid = () => {
   return (
     <div className={styles.watchlist}>
       <h1>My Watchlist</h1>
+
+      {/* Not logged in */}
       {!id && (
         <p className={styles.emptyList}>
           <Link to='/auth'>Login</Link> to start adding items!
         </p>
       )}
+
+      {/* Logged in but no items in watchlist */}
+      {watchlist === null && (
+        <p className={styles.emptyList}>
+          Add movies or shows to your Watchlist to have them appear here!
+        </p>
+      )}
+
+      {/* Logged in and has items in watchlist */}
       {watchlist && (
         <div className={styles.grid}>
           {watchlist.map((item) => (
@@ -43,11 +54,7 @@ const WatchlistGrid = () => {
           ))}
         </div>
       )}
-      {!watchlist && (
-        <p className={styles.emptyList}>
-          Add movies or shows to your Watchlist to have them appear here!
-        </p>
-      )}
+      
     </div>
   );
 };
