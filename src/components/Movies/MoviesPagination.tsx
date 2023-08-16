@@ -14,10 +14,6 @@ const MoviesPagination = () => {
     pageNumbers.push(i);
   }
 
-  pageNumbers.filter((num) => {
-    return page + 2 <= num;
-  });
-
   const handlePaginate = (pageNum: number) => {
     if (pageNum < 1 || pageNum > maxPages) return;
     dispatch(paginate(pageNum));
@@ -27,54 +23,41 @@ const MoviesPagination = () => {
     <div className={styles.pagination}>
       <button
         onClick={() => handlePaginate(page - 1)}
-        className={`${styles.arrow} ${page === 1 ? 'inactive' : ''}`}
+        className={`${styles.arrow} ${page === 1 ? styles.disabled : ''}`}
+        disabled={page === 1}
+        aria-label='Previous page'
       >
         <IoIosArrowBack />
       </button>
       <div className={styles.mediaPages}>
         <ul>
-          {page >= 3 && (
-            <>
-              <li key={1} className={`${1 === page ? styles.activePage : ''} `}>
-                <button onClick={() => handlePaginate(1)}>1</button>
-              </li>
-              <span className={styles.dots}>...</span>
-            </>
-          )}
-
           {pageNumbers
-            .filter((num) => page + 2 >= num && page - 1 <= num)
-            .map((pageNum) => {
+            .filter(
+              (n) =>
+                n === 1 || n === maxPages || (page + 2 >= n && page - 1 <= n)
+            )
+            .map((n) => {
               return (
-                <li
-                  key={pageNum}
-                  className={`${pageNum === page ? styles.activePage : ''} `}
-                >
-                  <button onClick={() => handlePaginate(pageNum)}>
-                    {pageNum}
+                <li key={n} className={n === page ? styles.activePage : ''}>
+                  <button
+                    onClick={() => handlePaginate(n)}
+                    aria-label={`Page ${n}`}
+                    aria-current={n === page ? 'page' : undefined}
+                  >
+                    {n}
                   </button>
                 </li>
               );
             })}
-
-          {page + 2 < maxPages && (
-            <>
-              <span className={styles.dots}>...</span>
-              <li
-                key={maxPages}
-                className={`${maxPages === page ? styles.activePage : ''} `}
-              >
-                <button onClick={() => handlePaginate(maxPages)}>
-                  {maxPages}
-                </button>
-              </li>
-            </>
-          )}
         </ul>
       </div>
       <button
         onClick={() => handlePaginate(page + 1)}
-        className={`${styles.arrow} ${page === maxPages ? 'inactive' : ''}`}
+        className={`${styles.arrow} ${
+          page === maxPages ? styles.disabled : ''
+        }`}
+        disabled={page === maxPages}
+        aria-label='Next page'
       >
         <IoIosArrowForward />
       </button>
