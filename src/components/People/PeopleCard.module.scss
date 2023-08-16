@@ -1,8 +1,10 @@
+@import '../../include-media';
+
 .card {
-  background-color: var(--bg-card);
-  color: var(--primary-text);
   display: flex;
   flex-direction: column;
+  background-color: var(--bg-card);
+  color: var(--primary-text);
   border-radius: 3px;
   box-shadow: var(--box-shadow-4);
   min-width: 0;
@@ -24,22 +26,34 @@
     flex-direction: column;
     padding: 22px 20px 20px;
 
+    @include media('<phone') {
+      padding: 20px 16px 20px;
+    }
+
     .name {
       font-size: 16px;
       font-weight: 600;
+
+      @include media('<phone') {
+        font-size: 15px;
+      }
     }
 
     ul {
-      font-weight: 300;
-      margin-top: 16px;
-      font-size: 14px;
       display: flex;
       flex-direction: column;
       row-gap: 10px;
+      font-size: 14px;
+      margin-top: 16px;
+      color: var(--secondary-text);
+
+      @include media('<phone') {
+        font-size: 13px;
+      }
 
       li {
-        white-space: nowrap;
         overflow: hidden;
+        white-space: nowrap;
         text-overflow: ellipsis;
       }
     }
