@@ -6,11 +6,11 @@
   border-radius: 3px;
   box-shadow: var(--box-shadow-3);
   border: 1px solid var(--clr-border);
-  overflow: hidden;
 
   img {
     width: 100%;
     display: flex;
+    border-radius: 2px 2px 0 0;
   }
 
   .text {
@@ -21,9 +21,9 @@
     }
 
     p {
+      font-size: 13px;
       margin-top: 5px;
       color: var(--secondary-text);
-      font-size: 13px;
     }
   }
 }

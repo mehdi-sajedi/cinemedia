@@ -235,7 +235,9 @@ $breakpoint: '<1024px';
         justify-content: flex-start;
         gap: 1rem;
         overflow-x: auto;
-        padding: 1px 1px 1rem;
+        padding-top: 2px;
+        padding-bottom: 1rem;
+        transform: translateY(-2px);
         @include scrollbars;
 
         .knownForMedia {
@@ -246,7 +248,6 @@ $breakpoint: '<1024px';
           border-radius: 3px;
           box-shadow: var(--box-shadow-3);
           border: 1px solid var(--clr-border);
-          overflow: hidden;
 
           @include media($breakpoint) {
             width: 138px;
@@ -254,13 +255,13 @@ $breakpoint: '<1024px';
 
           a {
             position: relative;
-            overflow: hidden;
             padding-top: 150%;
 
             img {
               position: absolute;
               top: 0;
               left: 0;
+              border-radius: 2px 2px 0 0;
             }
           }
 

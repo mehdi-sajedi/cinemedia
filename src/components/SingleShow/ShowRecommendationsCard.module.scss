@@ -1,19 +1,24 @@
 .card {
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   border-radius: 4px;
   box-shadow: var(--box-shadow-3);
   border: 1px solid var(--clr-border);
 
   a {
     display: flex;
+    z-index: 2;
+
+    img {
+      border-radius: 3px 3px 0 0;
+    }
   }
 
   .text {
     padding: 12px;
     background-color: var(--bg-card);
     color: var(--primary-text);
+    border-radius: 0 0 3px 3px;
 
     h3 {
       font-size: 14px;
