@@ -6,7 +6,7 @@ const getMoviesService = async (
   filterData: MovieFilterData,
   sort: MovieSort
 ) => {
-  const MOVIES_API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=${sort}&page=${page}`;
+  const MOVIES_API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&with_original_language=en&sort_by=${sort}&page=${page}`;
 
   const { year, runtime, rating, genres, services } = filterData;
 

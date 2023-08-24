@@ -6,7 +6,7 @@ const getShowsService = async (
   filterData: ShowFilterData,
   sort: ShowSort
 ) => {
-  const SHOWS_API_URL = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=${sort}&page=${page}`;
+  const SHOWS_API_URL = `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&with_original_language=en&sort_by=${sort}&page=${page}`;
 
   const { year, rating, genres, services, status, type } = filterData;
 
@@ -17,6 +17,10 @@ const getShowsService = async (
   let minimumVotes = 100;
   if (sort === 'first_air_date.desc') minimumVotes = 10;
 
+  // Remove talk shows and news genres from base request unless user has activated genres filter
+  let without_genres = '10767|10763';
+  if (genres.length > 0) without_genres = '';
+
   const params = [
     `&first_air_date.gte=${year[0]}-01-01`,
     `&first_air_date.lte=${year[1]}-12-31`,
@@ -26,6 +30,7 @@ const getShowsService = async (
     `&with_watch_providers=${services.join('|')}`,
     `&watch_region=US`,
     `&vote_count.gte=${minimumVotes}`,
+    `&without_genres=${without_genres}`,
     `&with_status=${statusValues.join('|')}`,
     `&with_type=${typeValues.join('|')}`,
   ];
